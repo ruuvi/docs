@@ -11,7 +11,7 @@ description: >-
 | Field | Name | Unit |
 | :--- | :--- | :--- |
 | Temperature | temperature | Celcius \(C\) |
-| Humidity | humidity | RH percentage \(RH-%\) |
+| Humidity | humidity | RH percentage \(RH-%\) Range 0 ... 100 |
 | Pressure | pressure |  Pascal \(Pa\) |
 | Acceleration on X-axis | accelerationX |  Gravity \(g\) |
 | Acceleration on Y-axis | accelerationY |  Gravity \(g\) |
