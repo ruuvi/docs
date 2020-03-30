@@ -20,7 +20,7 @@
 
 * [Bluetooth advertisements](communication/bluetooth-advertisements/README.md)
   * [Data format 3 \(RAWv1\)](communication/bluetooth-advertisements/data-format-3-rawv1.md)
-  * [Data Format \(URL\)](communication/bluetooth-advertisements/data-format-4-url.md)
+  * [Dataformat 4 \(URL\)](communication/bluetooth-advertisements/data-format-4-url.md)
   * [Data Format 5 \(RAWv2\)](communication/bluetooth-advertisements/data-format-5-rawv2.md)
   * [Data Format 8 \(Encrypted environmental\)](communication/bluetooth-advertisements/data-format-8-encrypted-environmental.md)
 * [Bluetooth connection](communication/bluetooth-connection/README.md)
