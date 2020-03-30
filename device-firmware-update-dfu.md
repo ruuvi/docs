@@ -2,7 +2,7 @@
 description: 'Lifecycle: In production'
 ---
 
-# DFU \(Device Firmware Update\)
+# Device Firmware Update \(DFU\)
 
 There are two different options on how to update RuuviTag firmware.
 

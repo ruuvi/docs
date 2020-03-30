@@ -2,7 +2,7 @@
 description: 'Lifecycle: In production'
 ---
 
-# RTT \(Real Time Transfer\)
+# Real Time Transfer \(RTT\)
 
 RuuviTags are nRF52-based devices. The programming is done over Serial Wire Debug \(SWD\) interface through nRF52 devkit. The RuuviTag can be interfaced to nRF52-DK either through [Ruuvi Devshield](https://shop.ruuvi.com/product/devkit/) or a [Tag-Connect cable](http://www.tag-connect.com/TC2030-CTX-NL).
 

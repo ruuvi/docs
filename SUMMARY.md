@@ -6,8 +6,8 @@
 
 ## RuuviTag Firmware
 
-* [DFU \(Device Firmware Update\)](device-firmware-update-dfu.md)
-* [RTT \(Real Time Transfer\)](development-real-time-transfer.md)
+* [Device Firmware Update \(DFU\)](device-firmware-update-dfu.md)
+* [Real Time Transfer \(RTT\)](development-real-time-transfer.md)
 
 ## Ruuvi Connector System
 
