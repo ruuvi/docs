@@ -1,3 +1,7 @@
+---
+description: 'Lifecycle: proposal'
+---
+
 # Introduction
 
 Ruuvi Connector is a standardised expansion connector and cable system that takes sensor prototyping to the next level. Compatible connectors will be found on many upcoming Ruuvi products.

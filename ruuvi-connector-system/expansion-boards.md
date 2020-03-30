@@ -1,3 +1,7 @@
+---
+description: 'Lifecycle: proposal'
+---
+
 # Expansion boards
 
 To make Ruuvi Connector System as flexible as possible, several adapter boards and standardised circuit boards will be made available.
