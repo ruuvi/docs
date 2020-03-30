@@ -2,7 +2,7 @@
 description: 'Lifecycle: In Production'
 ---
 
-# Data Format 5 \(RAWv2\)
+# Data format 5 \(RAWv2\)
 
 The data is decoded from "Manufacturer Specific Data" -field, for more details please check [Bluetooth Advertisements section](https://docs.ruuvi.com/communication/bluetooth-advertisements). Manufacturer ID is **`0x0499`** , which is transmitted as **`0x9904`** in raw data. The actual data payload is:
 

@@ -2,7 +2,7 @@
 description: 'Lifecycle: Obsolete'
 ---
 
-# Dataformat 4 \(URL\)
+# Data format 4 \(URL\)
 
 The data is packed in [Eddystone URL](https://developers.google.com/beacons/eddystone) with a base of [https://ruu.vi/\#](https://ruu.vi/#) and 9 [URL-safe base64](https://en.wikipedia.org/wiki/Base64#URL_applications) characters. Example URL is [https://ruu.vi/\#BFwaAMjlQ](https://ruu.vi/#BFwaAMjlQ). This is decoded to `0x045c1a00c8e5`
 
