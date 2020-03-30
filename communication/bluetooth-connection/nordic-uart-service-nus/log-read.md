@@ -1,3 +1,7 @@
+---
+description: 'Lifecycle: Alpha'
+---
+
 # Read logged history
 
 ### **Log read flow**
@@ -26,7 +30,7 @@ When the log buffer is sent and no more data remains, a special message with the
 | Central | 0x3A 3A 11 | 0x5D6740ED 5D57FEAD | “To: environmental. From: environmental. Action: read log data. Clock is 2019-08-29 03:05 now, start from 2019-08-13 13:18” |
 | Peripheral | 0x3A 30 10 | 5D57FEAD 000000098D | “To: environmental. From: temperature. Action: write log data. Temperature at  2019-08-13 13:18 24.45 C“ |
 | Peripheral | 0x3A 31 10 | 5D57FEAD 000000098D | “To: environmental. From: humidity. Action: write log data. Humidity at  2019-08-13 13:18 24.45 RH-%“ |
-| Peripheral | 0x3A 32 10 | 5D57FEAD 000000098D | “To: environmental. From: pressure. Action: write log data. Humidity at  2019-08-13 13:18 2445 Pa“ |
+| Peripheral | 0x3A 32 10 | 5D57FEAD 000000098D | “To: environmental. From: pressure. Action: write log data. Pressure at  2019-08-13 13:18 2445 Pa“ |
 | . | . | . | Log entry |
 | . | . | . | Log Entry |
 | . | . | . | Log Entry |
