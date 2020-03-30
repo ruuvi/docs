@@ -29,6 +29,8 @@
     * [Heartbeat transmissions](communication/bluetooth-connection/nordic-uart-service-nus/heartbeat-transmissions.md)
     * [Read logged history](communication/bluetooth-connection/nordic-uart-service-nus/log-read.md)
 * [Ruuvi Network](communication/ruuvi-network/README.md)
+  * [Backends](communication/ruuvi-network/backends/README.md)
+    * [Amplify](communication/ruuvi-network/backends/amplify.md)
   * [MQTT](communication/ruuvi-network/ruuvi-dongle-mqtt.md)
   * [HTTP\(s\)](communication/ruuvi-network/ruuvi-station-http-s.md)
 * [Naming conventions](communication/units-and-naming-conventions.md)
