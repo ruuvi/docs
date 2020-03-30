@@ -1,3 +1,7 @@
+---
+description: 'Lifecycle: Alpha'
+---
+
 # Heartbeat transmissions
 
 While the GATT connection is established and central has registered to NUS notifications, the sensor will send a heartbeat of current sensor data at the advertisement broadvast interval.
