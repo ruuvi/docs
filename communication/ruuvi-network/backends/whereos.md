@@ -1916,7 +1916,7 @@ MAC address of tag, lower case, no colons.
 
 {% api-method-query-parameters %}
 {% api-method-parameter name="p\_aggregation" type="string" required=false %}
- Downsample data to interval, 
+ Downsample data to interval, default 15m. Valid values are number + s \| m \| h, e.g. "15m"
 {% endapi-method-parameter %}
 {% endapi-method-query-parameters %}
 {% endapi-method-request %}
