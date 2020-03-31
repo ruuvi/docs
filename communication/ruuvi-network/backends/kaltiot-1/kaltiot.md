@@ -1,5 +1,7 @@
 ---
-description: 'Lifecycle: Alpha'
+description: >-
+  Lifecycle: Alpha. This list is imported from
+  https://beacontracker.kalt.io/static/docs/REST-API.html .
 ---
 
 # Kaltiot Smart Tracker Public REST API

@@ -69,7 +69,7 @@ Tags at a location
 {% api-method-request %}
 {% api-method-path-parameters %}
 {% api-method-parameter name="coordinates" type="string" required=true %}
-Coordinate string configured to Gateway
+Coordinate string configured to Gateway. This might be a office name, gateway ID or a lat,long string. Query must match exactly the configuration. 
 {% endapi-method-parameter %}
 {% endapi-method-path-parameters %}
 
