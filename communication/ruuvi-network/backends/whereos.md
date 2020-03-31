@@ -62,7 +62,7 @@ Tags at a location
 {% endapi-method-summary %}
 
 {% api-method-description %}
-
+**Important: This method is only for convenience of developers and may be removed in production.**
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -1895,7 +1895,306 @@ Data of tags near the gateway. Array of JSON objects.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-Sample URL: [`https://whereos.ruuvi.com`](https://whereos.ruuvi.com)`/api/ruuvi/coordinates/Saase?p_aggregation=12h`
+Sample URL: `https://whereos.ruuvi.com/api/ruuvi/coordinates/Saase?p_aggregation=12h`
 
+{% api-method method="get" host="https://whereos.ruuvi.com" path="/api/ruuvi/tag/$TAG" %}
+{% api-method-summary %}
+History of a tag
+{% endapi-method-summary %}
 
+{% api-method-description %}
+Get history data of one tag by MAC address.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="tag" type="string" required=true %}
+MAC address of tag, lower case, no colons.
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+
+{% api-method-query-parameters %}
+{% api-method-parameter name="p\_aggregation" type="string" required=false %}
+ Downsample data to interval, 
+{% endapi-method-parameter %}
+{% endapi-method-query-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+[
+    {
+        "rssi": -66,
+        "data": "0201041bff990405107f2ddcc9f80000ff1c03f3a2166f19d7c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -64,
+        "time": "2020-03-30T09:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -88
+    },
+    {
+        "rssi": -65,
+        "data": "0201041bff990405107f2dd4ca0afff8ff1c03eba2f66f1f43c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -64,
+        "time": "2020-03-30T10:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -74
+    },
+    {
+        "rssi": -64,
+        "data": "0201041bff99040510822de2ca440004ff1c03f0a2f66f24cfc04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -64,
+        "time": "2020-03-30T11:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -76
+    },
+    {
+        "rssi": -63,
+        "data": "0201041bff99040510852df0ca490000ff2403f8a2166f2a33c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -62,
+        "time": "2020-03-30T12:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -71
+    },
+    {
+        "rssi": -63,
+        "data": "0201041bff99040510862df8ca470000ff1c03f3a1366f3012c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -63,
+        "time": "2020-03-30T13:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -70
+    },
+    {
+        "rssi": -63,
+        "data": "0201041bff990405108a2dfcca450000ff1c03f3a2f66f3525c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -63,
+        "time": "2020-03-30T14:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -65
+    },
+    {
+        "rssi": -63,
+        "data": "0201041bff990405108d2dffca710004ff1c03f3a2166f3aa6c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -62,
+        "time": "2020-03-30T15:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -65
+    },
+    {
+        "rssi": -64,
+        "data": "0201041bff990405108f2e07cabc0000ff1c03f8a2f66f402ec04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -62,
+        "time": "2020-03-30T16:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -75
+    },
+    {
+        "rssi": -67,
+        "data": "0201041bff990405108a2dffcb000000ff1803eba2f66f4593c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -67,
+        "time": "2020-03-30T17:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -75
+    },
+    {
+        "rssi": -68,
+        "data": "0201041bff990405108a2dfccb570000ff1803f0a2f66f4b0fc04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -67,
+        "time": "2020-03-30T18:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -78
+    },
+    {
+        "rssi": -67,
+        "data": "0201041bff99040510882df8cb9afffcff2403f3a2f66f5084c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -67,
+        "time": "2020-03-30T19:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -77
+    },
+    {
+        "rssi": -67,
+        "data": "0201041bff99040510842df4cbb6fffcff2003f0a2f66f55fcc04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -67,
+        "time": "2020-03-30T20:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -77
+    },
+    {
+        "rssi": -65,
+        "data": "0201041bff99040510802deccbfa0004ff1803f8a2166f5b78c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -63,
+        "time": "2020-03-30T21:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -74
+    },
+    {
+        "rssi": -64,
+        "data": "0201041bff990405107f2de8cc090004ff2003f8a2f66f60f3c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -64,
+        "time": "2020-03-30T22:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -74
+    },
+    {
+        "rssi": -64,
+        "data": "0201041bff990405107d2de0cc070000ff1c03eba1b66f666dc04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -64,
+        "time": "2020-03-30T23:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -73
+    },
+    {
+        "rssi": -64,
+        "data": "0201041bff99040510782dd5cc0b0004ff1c03eba2166f6beac04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -64,
+        "time": "2020-03-31T00:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -73
+    },
+    {
+        "rssi": -64,
+        "data": "0201041bff99040510702dc3cbfa0004ff1c03f3a1366f7168c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -64,
+        "time": "2020-03-31T01:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -65
+    },
+    {
+        "rssi": -64,
+        "data": "0201041bff99040510692db6cc0efffcff2003f8a1b66f76d6c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -64,
+        "time": "2020-03-31T02:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -74
+    },
+    {
+        "rssi": -64,
+        "data": "0201041bff99040510632daacbec0000ff1c03f3a2166f7c59c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -64,
+        "time": "2020-03-31T03:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -66
+    },
+    {
+        "rssi": -64,
+        "data": "0201041bff990405105c2d9ecbcafffcff2003f8a2f66f8205c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -63,
+        "time": "2020-03-31T04:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -73
+    },
+    {
+        "rssi": -64,
+        "data": "0201041bff99040510552d93cbc70000ff2003f3a2f66f873cc04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -64,
+        "time": "2020-03-31T05:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -73
+    },
+    {
+        "rssi": -64,
+        "data": "0201041bff99040510522d87cba80000ff2003f8a2166f8cb6c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -63,
+        "time": "2020-03-31T06:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -73
+    },
+    {
+        "rssi": -64,
+        "data": "0201041bff99040510512d83cb770000ff2003eba2966f9235c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -64,
+        "time": "2020-03-31T07:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -73
+    },
+    {
+        "rssi": -64,
+        "data": "0201041bff99040510512d7fcb300000ff1c03f0a1b66f97a9c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -63,
+        "time": "2020-03-31T08:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -73
+    },
+    {
+        "rssi": -65,
+        "data": "0201041bff99040510502d7dcaebfffcff2003f8a2966f9d2cc04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -62,
+        "time": "2020-03-31T09:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -73
+    },
+    {
+        "rssi": -65,
+        "data": "0201041bff99040510502d7dca5d0000ff1c03f3a2966fa299c04db14ab635",
+        "coordinates": "Saase",
+        "rssi_max": -65,
+        "time": "2020-03-31T10:00:00.000Z",
+        "id": "c04db14ab635",
+        "gwmac": "30aea4cc1e2f",
+        "rssi_min": -65
+    }
+]
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+Sample URL: `https://whereos.ruuvi.com/api/ruuvi/tag/c04db14ab635?p_aggregation=1h`
 
