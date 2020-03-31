@@ -2,12 +2,20 @@
 
 * [Ruuvi Developer Documentation](README.md)
 
-## RuuviTag Hardware
+## Ruuvi Hardware
 
-## RuuviTag Firmware
+* [RuuviTag B](ruuvi-hardware/ruuvitag-b.md)
+* [Ruuvi Gateway](ruuvi-hardware/ruuvi-gateway.md)
 
-* [Device Firmware Update \(DFU\)](device-firmware-update-dfu.md)
-* [Real Time Transfer \(RTT\)](development-real-time-transfer.md)
+## Ruuvi Firmware
+
+* [RuuviTag B](ruuvitag-b/README.md)
+  * [v1.2.12](ruuvitag-b/v1.2.12.md)
+  * [v2.5.9](ruuvitag-b/v2.5.9.md)
+  * [v.3.x](ruuvitag-b/v.3.x.md)
+  * [Real Time Transfer \(RTT\)](ruuvitag-b/development-real-time-transfer.md)
+  * [Device Firmware Update \(DFU\)](ruuvitag-b/device-firmware-update-dfu.md)
+* [Ruuvi Gateway](ruuvi-gateway.md)
 
 ## Ruuvi Connector System
 
@@ -33,7 +41,8 @@
     * [AWS Amplify](communication/ruuvi-network/backends/amplify.md)
     * [Kaltiot](communication/ruuvi-network/backends/kaltiot-1/README.md)
       * [Kaltiot Smart Tracker Public REST API](communication/ruuvi-network/backends/kaltiot-1/kaltiot.md)
-  * [WhereOS](communication/ruuvi-network/whereos.md)
+    * [WhereOS](communication/ruuvi-network/backends/whereos.md)
+  * [Gateways](communication/ruuvi-network/gateways.md)
   * [MQTT](communication/ruuvi-network/ruuvi-dongle-mqtt.md)
   * [HTTP\(s\)](communication/ruuvi-network/ruuvi-station-http-s.md)
 * [Naming conventions](communication/units-and-naming-conventions.md)

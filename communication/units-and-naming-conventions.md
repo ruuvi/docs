@@ -1,12 +1,10 @@
 ---
-description: >-
-  For greatest interoperability in community applications, we recommend to
-  follow these guidelines when naming and scaling variables
+description: 'Lifecycle: Alpha testing'
 ---
 
 # Naming conventions
 
-
+For greatest interoperability in community applications, we recommend to follow these guidelines when naming and scaling variables.
 
 | Field | Name | Unit |
 | :--- | :--- | :--- |
