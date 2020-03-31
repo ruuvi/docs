@@ -6,5 +6,7 @@ description: 'Lifecycle: Alpha'
 
 Gateways of Ruuvi Network bridge BLE devices to the Internet. They listen in to the Ruuvi Broadcasts, collect data in a batch and send the batch to a backend via HTTP\(s\) post. 
 
+{% file src="../../.gitbook/assets/gwdata.json" caption="Post JSON object " %}
+
 
 

@@ -43,7 +43,5 @@
       * [Kaltiot Smart Tracker Public REST API](communication/ruuvi-network/backends/kaltiot-1/kaltiot.md)
     * [WhereOS](communication/ruuvi-network/backends/whereos.md)
   * [Gateways](communication/ruuvi-network/gateways.md)
-  * [MQTT](communication/ruuvi-network/ruuvi-dongle-mqtt.md)
-  * [HTTP\(s\)](communication/ruuvi-network/ruuvi-station-http-s.md)
 * [Naming conventions](communication/units-and-naming-conventions.md)
 
