@@ -9,12 +9,14 @@
 
 ## Ruuvi Firmware
 
-* [RuuviTag B](ruuvitag-b/README.md)
-  * [v1.2.12](ruuvitag-b/v1.2.12.md)
-  * [v2.5.9](ruuvitag-b/v2.5.9.md)
-  * [v.3.x](ruuvitag-b/v.3.x.md)
-  * [Real Time Transfer \(RTT\)](ruuvitag-b/development-real-time-transfer.md)
-  * [Device Firmware Update \(DFU\)](ruuvitag-b/device-firmware-update-dfu.md)
+* [1.2.12](1.2.12.md)
+* [2.5.9](2.5.9.md)
+* [3.X](3.x.md)
+* [Device Firmware Update \(DFU\)](device-firmware-update-dfu.md)
+
+## Ruuvi Gateway Firmware
+
+* [Untitled](ruuvi-gateway-firmware/untitled.md)
 * [Ruuvi Gateway](ruuvi-gateway.md)
 
 ## Ruuvi Connector System
@@ -44,4 +46,5 @@
     * [WhereOS](communication/ruuvi-network/backends/whereos.md)
   * [Gateways](communication/ruuvi-network/gateways.md)
 * [Naming conventions](communication/units-and-naming-conventions.md)
+* [Real Time Transfer \(RTT\)](communication/development-real-time-transfer.md)
 
