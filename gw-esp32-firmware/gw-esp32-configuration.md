@@ -11,8 +11,9 @@ description: 'Lifecycle: Alpha'
 | WiFi SSID | String | Up to 50 printable characters | Alpha | 1.0 | "" |
 | WiFi password | String | Up to 50 printable characters. | Alpha | 1.0 | "" |
 | Location | String | Up to 50 printable characters. | Alpha | 1.0 | "" |
+| Use Ruuvi Network | Boolean | True, False | Proposal |  | True |
 | Use HTTP | Boolean | True, False. | Alpha | 1.0 | True |
-| HTTP URL | String | Up to 255 printable characters. | Alpha | 1.0 | "https://network.ruuvi.com" |
+| HTTP URL | String | Up to 255 printable characters. | Alpha | 1.0 | "https://network.ruuvi.com/gwapi/v1" |
 | HTTP User | String | Up to 50 printable characters. | Proposal |  | "" |
 | HTTP Password | String | Up to 50 printable characters. | Proposal |  | "" |
 | HTTP Port | uint16 | 1 ... 65536. | Proposal |  | 443 |
@@ -37,6 +38,8 @@ description: 'Lifecycle: Alpha'
 **WiFi Password** Password of the WiFi. Example: "Ruuv1Tag". Optional.
 
 **Location** Coordinate pair or human readable location. Example: If coordinate pair, write it as "{59.409330, 24.735369}", without quotes. Otherwise any string, such as "Ruuvi's Office". Oprional.
+
+**Use Ruuvi Network** If yes, use default settings for everything exept WiFi and location. Mandatory.
 
 **Use HTTP** If yes, data is sent to given url as HTTP Post in JSON. If the configured server does not return 200 as a status code, indicate internet error to user with leds. Can be used simultaneously with MQTT. Mandatory.
 
