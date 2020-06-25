@@ -22,8 +22,8 @@ description: 'Lifecycle: Alpha'
 | MQTT User | String | Up to 50 printable characters. | Alpha | 1.0 | "" |
 | MQTT Password | String | Up to 50 printable characters. | Alpha | 1.0 | "" |
 | MQTT Port | uint16 | 1 ... 65536. | Alpha | 1.0 | 1883 |
-| Filter tags | Boolean | True, False. | Alpha | 1.0 | False |
-| Filter | uint16 | Any BLE SIG member ID, MSB first. | Alpha | 1.0 | 0 |
+| Filter tags | Boolean | True, False. | Alpha | 1.0 | true |
+| Filter | uint16 | Any BLE SIG member ID, MSB first. | Alpha | 1.0 | 0x0499 \(Ruuvi\) |
 | Scan Coded PHY | Boolean | True, False | Proposal |  | True |
 | Scan 1 MBit / s PHY | Boolean | True, False | Proposal |  | True |
 | Scan extended payloads | Boolean | True, False | Proposal |  | True |
