@@ -9,6 +9,8 @@
 
 ## Ruuvi Firmware
 
+---
+
 * [1.2.12](1.2.12.md)
 * [2.5.9](2.5.9.md)
 * [3.X](3.x.md)
@@ -16,8 +18,14 @@
 
 ## Ruuvi Gateway Firmware
 
-* [Untitled](ruuvi-gateway-firmware/untitled.md)
-* [Ruuvi Gateway](ruuvi-gateway.md)
+* [GW nRF52811 Firmware](ruuvi-gateway-firmware/untitled.md)
+
+---
+
+* [GW ESP32 Firmware](gw-esp32-firmware/README.md)
+  * [GW ESP32 Selftest](gw-esp32-firmware/gw-esp32-selftest.md)
+  * [GW ESP32 WiFi Hotspot](gw-esp32-firmware/gw-esp32-wifi-hotspot.md)
+  * [GW ESP32 Configuration](gw-esp32-firmware/gw-esp32-configuration.md)
 
 ## Ruuvi Connector System
 

@@ -2,5 +2,5 @@
 description: 'Lifecycle: Alpha'
 ---
 
-# GW nRF52811 Firmware
+# GW ESP32 WiFi Hotspot
 
