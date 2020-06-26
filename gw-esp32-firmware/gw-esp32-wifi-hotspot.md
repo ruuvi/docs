@@ -28,7 +28,7 @@ If Ethernet cable is connected, configuration mode cannot be entered as hotspot 
 
 | Event | Test | CI / Manual |
 | :--- | :--- | :--- |
-| Hotspot is active on first boot | Check that there is hotspot "Ruuvi Gateway ABCD" | Manual |
+| Hotspot is active on first boot | Check that there is hotspot "Ruuvi Gateway ABCD" Check that it is connectable with password "12345678" | Manual |
 | Hotspot is deactivated on internet connection | Connect gateway with Ethernet cable, observe that hotspot is turned off. | Manual |
 | Hotspot remains deactivated after internet connection | Disconnect Ethernet cable, reboot | Manual |
 | Hotspot is reactivated on short button press | Connect to WiFi, press button. | Manual |
