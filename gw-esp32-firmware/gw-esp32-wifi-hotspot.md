@@ -28,7 +28,7 @@ If Ethernet cable is connected, configuration mode cannot be entered as hotspot 
 
 The gateway is reachable at 10.10.0.1 once a client has connected to hotstop. These API calls are available:
 
-{% api-method method="get" host="" path="" %}
+{% api-method method="get" host="http://10.10.0.1" path="/status.json" %}
 {% api-method-summary %}
 status.json
 {% endapi-method-summary %}
@@ -39,28 +39,57 @@ status.json
 
 {% api-method-spec %}
 {% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="" type="string" required=false %}
-
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
-{% endapi-method-request %}
 
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}
-
+When Gateway is not connected to WiFi
 {% endapi-method-response-example-description %}
 
 ```
+HTTP/1.0 200 OK
+Content-type: application/json
+Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+Pragma: no-cache
 
+{}
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=302 %}
+{% api-method-response-example-description %}
+After Gateway successfully connected to WiFi
+{% endapi-method-response-example-description %}
+
+```
+HTTP/1.0 200 OK
+Content-type: application/json
+Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+Pragma: no-cache
+
+{"ssid":"%s","ip":"192.168.1.119","netmask":"255.255.255.0","gw":"192.168.1.1","urc":0}
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=304 %}
+{% api-method-response-example-description %}
+After unsuccessfully trying to connect to a WiFi
+{% endapi-method-response-example-description %}
+
+```
+HTTP/1.0 200 OK
+Content-type: application/json
+Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+Pragma: no-cache
+
+{"ssid":"%s","ip":"0","netmask":"0","gw":"0","urc":1}
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="" path="" %}
+{% api-method method="get" host="http://10.10.0.1" path="/ap.json" %}
 {% api-method-summary %}
 ap.json
 {% endapi-method-summary %}
@@ -71,12 +100,6 @@ ap.json
 
 {% api-method-spec %}
 {% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="" type="string" required=false %}
-
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
-{% endapi-method-request %}
 
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
@@ -85,29 +108,40 @@ ap.json
 {% endapi-method-response-example-description %}
 
 ```
+Content-type: application/json
+Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+Pragma: no-cache
 
+[
+{"ssid":"Pantum-AP-A6D49F","chan":11,"rssi":-55,"auth":4},
+{"ssid":"a0308","chan":1,"rssi":-56,"auth":3}
+]
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="post" host="" path="" %}
+{% api-method method="post" host="http://10.10.0.1" path="/connect.json" %}
 {% api-method-summary %}
-configuration
+connect.json
 {% endapi-method-summary %}
 
 {% api-method-description %}
-
+Connect to a WiFi
 {% endapi-method-description %}
 
 {% api-method-spec %}
 {% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="" type="string" required=false %}
-
+{% api-method-headers %}
+{% api-method-parameter name="X-Custom-pwd" type="string" required=true %}
+password
 {% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
+
+{% api-method-parameter name="X-Custom-ssid" type="string" required=true %}
+WiFi SSID
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
 {% endapi-method-request %}
 
 {% api-method-response %}
@@ -117,7 +151,59 @@ configuration
 {% endapi-method-response-example-description %}
 
 ```
+Content-type: application/json
+Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+Pragma: no-cache
 
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=400 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+Content-Length: 0
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% api-method method="delete" host="http://10.10.0.1" path="/connect.json" %}
+{% api-method-summary %}
+connect.json
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Disconnect from WiFi or clear the connection status of the previous unsuccessful connection attempt.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+Content-type: application/json
+Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+Pragma: no-cache
+
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=400 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+Content-Length: 0
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
