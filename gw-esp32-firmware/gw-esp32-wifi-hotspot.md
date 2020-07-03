@@ -34,7 +34,7 @@ status.json
 {% endapi-method-summary %}
 
 {% api-method-description %}
-
+This URL can be polled to get the WiFi connection status of the gateway. 
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -43,7 +43,7 @@ status.json
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}
-When Gateway is not connected to WiFi
+Status of current WiFi connection
 {% endapi-method-response-example-description %}
 
 ```
@@ -52,36 +52,13 @@ Content-type: application/json
 Cache-Control: no-store, no-cache, must-revalidate, max-age=0
 Pragma: no-cache
 
+// If not connected
 {}
-```
-{% endapi-method-response-example %}
 
-{% api-method-response-example httpCode=302 %}
-{% api-method-response-example-description %}
-After Gateway successfully connected to WiFi
-{% endapi-method-response-example-description %}
-
-```
-HTTP/1.0 200 OK
-Content-type: application/json
-Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-Pragma: no-cache
-
+// If Gateway is connected to WiFi
 {"ssid":"%s","ip":"192.168.1.119","netmask":"255.255.255.0","gw":"192.168.1.1","urc":0}
-```
-{% endapi-method-response-example %}
 
-{% api-method-response-example httpCode=304 %}
-{% api-method-response-example-description %}
-After unsuccessfully trying to connect to a WiFi
-{% endapi-method-response-example-description %}
-
-```
-HTTP/1.0 200 OK
-Content-type: application/json
-Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-Pragma: no-cache
-
+// After unsuccessful connection attempt
 {"ssid":"%s","ip":"0","netmask":"0","gw":"0","urc":1}
 ```
 {% endapi-method-response-example %}
@@ -95,7 +72,7 @@ ap.json
 {% endapi-method-summary %}
 
 {% api-method-description %}
-
+Poll for available accesspoints Gateway can connect to.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -104,7 +81,7 @@ ap.json
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}
-
+Array of JSON objects containing nearby gateways. 
 {% endapi-method-response-example-description %}
 
 ```
@@ -128,7 +105,7 @@ connect.json
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Connect to a WiFi
+Connect to a WiFi.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -147,7 +124,7 @@ WiFi SSID
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}
-
+The gateway tries to connect to given access point.
 {% endapi-method-response-example-description %}
 
 ```
@@ -160,7 +137,7 @@ Pragma: no-cache
 
 {% api-method-response-example httpCode=400 %}
 {% api-method-response-example-description %}
-
+If required parameter is missing.
 {% endapi-method-response-example-description %}
 
 ```
@@ -186,7 +163,7 @@ Disconnect from WiFi or clear the connection status of the previous unsuccessful
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}
-
+Connection is dropped. 
 {% endapi-method-response-example-description %}
 
 ```
