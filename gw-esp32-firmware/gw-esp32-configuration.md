@@ -19,6 +19,7 @@ description: 'Lifecycle: Alpha'
 | HTTP Port | uint16 | 1 ... 65536. | Proposal |  | 443 |
 | Use MQTT | Boolean | True, False. | Alpha | 1.0 | False |
 | MQTT URL | String | Up to 255 printable characters. | Alpha | 1.0 | "" |
+| MQTT Prefix | String | Up to 50 printable characters. | Alpha | 1.0 | "" |
 | MQTT User | String | Up to 50 printable characters. | Alpha | 1.0 | "" |
 | MQTT Password | String | Up to 50 printable characters. | Alpha | 1.0 | "" |
 | MQTT Port | uint16 | 1 ... 65536. | Alpha | 1.0 | 1883 |
@@ -54,6 +55,8 @@ description: 'Lifecycle: Alpha'
 **Use MQTT** If yes, data is sent to given url as MQTT topics with QoS 1/2. in JSON. acknowledge data, indicate internet error to user with leds. Can be used simultaneously with HTTP. Mandatory.
 
 **MQTT URL** MQTT Broker to which data should be sent. Supports using SSL. Example: "mqtt://broker.mysite.com". Optional.
+
+**MQTT Prefix** A root level topic under which data from gateway is stored. Example: "office". Optional.
 
 **MQTT User** MQTT username for basic user+password MQTT authentication. Example "ruuvi". Optional.
 
