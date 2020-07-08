@@ -20,11 +20,11 @@
 
 ## Ruuvi Gateway Firmware
 
-* [GW nRF52811 Firmware](ruuvi-gateway-firmware/untitled/README.md)
-  * [GW nRF52811 selftest](ruuvi-gateway-firmware/untitled/gw-nrf52811-selftest.md)
-  * [GW nRF52811 scanning](ruuvi-gateway-firmware/untitled/gw-nrf52811-scanning.md)
-  * [GW nRF52811 repeating](ruuvi-gateway-firmware/untitled/gw-nrf52811-repeating.md)
-  * [GW nRF52811 UART communication](ruuvi-gateway-firmware/untitled/gw-nrf52811-uart-communication.md)
+* [GW nRF52811 Firmware](ruuvi-gateway-firmware/gw-nrf52-firmware/README.md)
+  * [GW nRF52811 selftest](ruuvi-gateway-firmware/gw-nrf52-firmware/gw-nrf52811-selftest.md)
+  * [GW nRF52811 scanning](ruuvi-gateway-firmware/gw-nrf52-firmware/gw-nrf52811-scanning.md)
+  * [GW nRF52811 repeating](ruuvi-gateway-firmware/gw-nrf52-firmware/gw-nrf52811-repeating.md)
+  * [GW nRF52811 UART communication](ruuvi-gateway-firmware/gw-nrf52-firmware/gw-nrf52811-uart-communication.md)
 
 ---
 
