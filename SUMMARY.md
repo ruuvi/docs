@@ -34,6 +34,7 @@
   * [GW ESP32 Configuration](gw-esp32-firmware/gw-esp32-configuration.md)
   * [GW ESP32 Button](gw-esp32-firmware/gw-esp32-button.md)
   * [GW ESP32 LED](gw-esp32-firmware/gw-esp32-led.md)
+  * [GW ESP32 MQTT client](gw-esp32-firmware/gw-esp32-mqtt-client.md)
 
 ## Ruuvi Connector System
 
