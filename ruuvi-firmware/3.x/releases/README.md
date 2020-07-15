@@ -58,9 +58,11 @@ Releases are verified against the checklist below. This checklist is copied into
 
 ### Button
 
+### NFC
 
+### Usage
 
+### Firmware updates
 
-
-
+### Power consumption
 
