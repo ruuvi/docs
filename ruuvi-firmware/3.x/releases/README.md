@@ -58,11 +58,201 @@ Releases are verified against the checklist below. This checklist is copied into
 
 ### Button
 
+{% tabs %}
+{% tab title="RuuviTag B+" %}
+| Action | How to test | Verified by |
+| :--- | :--- | :--- |
+|  |  |  |
+{% endtab %}
+
+{% tab title="RuuviTag B Basic" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="RuuviTag B+SHTC" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Kalervo\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Kaarle\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Keijo\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+{% endtabs %}
+
 ### NFC
+
+{% tabs %}
+{% tab title="RuuviTag B+" %}
+| Action | How to test | Verified by |
+| :--- | :--- | :--- |
+|  |  |  |
+{% endtab %}
+
+{% tab title="RuuviTag B Basic" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="RuuviTag B+SHTC" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Kalervo\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Kaarle\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Keijo\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+{% endtabs %}
 
 ### Usage
 
+{% tabs %}
+{% tab title="RuuviTag B+" %}
+| Action | How to test | Verified by |
+| :--- | :--- | :--- |
+|  |  |  |
+{% endtab %}
+
+{% tab title="RuuviTag B Basic" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="RuuviTag B+SHTC" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Kalervo\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Kaarle\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Keijo\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+{% endtabs %}
+
 ### Firmware updates
 
+{% tabs %}
+{% tab title="RuuviTag B+" %}
+| Action | How to test | Verified by |
+| :--- | :--- | :--- |
+|  |  |  |
+{% endtab %}
+
+{% tab title="RuuviTag B Basic" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="RuuviTag B+SHTC" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Kalervo\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Kaarle\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Keijo\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+{% endtabs %}
+
 ### Power consumption
+
+{% tabs %}
+{% tab title="RuuviTag B+" %}
+| Action | How to test | Verified by |
+| :--- | :--- | :--- |
+|  |  |  |
+{% endtab %}
+
+{% tab title="RuuviTag B Basic" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="RuuviTag B+SHTC" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Kalervo\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Kaarle\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Keijo\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+{% endtabs %}
 
