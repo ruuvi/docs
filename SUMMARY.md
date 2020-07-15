@@ -14,7 +14,8 @@
 * [3.X](ruuvi-firmware/3.x/README.md)
   * [3.x Sensors](ruuvi-firmware/3.x/3.x-sensors.md)
   * [3.x Heartbeat](ruuvi-firmware/3.x/3.x-heartbeat.md)
-  * [Releases](ruuvi-firmware/3.x/releases.md)
+  * [Releases](ruuvi-firmware/3.x/releases/README.md)
+    * [Ruuvi Firmware 3.29.0](ruuvi-firmware/3.x/releases/ruuvi-firmware-3.29.0.md)
 * [Device Firmware Update \(DFU\)](ruuvi-firmware/device-firmware-update-dfu.md)
 
 ## Ruuvi Gateway Firmware
