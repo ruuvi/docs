@@ -13,7 +13,7 @@ This new documentation is work in process and may still have errors and inconsis
 * Beta: Implementation is available, although on hardware there might be a waiting list. Breaking changes are avoided, but possible if something critical is found. Intended to move into production. 
 * In production: Mature feature which can be used as a part of your business. 
 * Deprecated: Feature will be removed in a future release. If you're using this feature, please migrate to a feature which is in production or contact Ruuvi team as soon as possible to discuss your needs in the future. 
-* Obsolote: Feature which used to be available, but has been removed. Documentation is maintained only for a reference.
+* Obsolete: Feature which used to be available, but has been removed. Documentation is maintained only for a reference.
 
 
 
