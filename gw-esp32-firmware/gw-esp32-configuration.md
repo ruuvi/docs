@@ -1,8 +1,14 @@
 ---
-description: 'Lifecycle: Alpha'
+description: 'Lifecycle: Alpha. Last update 2020-07-03'
 ---
 
 # GW ESP32 Configuration
+
+## User interface
+
+Ruuvi Gateway sets up a WiFi hotspot and a webserver which provides user interface for configuration over HTTP. The user interface can be accessed in any major browser. To connect to the user interface connect to hotspot "**RuuviGateway XXXX**" and enter password "**12345678**". Once connected, open your browser and enter **http://10.10.0.1** . 
+
+
 
 ## Configurable settings
 
