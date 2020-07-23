@@ -16,13 +16,13 @@ If Ethernet cable is connected, configuration mode cannot be entered as hotspot 
 
 | Event | Action  | Lifecycle | Since version |
 | :--- | :--- | :--- | :--- |
-| Boot, no previous internet connection. | Activate hotspot. | Beta | 1.0 |
-| Boot, has been connected to internet. | Do not activate hotspot. | Beta | 1.0 |
-| Internet connection established. | Deactivate hotspot. | Beta | 1.0 |
-| Internet connection lost. | No action. | Beta | 1.0 |
-| Configuration button pressed. | Drop WiFi connection, activate hotspot. | Beta | 1.0 |
-| Hotspot activated | Start http server. | Alpha | 1.0 |
-| Hotspot deactivated | Stop http server. | Alpha | 1.0 |
+| Boot, no previous internet connection. | Activate hotspot. | Beta | 0.2.0 |
+| Boot, has been connected to internet. | Do not activate hotspot. | Beta | 0.2.0 |
+| Internet connection established. | Deactivate hotspot. | Beta | 0.2.0 |
+| Internet connection lost. | No action. | Beta | 0.2.0 |
+| Configuration button pressed. | Drop WiFi connection, activate hotspot. | Beta | 0.2.0 |
+| Hotspot activated | Start http server. | Alpha | 0.2.0 |
+| Hotspot deactivated | Stop http server. | Alpha | 0.2.0 |
 
 ## API
 
