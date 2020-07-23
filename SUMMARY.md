@@ -7,7 +7,7 @@
 * [RuuviTag B](ruuvi-hardware/ruuvitag-b.md)
 * [Ruuvi Gateway](ruuvi-hardware/ruuvi-gateway.md)
 
-## Ruuvi Firmware
+## Ruuvi Sensor Firmware <a id="ruuvi-firmware"></a>
 
 * [1.2.12](ruuvi-firmware/1.2.12.md)
 * [2.5.9](ruuvi-firmware/2.5.9.md)
@@ -20,6 +20,7 @@
 
 ## Ruuvi Gateway Firmware
 
+* [GW Getting Started](ruuvi-gateway-firmware/gw-getting-started.md)
 * [GW nRF52811 Firmware](ruuvi-gateway-firmware/gw-nrf52-firmware/README.md)
   * [GW nRF52811 selftest](ruuvi-gateway-firmware/gw-nrf52-firmware/gw-nrf52811-selftest.md)
   * [GW nRF52811 scanning](ruuvi-gateway-firmware/gw-nrf52-firmware/gw-nrf52811-scanning.md)
@@ -34,6 +35,7 @@
   * [GW ESP32 Configuration](gw-esp32-firmware/gw-esp32-configuration.md)
   * [GW ESP32 Button](gw-esp32-firmware/gw-esp32-button.md)
   * [GW ESP32 LED](gw-esp32-firmware/gw-esp32-led.md)
+  * [GW ESP32 HTTP Client](gw-esp32-firmware/gw-esp32-http-client.md)
   * [GW ESP32 MQTT client](gw-esp32-firmware/gw-esp32-mqtt-client.md)
 * [Releases](releases/README.md)
   * [Release checklist](releases/release-checklist.md)
@@ -58,6 +60,7 @@
   * [NUS \(Nordic UART Service\)](communication/bluetooth-connection/nordic-uart-service-nus/README.md)
     * [Heartbeat transmissions](communication/bluetooth-connection/nordic-uart-service-nus/heartbeat-transmissions.md)
     * [Read logged history](communication/bluetooth-connection/nordic-uart-service-nus/log-read.md)
+* [Real Time Transfer \(RTT\)](communication/development-real-time-transfer.md)
 * [Ruuvi Network](communication/ruuvi-network/README.md)
   * [Backends](communication/ruuvi-network/backends/README.md)
     * [AWS Amplify](communication/ruuvi-network/backends/amplify.md)
@@ -66,5 +69,4 @@
     * [WhereOS](communication/ruuvi-network/backends/whereos.md)
   * [Gateways](communication/ruuvi-network/gateways.md)
 * [Naming conventions](communication/units-and-naming-conventions.md)
-* [Real Time Transfer \(RTT\)](communication/development-real-time-transfer.md)
 
