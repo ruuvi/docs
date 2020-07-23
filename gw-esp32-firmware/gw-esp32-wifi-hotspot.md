@@ -4,7 +4,7 @@ description: 'Lifecycle: Alpha'
 
 # GW ESP32 WiFi Hotspot
 
-The Gateway provides a WiFi hotspot for configuration. The hotspot has SSID with name "Ruuvi Gateway ABCD", where ABCD are the last 2 bytes of gateway WiFi mac address. Password to connect to gateway is "12345678". 
+The Gateway provides a WiFi hotspot for configuration. The hotspot has SSID with name "**Ruuvi Gateway ABCD**", where ABCD are the last 2 bytes of gateway WiFi mac address. Password to connect to gateway is "**12345678**". 
 
 The WiFi hotspot is active only if the gateway has not connected to the Internet. After gateway has connected to the Internet at least once, WiFi credentials are stored to flash and hotspot is turned off. If the Internet connection is lost later, connection loss is indicated by LEDs but hotspot is not turned back on unless user enter configuration mode by pressing button.
 
