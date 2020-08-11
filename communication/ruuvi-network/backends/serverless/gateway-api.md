@@ -56,12 +56,12 @@ Data payload consists of gateway information and an array of tag measurements as
 			"<TAG ID 1>": {
 				"rssi": <RSSI VALUE>,
 				"timestamp": <MEASUREMENT TIMESTAMP>,
-				"data":	"<BASE64 ENCODED DATA>"
+				"data":	"<HEX ENCODED DATA>"
 			},
 			"<TAG ID 2>": {
 				"rssi": <RSSI VALUE>,
 				"timestamp": <MEASUREMENT TIMESTAMP>,
-				"data":	"<BASE64 ENCODED DATA>"
+				"data":	"<HEX ENCODED DATA>"
 			},
 			...
 		}
