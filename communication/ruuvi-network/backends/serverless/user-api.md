@@ -174,6 +174,19 @@ On success, you will receive a corresponding result and the claimed Tag ID repea
 ```
 {% endapi-method-response-example %}
 
+{% api-method-response-example httpCode=401 %}
+{% api-method-response-example-description %}
+In case of an invalid or expired token, you will receive Unauthorized.
+{% endapi-method-response-example-description %}
+
+```
+{
+    "result": "error",
+    "error": "Unauthorized request."
+}
+```
+{% endapi-method-response-example %}
+
 {% api-method-response-example httpCode=409 %}
 {% api-method-response-example-description %}
 If the tag has been claimed, you will receive a 409 Conflict.
