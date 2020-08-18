@@ -72,3 +72,7 @@
   * [Gateways](communication/ruuvi-network/gateways.md)
 * [Naming conventions](communication/units-and-naming-conventions.md)
 
+## RUUVI STATION APP
+
+* [Gateway](ruuvi-station-app/gateway.md)
+
