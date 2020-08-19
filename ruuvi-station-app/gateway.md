@@ -38,7 +38,7 @@ Every POST can contain one or few tag scan results after **"tags"**.
 | movementCounter | Int |  | How many times tag has detected movement from 0 to 2^8 |
 | name | String |  | Name of tag specified by user \(can be absent\) |
 | pressure | Int | Pa | Current pressure |
-| rssi | Int | dBm | Received signal strength indication |
+| rssi | Int | dB | Received signal strength indication |
 | temperature | Double | Celsius | Current temperature |
 | txPower | Int | dBm | Transmission power of tags |
 | updateAt | String | yyyy-MM-dd'T'HH:mm:ssZ | Date of current measurments |
