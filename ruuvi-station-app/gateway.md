@@ -13,9 +13,7 @@ The app will act as a gateway when:
 1. Background scanning is enabled
 2. A valid URL has been set in app settings
 
-If the 2 points are fulfilled the app will POST background scanning results to the URL.
-
-URL set in app settings will get all the tags in one POST.  \(The app only sends measurements for tags added in the app.\)
+If the 2 points are fulfilled the app will POST background scanning results to the URL. The app only sends measurements for tags added in the app.
 
 ### Data format
 
