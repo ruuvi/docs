@@ -17,13 +17,13 @@ If the 2 points are fulfilled the app will POST background scanning results to t
 
 ### Data format
 
-Every POST can contain one or few tag scan results after **"tags"**. 
+Every POST contains 2 blocks: tags data and device information. Tags data can contain one or few tag scan results after **"tags"**. 
 
 `"tags":[{tagdata1},{tagdata2}, ... ,{tagdataN}]`
 
-#### `Tag fields description`
+#### Tag fields description
 
-| `Field name` | Data format | Unit/Format | Description |
+| **`Field name`** | **Data format** | **Unit/Format** | **Description** |
 | :--- | :--- | :--- | :--- |
 | accelX | Double | G | Acceleration along X axis, including gravity |
 | accelY | Double | G | Acceleration along Y axis, including gravity |
@@ -44,11 +44,11 @@ Every POST can contain one or few tag scan results after **"tags"**.
 | updateAt | String | yyyy-MM-dd'T'HH:mm:ssZ | Date of current measurments |
 | voltage | Double | V | Battery voltage from tag |
 
-#### Common POST fields 
+#### Device information fields description
 
-| `Field name` | Data format | Unit/Format | Description |
+| **`Field name`** | **Data format** | **Unit/Format** | **Description** |
 | :--- | :--- | :--- | :--- |
-| batteryLevel | Int | Percentage | Current battery charge percentage |
+| batteryLevel | Int | Percentage | Current battery charge percentage of device running Ruuvi Station |
 | deviceId | String |  | Configurable in app settings, default is UUID generated on first start |
 | eventId | String |  | UUID for this request |
 | accuracy | Double | meters | horizontal accuracy of this location, radial |
