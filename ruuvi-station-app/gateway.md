@@ -23,7 +23,7 @@ Every POST contains 2 blocks: tags data and device information. Tags data can co
 
 #### Tag fields description
 
-| **`Field name`** | **Data format** | **Unit/Format** | **Description** |
+| **Field name** | **Data format** | **Unit/Format** | **Description** |
 | :--- | :--- | :--- | :--- |
 | accelX | Double | G | Acceleration along X axis, including gravity |
 | accelY | Double | G | Acceleration along Y axis, including gravity |
@@ -46,7 +46,7 @@ Every POST contains 2 blocks: tags data and device information. Tags data can co
 
 #### Device information fields description
 
-| **`Field name`** | **Data format** | **Unit/Format** | **Description** |
+| **Field name** | **Data format** | **Unit/Format** | **Description** |
 | :--- | :--- | :--- | :--- |
 | batteryLevel | Int | Percentage | Current battery charge percentage of device running Ruuvi Station |
 | deviceId | String |  | Configurable in app settings, default is UUID generated on first start |
