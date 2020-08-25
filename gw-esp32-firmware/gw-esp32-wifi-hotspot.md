@@ -1,17 +1,17 @@
 ---
-description: 'Lifecycle: Alpha'
+description: 'Lifecycle: Alpha. Last updated 2020-08-25'
 ---
 
 # GW ESP32 WiFi Hotspot
 
 The Gateway provides a WiFi hotspot for configuration. The hotspot has SSID with name "**Ruuvi Gateway ABCD**", where ABCD are the last 2 bytes of gateway WiFi mac address. Password to connect to gateway is "**12345678**". 
 
-The WiFi hotspot is active only if the gateway has not connected to the Internet. After gateway has connected to the Internet at least once, WiFi credentials are stored to flash and hotspot is turned off. If the Internet connection is lost later, connection loss is indicated by LEDs but hotspot is not turned back on unless user enter configuration mode by pressing button.
+The WiFi hotspot is active only ~~if the gateway has not connected to the Internet. After gateway has connected to the Internet at least once for one~~ hour after boot or pressing configuration button, WiFi credentials are stored to flash and hotspot is turned off. If the Internet connection is lost later, connection loss is indicated by LEDs but hotspot is not turned back on unless user enter configuration mode by pressing button.
 
-HTTP server is activated and deactivate in sync with WiFi hotspot, gateway cannot be reconfigured over LAN. 
+Gateway cannot be reconfigured over LAN, only page available through LAN connection is /metrics.  To reconfigure the gateway, press "configure" button and connect to the hotspot.
 
 {% hint style="info" %}
-If Ethernet cable is connected, configuration mode cannot be entered as hotspot is immediately deactivated on internet connection. 
+~~If Ethernet cable is connected, configuration mode cannot be entered as hotspot is immediately deactivated on internet connection.~~ 
 {% endhint %}
 
 | Event | Action  | Lifecycle | Since version |
@@ -181,6 +181,32 @@ Pragma: no-cache
 
 ```
 Content-Length: 0
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% api-method method="get" host="http://10.10.0.1" path="/metrics" %}
+{% api-method-summary %}
+metrics
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Get machine statistics, such as uptime and free memory. Data is in Prometheus format. For more details, please see https://prometheus.io/docs/instrumenting/exposition\_formats/ .
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+Prometheus text data
+{% endapi-method-response-example-description %}
+
+```
+ruuvigw_received_advertisements 2566 ruuvigw_uptime_us 65447769 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_EXEC"} 205004 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_32BIT"} 211468 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_8BIT"} 136412 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_DMA"} 136412 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_PID2"} 0 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_PID3"} 0 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_PID4"} 0 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_PID5"} 0 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_PID6"} 0 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_PID7"} 0 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_SPIRAM"} 0 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_INTERNAL"} 211468 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_DEFAULT"} 136604 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_EXEC"} 129948 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_32BIT"} 129948 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_8BIT"} 129948 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_DMA"} 129948 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_PID2"} 0 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_PID3"} 0 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_PID4"} 0 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_PID5"} 0 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_PID6"} 0 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_PID7"} 0 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_SPIRAM"} 0 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_INTERNAL"} 129948 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_DEFAULT"} 129948
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}

@@ -42,11 +42,21 @@ Ruuvi Gateway sets up a WiFi hotspot and a webserver which provides user interfa
 
 ![You can check the connection information or disconnect to connect to another WiFi.](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.42.47.png)
 
+TODO: Remove "Hide network info" -option, remove "disconnect" option, add "Turn off configuration hotspot" -option, add "Go back" option \(possibly disconnect if go back is selected\). 
+
+#### 
+
 #### Internet connection B\) Ethernet
 
 ![Use DHCP is best option 99% of time, but you can also configure the connection manually.](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.37.04.png)
 
+TODO: Make "Use DHCP" a radio button and add "Advanced configuration" as another option, similar to backend and scan option selection. 
+
+After clicking continue, show similar "connection" animation as in WiFi, and show written / animated instructions to connect Ethernet cable. 
+
 ![This message is shown regardless of connection status, you need to connect the Ethernet cable now. This connection flow will be adjusted to match WiFi flow later on.](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.37.22.png)
+
+TODO: Use same view as in WiFi connection successful.
 
 
 
@@ -58,17 +68,17 @@ Ruuvi Gateway sets up a WiFi hotspot and a webserver which provides user interfa
 | WiFi password | String | Up to 50 printable characters. | Alpha | 1.0 | "" |
 | Location | String | Up to 50 printable characters. | Alpha | 1.0 | "" |
 | Use Ruuvi Network | Boolean | True, False | Proposal |  | True |
-| Use HTTP | Boolean | True, False. | Alpha | 1.0 | True |
-| HTTP URL | String | Up to 255 printable characters. | Alpha | 1.0 | "https://network.ruuvi.com/gwapi/v1" |
-| HTTP User | String | Up to 50 printable characters. | Proposal |  | "" |
-| HTTP Password | String | Up to 50 printable characters. | Proposal |  | "" |
-| HTTP Port | uint16 | 1 ... 65536. | Proposal |  | 443 |
-| Use MQTT | Boolean | True, False. | Alpha | 1.0 | False |
-| MQTT URL | String | Up to 255 printable characters. | Alpha | 1.0 | "" |
-| MQTT Prefix | String | Up to 50 printable characters. | Alpha | 1.0 | "" |
-| MQTT User | String | Up to 50 printable characters. | Alpha | 1.0 | "" |
-| MQTT Password | String | Up to 50 printable characters. | Alpha | 1.0 | "" |
-| MQTT Port | uint16 | 1 ... 65536. | Alpha | 1.0 | 1883 |
+| Use HTTP | Boolean | True, False. | Beta | 1.0 | True |
+| HTTP URL | String | Up to 255 printable characters. | Beta | 1.0 | "https://network.ruuvi.com/gwapi/v1" |
+| HTTP User | String | Up to 50 printable characters. | Alpha | 1.2 | "" |
+| HTTP Password | String | Up to 50 printable characters. | Alpha | 1.2 | "" |
+| HTTP Port | uint16 | 1 ... 65536. | Alpha | 1.2 | 443 |
+| Use MQTT | Boolean | True, False. | Beta | 1.0 | False |
+| MQTT URL | String | Up to 255 printable characters. | Beta | 1.0 | "" |
+| MQTT Prefix | String | Up to 50 printable characters. | Beta | 1.0 | "" |
+| MQTT User | String | Up to 50 printable characters. | Beta | 1.0 | "" |
+| MQTT Password | String | Up to 50 printable characters. | Beta | 1.0 | "" |
+| MQTT Port | uint16 | 1 ... 65536. | Beta | 1.0 | 1883 |
 | Filter tags | Boolean | True, False. | Alpha | 1.0 | true |
 | Filter | uint16 | Any BLE SIG member ID, MSB first. | Alpha | 1.0 | 0x0499 \(Ruuvi\) |
 | Scan Coded PHY | Boolean | True, False | Proposal |  | True |
