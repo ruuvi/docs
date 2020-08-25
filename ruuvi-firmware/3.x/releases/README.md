@@ -62,7 +62,8 @@ Releases are verified against the checklist below. This checklist is copied into
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-|  |  |  |
+| Short press cycles between encrypted mode and RAWv2 mode |  |  |
+| Long press erases flash settings and logs, enters bootloader |  |  |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
