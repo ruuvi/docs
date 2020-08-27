@@ -23,6 +23,7 @@ Releases are verified against the checklist below. This checklist is copied into
 | Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. |  |
 | Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. \_\_Check power profile manually. |  |
 | All data fields of advertisement are valid RAWv2 values. | Manually, check that Ruuvi Station Android displays temperature, humidity, pressure, acceleration, voltage. Check MAC address, TX power +4, and measurement sequence counter bytes with nRF Connect captured data. |  |
+| After reset it's possible to configure settings via GATT for a certain time. After the time window closes, it is not possible to configure. | Configure settings via GATT connection |  |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -103,7 +104,7 @@ Releases are verified against the checklist below. This checklist is copied into
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-|  |  |  |
+| Enter to a mode where settings configuration via GATT is possible. After the time window closes, make it not possible to configure. | Apply an NFC field and configure settings via GATT |  |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
