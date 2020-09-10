@@ -63,6 +63,44 @@ Default version is used for all other tests than integration test and log read t
 
 Integration tests are run on debug-variants of firmware. They print test results on RTT terminal as JSON. 
 
+{% tabs %}
+{% tab title="RuuviTag B+" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="RuuviTag B Basic" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="RuuviTag B+SHTC" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Kalervo\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Kaarle\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+
+{% tab title="\"Keijo\"" %}
+|  |  |
+| :--- | :--- |
+|  |  |
+{% endtab %}
+{% endtabs %}
+
 ### Button
 
 {% tabs %}
