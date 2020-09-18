@@ -18,6 +18,10 @@ Gateway API handles receiving and storing data sent by Ruuvi Gateways to Ruuvi N
 
 {% page-ref page="user-api.md" %}
 
+{% page-ref page="internal-api.md" %}
+
+
+
 
 
 
