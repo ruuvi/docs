@@ -18,8 +18,16 @@ Sends a bulk of data to Ruuvi Network to be processed and stored.
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-headers %}
-{% api-method-parameter name="Authorization" type="string" required=true %}
-Gateway specific access token / Signature \(TBD\)
+{% api-method-parameter name="x-ruuvi-nonce" type="string" required=true %}
+Random string, also included in the signature.
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="x-ruuvi-timestamp" type="integer" required=true %}
+Timestamp of when the request was signed and sent. Notice that signatures expire.
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="x-ruuvi-signature" type="string" required=true %}
+Signature for the payload, signed with device specific keys.
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
 
@@ -34,6 +42,16 @@ Data object contains a formatted JSON blob of sensor data to be stored. Example 
 {% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}
 
+{% endapi-method-response-example-description %}
+
+```
+
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=403 %}
+{% api-method-response-example-description %}
+In case of an invalid signature, you will receive a 403: Forbidden.
 {% endapi-method-response-example-description %}
 
 ```

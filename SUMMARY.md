@@ -66,6 +66,7 @@
     * [Ruuvi Network \(Serverless\)](communication/ruuvi-network/backends/serverless/README.md)
       * [User API](communication/ruuvi-network/backends/serverless/user-api.md)
       * [Gateway API](communication/ruuvi-network/backends/serverless/gateway-api.md)
+      * [Internal API](communication/ruuvi-network/backends/serverless/internal-api.md)
     * [Kaltiot](communication/ruuvi-network/backends/kaltiot-1/README.md)
       * [Kaltiot Smart Tracker Public REST API](communication/ruuvi-network/backends/kaltiot-1/kaltiot.md)
     * [WhereOS](communication/ruuvi-network/backends/whereos.md)
