@@ -87,7 +87,9 @@ Data payload consists of gateway information and an array of tag measurements as
 }
 ```
 
-The signature is a HMAC \(hash-based message authentication code\) which is calculated using sha256 algorithm from a combination of headers and the message body. Below is an example code for calculating the secret.
+The signature is a HMAC \(hash-based message authentication code\) which is calculated using sha256 algorithm from a combination of headers and the message body. Ruuvi network validates the signature against the whitelisted gateways \(see: [Internal API](internal-api.md#whitelist)\).
+
+Below is an example code for calculating the secret:
 
 ```javascript
 // Secret information is only existent on the device and Ruuvi Network
@@ -95,6 +97,9 @@ The signature is a HMAC \(hash-based message authentication code\) which is calc
 const secret = deviceId + deviceAddr;
 
 // Signature body consists of the secret, random nonce, timestamp and message body
+// These need to match the corresponding headers sent to Ruuvi network
+//   x-ruuvi-timestamp
+//   x-ruuvi-nonce
 const nonce = 'RANDOMLY GENERATED STRING';
 const timestamp = Date.now();
 const signatureBody = secret + nonce + timestamp + messageBody;
