@@ -97,14 +97,16 @@ Below is an example code for calculating the secret:
 const secret = deviceId + deviceAddr;
 
 // Signature body consists of the secret, random nonce, timestamp and message body
-// These need to match the corresponding headers sent to Ruuvi network
+// These need to match the corresponding headers sent to Ruuvi network:
 //   x-ruuvi-timestamp
 //   x-ruuvi-nonce
 const nonce = 'RANDOMLY GENERATED STRING';
 const timestamp = Date.now();
 const signatureBody = secret + nonce + timestamp + messageBody;
 
-// Signature can then be calculated using the 'crypto' library
+// Signature can then be calculated using the 'crypto' library. The finalized
+// signature will be passed in the header:
+//   x-ruuvi-signature
 const crypto = require('crypto');
 const signature = crypto.createHmac('sha256', secret)
     .update(signatureBody)
