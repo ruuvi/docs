@@ -25,7 +25,7 @@ Default version is used for all other tests than integration test and log read t
 | Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. |  |
 | Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. \_\_Check power profile manually. |  |
 | All data fields of advertisement are valid RAWv2 values. | Manually, check that Ruuvi Station Android displays temperature, humidity, pressure, acceleration, voltage. Check MAC address, TX power +4, and measurement sequence counter bytes with nRF Connect captured data. |  |
-| After reset it's possible to configure settings via GATT for a certain time. After the time window closes, it is not possible to configure. | Configure settings via GATT connection. After the time window has closed, try to reconfigure. |  |
+| After reset GATT profile is in secure mode with no DFU service or serial number readable. | Connect to GATT after boot, verify that DFU service is not listed and DIS doesn't list Serial Number characteristic. |  |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
