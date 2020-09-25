@@ -1,5 +1,5 @@
 ---
-description: 'Lifecycle: Alpha'
+description: 'Lifecycle: Obsolete. Last updated 2020-09-25'
 ---
 
 # WhereOS
