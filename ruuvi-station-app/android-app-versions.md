@@ -4,7 +4,7 @@
 
 ### Fixed
 
-* Bell on dashboard has gone quite bonkersChanged
+* Bell on dashboard has gone quite bonkers
 * Updated counter is frozen after update.
 
 
