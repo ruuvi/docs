@@ -75,6 +75,5 @@
 
 ## RUUVI STATION APP
 
-* [Android app versions](ruuvi-station-app/android-app-versions.md)
 * [Gateway](ruuvi-station-app/gateway.md)
 

@@ -6,7 +6,7 @@ description: >-
 
 # Gateway
 
-### Setup
+## Setup
 
 The app will act as a gateway when:
 
@@ -15,13 +15,13 @@ The app will act as a gateway when:
 
 If the 2 points are fulfilled the app will POST background scanning results to the URL. The app only sends measurements for tags added in the app.
 
-### Data format
+## Data format
 
-Every POST contains 2 blocks: tags data and device information. Tags data can contain one or few tag scan results after **"tags"**. 
+Every POST contains 2 blocks: tags data and device information. Tags data can contain one or few tag scan results after **"tags"**.
 
 `"tags":[{tagdata1},{tagdata2}, ... ,{tagdataN}]`
 
-#### Tag fields description
+### Tag fields description
 
 | **Field name** | **Data format** | **Unit/Format** | **Description** |
 | :--- | :--- | :--- | :--- |
@@ -44,7 +44,7 @@ Every POST contains 2 blocks: tags data and device information. Tags data can co
 | updateAt | String | yyyy-MM-dd'T'HH:mm:ssZ | Date of current measurments |
 | voltage | Double | V | Battery voltage from tag |
 
-#### Device information fields description
+### Device information fields description
 
 | **Field name** | **Data format** | **Unit/Format** | **Description** |
 | :--- | :--- | :--- | :--- |
@@ -56,7 +56,7 @@ Every POST contains 2 blocks: tags data and device information. Tags data can co
 | longitude | Double | degrees | longitude |
 | time | String | yyyy-MM-dd'T'HH:mm:ssZ | Gateway request send date |
 
-#### Example
+### Example
 
 ```text
 {
@@ -94,7 +94,7 @@ Every POST contains 2 blocks: tags data and device information. Tags data can co
 }
 ```
 
-###  [Ruuvi Station](https://ruuvi.com/manuals/station/app-settings/) gateway API Server
+## [Ruuvi Station](https://ruuvi.com/manuals/station/app-settings/) gateway API Server
 
 Open source gateway server can be found at: [https://github.com/ruuvi/ruuvi-station-influx-gateway](https://github.com/ruuvi/ruuvi-station-influx-gateway)
 
