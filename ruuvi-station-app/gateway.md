@@ -73,7 +73,7 @@ Every POST contains 2 blocks: tags data and device information. Tags data can co
       "id": "E5:F1:98:34:C0:0F",
       "measurementSequenceNumber": 62865,
       "movementCounter": 21,
-      "name": "Kitchen"
+      "name": "Kitchen",
       "pressure": 98702,
       "rssi": -43,
       "temperature": 25.58,
