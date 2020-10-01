@@ -12,7 +12,7 @@ description: 'Lifecycle: Alpha. Page updated 2020-09-22'
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | System test "DFU test" |  |
+| Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Otso / RC5 |
 | Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R", release "R". | Otso / RC5 |
 | Tag initializes watchdog. | Unit test test\_main.c | Otso / RC5  |
 | Tag turns RED LED on for self-test duration. | Manually, visual check | Otso / RC5 |
@@ -198,7 +198,7 @@ Integration tests are run on debug-variants of firmware. They print test results
 | Serial Number String is viewable only in configuration mode and has the same ID as NFC scan. | Manually | Otso / RC5 |
 | Hardware revision string has text "Check PCB" | Manually | Otso / RC5 |
 | Firmware revision string has same version as NFC read | Manually | Otso / RC5 |
-| Environmental history log can be read by sending "0x3A 3A 11 TIMESTAMP 00000000" to NUS RX characteristic. Timestamp is current time in seconds after Unix epoch, 4 bytes. | Manually, or with Ruuvi Station iOS sync graphs button. For the test a debug version of firmware should be used, tag must be running at least for 2 hours and there should be a data point each second. Max  |  |
+| Environmental history log can be read by sending "0x3A 3A 11 TIMESTAMP 00000000" to NUS RX characteristic. Timestamp is current time in seconds after Unix epoch, 4 bytes. | Manually, or with Ruuvi Station iOS sync graphs button. For the test a debug version of firmware should be used, tag must be running at least for 20 minutes and there should be a data point each second for at least 500 seconds. Entries do not have to be sorted by time.   |  |
 | Tag continues broadcasting data while connected by GATT. | Connect with one device, scan with other. Manually. Note: Some scanners will not report advertisements from connected devices, so 2 scanners are required. | Otso / RC5 |
 {% endtab %}
 
@@ -239,7 +239,7 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Firmware 2.5.9 can be updated with SDK\_UPDATE package. | System tests in GitHub. |  |
+| Firmware 2.5.9 can be updated with SDK\_UPDATE package. | System tests in GitHub. | Otso / RC5 |
 | Firmware can enter bootloader after update and another 3.x firmware can be flashed. | System tests in GitHub |  |
 {% endtab %}
 
@@ -282,9 +282,9 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 {% tab title="RuuviTag B+" %}
 | State | Value | Verified by |
 | :--- | :--- | :--- |
-| Broadcasting, connectable | 27 µA @ 3.6 V =&gt; 97 µW, 29 µA @ 3.0 V =&gt; 86 µW, 30  µA @ 2.4 V =&gt; 72 µW |  |
-| Broadcasting, connected | 38 µA @ 3.6 V =&gt; XX µW, 40 µA @ 3.0 V =&gt; 120 µW, 46  µA @ 2.4 V =&gt; 120 µW |  |
-| Transferring logs. | 8 mA @ 3.6 V =&gt; 29 mW, XX mA @ 3.0 V =&gt; XX mW, XX  µA @ 2.4 V =&gt; XX µW |  |
+| Broadcasting, connectable | 27 µA @ 3.6 V =&gt; 97 µW, 29 µA @ 3.0 V =&gt; 86 µW, 30  µA @ 2.4 V =&gt; 72 µW | Otso / RC5 |
+| Broadcasting, connected | 38 µA @ 3.6 V =&gt; XX µW, 40 µA @ 3.0 V =&gt; 120 µW, 46  µA @ 2.4 V =&gt; 120 µW | Otso / RC5 |
+| Transferring logs. | 8 mA @ 3.6 V =&gt; 29 mW, 8.7 mA @ 3.0 V =&gt; 26.1 mW, 9.5  mA @ 2.4 V =&gt; 22.8 µW | Otso / RC5 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
