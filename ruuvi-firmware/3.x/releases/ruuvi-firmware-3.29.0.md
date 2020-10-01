@@ -145,9 +145,9 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| NFC read enables configuration until next GATT connection or timeout. | Apply a NFC field and enter bootloader via GATT. Check that bootloader service is disabled after timeout. | Otso / RC3 |
+| NFC read enables configuration until next GATT connection or timeout. | Apply a NFC field and enter bootloader via GATT. Check that bootloader service is disabled after timeout. | Otso / RC5 |
 | NFC has 4 UTF-8 text fields: "ad", "id", "sw", "dt". Fields can be in any order. | Read the tag with e.g. NFC Tools | RC 5 does not pass, "dt"-&gt;"da" |
-| "ad" field has text "MAC: " and upper-case, ':' separated MAC address, as reported by BLE scanner. | Check "ad" field and compare to BLE scanner results. | Otso / RC3 |
+| "ad" field has text "MAC: " and upper-case, ':' separated MAC address, as reported by BLE scanner. | Check "ad" field and compare to BLE scanner results. | Otso / RC5 |
 | "id" field has text "ID: " and upper-case, ':' separated unique identifier, 8 bytes. | Check "id" field, compare to serial number read over GATT. | Otso / RC5 |
 | "sw" field has text "SW: " and a firmware revision string. | Check "sw" field | Otso / RC5 \(note: has -rc5\) |
 | "dt" field has binary content | Check "dt" field. | Otso / RC5 |
@@ -190,16 +190,16 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Data is sent at 1285 ms interval by default. | Check power profile for TX spikes. | Otso / RC3 |
-| Tag accepts GATT connection and starts pushing data through NUS TX characteristic notifications. | Connect to tag with nRF Connect, register to GATT notifications. | Otso / RC3 |
-| GATT server has Device Information Service with Manufacturer Name String, Model Number String Hardware Revision String and Firmware revision String. Serial Number String is not viewable unless configuration mode is on. | Connect to tag with nRF Connect, check fields manually. | Otso / RC3 |
-| Manufacturer Name String is "Ruuvi Innovations Ltd" | Manually | Otso / RC3 |
-| Model Number String is "RuuviTag B" | Manually | Otso / RC3 |
-| Serial Number String is viewable only in configuration mode and has the same ID as NFC scan. | Manually | Otso / RC3 |
-| Hardware revision string has text "Check PCB" | Manually | Otso / RC3 |
-| Firmware revision string has same version as NFC read | Manually | Otso / RC3 |
-| Environmental history log can be read by sending "0x3A 3A 11 TIMESTAMP 00000000" to NUS RX characteristic. Timestamp is current time in seconds after Unix epoch, 4 bytes. | Manually, or with Ruuvi Station iOS sync graphs button. For the test a debug version of firmware should be used, tag must be running at least for 2 and there should be data point for each second up to max number of samples. |  |
-| Tag continues broadcasting data while connected by GATT. | Connect with one device, scan with other. Manually. Note: Some scanners will not report advertisements from connected devices, so 2 scanners are required. | Otso / RC3 |
+| Data is sent at 1285 ms interval by default. | Check power profile for TX spikes. | Otso / RC5 |
+| Tag accepts GATT connection and starts pushing data through NUS TX characteristic notifications. | Connect to tag with nRF Connect, register to GATT notifications. | Otso / RC5 |
+| GATT server has Device Information Service with Manufacturer Name String, Model Number String Hardware Revision String and Firmware revision String. Serial Number String is not viewable unless configuration mode is on. | Connect to tag with nRF Connect, check fields manually. | Otso / RC5 |
+| Manufacturer Name String is "Ruuvi Innovations Ltd" | Manually | Otso / RC5 |
+| Model Number String is "RuuviTag B" | Manually | Otso / RC5 |
+| Serial Number String is viewable only in configuration mode and has the same ID as NFC scan. | Manually | Otso / RC5 |
+| Hardware revision string has text "Check PCB" | Manually | Otso / RC5 |
+| Firmware revision string has same version as NFC read | Manually | Otso / RC5 |
+| Environmental history log can be read by sending "0x3A 3A 11 TIMESTAMP 00000000" to NUS RX characteristic. Timestamp is current time in seconds after Unix epoch, 4 bytes. | Manually, or with Ruuvi Station iOS sync graphs button. For the test a debug version of firmware should be used, tag must be running at least for 2 hours and there should be a data point each second. Max  |  |
+| Tag continues broadcasting data while connected by GATT. | Connect with one device, scan with other. Manually. Note: Some scanners will not report advertisements from connected devices, so 2 scanners are required. | Otso / RC5 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -282,9 +282,9 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 {% tab title="RuuviTag B+" %}
 | State | Value | Verified by |
 | :--- | :--- | :--- |
-| Broadcasting, connectable |  |  |
-| Broadcasting, connected |  |  |
-| Transferring logs. |  |  |
+| Broadcasting, connectable | 27 µA @ 3.6 V =&gt; 97 µW, 29 µA @ 3.0 V =&gt; 86 µW, 30  µA @ 2.4 V =&gt; 72 µW |  |
+| Broadcasting, connected | XX µA @ 3.6 V =&gt; XX µW, 40 µA @ 3.0 V =&gt; 120 µW, 46  µA @ 2.4 V =&gt; 120 µW |  |
+| Transferring logs. | 8 mA @ 3.6 V =&gt; 29 mW, 40 µA @ 3.0 V =&gt; 120 µW, 46  µA @ 2.4 V =&gt; 120 µW |  |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
