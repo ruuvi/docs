@@ -13,15 +13,16 @@ description: 'Lifecycle: Alpha. Page updated 2020-09-22'
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
 | Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | System test "DFU test" |  |
-| Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R", release "R". | Otso / RC3 |
-| Tag initializes watchdog. | Unit test test\_main.c | Otso / RC3  |
-| Tag turns RED LED on for self-test duration. | Manually, visual check | Otso / RC3 |
-| Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c | Otso / RC3 |
-| Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Unit test main.c, drivers/rt\_flash.c | Otso / RC3 |
-| Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. | RC3 does not pass: Green led always on, 500 ms  |
-| Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. Check power profile manually. | RC-3 does not pass: 380 ms \(also interval is 100 ms + delay 0 ... 10 ms\) |
-| All data fields of advertisement are valid RAWv2 values. | Manually, check that Ruuvi Station Android displays temperature, humidity, pressure, acceleration, voltage. Check MAC address, TX power +4, and measurement sequence counter bytes with nRF Connect captured data. | Otso / RC3 |
-| After reset GATT profile is in secure mode with no DFU service or serial number readable. | Connect to GATT after boot, verify that DFU service is not listed and DIS doesn't list Serial Number characteristic. | Otso / RC3 |
+| Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R", release "R". | Otso / RC5 |
+| Tag initializes watchdog. | Unit test test\_main.c | Otso / RC5  |
+| Tag turns RED LED on for self-test duration. | Manually, visual check | Otso / RC5 |
+| Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c | Otso / RC5 |
+| Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Unit test main.c, drivers/rt\_flash.c | Otso / RC5 |
+| Tag erases old log entries to prevent data with corrupted timestamps | Check app\_log:app\_log\_init\(\) | Otso / RC5 |
+| Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. | Otso / RC5 |
+| Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. Check power profile manually. | Otso / RC5 \(note: 100 ms + ble delay\) |
+| All data fields of advertisement are valid RAWv2 values. | Manually, check that Ruuvi Station Android displays temperature, humidity, pressure, acceleration, voltage. Check MAC address, TX power +4, and measurement sequence counter bytes with nRF Connect captured data. | Otso / RC5 |
+| After reset GATT profile is in secure mode with no DFU service or serial number readable. | Connect to GATT after boot, verify that DFU service is not listed and DIS doesn't list Serial Number characteristic. | Otso / RC5 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -103,8 +104,8 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Short press enters configuration mode. | Press button "B", check that red led blinks and DFU service is available, serial number is readable over GATT. | Otso / RC3 |
-| Long press erases flash settings and logs, enters bootloader. | Hold button "B", check that tag enters bootloader. Try reading logs, check there's not a lot of elements if any.  | RC3 Does not pass.  |
+| Short press enters configuration mode. | Press button "B", check that red led blinks and DFU service is available, serial number is readable over GATT. | Otso / RC5 |
+| Long press erases flash settings and logs, enters bootloader. | Hold button "B", check that tag enters bootloader. Try reading logs, check there's not a lot of elements if any.  | Otso / RC5 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -144,12 +145,12 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| NFC read enables configuration until next GATT connection or timeout. | Apply a NFC field and configure settings via GATT. Check that configuration fails on next connection. Check that configuration is diabled after timeout | Otso / RC3 |
-| NFC has 4 UTF-8 text fields: "ad", "id", "sw", "dt". Fields can be in any order. | Read the tag with e.g. NFC Tools | Otso / RC3 |
+| NFC read enables configuration until next GATT connection or timeout. | Apply a NFC field and enter bootloader via GATT. Check that bootloader service is disabled after timeout. | Otso / RC3 |
+| NFC has 4 UTF-8 text fields: "ad", "id", "sw", "dt". Fields can be in any order. | Read the tag with e.g. NFC Tools | RC 5 does not pass, "dt"-&gt;"da" |
 | "ad" field has text "MAC: " and upper-case, ':' separated MAC address, as reported by BLE scanner. | Check "ad" field and compare to BLE scanner results. | Otso / RC3 |
-| "id" field has text "ID: " and upper-case, ':' separated unique identifier, 8 bytes. | Check "id" field. | Otso / RC3 |
-| "sw" field has text "SW: " and a firmware revision string. | Check "sw" field | Otso / RC3 \(note: has -rc3\) |
-| "dt" field has binary content | Check "dt" field. | Otso / RC3 |
+| "id" field has text "ID: " and upper-case, ':' separated unique identifier, 8 bytes. | Check "id" field, compare to serial number read over GATT. | Otso / RC5 |
+| "sw" field has text "SW: " and a firmware revision string. | Check "sw" field | Otso / RC5 \(note: has -rc5\) |
+| "dt" field has binary content | Check "dt" field. | Otso / RC5 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}

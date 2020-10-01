@@ -22,6 +22,7 @@ Default version is used for all other tests than integration test and log read t
 | Tag turns RED LED on for self-test duration. | Manually, visual check |  |
 | Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c |  |
 | Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | TODO |  |
+| Tag erases old log entries to prevent data with corrupted timestamps | Check app\_log:app\_log\_init\(\) |  |
 | Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. |  |
 | Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. \_\_Check power profile manually. |  |
 | All data fields of advertisement are valid RAWv2 values. | Manually, check that Ruuvi Station Android displays temperature, humidity, pressure, acceleration, voltage. Check MAC address, TX power +4, and measurement sequence counter bytes with nRF Connect captured data. |  |
