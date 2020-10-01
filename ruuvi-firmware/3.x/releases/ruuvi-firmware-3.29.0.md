@@ -283,8 +283,8 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 | State | Value | Verified by |
 | :--- | :--- | :--- |
 | Broadcasting, connectable | 27 µA @ 3.6 V =&gt; 97 µW, 29 µA @ 3.0 V =&gt; 86 µW, 30  µA @ 2.4 V =&gt; 72 µW |  |
-| Broadcasting, connected | XX µA @ 3.6 V =&gt; XX µW, 40 µA @ 3.0 V =&gt; 120 µW, 46  µA @ 2.4 V =&gt; 120 µW |  |
-| Transferring logs. | 8 mA @ 3.6 V =&gt; 29 mW, 40 µA @ 3.0 V =&gt; 120 µW, 46  µA @ 2.4 V =&gt; 120 µW |  |
+| Broadcasting, connected | 38 µA @ 3.6 V =&gt; XX µW, 40 µA @ 3.0 V =&gt; 120 µW, 46  µA @ 2.4 V =&gt; 120 µW |  |
+| Transferring logs. | 8 mA @ 3.6 V =&gt; 29 mW, XX mA @ 3.0 V =&gt; XX mW, XX  µA @ 2.4 V =&gt; XX µW |  |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
