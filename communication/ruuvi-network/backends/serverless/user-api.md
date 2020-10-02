@@ -14,24 +14,20 @@ For example, if the body parameter in the sections below refers to an **email** 
 }
 ```
 
-{% api-method method="post" host="https://api.placeholder.com/dev" path="/register" %}
+{% api-method method="post" host="https://api.placeholder.com" path="/register" %}
 {% api-method-summary %}
 Register User
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Registers a new user or resets an existing user's password.
+Registers a new user or resets an existing user's password if the user already exists.
 {% endapi-method-description %}
 
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-body-parameters %}
-{% api-method-parameter name="reset" type="integer" required=false %}
-Valid values: 1 or 0. If 1 is given, will issue a password reset
-{% endapi-method-parameter %}
-
 {% api-method-parameter name="email" type="string" required=true %}
-Email address to be registered
+Email address to be registered / reset
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
@@ -82,7 +78,7 @@ If a something goes wrong with the request itself, you might receive an Unknown 
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://api.placeholder.com/dev" path="/verify" %}
+{% api-method method="get" host="https://api.placeholder.com" path="/verify" %}
 {% api-method-summary %}
 Verify Account
 {% endapi-method-summary %}
@@ -134,7 +130,7 @@ Store it well as the only way to retrieve it is to go through the reset flow aga
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="post" host="https://api.placeholder.com/dev" path="/claim" %}
+{% api-method method="post" host="https://api.placeholder.com" path="/claim" %}
 {% api-method-summary %}
 Claim Tag to your user
 {% endapi-method-summary %}
@@ -203,7 +199,7 @@ If the tag has been claimed, you will receive a 409 Conflict.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="post" host="https://api.placeholder.com/dev" path="/share" %}
+{% api-method method="post" host="https://api.placeholder.com" path="/share" %}
 {% api-method-summary %}
 Share a tag
 {% endapi-method-summary %}
@@ -315,7 +311,7 @@ If something went wrong with the request, you will receive a 500 internal server
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://api.placeholder.com/dev" path="/user" %}
+{% api-method method="get" host="https://api.placeholder.com" path="/user" %}
 {% api-method-summary %}
 Get User Info
 {% endapi-method-summary %}
@@ -375,7 +371,7 @@ Unauthorized request.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://api.placeholder.com/dev" path="/get" %}
+{% api-method method="get" host="https://api.placeholder.com" path="/get" %}
 {% api-method-summary %}
 Get Tag data
 {% endapi-method-summary %}
