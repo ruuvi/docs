@@ -482,11 +482,11 @@ Updates tag metadata. Currently limited to updating name.
 
 {% api-method-spec %}
 {% api-method-request %}
-{% api-method-path-parameters %}
+{% api-method-body-parameters %}
 {% api-method-parameter name="name" type="string" required=true %}
 Desired name of the tag
 {% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
+{% endapi-method-body-parameters %}
 {% endapi-method-request %}
 
 {% api-method-response %}
@@ -541,6 +541,98 @@ Desired name of the tag
     "result": "error",
     "error": "Unknown error occurred."
 }
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% api-method method="post" host="https://api.placeholder.com/" path="upload" %}
+{% api-method-summary %}
+Upload Tag image \(part 1\)
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Retrieves a signed upload URL to a bucket. This makes the back-end ready for the image upload to happen.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-body-parameters %}
+{% api-method-parameter name="tag" type="string" required=true %}
+ID of the target Tag
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="type" type="string" required=true %}
+Content-Type of the desired image upload. Supported formats:  
+image/png  
+image/gif  
+image/jpg
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+    "result": "success",
+    "data": {
+        "uploadURL": "<SIGNED UPLOAD URL>"
+    }
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% api-method method="put" host="<URL FROM part 1>" path=" " %}
+{% api-method-summary %}
+Upload the actual image
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Create a PUT request to the URL produced by /upload end-point with the data payload to complete the upload.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-headers %}
+{% api-method-parameter name="Content-Type" type="string" required=true %}
+Matching content type to part 1
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
+
+{% api-method-body-parameters %}
+{% api-method-parameter name="Image binary data" type="object" required=true %}
+Binary data for the image upload
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=403 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
