@@ -114,6 +114,19 @@ Store it well as the only way to retrieve it is to go through the reset flow aga
 ```
 {% endapi-method-response-example %}
 
+{% api-method-response-example httpCode=403 %}
+{% api-method-response-example-description %}
+Forbidden if user is not allowed to access resource.
+{% endapi-method-response-example-description %}
+
+```
+{
+    "result": "error",
+    "error": "Forbidden."
+}
+```
+{% endapi-method-response-example %}
+
 {% api-method-response-example httpCode=500 %}
 {% api-method-response-example-description %}
 \(Actual code 493\): You will receive an error if the token is invalid.
@@ -168,7 +181,7 @@ On success, you will receive a corresponding result and the claimed Tag ID repea
 {
     "result": "success",
     "data": {
-        "Tag": "<CLAIMED TAG ID>"
+        "tag": "<CLAIMED TAG ID>"
     }
 }
 ```
@@ -585,6 +598,16 @@ image/jpg
         "uploadURL": "<SIGNED UPLOAD URL>"
     }
 }
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=302 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
