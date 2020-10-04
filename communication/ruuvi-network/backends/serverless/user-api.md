@@ -148,6 +148,10 @@ Bearer token to authorize the request4
 {% endapi-method-headers %}
 
 {% api-method-body-parameters %}
+{% api-method-parameter name="name" type="string" required=false %}
+Name the tag on claiming
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="tag" type="string" required=true %}
 ID of the claimed tag
 {% endapi-method-parameter %}
@@ -339,15 +343,17 @@ User information successfully retrieved.
 {
     "result": "success",
     "data": {
-        "Email": "my-email@email.com",
-        "Tags": [
+        "email": "my-email@email.com",
+        "tags": [
             {
-                "Tag": "CDCDCDCDED",
-                "Owner": 1
+                "tag": "CDCDCDCDED",
+                "owner": 1,
+                "picture": "https://url-to/picture.png"
             },
             {
                 "Tag": "ABBACDBEST",
-                "Owner": 0
+                "Owner": 0,
+                "picture": ""
             }
         ]
     }
@@ -409,12 +415,12 @@ Returns the most recent data points for the requested tag based on configuration
         "total": <TOTAL MEASUREMENTS RETURNED>,
         "measurements": [
             {
-                "GatewayMac": "<SOURCE GATEWAY MAC>",
-                "Coordinates": "<COORDINATES / N/A>",
-                "RSSI": <RSSI>,
-                "MeasurementTimestamp": <UNIZ TIMESTAMP OF MEASUREMENT>,
-                "SensorData": "<HEX ENCODED SENSOR DATA>",
-                "SensorId": "<TAG ID>"
+                "sensor": "<TAG ID>",
+                "gwmac": "<SOURCE GATEWAY MAC>",
+                "coordinates": "<COORDINATES / N/A>",
+                "rssi": <RSSI>,
+                "timestamp": <UNIZ TIMESTAMP OF MEASUREMENT>,
+                "data": "<HEX ENCODED SENSOR DATA>"
             },
             ...
         ]
@@ -444,7 +450,7 @@ If you have not claimed or been shared the target tag, you will receive a Forbid
 ```
 {
     "result": "error",
-    "error": "Forbidden.
+    "error": "Forbidden."
 }
 ```
 {% endapi-method-response-example %}
@@ -458,6 +464,82 @@ If no data is found, you will receive a 404 Not Found.
 {
     "status": "error",
     "error": "Not found."
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% api-method method="post" host="https://api.placeholder.com" path="/update" %}
+{% api-method-summary %}
+Update Tag metadata
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Updates tag metadata. Currently limited to updating name.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="name" type="string" required=true %}
+Desired name of the tag
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+    "result": "success",
+    "data": {
+        "name": "<GIVEN NAME>"
+    }
+}
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=403 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+    "result": "error",
+    "error": "Forbidden."
+}
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=404 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+    "result": "error",
+    "error": "Tag not claimed or found. Data not updated."
+}
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=500 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+    "result": "error",
+    "error": "Unknown error occurred."
 }
 ```
 {% endapi-method-response-example %}
