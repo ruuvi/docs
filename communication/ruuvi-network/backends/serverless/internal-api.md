@@ -6,7 +6,7 @@ description: Internal API for Network Management
 
 The Internal API consists of a set of endpoints designed to govern the Ruuvi Network, such as whitelisting and blacklisting devices and/or IP addresses.
 
-{% api-method method="post" host="https://api.url.com" path="/whitelist" %}
+{% api-method method="post" host="https://network.ruuvi.com" path="/whitelist" %}
 {% api-method-summary %}
 whitelist
 {% endapi-method-summary %}

@@ -4,7 +4,7 @@ description: Ruuvi Network (Serverless) user facing API
 
 # User API
 
-User API uses a JSON based API to allow users to register, secure and edit their information as well as claim and share tags, retrieve tag data and alter their subscription details.
+User API uses a JSON based API to allow users to register, secure and edit their information as well as claim and share sensors, retrieve sensor data and alter their subscription details.
 
 For example, if the body parameter in the sections below refers to an **email** field, the corresponding JSON payload would look like this:
 
