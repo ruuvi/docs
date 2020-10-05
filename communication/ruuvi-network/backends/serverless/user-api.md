@@ -14,7 +14,7 @@ For example, if the body parameter in the sections below refers to an **email** 
 }
 ```
 
-{% api-method method="post" host="https://api.placeholder.com" path="/register" %}
+{% api-method method="post" host="https://network.ruuvi.com" path="/register" %}
 {% api-method-summary %}
 Register User
 {% endapi-method-summary %}
@@ -78,7 +78,7 @@ If a something goes wrong with the request itself, you might receive an Unknown 
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://api.placeholder.com" path="/verify" %}
+{% api-method method="get" host="https://network.ruuvi.com" path="/verify" %}
 {% api-method-summary %}
 Verify Account
 {% endapi-method-summary %}
@@ -108,7 +108,8 @@ Store it well as the only way to retrieve it is to go through the reset flow aga
     "result": "success",
     "data": {
         "email": "<E-MAIL ADDRESS OF THE USER>",
-        "access_token": "<NEW ACCESS TOKEN>"
+        "access_token": "<NEW ACCESS TOKEN>",
+        "new_user": <1|0>
     }
 }
 ```
@@ -143,13 +144,13 @@ Forbidden if user is not allowed to access resource.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="post" host="https://api.placeholder.com" path="/claim" %}
+{% api-method method="post" host="https://network.ruuvi.com" path="/claim" %}
 {% api-method-summary %}
-Claim Tag to your user
+Claim a Sensor to your user
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Claims an unclaimed tag for your user. This will allow you to fetch its data.
+Claims an unclaimed sensor for your user. This will allow you to fetch its data.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -165,7 +166,7 @@ Bearer token to authorize the request4
 Name the tag on claiming
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="tag" type="string" required=true %}
+{% api-method-parameter name="sensor" type="string" required=true %}
 ID of the claimed tag
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
@@ -174,14 +175,14 @@ ID of the claimed tag
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}
-On success, you will receive a corresponding result and the claimed Tag ID repeated back to you.
+On success, you will receive a corresponding result and the claimed Sensor ID repeated back to you.
 {% endapi-method-response-example-description %}
 
 ```
 {
     "result": "success",
     "data": {
-        "tag": "<CLAIMED TAG ID>"
+        "sensor": "<CLAIMED SENSOR ID>"
     }
 }
 ```
@@ -202,13 +203,13 @@ In case of an invalid or expired token, you will receive Unauthorized.
 
 {% api-method-response-example httpCode=409 %}
 {% api-method-response-example-description %}
-If the tag has been claimed, you will receive a 409 Conflict.
+If the sensor has been claimed, you will receive a 409 Conflict.
 {% endapi-method-response-example-description %}
 
 ```
 {
     "result": "error",
-    "error": "Tag already claimed."
+    "error": "Sensor already claimed."
 }
 ```
 {% endapi-method-response-example %}
@@ -216,13 +217,13 @@ If the tag has been claimed, you will receive a 409 Conflict.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="post" host="https://api.placeholder.com" path="/share" %}
+{% api-method method="post" host="https://network.ruuvi.com" path="/share" %}
 {% api-method-summary %}
-Share a tag
+Share a sensor
 {% endapi-method-summary %}
 
 {% api-method-description %}
-You can share your Tag data with other users via **share** end-point. In addition to tag you want to share, you must also include the e-mail address of the recipient. This will grant them access to the data via the **get** end-point.
+You can share your sensor data with other users via **share** end-point. In addition to sensor you want to share, you must also include the e-mail address of the recipient. This will grant them access to the data via the **get** end-point.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -238,8 +239,8 @@ Bearer token to authorize the request
 E-mail of the user to share to
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="tag" type="string" required=true %}
-Tag ID to share
+{% api-method-parameter name="sensor" type="string" required=true %}
+Sensor ID to share
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
@@ -247,14 +248,14 @@ Tag ID to share
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}
-On success, you will get the shared tag id returned back to you.
+On success, you will get the shared sensor id returned back to you.
 {% endapi-method-response-example-description %}
 
 ```
 {
     "result": "success",
     "data": {
-        "tag": "<YOUR TAG ID>"
+        "sensor": "<YOUR SENSOR ID>"
     }
 }
 ```
@@ -301,13 +302,13 @@ If the user you tried share to is not found on the system.
 
 {% api-method-response-example httpCode=409 %}
 {% api-method-response-example-description %}
-You will receive a conflict if the tag is already shared to the user.
+You will receive a conflict if the sensor is already shared to the user.
 {% endapi-method-response-example-description %}
 
 ```
 {
     "result": "error",
-    "error": "Tag already shared to user."
+    "error": "Sensor already shared to user."
 }
 ```
 {% endapi-method-response-example %}
@@ -328,7 +329,7 @@ If something went wrong with the request, you will receive a 500 internal server
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://api.placeholder.com" path="/user" %}
+{% api-method method="get" host="https://network.ruuvi.com" path="/user" %}
 {% api-method-summary %}
 Get User Info
 {% endapi-method-summary %}
@@ -357,15 +358,15 @@ User information successfully retrieved.
     "result": "success",
     "data": {
         "email": "my-email@email.com",
-        "tags": [
+        "sensors": [
             {
-                "tag": "CDCDCDCDED",
+                "sensor": "CDCDCDCDED",
                 "owner": 1,
                 "picture": "https://url-to/picture.png"
             },
             {
-                "Tag": "ABBACDBEST",
-                "Owner": 0,
+                "sensor": "ABBACDBEST",
+                "owner": 0,
                 "picture": ""
             }
         ]
@@ -390,13 +391,13 @@ Unauthorized request.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://api.placeholder.com" path="/get" %}
+{% api-method method="get" host="https://network.ruuvi.com" path="/get" %}
 {% api-method-summary %}
-Get Tag data
+Get Sensor data
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Returns the data points for the requested tag.
+Returns the data points for the requested sensor.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -408,8 +409,8 @@ Bearer token to authorize the request
 {% endapi-method-headers %}
 
 {% api-method-query-parameters %}
-{% api-method-parameter name="tag" type="string" required=false %}
-Tag ID to retrieve the data 
+{% api-method-parameter name="sensor" type="string" required=true %}
+Sensor ID to retrieve the data 
 {% endapi-method-parameter %}
 {% endapi-method-query-parameters %}
 {% endapi-method-request %}
@@ -424,11 +425,11 @@ Returns the most recent data points for the requested tag based on configuration
 {
     "result": "success",
     "data": {
-        "tag": "<TAG ID>",
+        "sensor": "<SENSOR ID>",
         "total": <TOTAL MEASUREMENTS RETURNED>,
         "measurements": [
             {
-                "sensor": "<TAG ID>",
+                "sensor": "<SENSOR ID>",
                 "gwmac": "<SOURCE GATEWAY MAC>",
                 "coordinates": "<COORDINATES / N/A>",
                 "rssi": <RSSI>,
@@ -457,7 +458,7 @@ In case of an invalid or expired authentication token, you will receive a unauth
 
 {% api-method-response-example httpCode=403 %}
 {% api-method-response-example-description %}
-If you have not claimed or been shared the target tag, you will receive a Forbidden.
+If you have not claimed or been shared the target sensor, you will receive a Forbidden.
 {% endapi-method-response-example-description %}
 
 ```
@@ -484,18 +485,22 @@ If no data is found, you will receive a 404 Not Found.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="post" host="https://api.placeholder.com" path="/update" %}
+{% api-method method="post" host="https://network.ruuvi.com" path="/update" %}
 {% api-method-summary %}
-Update Tag metadata
+Update Sensor metadata
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Updates tag metadata. Currently limited to updating name.
+Updates sensor metadata. Currently limited to updating name.
 {% endapi-method-description %}
 
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-body-parameters %}
+{% api-method-parameter name="sensor" type="string" required=true %}
+Sensor ID to update
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="name" type="string" required=true %}
 Desired name of the tag
 {% endapi-method-parameter %}
@@ -539,7 +544,7 @@ Desired name of the tag
 ```
 {
     "result": "error",
-    "error": "Tag not claimed or found. Data not updated."
+    "error": "Sensor not claimed or found. Data not updated."
 }
 ```
 {% endapi-method-response-example %}
@@ -560,9 +565,9 @@ Desired name of the tag
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="post" host="https://api.placeholder.com/" path="upload" %}
+{% api-method method="post" host="https://network.ruuvi.com/" path="upload" %}
 {% api-method-summary %}
-Upload Tag image \(part 1\)
+Upload Sensor image \(part 1\)
 {% endapi-method-summary %}
 
 {% api-method-description %}
@@ -572,8 +577,8 @@ Retrieves a signed upload URL to a bucket. This makes the back-end ready for the
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-body-parameters %}
-{% api-method-parameter name="tag" type="string" required=true %}
-ID of the target Tag
+{% api-method-parameter name="sensor" type="string" required=true %}
+ID of the target Sensor
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="type" type="string" required=true %}
@@ -601,13 +606,16 @@ image/jpg
 ```
 {% endapi-method-response-example %}
 
-{% api-method-response-example httpCode=302 %}
+{% api-method-response-example httpCode=403 %}
 {% api-method-response-example-description %}
 
 {% endapi-method-response-example-description %}
 
 ```
-
+{
+    "result": "error",
+    "error": "Forbidden."
+}
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
