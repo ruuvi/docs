@@ -16,7 +16,7 @@ For example, if the body parameter in the sections below refers to an **email** 
 
 {% api-method method="post" host="https://network.ruuvi.com" path="/register" %}
 {% api-method-summary %}
-Register User
+Register User or Reset Token
 {% endapi-method-summary %}
 
 {% api-method-description %}
