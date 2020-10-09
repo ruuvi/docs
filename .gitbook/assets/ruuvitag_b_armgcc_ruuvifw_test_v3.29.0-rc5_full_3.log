@@ -1,0 +1,105 @@
+00> {
+00> "firmware":"Ruuvi FW-debug",
+00> "board":"RuuviTag B",
+00> "ruuvi.boards.c":"0.8.1",
+00> "ruuvi.drivers.c":"0.3.3",
+00> "ruuvi.libraries.c":"0.3.1",
+00> "libraries": {
+00> "peak2peak":{
+00> "valid_data":"pass",
+00> "nan_data":"pass",
+00> "overflow_fpu_errors":"FPU OFC Error",
+00> "overflow_data":"pass",
+00> "input_validation":"pass"
+00> },
+00> "rms":{
+00> "valid_data":"pass",
+00> "nan_data":"pass",
+00> "overflow_fpu_errors":"FPU OFC ErrorFPU OFC Error",
+00> "overflow_data":"pass",
+00> "input_validation":"pass"
+00> },
+00> "variance":{
+00> "valid_data":"pass",
+00> "nan_"fail"
+00> },
+00> "power":{
+00> "dcdc_internal":"pass"
+00> },
+00> "timer":{
+00> "init":"pass",
+00> "create":"pass",
+00> "single_shot":"pass",
+00> "repeat":"pass"
+00> },
+00> "scheduler":{
+00> "init":"pass",
+00> "execute":"pass",
+00> "put":"pass"
+00> },
+00> "sensors": {
+00> "ruuvi_nrf5_sdk15_log.c:68 WARNING: NULL
+00> ": {
+00> "init":"skip",
+00> },
+00> "BME280": {
+00> "init":"pass",
+00> "modes":"pass",
+00> "configuration":"pass",
+00> "interrupts":"skipped"
+00> "data":{
+00> "timestamp_ms": "ld",
+00> "humidity_rh": "49.67",
+00> "pressure_pa": "98988.27",
+00> "temperature_c": "25.99",
+00> }
+00> },
+00> "LIS2DH12": {
+00> "init":"pass",
+00> "modes":"pass",
+00> "configuration":"pass",
+00> "interrupts":"fail"
+00> "data":{
+00> "timestamp_ms": "ld",
+00> "acceleration_x_g": "0.15",
+00> "acceleration_y_g": "-0.03",
+00> "acceleration_z_g": "0.99",
+00> "temperature_c": "32.00",
+00> }
+00> }
+00> },
+00> "radio":{
+00> "init":"pass,"
+00> "address_set_get":"pass"
+00> },
+00> "ble_adv_1_mbit":{
+00> "init":"pass",
+00> "interval":"pass",
+00> "extended":"pass",
+00> "power":"pass",
+00> "scan":"pass"
+00> },
+00> "ble_adv_2_mbit":{
+00> "init":"pass",
+00> "interval":"pass",
+00> "extended":"pass",
+00> "power":"pass",
+00> "scan":"pass"
+00> },
+00> "ble_gatt_1_mbit":{
+00> "init":"pass",
+00> "tx":"pass,"
+00> "throughput":"3117.499 bps"
+00> },
+00> "ble_gatt_2_mbit":{
+00> "init":"pass",
+00> "tx":"pass,"
+00> "throughput":"3140.704 bps"
+00> },
+00> "nfc":{
+00> "init":"pass",
+00> "tx_rx":"fail"
+00> },
+00> }
+00> }Movement 
+00> app_heartbeat.c:113 WARNING: NO_MEM

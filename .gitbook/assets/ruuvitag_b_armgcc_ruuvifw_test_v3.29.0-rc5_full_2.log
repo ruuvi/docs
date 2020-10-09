@@ -1,0 +1,27 @@
+00> {
+00> "firmware":"Ruuvi FW-debug",
+00> "board":"RuuviTag B",
+00> "ruuvi.boards.c":"0.8.1",
+00> "ruuvi.drivers.c":"0.3.3",
+00> "ruuvi.libraries.c":"0.3.1",
+00> "libraries": {
+00> "peak2peak":{
+00> "valid_data":"pass",
+00> "nan_data":"pass",
+00> "overflow_fpu_errors":"FPU OFC Error",
+00> "overflow_data":"pass",
+00> "input_validation":"pass"
+00> },
+00> "rms":{
+00> "valid_data":"pass",
+00> "nan_data":"pass",
+00> "overflow_fpu_errors":"FPU OFC ErrorFPU OFC Error",
+00> "overflow_data":"pass",
+00> "input_validation":"pass"
+00> },
+00> "variance":{
+00> "valid_data":"pass",
+00> "nan_"timeout"
+00> },
+00> }
+00> }app_heartbeat.c:113 WARNING: NO_MEM
