@@ -157,7 +157,7 @@ Claims an unclaimed sensor for your user. This will allow you to fetch its data.
 {% api-method-request %}
 {% api-method-headers %}
 {% api-method-parameter name="Authorization" type="string" required=true %}
-Bearer token to authorize the request4
+Bearer token to authorize the request
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
 
@@ -210,6 +210,46 @@ If the sensor has been claimed, you will receive a 409 Conflict.
 {
     "result": "error",
     "error": "Sensor already claimed."
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% api-method method="post" host="https://network.ruuvi.com" path="/unclaim" %}
+{% api-method-summary %}
+Unclaim a sensor from your user
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Unclaims a sensor from your user, revoking your own access to it and making it claimable by other users.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-headers %}
+{% api-method-parameter name="Authorization" type="string" required=true %}
+Bearer token to authorize the request
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
+
+{% api-method-body-parameters %}
+{% api-method-parameter name="sensor" type="string" required=true %}
+ID of the sensor to be unshared
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+    "result": "success"
 }
 ```
 {% endapi-method-response-example %}
@@ -329,6 +369,121 @@ If something went wrong with the request, you will receive a 500 internal server
 {% endapi-method-spec %}
 {% endapi-method %}
 
+{% api-method method="post" host="https://network.ruuvi.com" path="/unshare" %}
+{% api-method-summary %}
+Unshare a sensor
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Unshares \(i.e. revokes access to\) the sensor from a target user.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-headers %}
+{% api-method-parameter name="Authorization" type="string" required=true %}
+Bearer token of the user
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
+
+{% api-method-body-parameters %}
+{% api-method-parameter name="sensor" type="string" required=true %}
+ID of the sensor being unshared
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="user" type="string" required=true %}
+E-mail of the user the sensor is shared to.
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+    "result": "success"
+}
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=400 %}
+{% api-method-response-example-description %}
+Returned with Invalid or missing fields.
+{% endapi-method-response-example-description %}
+
+```
+{
+    "result": "error",
+    "error": "<SPECIFIC ERROR>"
+}
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=403 %}
+{% api-method-response-example-description %}
+Returned when user
+{% endapi-method-response-example-description %}
+
+```
+{
+    "result": "error",
+    "error": "Unauthorized request."
+}
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=404 %}
+{% api-method-response-example-description %}
+Returned if shared sensor or user is not found.
+{% endapi-method-response-example-description %}
+
+```
+{
+    "result": "error",
+    "error": "User not found."
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% api-method method="get" host="https://network.ruuvi.com" path="/shared" %}
+{% api-method-summary %}
+Get your shared sensors
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Fetches a list of sensors you have shared to other users
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-headers %}
+{% api-method-parameter name="Authorization" type="string" required=true %}
+Bearer token of the user
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
 {% api-method method="get" host="https://network.ruuvi.com" path="/user" %}
 {% api-method-summary %}
 Get User Info
@@ -403,7 +558,7 @@ Returns the data points for the requested sensor. Notice that for implementing p
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-headers %}
-{% api-method-parameter name="Authorization" type="string" required=false %}
+{% api-method-parameter name="Authorization" type="string" required=true %}
 Bearer token to authorize the request
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
@@ -507,11 +662,17 @@ Update Sensor metadata
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Updates sensor metadata. Currently limited to updating name.
+Updates sensor metadata.
 {% endapi-method-description %}
 
 {% api-method-spec %}
 {% api-method-request %}
+{% api-method-headers %}
+{% api-method-parameter name="Authorization" type="string" required=false %}
+
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
+
 {% api-method-body-parameters %}
 {% api-method-parameter name="public" type="boolean" required=false %}
 If true, data will be publicly accessible.
@@ -530,14 +691,16 @@ Desired name of the tag
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}
-
+Only returns the fields that had an update targeted to them.
 {% endapi-method-response-example-description %}
 
 ```
 {
     "result": "success",
     "data": {
-        "name": "<GIVEN NAME>"
+        "sensor": "<SENSOR ID>",
+        "name": "<GIVEN NAME>",
+        "public": "<GIVEN PUBLIC VALUE>"
     }
 }
 ```
