@@ -397,7 +397,7 @@ Get Sensor data
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Returns the data points for the requested sensor.
+Returns the data points for the requested sensor. Notice that for implementing pagination, you can use **since** and **until** parameters with custom **limit** to segment your results as they are always returned in either ascending or descending order by timestamp.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -409,6 +409,22 @@ Bearer token to authorize the request
 {% endapi-method-headers %}
 
 {% api-method-query-parameters %}
+{% api-method-parameter name="until" type="string" required=false %}
+Maximum timestamp of first returned result in Unix epoch format
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="since" type="string" required=false %}
+Minimum timestamp of first returned result in Unix epoch format
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="limit" type="string" required=false %}
+Maximum amount of results returned \(capped at 100\)
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="sort" type="string" required=false %}
+Sort Direction for the result: \[asc, desc\]
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="sensor" type="string" required=true %}
 Sensor ID to retrieve the data 
 {% endapi-method-parameter %}
@@ -427,9 +443,9 @@ Returns the most recent data points for the requested tag based on configuration
     "data": {
         "sensor": "<SENSOR ID>",
         "total": <TOTAL MEASUREMENTS RETURNED>,
+        "name": "<SENSOR NAME>",
         "measurements": [
             {
-                "sensor": "<SENSOR ID>",
                 "gwmac": "<SOURCE GATEWAY MAC>",
                 "coordinates": "<COORDINATES / N/A>",
                 "rssi": <RSSI>,
@@ -497,6 +513,10 @@ Updates sensor metadata. Currently limited to updating name.
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-body-parameters %}
+{% api-method-parameter name="public" type="boolean" required=false %}
+If true, data will be publicly accessible.
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="sensor" type="string" required=true %}
 Sensor ID to update
 {% endapi-method-parameter %}
