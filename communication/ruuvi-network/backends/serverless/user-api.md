@@ -668,7 +668,7 @@ Updates sensor metadata.
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-headers %}
-{% api-method-parameter name="Authorization" type="string" required=false %}
+{% api-method-parameter name="Authorization" type="string" required=true %}
 
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
@@ -759,6 +759,12 @@ Retrieves a signed upload URL to a bucket. This makes the back-end ready for the
 
 {% api-method-spec %}
 {% api-method-request %}
+{% api-method-headers %}
+{% api-method-parameter name="Authorization" type="string" required=true %}
+Bearer token of the user
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
+
 {% api-method-body-parameters %}
 {% api-method-parameter name="sensor" type="string" required=true %}
 ID of the target Sensor
