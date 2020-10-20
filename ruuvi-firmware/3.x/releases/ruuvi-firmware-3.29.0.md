@@ -132,11 +132,15 @@ Integration tests are run on debug-variants of firmware. They print test results
 
 {% tabs %}
 {% tab title="RuuviTag B+" %}
-| Action | How to test | Verified by |
+| Item | Result | Verified by |
 | :--- | :--- | :--- |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+| Library tests: p2p, rms, variance, ringbuffer | Pass\* | Otso / RC11 |
+| Peripheral tests: power, timer, scheduler, flash | Pass\* | Otso / RC11 |
+| Sensor tests: BME280, LIS2DH12 | Pass\*\* | Otso / RC11 |
+| BLE tests: Advertising, GATT | Pass | Otso / RC11 |
+| GATT Throughput, 1 MBit / s | 18 600 kB / s | Otso / RC11 |
+| GATT Throughput, 2 MBit / s | 27 300 kB / s | Otso / RC11 |
+| NFC Test | Pass | Otso / RC11 |
 |  |  |  |
 {% endtab %}
 
@@ -170,6 +174,10 @@ Integration tests are run on debug-variants of firmware. They print test results
 |  |  |
 {% endtab %}
 {% endtabs %}
+
+{% file src="../../../.gitbook/assets/rc11-debug.bin" caption="Cleaned up debug log" %}
+
+Note: \* First test didn't print all the RTT logs, verified separately \*\* LIS2DH12 interrupt test fails due to driver test problem, doesn't affect release.
 
 ### Button
 
@@ -340,14 +348,14 @@ Integration tests are run on debug-variants of firmware. They print test results
         hour and there should be a data point each second for at least 1 hour.
         Entries do not have to be sorted by time, it is allowed to miss a sample
         roughly once per 10 seconds.</td>
-      <td style="text-align:left"></td>
+      <td style="text-align:left">Otso / RC11</td>
     </tr>
     <tr>
       <td style="text-align:left">Environmental log history will send only data that has timestamp after
         request</td>
       <td style="text-align:left">Sync once with Ruuvi Station, check there is data. Sync again, check there
         is less data loaded.</td>
-      <td style="text-align:left"></td>
+      <td style="text-align:left">Otso / RC11</td>
     </tr>
     <tr>
       <td style="text-align:left">Tag continues broadcasting data while connected by GATT.</td>
