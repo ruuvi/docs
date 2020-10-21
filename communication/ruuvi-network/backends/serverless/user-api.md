@@ -108,8 +108,8 @@ Store it well as the only way to retrieve it is to go through the reset flow aga
     "result": "success",
     "data": {
         "email": "<E-MAIL ADDRESS OF THE USER>",
-        "access_token": "<NEW ACCESS TOKEN>",
-        "new_user": <1|0>
+        "accessToken": "<NEW ACCESS TOKEN>",
+        "newUser": <1|0>
     }
 }
 ```
