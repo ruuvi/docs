@@ -84,7 +84,7 @@ Verify Account
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Verifies the given e-mail address and finalizes creating the account. Notice that the token for this end-point is delivered via e-mail by the **Register User** endpoint.
+Verifies the given e-mail address and finalizes creating the account and creating a Ruuvi Network subscription. Notice that the token for this end-point is delivered via e-mail by the **Register User** endpoint.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -109,7 +109,7 @@ Store it well as the only way to retrieve it is to go through the reset flow aga
     "data": {
         "email": "<E-MAIL ADDRESS OF THE USER>",
         "accessToken": "<NEW ACCESS TOKEN>",
-        "newUser": <1|0>
+        "newUser": <true|false>
     }
 }
 ```
@@ -263,7 +263,8 @@ Share a sensor
 {% endapi-method-summary %}
 
 {% api-method-description %}
-You can share your sensor data with other users via **share** end-point. In addition to sensor you want to share, you must also include the e-mail address of the recipient. This will grant them access to the data via the **get** end-point.
+You can share your sensor data with other users via **share** end-point. In addition to sensor you want to share, you must also include the e-mail address of the recipient. This will grant them access to the data via the **get** end-point.  
+Furthermore, it will also send the target user a notification e-mail about the new share.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -515,14 +516,18 @@ User information successfully retrieved.
         "email": "my-email@email.com",
         "sensors": [
             {
-                "sensor": "CDCDCDCDED",
-                "owner": 1,
-                "picture": "https://url-to/picture.png"
+                "sensor": "CD:CD:CD:CD:ED:01",
+                "owner": true,
+                "name": "Sauna",
+                "picture": "https://url-to/picture.png",
+                "public": true
             },
             {
-                "sensor": "ABBACDBEST",
-                "owner": 0,
-                "picture": ""
+                "sensor": "AB:BA:CD:BE:AB:AA",
+                "owner": false,
+                "name": "Kitchen",
+                "picture": "",
+                "public": false
             }
         ]
     }
