@@ -1,5 +1,5 @@
 ---
-description: 'Lifecycle: In Production'
+description: 'Lifecycle: In Production. Last updated 2020-11-03'
 ---
 
 # Data format 5 \(RAWv2\)
@@ -22,9 +22,9 @@ The data is decoded from "Manufacturer Specific Data" -field, for more details p
 
 _Not available_ is signified by largest presentable number for unsigned values, smallest presentable number for signed values and all bits set for mac. All fields are MSB first 2-complement, i.e. `0xFC18` is read as `-1000` and `0x03E8` is read as `1000`.
 
-#### Data field descriptions
+### Data field descriptions
 
-**Temperature**
+#### Temperature
 
 Values supported: \(-163.835 °C to +163.835 °C in 0.005 °C increments.
 
@@ -37,7 +37,7 @@ _Example_
 | `0xFE3D` | -2.255 °C |
 | `0x8000` | Invalid / not available |
 
-**Humidity**
+#### **Humidity**
 
 Values supported: 0.0 % to 100 % in 0.0025 % increments. Higher values than 100 % are possible, but they generally indicate a faulty or miscalibrated sensor.
 
@@ -50,7 +50,7 @@ _Example_
 | `40000` | 100.0% |
 | `65535` | Invalid / not available |
 
-**Atmospheric Pressure**
+#### **Atmospheric Pressure**
 
 Values supported: 50000 Pa to 115536 Pa in 1 Pa increments.
 
@@ -63,7 +63,7 @@ _Example_
 | `65534` | 115534 Pa |
 | `65535` | Invalid / not available |
 
-**Acceleration**
+#### **Acceleration**
 
 Values supported: -32767 to 32767 \(mG\), however the sensor on RuuviTag supports only 16 G max \(2 G in default configuration\). Values are 2-complement int16\_t, MSB first. All channels are identical.
 
@@ -75,7 +75,7 @@ _Example_
 | `0x03E8` | 1000 mG |
 | `0x8000` | Invalid / not available |
 
-**Battery voltage**
+#### **Battery voltage**
 
 Values supported: 1600 mV to 3647 mV in 1 mV increments, practically 1800 ... 3600 mV.
 
@@ -87,7 +87,7 @@ _Example_
 | `1400` | 3000 mV |
 | `2047` | Invalid / not available |
 
-**Tx Power**
+#### **Tx Power**
 
 Values supported: -40 dBm to +22 dBm in 2 dBm increments.
 
@@ -99,7 +99,7 @@ _Example_
 | `22` | +4 dBm |
 | `31` | Invalid / not available |
 
-**Movement counter**
+#### **Movement counter**
 
 Movement counter is one-byte counter which gets triggered when LIS2DH12 gives "activity interrupt". Sensitivity depends on the firmware, by default the sensitivity is a movement over 64 mG. The counter will roll over. Movement is deduced by "rate of change". Please note that the highest valid value is 254, and 255 is reserved for the "not available".
 
@@ -111,7 +111,7 @@ _Example_
 | `100` | 100 counts |
 | `255` | Invalid / not available |
 
-**Measurement sequence number**
+#### **Measurement sequence number**
 
 Mesurement sequence number gets incremented by one for every measurement. It can be used to gauge signal quality and packet loss as well as to deduplicated data entries. You should note that the measurement sequence refers to data rather than transmission, so you might receive many transmissions with the same measurement sequence number. Please note that the highest valid value is 65534, and 65535 is reserved for the "not available".
 
@@ -184,7 +184,7 @@ Raw binary data: `0x058001000000008001800180010000000000CBB8334C884F`
 | Measurement Sequence | `0` |
 | MAC | `CB B8 33 4C 88 4F` |
 
-## Case: Invalid values
+#### Case: Invalid values
 
 Raw binary data: `0x058000FFFFFFFF800080008000FFFFFFFFFFFFFFFFFFFFFF`
 
