@@ -478,7 +478,34 @@ Bearer token of the user
 {% endapi-method-response-example-description %}
 
 ```
+{
+    "result": "success",
+    "data": {
+        "sensors": [
+            {
+                "sensor": "<SENSOR ID>",
+                "name": "<SENSOR NAME>",
+                "picture": "<SENSOR PICTURE URL>",
+                "public": <TRUE|FALSE>,
+                "sharedTo": "<EMAIL OF TARGET USER>"
+            },
+            ...
+        ]
+    }
+}
+```
+{% endapi-method-response-example %}
 
+{% api-method-response-example httpCode=403 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+    "result": "error",
+    "error": "Unauthorized."
+}
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
