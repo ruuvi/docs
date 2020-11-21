@@ -376,7 +376,7 @@ Unshare a sensor
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Unshares \(i.e. revokes access to\) the sensor from a target user.
+Unshares \(i.e. revokes access to\) the sensor from a target user. This can also currently be used to remove sensors shared with your user.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -544,14 +544,14 @@ User information successfully retrieved.
         "sensors": [
             {
                 "sensor": "CD:CD:CD:CD:ED:01",
-                "owner": true,
+                "owner": "my-email@email.com",
                 "name": "Sauna",
                 "picture": "https://url-to/picture.png",
                 "public": true
             },
             {
                 "sensor": "AB:BA:CD:BE:AB:AA",
-                "owner": false,
+                "owner": "someone-else@email.com",
                 "name": "Kitchen",
                 "picture": "",
                 "public": false
