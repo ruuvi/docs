@@ -87,6 +87,10 @@ Data payload consists of gateway information and an array of tag measurements as
 }
 ```
 
+MAC address format: XX:XX:XX:XX \(where XX is a hexadecimal digit in upper case\).  
+Example: "11:22:33:AA:BB:CC"  
+MAC address is used in "&lt;GATEWAY MAC ADDRESS&gt;" and in "&lt;TAG ID 1&gt;", "&lt;TAG ID 2&gt;", ...
+
 The signature is a HMAC \(hash-based message authentication code\) which is calculated using sha256 algorithm from a combination of headers and the message body. Ruuvi network validates the signature against the whitelisted gateways \(see: [Internal API](internal-api.md#whitelist)\).
 
 Below is an example code for calculating the secret:
