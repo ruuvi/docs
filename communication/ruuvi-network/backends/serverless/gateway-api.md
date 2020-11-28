@@ -87,7 +87,7 @@ Data payload consists of gateway information and an array of tag measurements as
 }
 ```
 
-MAC address format: XX:XX:XX:XX \(where XX is a hexadecimal digit in upper case\).  
+MAC address format: XX:XX:XX:XX:XX:XX \(where XX is a hexadecimal digit in upper case\).  
 Example: "11:22:33:AA:BB:CC"  
 MAC address is used in "&lt;GATEWAY MAC ADDRESS&gt;" and in "&lt;TAG ID 1&gt;", "&lt;TAG ID 2&gt;", ...
 
