@@ -51,5 +51,7 @@ File below is abbreviated nRF Connect log with some heartbeat transmissions and 
 
 {% file src="../../../.gitbook/assets/v3\_28\_0\_connection.txt" caption="Connection log" %}
 
+### Timeout
 
+If log read takes over 5 minutes, the tag assumes that it has encourtered an internal error and will send error message with header type `0xF0` and payload set to `0xFF`, e.g. `0x 30 30 F0 FF FF FF FF FF FF FF FF` . It's safe to resume log read by sending a repeated log read command with start timestamp at the last received element. 
 
