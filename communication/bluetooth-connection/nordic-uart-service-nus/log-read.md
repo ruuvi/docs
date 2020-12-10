@@ -1,5 +1,5 @@
 ---
-description: 'Lifecycle: Alpha'
+description: 'Lifecycle: Beta. Last updated 2020-12-10'
 ---
 
 # Read logged history
