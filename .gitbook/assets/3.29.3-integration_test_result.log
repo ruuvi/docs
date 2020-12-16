@@ -1,0 +1,117 @@
+{
+    "firmware": "Ruuvi FW ",
+    "board": "RuuviTag B",
+    "ruuvi.boards.c": "3.4.0",
+    "ruuvi.drivers.c": "3.4.5",
+    "ruuvi.libraries.c": "3.0.0",
+    "libraries": {
+        "peak2peak": {
+            "valid_data": "pass",
+            "nan_data": "pass",
+            "overflow_fpu_errors": "FPU OFC Error",
+            "overflow_data": "pass",
+            "input_validation": "pass"
+        },
+        "rms": {
+            "valid_data": "pass",
+            "nan_data": "pass",
+            "overflow_fpu_errors": "FPU OFC ErrorFPU OFC Error",
+            "overflow_data": "pass",
+            "input_validation": "pass"
+        },
+        "variance": {
+            "valid_data": "pass",
+            "nan_data" - SNIP
+            SNAP - 
+            "pass",
+            "uninit": "pass",
+            "store": "pass",
+            "load": "pass",
+            "free": "pass",
+            "gc": "pass"
+        },
+        "power": {
+            "dcdc_internal": "pass"
+        },
+        "timer": {
+            "init": "pass",
+            "create": "pass",
+            "single_shot": "pass",
+            "repeat": "pass"
+        },
+        "scheduler": {
+            "init": "pass",
+            "execute": "pass",
+            "put": "pass"
+        },
+        "sensors": {
+            "SHTCX": {
+                "init": "pass",
+                "modes": "pass",
+                "configuration": "pass",
+                "interrupts": "skipped"
+                "data": {
+                    "timestamp_ms": "ld",
+                    "humidity_rh": "30.17",
+                    "temperature_c": "25.04",
+                }
+            },
+            "BME280": {
+                "init": "pass",
+                "modes": "pass",
+                "configuration": "pass",
+                "interrupts": "skipped"
+                "data": {
+                    "timestamp_ms": "ld",
+                    "humidity_rh": "31.88",
+                    "pressure_pa": "100736.34",
+                    "temperature_c": "24.89",
+                }
+            },
+            "LIS2DH12": {
+                "init": "pass",
+                "modes": "pass",
+                "configuration": "pass",
+                "interrupts": "fail"
+                "data": {
+                    "timestamp_ms": "ld",
+                    "acceleration_x_g": "0.06",
+                    "acceleration_y_g": "0.02",
+                    "acceleration_z_g": "1.00",
+                    "temperature_c": "29.75",
+                }
+            }
+        },
+        "radio": {
+            "init": "pass,"
+            "address_set_get": "pass"
+        },
+        "ble_adv_1_mbit": {
+            "init": "pass",
+            "interval": "pass",
+            "extended": "pass",
+            "power": "pass",
+            "scan": "pass"
+        },
+        "ble_adv_2_mbit": {
+            "init": "pass",
+            "interval": "pass",
+            "extended": "pass",
+            "power": "pass",
+            "scan": "pass"
+        },
+        "ble_gatt_1_mbit": {
+            "init": "pass",
+            "tx": "pass,"
+            "throughput": "25740.025 bps"
+        },
+        "ble_gatt_2_mbit": {
+            "init": "pass",
+            "tx": "pass,"
+            "throughput": "20783.539 bps"
+        },
+        "nfc": {
+            "init": "pass",
+            "tx_rx": "pass"
+        },
+    }

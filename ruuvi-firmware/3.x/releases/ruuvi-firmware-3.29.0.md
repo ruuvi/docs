@@ -1,8 +1,8 @@
 ---
-description: 'Lifecycle: Alpha. Page updated 2020-09-22'
+description: 'Lifecycle: Beta. Page updated 2020-12-16'
 ---
 
-# Ruuvi Firmware 3.29.0
+# Ruuvi Firmware 3.29.X
 
 ## Test checklist
 
@@ -24,63 +24,50 @@ description: 'Lifecycle: Alpha. Page updated 2020-09-22'
         into DFU mode.</td>
       <td style="text-align:left">Manually, enter configuration mode by &quot;B&quot; and command tag into
         bootloader with nRF Connect</td>
-      <td style="text-align:left">Otso / RC11 Oleg / RC5</td>
+      <td style="text-align:left">Otso / 3.29.3-RC1</td>
     </tr>
     <tr>
       <td style="text-align:left">Tag stays in bootloader mode if button &quot;B&quot; is pressed on boot.</td>
       <td
-      style="text-align:left">Manually, hold down &quot;B&quot;, press and release &quot;R&quot;, release
-        &quot;R&quot;.</td>
-        <td style="text-align:left">
-          <p>Otso / RC11</p>
-          <p>Oleg / RC5</p>
-        </td>
+      style="text-align:left">Manually, hold down &quot;B&quot;, press and release &quot;R&quot;.</td>
+        <td
+        style="text-align:left">Otso / 3.29.3-RC1</td>
     </tr>
     <tr>
       <td style="text-align:left">Tag initializes watchdog.</td>
       <td style="text-align:left">Unit test test_main.c</td>
-      <td style="text-align:left">
-        <p>Otso / RC10</p>
-        <p>Oleg / RC5</p>
-      </td>
+      <td style="text-align:left">Otso / 3.29.0</td>
     </tr>
     <tr>
       <td style="text-align:left">Tag turns RED LED on for self-test duration.</td>
       <td style="text-align:left">Manually, visual check</td>
-      <td style="text-align:left">
-        <p>Otso / RC11 Oleg /</p>
-        <p>RC5</p>
-      </td>
+      <td style="text-align:left">Otso / 3.29.3-RC1</td>
     </tr>
     <tr>
       <td style="text-align:left">Tag runs self-tests to detect installed sensors.</td>
       <td style="text-align:left">Unit tests test_main.c test_app_sensor.c</td>
       <td style="text-align:left">
         <p>Otso /</p>
-        <p>RC10</p>
-        <p>Oleg / RC5</p>
+        <p>3.29.0</p>
       </td>
     </tr>
     <tr>
       <td style="text-align:left">Tag erases settings stored to flash file system and reboots if flash file
         system cannot be initialized.</td>
       <td style="text-align:left">Unit test main.c, drivers/rt_flash.c</td>
-      <td style="text-align:left">
-        <p>Otso / RC10</p>
-        <p>Oleg / RC5</p>
-      </td>
+      <td style="text-align:left">Otso / 3.29.3-RC1</td>
     </tr>
     <tr>
       <td style="text-align:left">Tag erases old log entries to prevent data with corrupted timestamps</td>
       <td
       style="text-align:left">Check app_log:app_log_init()</td>
-        <td style="text-align:left">Otso / RC10 Oleg / RC5</td>
+        <td style="text-align:left">Otso / 3.29.3-RC1</td>
     </tr>
     <tr>
       <td style="text-align:left">Tag turns GREEN LED on for one second if no errors were detected in self-test
         phase. Missing sensors are allowed.</td>
       <td style="text-align:left">Manually, visual check.</td>
-      <td style="text-align:left">Otso / RC11 Oleg / RC5</td>
+      <td style="text-align:left">Otso / 3.29.3-RC1</td>
     </tr>
     <tr>
       <td style="text-align:left">Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data
@@ -88,7 +75,7 @@ description: 'Lifecycle: Alpha. Page updated 2020-09-22'
       <td
       style="text-align:left">Unit test test_app_heartbeat.c. Check power profile manually.</td>
         <td
-        style="text-align:left">Otso / RC11 Oleg / RC5</td>
+        style="text-align:left">Otso / 3.29.3-RC1</td>
     </tr>
   </tbody>
 </table>
@@ -134,14 +121,13 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="RuuviTag B+" %}
 | Item | Result | Verified by |
 | :--- | :--- | :--- |
-| Library tests: p2p, rms, variance, ringbuffer | Pass\* | Otso / RC11 |
-| Peripheral tests: power, timer, scheduler, flash | Pass\* | Otso / RC11 |
-| Sensor tests: BME280, LIS2DH12 | Pass\*\* | Otso / RC11 |
-| BLE tests: Advertising, GATT | Pass | Otso / RC11 |
-| GATT Throughput, 1 MBit / s | 18 600 kB / s | Otso / RC11 |
-| GATT Throughput, 2 MBit / s | 27 300 kB / s | Otso / RC11 |
-| NFC Test | Pass | Otso / RC11 |
-|  |  |  |
+| Library tests: p2p, rms, variance, ringbuffer | Pass\* | Otso / 3.29.3-RC1 |
+| Peripheral tests: power, timer, scheduler, flash | Pass\* | Otso / 3.29.3-RC1 |
+| Sensor tests: BME280, LIS2DH12 | Pass\*\* | Otso / 3.29.3-RC1 |
+| BLE tests: Advertising, GATT | Pass | Otso / 3.29.3-RC1 |
+| GATT Throughput, 1 MBit / s | 25 700 B / s | Otso / 3.29.3-RC1 |
+| GATT Throughput, 2 MBit / s | 20 800 B / s | Otso / 3.29.3-RC1 |
+| NFC Test | Pass | Otso / 3.29.3-RC1 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -175,9 +161,11 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% endtab %}
 {% endtabs %}
 
-{% file src="../../../.gitbook/assets/rc11-debug.bin" caption="Cleaned up debug log" %}
+{% file src="../../../.gitbook/assets/3.29.3-integration\_test\_result.log" caption="3.29.3 Integration test log" %}
 
-Note: \* First test didn't print all the RTT logs, verified separately \*\* LIS2DH12 interrupt test fails due to driver test problem, doesn't affect release.
+Note: \* First test didn't print all the RTT logs, verified separately \*\* LIS2DH12 interrupt test fails due to driver test problem, doesn't affect release. DUT includes SHTC3. 
+
+
 
 ### Button
 
@@ -185,8 +173,8 @@ Note: \* First test didn't print all the RTT logs, verified separately \*\* LIS2
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Short press enters configuration mode. | Press button "B", check that red led blinks and DFU service is available, serial number is readable over GATT. | Otso / RC11 Oleg / RC5 |
-| Long press erases flash settings and logs, enters bootloader. | Hold button "B", check that tag enters bootloader. Try reading logs, check there's not a lot of elements if any.  | Otso / RC11 Oleg/ RC5 |
+| Short press enters configuration mode. | Press button "B", check that red led blinks and DFU service is available, serial number is readable over GATT. | Otso / 3.29.3-RC1 |
+| Long press erases flash settings and logs, enters bootloader. | Hold button "B", check that tag enters bootloader. Try reading logs, check there's not a lot of elements if any.  | Otso / 3.29.3-RC1 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -226,13 +214,13 @@ Note: \* First test didn't print all the RTT logs, verified separately \*\* LIS2
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| NFC read enables configuration until next GATT connection or timeout. | Apply a NFC field and enter bootloader via GATT. Check that bootloader service is disabled after timeout. | Otso / RC11 .  Oleg / RC5 |
-| Tag broadcasts at 100 ms interval for 60 seconds or until connected by GATT | Check the power profile after NFC read, connect with GATT | RC-11 does not pass, fast broadcast for 60 s or end of next connection. |
-| NFC has 4 UTF-8 text fields: "ad", "id", "sw", "dt". Fields can be in any order. | Read the tag with e.g. NFC Tools | Otso / RC11 |
-| "ad" field has text "MAC: " and upper-case, ':' separated MAC address, as reported by BLE scanner. | Check "ad" field and compare to BLE scanner results. | Otso / RC11           Oleg / RC5 |
-| "id" field has text "ID: " and upper-case, ':' separated unique identifier, 8 bytes. | Check "id" field, compare to serial number read over GATT. | Otso / RC11           Oleg / RC5 |
-| "sw" field has text "SW: " and a firmware revision string. | Check "sw" field | Otso / RC11          Oleg / RC5  |
-| "dt" field has binary content | Check "dt" field | Otso / RC11  |
+| NFC read enables configuration until next GATT connection or timeout. | Apply a NFC field and enter bootloader via GATT. Check that bootloader service is disabled after timeout. | Otso / 3.29.3-RC1 |
+| Tag broadcasts at 100 ms interval for 60 seconds or until connected by GATT | Check the power profile after NFC read, connect with GATT | 3.29.3-RC1 does not pass, fast broadcast for 60 s or end of next connection. |
+| NFC has 4 UTF-8 text fields: "ad", "id", "sw", "dt". Fields can be in any order. | Read the tag with e.g. NFC Tools | Otso / 3.29.3-RC1 |
+| "ad" field has text "MAC: " and upper-case, ':' separated MAC address, as reported by BLE scanner. | Check "ad" field and compare to BLE scanner results. | Otso / 3.29.3-RC1 |
+| "id" field has text "ID: " and upper-case, ':' separated unique identifier, 8 bytes. | Check "id" field, compare to serial number read over GATT. | Otso / 3.29.3-RC1 |
+| "sw" field has text "SW: " and a firmware revision string. | Check "sw" field | Otso / 3.29.3-RC1 |
+| "dt" field has binary content | Check "dt" field | Otso / 3.29.3-RC1 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -274,98 +262,19 @@ Note: \* First test didn't print all the RTT logs, verified separately \*\* LIS2
 
 {% tabs %}
 {% tab title="RuuviTag B+" %}
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Action</th>
-      <th style="text-align:left">How to test</th>
-      <th style="text-align:left">Verified by</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">Data is sent at 1285 ms interval by default.</td>
-      <td style="text-align:left">Check power profile for TX spikes.</td>
-      <td style="text-align:left">Otso / RC11 Oleg / RC5</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Tag accepts GATT connection and starts pushing data through NUS TX characteristic
-        notifications.</td>
-      <td style="text-align:left">Connect to tag with nRF Connect, register to GATT notifications.</td>
-      <td
-      style="text-align:left">
-        <p>Otso / RC11</p>
-        <p>Oleg / RC5</p>
-        </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">GATT server has Device Information Service with Manufacturer Name String,
-        Model Number String Hardware Revision String and Firmware revision String.
-        Serial Number String is not viewable unless configuration mode is on.</td>
-      <td
-      style="text-align:left">Connect to tag with nRF Connect, check fields manually.</td>
-        <td style="text-align:left">Otso / RC11 Oleg/ RC5</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Manufacturer Name String is &quot;Ruuvi Innovations Ltd&quot;</td>
-      <td
-      style="text-align:left">Manually</td>
-        <td style="text-align:left">
-          <p>Otso / RC11</p>
-          <p>Oleg / RC5</p>
-        </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Model Number String is &quot;RuuviTag B&quot;</td>
-      <td style="text-align:left">Manually</td>
-      <td style="text-align:left">
-        <p>Otso / RC11</p>
-        <p>Oleg / RC5</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Serial Number String is viewable only in configuration mode and has the
-        same ID as NFC scan.</td>
-      <td style="text-align:left">Manually</td>
-      <td style="text-align:left">Otso / RC11 Oleg/ RC5</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Hardware revision string has text &quot;Check PCB&quot;</td>
-      <td style="text-align:left">Manually</td>
-      <td style="text-align:left">Otso / RC11 Oleg/ RC5</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Firmware revision string has same version as NFC read</td>
-      <td style="text-align:left">Manually</td>
-      <td style="text-align:left">Otso / RC11 Oleg / RC5</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Environmental history log can be read by sending &quot;0x3A 3A 11 TIMESTAMP
-        00000000&quot; to NUS RX characteristic. Timestamp is current time in seconds
-        after Unix epoch, 4 bytes.</td>
-      <td style="text-align:left">Manually, or with Ruuvi Station sync graphs button. For the test a debug
-        version of firmware should be used, tag must be running at least for 1
-        hour and there should be a data point each second for at least 1 hour.
-        Entries do not have to be sorted by time, it is allowed to miss a sample
-        roughly once per 10 seconds.</td>
-      <td style="text-align:left">Otso / RC11</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Environmental log history will send only data that has timestamp after
-        request</td>
-      <td style="text-align:left">Sync once with Ruuvi Station, check there is data. Sync again, check there
-        is less data loaded.</td>
-      <td style="text-align:left">Otso / RC11</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Tag continues broadcasting data while connected by GATT.</td>
-      <td style="text-align:left">Connect with one device, scan with other. Manually. Note: Some scanners
-        will not report advertisements from connected devices, so 2 scanners are
-        required.</td>
-      <td style="text-align:left">Otso / RC11 Oleg/ RC5</td>
-    </tr>
-  </tbody>
-</table>
+| Action | How to test | Verified by |
+| :--- | :--- | :--- |
+| Data is sent at 1285 ms interval by default. | Check power profile for TX spikes. | Otso / 3.29.3-RC1 |
+| Tag accepts GATT connection and starts pushing data through NUS TX characteristic notifications. | Connect to tag with nRF Connect, register to GATT notifications. | Otso / 3.29.3-RC1 |
+| GATT server has Device Information Service with Manufacturer Name String, Model Number String Hardware Revision String and Firmware revision String. Serial Number String is not viewable unless configuration mode is on. | Connect to tag with nRF Connect, check fields manually. | Otso /  3.29.3-RC1 |
+| Manufacturer Name String is "Ruuvi Innovations Ltd" | Manually | Otso / 3.29.3-RC1 |
+| Model Number String is "RuuviTag B" | Manually | Otso / 3.29.3-RC1 |
+| Serial Number String is viewable only in configuration mode and has the same ID as NFC scan. | Manually | Otso / 3.29.3-RC1 |
+| Hardware revision string has text "Check PCB" | Manually | Otso / 3.29.3-RC1 |
+| Firmware revision string has same version as NFC read | Manually | Otso / 3.29.3-RC1 |
+| Environmental history log can be read by sending "0x3A 3A 11 TIMESTAMP 00000000" to NUS RX characteristic. Timestamp is current time in seconds after Unix epoch, 4 bytes.  | Manually, or with Ruuvi Station sync graphs button. For the test a debug version of firmware should be used, tag must be running at least for 1 hour and there should be a data point each second for at least 1 hour. Entries do not have to be sorted by time, it is allowed to miss a sample roughly once per 10 seconds. | Otso / 3.29.3-RC1 |
+| Environmental log history will send only data that has timestamp after request | Sync once with Ruuvi Station, check there is data. Sync again, check there is less data loaded. | Otso / 3.29.3-RC1 |
+| Tag continues broadcasting data while connected by GATT. | Connect with one device, scan with other. Manually. Note: Some scanners will not report advertisements from connected devices, so 2 scanners are required. | Otso / 3.29.3-RC1 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -405,8 +314,8 @@ Note: \* First test didn't print all the RTT logs, verified separately \*\* LIS2
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Firmware 2.5.9 can be updated with SDK\_UPDATE package. | System tests in GitHub. | Otso / RC11 |
-| Firmware can enter bootloader after update and another 3.x firmware can be flashed. | System tests in GitHub | RC11 requires manual test due to no mechanism to enter configuration mode without interaction. |
+| Firmware 2.5.9 can be updated with SDK\_UPDATE package. | System tests in GitHub. | Otso / 3.29.3-RC1 |
+| Firmware can enter bootloader after update and another 3.x firmware can be flashed. | System tests in GitHub | Otso / 3.29.3-RC1 Note: requires manual test due to no mechanism to enter configuration mode without interaction. |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -448,12 +357,12 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 {% tab title="RuuviTag B+" %}
 | State | Value | Verified by |
 | :--- | :--- | :--- |
-| Broadcasting, connectable | 28 µA @ 3.6 V, 29 µA @ 3.0 V, 33  µA @ 2.4 V | Otso / RC11 |
-|  | 26.9 µA @ 3.6 V,  27.5 µA @ 3.0 V, 30.4  µA @ 2.4 V | Oleg / RC5 |
-| Broadcasting, connected | 31 µA @ 3.6 V, 34 µA @ 3.0 V, 38  µA @ 2.4 V  | Otso / RC11 |
-|  | 36.9 µA @ 3.6 V, 39.2 µA @ 3.0 V, 44.0 µA @ 2.4 V | Oleg / RC5 |
-| Transferring logs. | 8.5 mA @ 3.6 V, 9.3 mA @ 3.0 V, 10.7  mA @ 2.4 V | Otso / RC10 |
-|  | 8.2 mA @ 3.6 V, 8.8 mA @ 3.0 V, 9.6 mA @ 2.4 V | Oleg / RC5 |
+| Broadcasting, connectable | 26 µA @ 3.6 V, 27 µA @ 3.0 V, 29  µA @ 2.4 V | Otso / 3.29.3-RC1 |
+|  | 26.9 µA @ 3.6 V,  27.5 µA @ 3.0 V, 30.4  µA @ 2.4 V | Oleg / 3.29.0-RC5 |
+| Broadcasting, connected | 34 µA @ 3.6 V, 36 µA @ 3.0 V, 40  µA @ 2.4 V  | Otso /  3.29.3-RC1 |
+|  | 36.9 µA @ 3.6 V, 39.2 µA @ 3.0 V, 44.0 µA @ 2.4 V | Oleg / 3.29.0-RC5 |
+| Transferring logs. | 8.9 mA @ 3.6 V, 9.7 mA @ 3.0 V, 10.9  mA @ 2.4 V | Otso / 3.29.3-RC1 |
+|  | 8.2 mA @ 3.6 V, 8.8 mA @ 3.0 V, 9.6 mA @ 2.4 V | Oleg / 3.29.0-RC5 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}

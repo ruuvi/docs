@@ -1,5 +1,5 @@
 ---
-description: 'Lifecycle: Alpha. Updated 2020-09-10'
+description: 'Lifecycle: Beta. Updated 2020-12-16'
 ---
 
 # Releases
