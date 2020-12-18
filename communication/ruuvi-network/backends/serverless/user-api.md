@@ -49,19 +49,6 @@ In case of a reset, the token will be provided as a response to the call.
 ```
 {% endapi-method-response-example %}
 
-{% api-method-response-example httpCode=409 %}
-{% api-method-response-example-description %}
-If a pending request already exists with the same data, you might receive a Conflict response.
-{% endapi-method-response-example-description %}
-
-```
-{
-    "result": "error",
-    "error": "E-mail already exists."
-}
-```
-{% endapi-method-response-example %}
-
 {% api-method-response-example httpCode=500 %}
 {% api-method-response-example-description %}
 If a something goes wrong with the request itself, you might receive an Unknown error. Please contact your system administrator if this occurs.
@@ -70,7 +57,8 @@ If a something goes wrong with the request itself, you might receive an Unknown 
 ```
 {
     "result": "error",
-    "error": "Unknown error occurred."
+    "error": "Unknown error occurred.",
+    "code": "ER_INTERNAL"
 }
 ```
 {% endapi-method-response-example %}
@@ -123,7 +111,8 @@ Forbidden if user is not allowed to access resource.
 ```
 {
     "result": "error",
-    "error": "Forbidden."
+    "error": "Forbidden.",
+    "code": "ER_FORBIDDEN"
 }
 ```
 {% endapi-method-response-example %}
@@ -136,7 +125,8 @@ Forbidden if user is not allowed to access resource.
 ```
 {
     "result": "error",
-    "error": "Provided token is invalid or expired."
+    "error": "Code used or expired.",
+    "code": "ER_TOKEN_EXPIRED"
 }
 ```
 {% endapi-method-response-example %}
@@ -196,7 +186,8 @@ In case of an invalid or expired token, you will receive Unauthorized.
 ```
 {
     "result": "error",
-    "error": "Unauthorized request."
+    "error": "Unauthorized request.",
+    "code": "ER_UNAUTHORIZED"
 }
 ```
 {% endapi-method-response-example %}
@@ -209,7 +200,8 @@ If the sensor has been claimed, you will receive a 409 Conflict.
 ```
 {
     "result": "error",
-    "error": "Sensor already claimed."
+    "error": "Sensor already claimed.",
+    "code": "ER_SENSOR_ALREADY_CLAIMED"
 }
 ```
 {% endapi-method-response-example %}
@@ -310,7 +302,8 @@ If the sharing failed due to malformed data, such as missing arguments.
 ```
 {
     "result": "error",
-    "error": "Invalid E-mail given."
+    "error": "Invalid E-mail given.",
+    "code": "ER_INVALID_EMAIL_ADDRESS"  
 }
 ```
 {% endapi-method-response-example %}
@@ -323,7 +316,8 @@ If an invalid or expired access token is provided, you will receive _401 Unautho
 ```
 {
     "result": "error",
-    "error": "Unauthorized request."
+    "error": "Unauthorized request.",
+    "code": "ER_UNAUTHORIZED"
 }
 ```
 {% endapi-method-response-example %}
@@ -336,7 +330,8 @@ If the user you tried share to is not found on the system.
 ```
 {
     "result": "error",
-    "error": "User not found."
+    "error": "User not found.",
+    "code": "ER_USER_NOT_FOUND"
 }
 ```
 {% endapi-method-response-example %}
@@ -349,7 +344,8 @@ You will receive a conflict if the sensor is already shared to the user.
 ```
 {
     "result": "error",
-    "error": "Sensor already shared to user."
+    "error": "Sensor already shared to user.",
+    "code": "ER_SENSOR_ALREADY_SHARED"
 }
 ```
 {% endapi-method-response-example %}
@@ -362,7 +358,8 @@ If something went wrong with the request, you will receive a 500 internal server
 ```
 {
     "result": "error",
-    "error": "Unknown error occurred."
+    "error": "Unknown error occurred.",
+    "code": "ER_INTERNAL"
 }
 ```
 {% endapi-method-response-example %}
@@ -392,8 +389,8 @@ Bearer token of the user
 ID of the sensor being unshared
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="user" type="string" required=true %}
-E-mail of the user the sensor is shared to.
+{% api-method-parameter name="user" type="string" required=false %}
+E-mail of the user the sensor is shared to. Optional if removing sensor shared to current user.
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
@@ -419,7 +416,8 @@ Returned with Invalid or missing fields.
 ```
 {
     "result": "error",
-    "error": "<SPECIFIC ERROR>"
+    "error": "<SPECIFIC ERROR>",
+    "code": "ER_<ERROR>"
 }
 ```
 {% endapi-method-response-example %}
@@ -432,7 +430,8 @@ Returned when user
 ```
 {
     "result": "error",
-    "error": "Unauthorized request."
+    "error": "Unauthorized request.",
+    "code": "ER_UNAUTHORIZED"
 }
 ```
 {% endapi-method-response-example %}
@@ -445,7 +444,8 @@ Returned if shared sensor or user is not found.
 ```
 {
     "result": "error",
-    "error": "User not found."
+    "error": "User not found.",
+    "code": "ER_USER_NOT_FOUND"
 }
 ```
 {% endapi-method-response-example %}
@@ -496,7 +496,7 @@ Bearer token of the user
 ```
 {% endapi-method-response-example %}
 
-{% api-method-response-example httpCode=403 %}
+{% api-method-response-example httpCode=401 %}
 {% api-method-response-example-description %}
 
 {% endapi-method-response-example-description %}
@@ -504,7 +504,8 @@ Bearer token of the user
 ```
 {
     "result": "error",
-    "error": "Unauthorized."
+    "error": "Unauthorized.",
+    "code": "ER_UNAUTHORIZED"
 }
 ```
 {% endapi-method-response-example %}
@@ -570,7 +571,8 @@ Unauthorized request.
 ```
 {
     "result": "error",
-    "error": "Unauthorized request."
+    "error": "Unauthorized request.",
+    "code": "ER_UNAUTHORIZED"
 }
 ```
 {% endapi-method-response-example %}
@@ -646,6 +648,20 @@ Returns the most recent data points for the requested tag based on configuration
 ```
 {% endapi-method-response-example %}
 
+{% api-method-response-example httpCode=400 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+    "result": "error",
+    "error": "Invalid <SPECIFIC ERROR>",
+    "code": "ER_INVALID_<SPECIFIC>"
+}
+```
+{% endapi-method-response-example %}
+
 {% api-method-response-example httpCode=401 %}
 {% api-method-response-example-description %}
 In case of an invalid or expired authentication token, you will receive a unauthorized response.
@@ -654,7 +670,8 @@ In case of an invalid or expired authentication token, you will receive a unauth
 ```
 {
     "result": "error",
-    "error": "Unauthorized request."
+    "error": "Unauthorized request.",
+    "code": "ER_UNAUTHORIZED"
 }
 ```
 {% endapi-method-response-example %}
@@ -667,20 +684,8 @@ If you have not claimed or been shared the target sensor, you will receive a For
 ```
 {
     "result": "error",
-    "error": "Forbidden."
-}
-```
-{% endapi-method-response-example %}
-
-{% api-method-response-example httpCode=404 %}
-{% api-method-response-example-description %}
-If no data is found, you will receive a 404 Not Found.
-{% endapi-method-response-example-description %}
-
-```
-{
-    "status": "error",
-    "error": "Not found."
+    "error": "Forbidden.",
+    "code": "ER_FORBIDDEN"
 }
 ```
 {% endapi-method-response-example %}
@@ -746,7 +751,8 @@ Only returns the fields that had an update targeted to them.
 ```
 {
     "result": "error",
-    "error": "Forbidden."
+    "error": "Forbidden.",
+    "code": "ER_FORBIDDEN"
 }
 ```
 {% endapi-method-response-example %}
@@ -759,7 +765,8 @@ Only returns the fields that had an update targeted to them.
 ```
 {
     "result": "error",
-    "error": "Sensor not claimed or found. Data not updated."
+    "error": "Sensor not claimed or found. Data not updated.",
+    "code": "ER_SENSOR_NOT_FOUND"
 }
 ```
 {% endapi-method-response-example %}
@@ -772,7 +779,8 @@ Only returns the fields that had an update targeted to them.
 ```
 {
     "result": "error",
-    "error": "Unknown error occurred."
+    "error": "Unknown error occurred.",
+    "code": "ER_INTERNAL"
 }
 ```
 {% endapi-method-response-example %}
@@ -835,7 +843,8 @@ image/jpg
 ```
 {
     "result": "error",
-    "error": "Forbidden."
+    "error": "Forbidden.",
+    "code": "ER_FORBIDDEN"
 }
 ```
 {% endapi-method-response-example %}
