@@ -76,5 +76,6 @@
 ## RUUVI STATION APP
 
 * [Ruuvi Station Android UI/UX test documentation](ruuvi-station-app/ruuvi-station-android-ui-ux-test-documentation.md)
+* [App Feature Comparison list](ruuvi-station-app/app-feature-comparison-list.md)
 * [Gateway](ruuvi-station-app/gateway.md)
 
