@@ -814,7 +814,7 @@ ID of the target Sensor
 Content-Type of the desired image upload. Supported formats:  
 image/png  
 image/gif  
-image/jpg
+image/jpeg
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
