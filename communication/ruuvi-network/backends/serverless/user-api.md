@@ -900,3 +900,90 @@ Binary data for the image upload
 {% endapi-method-spec %}
 {% endapi-method %}
 
+{% api-method method="get" host="https://network.ruuvi.com" path="/settings" %}
+{% api-method-summary %}
+Get User Settings
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Gets the full list of existing user settings.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-headers %}
+{% api-method-parameter name="Authorization" type="string" required=true %}
+Bearer token of the user
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+    "status": "success",
+    "data": {
+        "settings": {
+            "<SETTING 1>": "<SETTING 1 VALUE>",
+            ...
+        }
+    }
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% api-method method="post" host="https://network.ruuvi.com" path="/setting" %}
+{% api-method-summary %}
+Update user setting
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Sets a single user setting \(currently\).
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-headers %}
+{% api-method-parameter name="Authorization" type="string" required=true %}
+Bearer token of the user
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
+
+{% api-method-body-parameters %}
+{% api-method-parameter name="value" type="string" required=true %}
+Setting value
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="name" type="string" required=true %}
+Setting key \(alphanumeric with "\_", "-" and "."
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+    "status": "success",
+    "data": {
+        "action": "<added|updated>"
+    }
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
