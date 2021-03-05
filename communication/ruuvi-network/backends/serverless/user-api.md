@@ -806,11 +806,16 @@ Bearer token of the user
 {% endapi-method-headers %}
 
 {% api-method-body-parameters %}
+{% api-method-parameter name="action" type="string" required=false %}
+One of: _upload_, _reset_ \(default: 'upload' if not given'\)
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="sensor" type="string" required=true %}
 ID of the target Sensor
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="type" type="string" required=true %}
+\(**Required** when type is 'upload'\)  
 Content-Type of the desired image upload. Supported formats:  
 image/png  
 image/gif  
