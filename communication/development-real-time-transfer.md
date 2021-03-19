@@ -12,9 +12,9 @@ The Real-Time Transfer is Segger's technology for printing UART-like messages fr
 
 First you'll need to connect your PC to nRF52-DK via USB-micro cable, then you'll need to connect the nRF52-DK to Ruuvi via devkit or the Tag-Connect cable. nRF52-DK autodetects an external target and programs it, but if there is an issue with connection you can get errors from the software or program the nRF52 onboard the nRF52-DK. You can cut the power measurement jumper on nRF52-DK to be sure to not accidentally connect to the wrong nRF52. 
 
-![RuuviTag zip-tied to devkit with soldered wires for debugging.](../.gitbook/assets/image%20%283%29.png)
+![RuuviTag zip-tied to devkit with soldered wires for debugging.](../.gitbook/assets/image%20%283%29%20%281%29.png)
 
-![Programming a RuuviTag with DK and Tag-connect cable](../.gitbook/assets/image%20%286%29.png)
+![Programming a RuuviTag with DK and Tag-connect cable](../.gitbook/assets/image%20%286%29%20%281%29.png)
 
 If you get a Tag-Connect cable, be sure to get the 10-pin connector Cortex-M no-legs version or you'll need to solder the wires to pins on DK as above.
 
