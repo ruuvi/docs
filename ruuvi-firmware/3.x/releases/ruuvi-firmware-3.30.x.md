@@ -10,44 +10,75 @@ description: 'Lifecycle: Beta. Page updated 2021-03-12'
 
 {% tabs %}
 {% tab title="RuuviTag B+" %}
-| Action | How to test | Verified by |
-| :--- | :--- | :--- |
-
-
-| Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
-| :--- | :--- | :--- |
-
-
-| Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
-| :--- | :--- | :--- |
-
-
-| Tag initializes watchdog. | Unit test test\_main.c | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
-| :--- | :--- | :--- |
-
-
-| Tag turns RED LED on for self-test duration. | Manually, visual check | Note: turns RED LED after test done. |
-| :--- | :--- | :--- |
-
-
-| Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
-| :--- | :--- | :--- |
-
-
-| Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Unit test main.c, drivers/rt\_flash.c | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
-| :--- | :--- | :--- |
-
-
-| Tag erases old log entries to prevent data with corrupted timestamps | Check app\_log:app\_log\_init\(\) | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
-| :--- | :--- | :--- |
-
-
-| Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
-| :--- | :--- | :--- |
-
-
-| Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. Check power profile manually. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
-| :--- | :--- | :--- |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Action</th>
+      <th style="text-align:left">How to test</th>
+      <th style="text-align:left">Verified by</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">Tag stays in bootloader mode / begins DFU if application commanded tag
+        into DFU mode.</td>
+      <td style="text-align:left">Manually, enter configuration mode by &quot;B&quot; and command tag into
+        bootloader with nRF Connect</td>
+      <td style="text-align:left">Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6)</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Tag stays in bootloader mode if button &quot;B&quot; is pressed on boot.</td>
+      <td
+      style="text-align:left">Manually, hold down &quot;B&quot;, press and release &quot;R&quot;.</td>
+        <td
+        style="text-align:left">Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6)</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Tag initializes watchdog.</td>
+      <td style="text-align:left">Unit test test_main.c</td>
+      <td style="text-align:left">Otso / 3.29.0</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Tag turns RED LED on for self-test duration.</td>
+      <td style="text-align:left">Manually, visual check</td>
+      <td style="text-align:left">Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6)</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Tag runs self-tests to detect installed sensors.</td>
+      <td style="text-align:left">Unit tests test_main.c test_app_sensor.c</td>
+      <td style="text-align:left">
+        <p>Otso /</p>
+        <p>3.29.0</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Tag erases settings stored to flash file system and reboots if flash file
+        system cannot be initialized.</td>
+      <td style="text-align:left">Unit test main.c, drivers/rt_flash.c</td>
+      <td style="text-align:left">Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6)</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Tag erases old log entries to prevent data with corrupted timestamps</td>
+      <td
+      style="text-align:left">Check app_log:app_log_init()</td>
+        <td style="text-align:left">Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6)</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Tag turns GREEN LED on for one second if no errors were detected in self-test
+        phase. Missing sensors are allowed.</td>
+      <td style="text-align:left">Manually, visual check.</td>
+      <td style="text-align:left">Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6)</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data
+        is allowed, but every packet must be valid. Initial dataformat is RAWv2.</td>
+      <td
+      style="text-align:left">Unit test test_app_heartbeat.c. Check power profile manually.</td>
+        <td
+        style="text-align:left">Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6)</td>
+    </tr>
+  </tbody>
+</table>
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
