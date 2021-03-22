@@ -14,11 +14,11 @@ description: 'Lifecycle: Beta. Page updated 2021-03-12'
 | :--- | :--- | :--- |
 
 
-| Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect |  |
+| Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | :--- | :--- | :--- |
 
 
-| Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". |  |
+| Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | :--- | :--- | :--- |
 
 
@@ -30,7 +30,7 @@ description: 'Lifecycle: Beta. Page updated 2021-03-12'
 | :--- | :--- | :--- |
 
 
-| Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c |  |
+| Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | :--- | :--- | :--- |
 
 
@@ -42,7 +42,7 @@ description: 'Lifecycle: Beta. Page updated 2021-03-12'
 | :--- | :--- | :--- |
 
 
-| Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. |  |
+| Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | :--- | :--- | :--- |
 
 
@@ -138,8 +138,8 @@ Note: \* First test didn't print all the RTT logs, verified separately \*\* LIS2
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Short press enters configuration mode. | Press button "B", check that red led blinks and DFU service is available, serial number is readable over GATT. |  |
-| Long press erases flash settings and logs, enters bootloader. | Hold button "B", check that tag enters bootloader. Try reading logs, check there's not a lot of elements if any. |  |
+| Short press enters configuration mode. | Press button "B", check that red led blinks and DFU service is available, serial number is readable over GATT. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| Long press erases flash settings and logs, enters bootloader. | Hold button "B", check that tag enters bootloader. Try reading logs, check there's not a lot of elements if any. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -180,12 +180,12 @@ Note: \* First test didn't print all the RTT logs, verified separately \*\* LIS2
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
 | NFC read enables configuration until next GATT connection or timeout. | Apply a NFC field and enter bootloader via GATT. Check that bootloader service is disabled after timeout. |  |
-| Tag broadcasts at 100 ms interval for 60 seconds or until connected by GATT | Check the power profile after NFC read, connect with GATT | 3.29.3-RC1 does not pass, fast broadcast for 60 s or end of next connection. |
-| NFC has 4 UTF-8 text fields: "ad", "id", "sw", "dt". Fields can be in any order. | Read the tag with e.g. NFC Tools |  |
-| "ad" field has text "MAC: " and upper-case, ':' separated MAC address, as reported by BLE scanner. | Check "ad" field and compare to BLE scanner results. |  |
-| "id" field has text "ID: " and upper-case, ':' separated unique identifier, 8 bytes. | Check "id" field, compare to serial number read over GATT. |  |
-| "sw" field has text "SW: " and a firmware revision string. | Check "sw" field |  |
-| "dt" field has binary content | Check "dt" field |  |
+| Tag broadcasts at 100 ms interval for 60 seconds or until connected by GATT | Check the power profile after NFC read, connect with GATT |  |
+| NFC has 4 UTF-8 text fields: "ad", "id", "sw", "dt". Fields can be in any order. | Read the tag with e.g. NFC Tools | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| "ad" field has text "MAC: " and upper-case, ':' separated MAC address, as reported by BLE scanner. | Check "ad" field and compare to BLE scanner results. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| "id" field has text "ID: " and upper-case, ':' separated unique identifier, 8 bytes. | Check "id" field, compare to serial number read over GATT. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| "sw" field has text "SW: " and a firmware revision string. | Check "sw" field | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| "dt" field has binary content | Check "dt" field | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -226,16 +226,16 @@ Note: \* First test didn't print all the RTT logs, verified separately \*\* LIS2
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
 | Data is sent at 1285 ms interval by default. | Check power profile for TX spikes. |  |
-| Tag accepts GATT connection and starts pushing data through NUS TX characteristic notifications. | Connect to tag with nRF Connect, register to GATT notifications. |  |
-| GATT server has Device Information Service with Manufacturer Name String, Model Number String Hardware Revision String and Firmware revision String. Serial Number String is not viewable unless configuration mode is on. | Connect to tag with nRF Connect, check fields manually. |  |
-| Manufacturer Name String is "Ruuvi Innovations Ltd" | Manually |  |
-| Model Number String is "RuuviTag B" | Manually |  |
-| Serial Number String is viewable only in configuration mode and has the same ID as NFC scan. | Manually |  |
-| Hardware revision string has text "Check PCB" | Manually |  |
-| Firmware revision string has same version as NFC read | Manually |  |
+| Tag accepts GATT connection and starts pushing data through NUS TX characteristic notifications. | Connect to tag with nRF Connect, register to GATT notifications. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| GATT server has Device Information Service with Manufacturer Name String, Model Number String Hardware Revision String and Firmware revision String. Serial Number String is not viewable unless configuration mode is on. | Connect to tag with nRF Connect, check fields manually. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| Manufacturer Name String is "Ruuvi Innovations Ltd" | Manually | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| Model Number String is "RuuviTag B" | Manually | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| Serial Number String is viewable only in configuration mode and has the same ID as NFC scan. | Manually | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| Hardware revision string has text "Check PCB" | Manually | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| Firmware revision string has same version as NFC read | Manually | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | Environmental history log can be read by sending "0x3A 3A 11 TIMESTAMP 00000000" to NUS RX characteristic. Timestamp is current time in seconds after Unix epoch, 4 bytes. | Manually, or with Ruuvi Station sync graphs button. For the test a debug version of firmware should be used, tag must be running at least for 1 hour and there should be a data point each second for at least 1 hour. Entries do not have to be sorted by time, it is allowed to miss a sample roughly once per 10 seconds. |  |
-| Environmental log history will send only data that has timestamp after request | Sync once with Ruuvi Station, check there is data. Sync again, check there is less data loaded. |  |
-| Tag continues broadcasting data while connected by GATT. | Connect with one device, scan with other. Manually. Note: Some scanners will not report advertisements from connected devices, so 2 scanners are required. |  |
+| Environmental log history will send only data that has timestamp after request | Sync once with Ruuvi Station, check there is data. Sync again, check there is less data loaded. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| Tag continues broadcasting data while connected by GATT. | Connect with one device, scan with other. Manually. Note: Some scanners will not report advertisements from connected devices, so 2 scanners are required. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
