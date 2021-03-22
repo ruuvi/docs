@@ -22,11 +22,11 @@ description: 'Lifecycle: Beta. Page updated 2021-03-12'
 | :--- | :--- | :--- |
 
 
-| Tag initializes watchdog. | Unit test test\_main.c |  |
+| Tag initializes watchdog. | Unit test test\_main.c | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | :--- | :--- | :--- |
 
 
-| Tag turns RED LED on for self-test duration. | Manually, visual check |  |
+| Tag turns RED LED on for self-test duration. | Manually, visual check | Note: turns RED LED after test done. |
 | :--- | :--- | :--- |
 
 
@@ -34,11 +34,11 @@ description: 'Lifecycle: Beta. Page updated 2021-03-12'
 | :--- | :--- | :--- |
 
 
-| Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Unit test main.c, drivers/rt\_flash.c |  |
+| Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Unit test main.c, drivers/rt\_flash.c | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | :--- | :--- | :--- |
 
 
-| Tag erases old log entries to prevent data with corrupted timestamps | Check app\_log:app\_log\_init\(\) |  |
+| Tag erases old log entries to prevent data with corrupted timestamps | Check app\_log:app\_log\_init\(\) | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | :--- | :--- | :--- |
 
 
@@ -46,7 +46,7 @@ description: 'Lifecycle: Beta. Page updated 2021-03-12'
 | :--- | :--- | :--- |
 
 
-| Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. Check power profile manually. |  |
+| Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. Check power profile manually. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | :--- | :--- | :--- |
 {% endtab %}
 
@@ -90,13 +90,13 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="RuuviTag B+" %}
 | Item | Result | Verified by |
 | :--- | :--- | :--- |
-| Library tests: p2p, rms, variance, ringbuffer | Pass\* |  |
-| Peripheral tests: power, timer, scheduler, flash | Pass\* |  |
-| Sensor tests: BME280, LIS2DH12 | Pass\*\* |  |
-| BLE tests: Advertising, GATT | Pass |  |
-| GATT Throughput, 1 MBit / s | 25 700 B / s |  |
-| GATT Throughput, 2 MBit / s | 20 800 B / s |  |
-| NFC Test | Pass |  |
+| Library tests: p2p, rms, variance, ringbuffer | Pass\* | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| Peripheral tests: power, timer, scheduler, flash | Pass\* | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| Sensor tests: BME280, LIS2DH12 | Pass\*\* | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| BLE tests: Advertising, GATT | Pass | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| GATT Throughput, 1 MBit / s | 27 500 B / s | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| GATT Throughput, 2 MBit / s | 37 300 B / s | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| NFC Test | Pass | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -130,7 +130,9 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% endtab %}
 {% endtabs %}
 
-Note: \* First test didn't print all the RTT logs, verified separately \*\* LIS2DH12 interrupt test fails due to driver test problem, doesn't affect release. DUT includes SHTC3.
+Note\(s\):   
+\* First test didn't print all the RTT logs. Additional results picked from the second run.  
+\*\* LIS2DH12 interrupt test fails due to driver test problem, doesn't affect release. nRF5TMP configuration failed.
 
 ### Button
 
@@ -179,8 +181,8 @@ Note: \* First test didn't print all the RTT logs, verified separately \*\* LIS2
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| NFC read enables configuration until next GATT connection or timeout. | Apply a NFC field and enter bootloader via GATT. Check that bootloader service is disabled after timeout. |  |
-| Tag broadcasts at 100 ms interval for 60 seconds or until connected by GATT | Check the power profile after NFC read, connect with GATT |  |
+| NFC read enables configuration until next GATT connection or timeout. | Apply a NFC field and enter bootloader via GATT. Check that bootloader service is disabled after timeout. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| Tag broadcasts at 100 ms interval for 60 seconds or until connected by GATT | Check the power profile after NFC read, connect with GATT | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | NFC has 4 UTF-8 text fields: "ad", "id", "sw", "dt". Fields can be in any order. | Read the tag with e.g. NFC Tools | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | "ad" field has text "MAC: " and upper-case, ':' separated MAC address, as reported by BLE scanner. | Check "ad" field and compare to BLE scanner results. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | "id" field has text "ID: " and upper-case, ':' separated unique identifier, 8 bytes. | Check "id" field, compare to serial number read over GATT. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
@@ -225,7 +227,7 @@ Note: \* First test didn't print all the RTT logs, verified separately \*\* LIS2
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Data is sent at 1285 ms interval by default. | Check power profile for TX spikes. |  |
+| Data is sent at 1285 ms interval by default. | Check power profile for TX spikes. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | Tag accepts GATT connection and starts pushing data through NUS TX characteristic notifications. | Connect to tag with nRF Connect, register to GATT notifications. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | GATT server has Device Information Service with Manufacturer Name String, Model Number String Hardware Revision String and Firmware revision String. Serial Number String is not viewable unless configuration mode is on. | Connect to tag with nRF Connect, check fields manually. | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 | Manufacturer Name String is "Ruuvi Innovations Ltd" | Manually | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
@@ -318,12 +320,9 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 {% tab title="RuuviTag B+" %}
 | State | Value | Verified by |
 | :--- | :--- | :--- |
-| Broadcasting, connectable | 26 µA @ 3.6 V, 27 µA @ 3.0 V, 29  µA @ 2.4 V |  |
-|  | 26.9 µA @ 3.6 V,  27.5 µA @ 3.0 V, 30.4  µA @ 2.4 V | Oleg / 3.29.0-RC5 |
-| Broadcasting, connected | 34 µA @ 3.6 V, 36 µA @ 3.0 V, 40  µA @ 2.4 V |  |
-|  | 36.9 µA @ 3.6 V, 39.2 µA @ 3.0 V, 44.0 µA @ 2.4 V | Oleg / 3.29.0-RC5 |
-| Transferring logs. | 8.9 mA @ 3.6 V, 9.7 mA @ 3.0 V, 10.9  mA @ 2.4 V |  |
-|  | 8.2 mA @ 3.6 V, 8.8 mA @ 3.0 V, 9.6 mA @ 2.4 V | Oleg / 3.29.0-RC5 |
+| Broadcasting, connectable | 26 µA @ 3.6 V, 25 µA @ 3.0 V, 25  µA @ 2.4 V | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| Broadcasting, connected | 34 µA @ 3.6 V, 34 µA @ 3.0 V, 40  µA @ 2.4 V | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
+| Transferring logs. | 10 mA @ 3.6 V, 10.7 mA @ 3.0 V, 14.3  mA @ 2.4 V | Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6) |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
