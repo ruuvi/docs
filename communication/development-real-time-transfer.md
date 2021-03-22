@@ -14,7 +14,7 @@ First you'll need to connect your PC to nRF52-DK via USB-micro cable, then you'l
 
 ![RuuviTag zip-tied to devkit with soldered wires for debugging.](../.gitbook/assets/image%20%283%29%20%281%29.png)
 
-![Programming a RuuviTag with DK and Tag-connect cable](../.gitbook/assets/image%20%286%29%20%281%29.png)
+![Programming a RuuviTag with DK and Tag-connect cable](../.gitbook/assets/image%20%286%29%20%281%29%20%281%29.png)
 
 If you get a Tag-Connect cable, be sure to get the 10-pin connector Cortex-M no-legs version or you'll need to solder the wires to pins on DK as above.
 

@@ -10,75 +10,54 @@ description: 'Lifecycle: Beta. Page updated 2021-03-12'
 
 {% tabs %}
 {% tab title="RuuviTag B+" %}
+| Action | How to test | Verified by |
+| :--- | :--- | :--- |
+
+
+| Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Nikita / \[v3.30-RC6\]\(https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6\) |
+| :--- | :--- | :--- |
+
+
+| Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". | Nikita / \[v3.30-RC6\]\(https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6\) |
+| :--- | :--- | :--- |
+
+
+| Tag initializes watchdog. | Unit test test\_main.c | Otso / 3.29.0 |
+| :--- | :--- | :--- |
+
+
+| Tag turns RED LED on for self-test duration. | Manually, visual check | Nikita / \[v3.30-RC6\]\(https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6\) |
+| :--- | :--- | :--- |
+
+
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Action</th>
-      <th style="text-align:left">How to test</th>
-      <th style="text-align:left">Verified by</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">Tag stays in bootloader mode / begins DFU if application commanded tag
-        into DFU mode.</td>
-      <td style="text-align:left">Manually, enter configuration mode by &quot;B&quot; and command tag into
-        bootloader with nRF Connect</td>
-      <td style="text-align:left">Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6)</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Tag stays in bootloader mode if button &quot;B&quot; is pressed on boot.</td>
-      <td
-      style="text-align:left">Manually, hold down &quot;B&quot;, press and release &quot;R&quot;.</td>
-        <td
-        style="text-align:left">Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6)</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Tag initializes watchdog.</td>
-      <td style="text-align:left">Unit test test_main.c</td>
-      <td style="text-align:left">Otso / 3.29.0</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Tag turns RED LED on for self-test duration.</td>
-      <td style="text-align:left">Manually, visual check</td>
-      <td style="text-align:left">Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6)</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Tag runs self-tests to detect installed sensors.</td>
-      <td style="text-align:left">Unit tests test_main.c test_app_sensor.c</td>
-      <td style="text-align:left">
+      <th style="text-align:left">Tag runs self-tests to detect installed sensors.</th>
+      <th style="text-align:left">Unit tests test_main.c test_app_sensor.c</th>
+      <th style="text-align:left">
         <p>Otso /</p>
         <p>3.29.0</p>
-      </td>
+      </th>
     </tr>
-    <tr>
-      <td style="text-align:left">Tag erases settings stored to flash file system and reboots if flash file
-        system cannot be initialized.</td>
-      <td style="text-align:left">Unit test main.c, drivers/rt_flash.c</td>
-      <td style="text-align:left">Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6)</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Tag erases old log entries to prevent data with corrupted timestamps</td>
-      <td
-      style="text-align:left">Check app_log:app_log_init()</td>
-        <td style="text-align:left">Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6)</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Tag turns GREEN LED on for one second if no errors were detected in self-test
-        phase. Missing sensors are allowed.</td>
-      <td style="text-align:left">Manually, visual check.</td>
-      <td style="text-align:left">Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6)</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data
-        is allowed, but every packet must be valid. Initial dataformat is RAWv2.</td>
-      <td
-      style="text-align:left">Unit test test_app_heartbeat.c. Check power profile manually.</td>
-        <td
-        style="text-align:left">Nikita / [v3.30-RC6](https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6)</td>
-    </tr>
-  </tbody>
+  </thead>
+  <tbody></tbody>
 </table>
+
+| Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Unit test main.c, drivers/rt\_flash.c | Nikita / \[v3.30-RC6\]\(https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6\) |
+| :--- | :--- | :--- |
+
+
+| Tag erases old log entries to prevent data with corrupted timestamps | Check app\_log:app\_log\_init\(\) | Nikita / \[v3.30-RC6\]\(https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6\) |
+| :--- | :--- | :--- |
+
+
+| Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. | Nikita / \[v3.30-RC6\]\(https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6\) |
+| :--- | :--- | :--- |
+
+
+| Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. Check power profile manually. | Nikita / \[v3.30-RC6\]\(https://github.com/ruuvi/ruuvi.firmware.c/tree/v3.30-RC6\) |
+| :--- | :--- | :--- |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -137,9 +116,15 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% endtab %}
 
 {% tab title="RuuviTag B+SHTC" %}
-|  |  |
-| :--- | :--- |
-|  |  |
+| Item | Result | Verified by |
+| :--- | :--- | :--- |
+| Library tests: p2p, rms, variance, ringbuffer | Tested on B+ | Nikita / v3.30-RC6 |
+| Peripheral tests: power, timer, scheduler, flash | Tested on B+ | Nikita / v3.30-RC6 |
+| Sensor tests: SHTCX, BME280, LIS2DH12 | Pass | Nikita / v3.30-RC6 |
+| BLE tests: Advertising, GATT | Tested on B+ | Nikita / v3.30-RC6 |
+| GATT Throughput, 1 MBit / s | 27 400 B/s | Nikita / v3.30-RC6 |
+| GATT Throughput, 2 MBit / s | 37 300 B/s | Nikita / v3.30-RC6 |
+| NFC Test | Tested on B+ | Nikita / v3.30-RC6 |
 {% endtab %}
 
 {% tab title="\"Kalervo\"" %}
@@ -161,7 +146,7 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% endtab %}
 {% endtabs %}
 
-Note\(s\):   
+Note\(s\):  
 \* First test didn't print all the RTT logs. Additional results picked from the second run.  
 \*\* LIS2DH12 interrupt test fails due to driver test problem, doesn't affect release. nRF5TMP configuration failed.
 
@@ -182,9 +167,10 @@ Note\(s\):
 {% endtab %}
 
 {% tab title="RuuviTag B+SHTC" %}
-|  |  |
-| :--- | :--- |
-|  |  |
+| Action | How to test | Verified by |
+| :--- | :--- | :--- |
+| Short press enters configuration mode. | Tested on B+ | Nikita / v3.30-RC6 |
+| Long press erases flash settings and logs, enters bootloader. | Tested on B+ | Nikita / v3.30-RC6 |
 {% endtab %}
 
 {% tab title="\"Kalervo\"" %}
@@ -228,9 +214,15 @@ Note\(s\):
 {% endtab %}
 
 {% tab title="RuuviTag B+SHTC" %}
-|  |  |
-| :--- | :--- |
-|  |  |
+| Action | How to test | Verified by |
+| :--- | :--- | :--- |
+| NFC read enables configuration until next GATT connection or timeout. | Apply a NFC field and enter bootloader via GATT. Check that bootloader service is disabled after timeout. | Tested on B+ |
+| Tag broadcasts at 100 ms interval for 60 seconds or until connected by GATT | Check the power profile after NFC read, connect with GATT | Tested on B+ |
+| NFC has 4 UTF-8 text fields: "ad", "id", "sw", "dt". Fields can be in any order. | Read the tag with e.g. NFC Tools | Tested on B+ |
+| "ad" field has text "MAC: " and upper-case, ':' separated MAC address, as reported by BLE scanner. | Check "ad" field and compare to BLE scanner results. | Tested on B+ |
+| "id" field has text "ID: " and upper-case, ':' separated unique identifier, 8 bytes. | Check "id" field, compare to serial number read over GATT. | Tested on B+ |
+| "sw" field has text "SW: " and a firmware revision string. | Check "sw" field | Tested on B+ |
+| "dt" field has binary content | Check "dt" field | Tested on B+ |
 {% endtab %}
 
 {% tab title="\"Kalervo\"" %}
@@ -278,9 +270,19 @@ Note\(s\):
 {% endtab %}
 
 {% tab title="RuuviTag B+SHTC" %}
-|  |  |
-| :--- | :--- |
-|  |  |
+| Action | How to test | Verified by |
+| :--- | :--- | :--- |
+| Data is sent at 1285 ms interval by default. | Check power profile for TX spikes. | Tested on B+ |
+| Tag accepts GATT connection and starts pushing data through NUS TX characteristic notifications. | Connect to tag with nRF Connect, register to GATT notifications. | Tested on B+ |
+| GATT server has Device Information Service with Manufacturer Name String, Model Number String Hardware Revision String and Firmware revision String. Serial Number String is not viewable unless configuration mode is on. | Connect to tag with nRF Connect, check fields manually. | Tested on B+ |
+| Manufacturer Name String is "Ruuvi Innovations Ltd" | Manually | Tested on B+ |
+| Model Number String is "RuuviTag B" | Manually | Tested on B+ |
+| Serial Number String is viewable only in configuration mode and has the same ID as NFC scan. | Manually | Tested on B+ |
+| Hardware revision string has text "Check PCB" | Manually | Tested on B+ |
+| Firmware revision string has same version as NFC read | Manually | Tested on B+ |
+| Environmental history log can be read by sending "0x3A 3A 11 TIMESTAMP 00000000" to NUS RX characteristic. Timestamp is current time in seconds after Unix epoch, 4 bytes. | Manually, or with Ruuvi Station sync graphs button. For the test a debug version of firmware should be used, tag must be running at least for 1 hour and there should be a data point each second for at least 1 hour. Entries do not have to be sorted by time, it is allowed to miss a sample roughly once per 10 seconds. | Tested on B+ |
+| Environmental log history will send only data that has timestamp after request | Sync once with Ruuvi Station, check there is data. Sync again, check there is less data loaded. | Tested on B+ |
+| Tag continues broadcasting data while connected by GATT. | Connect with one device, scan with other. Manually. Note: Some scanners will not report advertisements from connected devices, so 2 scanners are required. | Tested on B+ |
 {% endtab %}
 
 {% tab title="\"Kalervo\"" %}
@@ -319,9 +321,10 @@ Note\(s\):
 {% endtab %}
 
 {% tab title="RuuviTag B+SHTC" %}
-|  |  |
-| :--- | :--- |
-|  |  |
+| Action | How to test | Verified by |
+| :--- | :--- | :--- |
+| Firmware 2.5.9 can be updated with SDK\_UPDATE package. | System tests in GitHub. |  |
+| Firmware can enter bootloader after update and another 3.x firmware can be flashed. | System tests in GitHub | Note: requires manual test due to no mechanism to enter configuration mode without interaction. |
 {% endtab %}
 
 {% tab title="\"Kalervo\"" %}
@@ -367,9 +370,9 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 {% tab title="RuuviTag B+SHTC" %}
 | State | Value | Verified by |
 | :--- | :--- | :--- |
-| Broadcasting, connectable |  |  |
-| Broadcasting, connected |  |  |
-| Transferring logs. |  |  |
+| Broadcasting, connectable | 25 µA @ 3.6 V, 28 µA @ 3.0 V, 32 µA @ 2.4 V | Nikita / v3.30-RC6 |
+| Broadcasting, connected | 35 µA @ 3.6 V, 36 µA @ 3.0 V, 42 µA @ 2.4 V | Nikita / v3.30-RC6 |
+| Transferring logs. | 9.8 mA @ 3.6 V, 11.2 mA @ 3.0 V, 13.3 mA @ 2.4 V | Nikita / v3.30-RC6 |
 {% endtab %}
 
 {% tab title="\"Kalervo\"" %}
