@@ -325,9 +325,9 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 {% tab title="RuuviTag B+" %}
 | State | Value | Verified by |
 | :--- | :--- | :--- |
-| Broadcasting, connectable | 26 µA @ 3.6 V, 25 µA @ 3.0 V, 25  µA @ 2.4 V | Nikita / v3.30-RC6 |
-| Broadcasting, connected | 34 µA @ 3.6 V, 34 µA @ 3.0 V, 40  µA @ 2.4 V | Nikita / v3.30-RC6 |
-| Transferring logs. | 10 mA @ 3.6 V, 10.7 mA @ 3.0 V, 14.3  mA @ 2.4 V | Nikita / v3.30-RC6 |
+| Broadcasting, connectable | 24.5 µA @ 3.6 V, 26 µA @ 3.0 V, 28.1  µA @ 2.4 V | Nikita / v3.30-RC6 |
+| Broadcasting, connected | 36.7 µA @ 3.6 V, 35.7 µA @ 3.0 V, 40.3  µA @ 2.4 V | Nikita / v3.30-RC6 |
+| Transferring logs. | 9.6 mA @ 3.6 V, 10.9 mA @ 3.0 V, 15.5  mA @ 2.4 V | Nikita / v3.30-RC6 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
