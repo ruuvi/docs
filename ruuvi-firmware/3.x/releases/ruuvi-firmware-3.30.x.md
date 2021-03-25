@@ -65,6 +65,20 @@ description: 'Lifecycle: Beta. Page updated 2021-03-25'
 | Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. Check power profile manually. | Tested on B+ |
 {% endtab %}
 
+{% tab title="RuuviTag B8+TMP117" %}
+| Action  | How to test | Verified by |
+| :--- | :--- | :--- |
+| Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Tested on B+ |
+| Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". | Tested on B+ |
+| Tag initializes watchdog. | Unit test test\_main.c | Tested on B+ |
+| Tag turns RED LED on for self-test duration. | Manually, visual check | Tested on B+ |
+| Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c | Tested on B+ |
+| Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Unit test main.c, drivers/rt\_flash.c | Tested on B+ |
+| Tag erases old log entries to prevent data with corrupted timestamps | Check app\_log:app\_log\_init\(\) | Tested on B+ |
+| Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. | Tested on B+ |
+| Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. Check power profile manually. | Tested on B+ |
+{% endtab %}
+
 {% tab title="\"Kalervo\"" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
@@ -139,6 +153,18 @@ Integration tests are run on debug-variants of firmware. They print test results
 | NFC Test |  | |
 {% endtab %}
 
+{% tab title="RuuviTag B8+TMP117" %}
+| Item | Result | Verified by |
+| :--- | :--- | :--- |
+| Library tests: p2p, rms, variance, ringbuffer |  | |
+| Peripheral tests: power, timer, scheduler, flash |  | |
+| Sensor tests: DPS310, SHTCX, LIS2DH12 nRF52 |  |  |
+| BLE tests: Advertising, GATT |  | |
+| GATT Throughput, 1 MBit / s | | |
+| GATT Throughput, 2 MBit / s | | |
+| NFC Test |  | |
+{% endtab %}
+
 {% tab title="\"Kalervo\"" %}
 | Item | Result | Verified by |
 | :--- | :--- | :--- |
@@ -182,6 +208,13 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% endtab %}
 
 {% tab title="RuuviTag B8" %}
+| Action | How to test | Verified by |
+| :--- | :--- | :--- |
+| Short press enters configuration mode. | Press button "B", check that red led blinks and DFU service is available, serial number is readable over GATT. |  |
+| Long press erases flash settings and logs, enters bootloader. | Hold button "B", check that tag enters bootloader. Try reading logs, check there's not a lot of elements if any. | |
+{% endtab %}
+
+{% tab title="RuuviTag B8+TMP117" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
 | Short press enters configuration mode. | Press button "B", check that red led blinks and DFU service is available, serial number is readable over GATT. |  |
@@ -378,6 +411,13 @@ Integration tests are run on debug-variants of firmware. They print test results
 | Firmware can enter bootloader after update and another 3.x firmware can be flashed. | System tests in GitHub | Note: requires manual test due to no mechanism to enter configuration mode without interaction. |
 {% endtab %}
 
+{% tab title="RuuviTag B8+TMP117" %}
+| Action | How to test | Verified by |
+| :--- | :--- | :--- |
+| Firmware 2.5.9 can be updated with SDK\_UPDATE package. | System tests in GitHub. |  |
+| Firmware can enter bootloader after update and another 3.x firmware can be flashed. | System tests in GitHub | Note: requires manual test due to no mechanism to enter configuration mode without interaction. |
+{% endtab %}
+
 {% tab title="\"Kalervo\"" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
@@ -437,6 +477,13 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 | :--- | :--- | :--- |
 | Broadcasting, connectable, default  | 31 µA @ 3.6 V, 33 µA @ 3.0 V, 34 uA µA @ 2.4 V | Otso / 3.30-RC7 |
 | Broadcasting, connectable, longlife | 14 µA @ 3.6 V, 13 µA @ 3.0 V, 13 uA µA @ 2.4 V | Otso / 3.30-RC7 |
+{% endtab %}
+
+{% tab title="RuuviTag B8+TMP117" %}
+| State | Value | Verified by |
+| :--- | :--- | :--- |
+| Broadcasting, connectable, default  | 35 µA @ 3.6 V, 36 µA @ 3.0 V, 41 uA µA @ 2.4 V | Otso / 3.30-RC7 |
+| Broadcasting, connectable, longlife | 18 µA @ 3.6 V, 18 µA @ 3.0 V, 18 uA µA @ 2.4 V | Otso / 3.30-RC7 |
 {% endtab %}
 
 {% tab title="\"Kalervo\"" %}
