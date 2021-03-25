@@ -367,8 +367,8 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 {% tab title="\"Kalervo\"" %}
 | State | Value | Verified by |
 | :--- | :--- | :--- |
-| Broadcasting, default | 47 uA  | 42 uA   | 38 uA
-| Broadcasting, longlife | 14 uA  | 13 uA   | 12 uA
+| Broadcasting, default  | 38 µA @ 3.6 V, 42 µA @ 3.0 V, 47 uA µA @ 2.4 V | Otso / 3.30-RC7 |
+| Broadcasting, longlife | 12 µA @ 3.6 V, 13 µA @ 3.0 V, 14 uA µA @ 2.4 V | Otso / 3.30-RC7 |
 {% endtab %}
 
 {% tab title="\"Kaarle\"" %}
