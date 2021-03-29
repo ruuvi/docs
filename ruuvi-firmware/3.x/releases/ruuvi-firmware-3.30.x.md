@@ -14,7 +14,7 @@ description: 'Lifecycle: Beta. Page updated 2021-03-25'
 | :--- | :--- | :--- |
 | Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Nikita / v3.30-RC6 |
 | Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". | Nikita / v3.30-RC6 |
-| Tag initializes watchdog. | Check application initialization code |  |
+| Tag initializes watchdog. | Check application initialization code | Otso / v3.30.0 |
 | Tag turns RED LED on for self-test duration. | Manually, visual check | Nikita / v3.30-RC6 |
 | Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c | Nikita / v3.30-RC6 |
 | Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Unit test main.c, drivers/rt\_flash.c | Nikita / v3.30-RC6 |
@@ -26,19 +26,19 @@ description: 'Lifecycle: Beta. Page updated 2021-03-25'
 {% tab title="RuuviTag B Basic" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Nikita / v3.30-RC6 (B+)|
-| Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". | Nikita / v3.30-RC6 (B+)|
-| Tag initializes watchdog. | Check application initialization code | Nikita / v3.30-RC6 (B+)|
-| Tag turns RED LED on for self-test duration. | Manually, visual check | Nikita / v3.30-RC6 (B+)|
-| Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c | Nikita / v3.30-RC6 (B+)|
-| Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Unit test main.c, drivers/rt\_flash.c | Nikita / v3.30-RC6 (B+)|
-| Tag erases old log entries to prevent data with corrupted timestamps | Check app\_log:app\_log\_init\(\) | Nikita / v3.30-RC6 (B+)|
-| Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. | Nikita / v3.30-RC6 (B+)|
-| Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. Check power profile manually. | Nikita / v3.30-RC6 (B+)|
+| Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Nikita / v3.30-RC6 \(B+\) |
+| Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". | Nikita / v3.30-RC6 \(B+\) |
+| Tag initializes watchdog. | Check application initialization code | Nikita / v3.30-RC6 \(B+\) |
+| Tag turns RED LED on for self-test duration. | Manually, visual check | Nikita / v3.30-RC6 \(B+\) |
+| Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c | Nikita / v3.30-RC6 \(B+\) |
+| Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Unit test main.c, drivers/rt\_flash.c | Nikita / v3.30-RC6 \(B+\) |
+| Tag erases old log entries to prevent data with corrupted timestamps | Check app\_log:app\_log\_init\(\) | Nikita / v3.30-RC6 \(B+\) |
+| Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. | Nikita / v3.30-RC6 \(B+\) |
+| Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. Check power profile manually. | Nikita / v3.30-RC6 \(B+\) |
 {% endtab %}
 
 {% tab title="RuuviTag B+SHTC" %}
-| Action  | How to test | Verified by |
+| Action | How to test | Verified by |
 | :--- | :--- | :--- |
 | Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Tested on B+ |
 | Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". | Tested on B+ |
@@ -52,7 +52,7 @@ description: 'Lifecycle: Beta. Page updated 2021-03-25'
 {% endtab %}
 
 {% tab title="RuuviTag B8" %}
-| Action  | How to test | Verified by |
+| Action | How to test | Verified by |
 | :--- | :--- | :--- |
 | Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Tested on B+ |
 | Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". | Tested on B+ |
@@ -66,7 +66,7 @@ description: 'Lifecycle: Beta. Page updated 2021-03-25'
 {% endtab %}
 
 {% tab title="RuuviTag B8+TMP117" %}
-| Action  | How to test | Verified by |
+| Action | How to test | Verified by |
 | :--- | :--- | :--- |
 | Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Tested on B+ |
 | Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". | Tested on B+ |
@@ -82,14 +82,14 @@ description: 'Lifecycle: Beta. Page updated 2021-03-25'
 {% tab title="\"Kalervo\"" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Not Applicable | |
-| Tag stays in bootloader mode if button "B" is pressed on boot. | Not applicable | |
+| Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Not Applicable |  |
+| Tag stays in bootloader mode if button "B" is pressed on boot. | Not applicable |  |
 | Tag initializes watchdog. | Check application initialization code | Nikita / v3.30-RC6 |
 | Tag turns RED LED on for self-test duration. | Manually, visual check | Nikita / v3.30-RC6 |
 | Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c | Nikita / v3.30-RC6 |
-| Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Not Applicable. | |
-| Tag erases old log entries to prevent data with corrupted timestamps | Not Applicable | |
-| Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. | Otso / v3.30-RC7 (B+)|
+| Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Not Applicable. |  |
+| Tag erases old log entries to prevent data with corrupted timestamps | Not Applicable |  |
+| Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. | Otso / v3.30-RC7 \(B+\) |
 | Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. Check power profile manually. | Otso / v3.30-RC7 |
 {% endtab %}
 
@@ -144,31 +144,31 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="RuuviTag B8" %}
 | Item | Result | Verified by |
 | :--- | :--- | :--- |
-| Library tests: p2p, rms, variance, ringbuffer |  | |
-| Peripheral tests: power, timer, scheduler, flash |  | |
+| Library tests: p2p, rms, variance, ringbuffer |  |  |
+| Peripheral tests: power, timer, scheduler, flash |  |  |
 | Sensor tests: DPS310, SHTCX, LIS2DH12 nRF52 |  |  |
-| BLE tests: Advertising, GATT |  | |
-| GATT Throughput, 1 MBit / s | | |
-| GATT Throughput, 2 MBit / s | | |
-| NFC Test |  | |
+| BLE tests: Advertising, GATT |  |  |
+| GATT Throughput, 1 MBit / s |  |  |
+| GATT Throughput, 2 MBit / s |  |  |
+| NFC Test |  |  |
 {% endtab %}
 
 {% tab title="RuuviTag B8+TMP117" %}
 | Item | Result | Verified by |
 | :--- | :--- | :--- |
-| Library tests: p2p, rms, variance, ringbuffer |  | |
-| Peripheral tests: power, timer, scheduler, flash |  | |
-| Sensor tests: DPS310, SHTCX, LIS2DH12 nRF52 |  |  |
-| BLE tests: Advertising, GATT |  | |
-| GATT Throughput, 1 MBit / s | | |
-| GATT Throughput, 2 MBit / s | | |
-| NFC Test |  | |
+| Library tests: p2p, rms, variance, ringbuffer | Pass | Otso / v3.30.0 |
+| Peripheral tests: power, timer, scheduler, flash | Pass | Otso / v3.30.0 |
+| Sensor tests: TMP117, DPS310, SHTCX, LIS2DH12, nRF52 | Pass\* | Otso / v3.30.0 |
+| BLE tests: Advertising, GATT | Pass | Otso / v3.30.0 |
+| GATT Throughput, 1 MBit / s |  | Nikita / B+ |
+| GATT Throughput, 2 MBit / s |  | Nikita / B+ |
+| NFC Test |  | Nikita / B+ |
 {% endtab %}
 
 {% tab title="\"Kalervo\"" %}
 | Item | Result | Verified by |
 | :--- | :--- | :--- |
-|  Not Applicable |  |
+| Not Applicable |  |  |
 {% endtab %}
 
 {% tab title="\"Kaarle\"" %}
@@ -183,6 +183,8 @@ Integration tests are run on debug-variants of firmware. They print test results
 |  |  |
 {% endtab %}
 {% endtabs %}
+
+\* TMP117 has a race condition in single sample, nRF52 fails configuration integration test, LIS2DH12 fails interrupt test
 
 ### Button
 
@@ -211,20 +213,20 @@ Integration tests are run on debug-variants of firmware. They print test results
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
 | Short press enters configuration mode. | Press button "B", check that red led blinks and DFU service is available, serial number is readable over GATT. |  |
-| Long press erases flash settings and logs, enters bootloader. | Hold button "B", check that tag enters bootloader. Try reading logs, check there's not a lot of elements if any. | |
+| Long press erases flash settings and logs, enters bootloader. | Hold button "B", check that tag enters bootloader. Try reading logs, check there's not a lot of elements if any. |  |
 {% endtab %}
 
 {% tab title="RuuviTag B8+TMP117" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
 | Short press enters configuration mode. | Press button "B", check that red led blinks and DFU service is available, serial number is readable over GATT. |  |
-| Long press erases flash settings and logs, enters bootloader. | Hold button "B", check that tag enters bootloader. Try reading logs, check there's not a lot of elements if any. | |
+| Long press erases flash settings and logs, enters bootloader. | Hold button "B", check that tag enters bootloader. Try reading logs, check there's not a lot of elements if any. |  |
 {% endtab %}
 
 {% tab title="\"Kalervo\"" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-|  Not Applicable |  |
+| Not Applicable |  |  |
 {% endtab %}
 
 {% tab title="\"Kaarle\"" %}
@@ -288,7 +290,7 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="\"Kalervo\"" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-|  Not Applicable |  |
+| Not Applicable |  |  |
 {% endtab %}
 
 {% tab title="\"Kaarle\"" %}
@@ -318,7 +320,7 @@ Integration tests are run on debug-variants of firmware. They print test results
 | Serial Number String is viewable only in configuration mode and has the same ID as NFC scan. | Manually | Nikita / v3.30-RC6 |
 | Hardware revision string has text "Check PCB" | Manually | Nikita / v3.30-RC6 |
 | Firmware revision string has same version as NFC read | Manually | Nikita / v3.30-RC6 |
-| Environmental history log can be read by sending "0x3A 3A 11 TIMESTAMP 00000000" to NUS RX characteristic. Timestamp is current time in seconds after Unix epoch, 4 bytes. | Manually, or with Ruuvi Station sync graphs button. For the test a debug version of firmware should be used, tag must be running at least for 1 hour and there should be a data point each second for at least 1 hour. Entries do not have to be sorted by time, it is allowed to miss a sample roughly once per 10 seconds. |  |
+| Environmental history log can be read by sending "0x3A 3A 11 TIMESTAMP 00000000" to NUS RX characteristic. Timestamp is current time in seconds after Unix epoch, 4 bytes. | Manually, or with Ruuvi Station sync graphs button. For the test a debug version of firmware should be used, tag must be running at least for 1 hour and there should be a data point each second for at least 1 hour. Entries do not have to be sorted by time, it is allowed to miss a sample roughly once per 10 seconds. | Otso / v3.30.0 |
 | Environmental log history will send only data that has timestamp after request | Sync once with Ruuvi Station, check there is data. Sync again, check there is less data loaded. | Nikita / v3.30-RC6 |
 | Tag continues broadcasting data while connected by GATT. | Connect with one device, scan with other. Manually. Note: Some scanners will not report advertisements from connected devices, so 2 scanners are required. | Nikita / v3.30-RC6 |
 {% endtab %}
@@ -365,7 +367,7 @@ Integration tests are run on debug-variants of firmware. They print test results
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
 | Data is sent at 1285 ms interval by default. | Check power profile for TX spikes. | Otso / 3.30-RC7 |
-| GATT tests are not applicable. | | |
+| GATT tests are not applicable. |  |  |
 {% endtab %}
 
 {% tab title="\"Kaarle\"" %}
@@ -387,8 +389,8 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Firmware 2.5.9 can be updated with SDK\_UPDATE package. | System tests in GitHub. |  |
-| Firmware can enter bootloader after update and another 3.x firmware can be flashed. | System tests in GitHub | Note: requires manual test due to no mechanism to enter configuration mode without interaction. |
+| Firmware 2.5.9 can be updated with SDK\_UPDATE package. | System tests in GitHub. | Otso / v3.30.0 |
+| Firmware can enter bootloader after update and another 3.x firmware can be flashed. | System tests in GitHub | Note: requires manual test due to no mechanism to enter configuration mode without interaction. Otso / v3.30.0 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -421,7 +423,7 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="\"Kalervo\"" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-|  Not Applicable |  |
+| Not Applicable |  |  |
 {% endtab %}
 
 {% tab title="\"Kaarle\"" %}
@@ -475,22 +477,22 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 {% tab title="RuuviTag B8" %}
 | State | Value | Verified by |
 | :--- | :--- | :--- |
-| Broadcasting, connectable, default  | 31 µA @ 3.6 V, 33 µA @ 3.0 V, 34 uA µA @ 2.4 V | Otso / 3.30-RC7 |
-| Broadcasting, connectable, longlife | 14 µA @ 3.6 V, 13 µA @ 3.0 V, 13 uA µA @ 2.4 V | Otso / 3.30-RC7 |
+| Broadcasting, connectable, default | 31 µA @ 3.6 V, 33 µA @ 3.0 V, 34 uA µA @ 2.4 V | Otso / 3.30-RC7 |
+| Broadcasting, connectable, longlife | 14 µA @ 3.6 V, 13 µA @ 3.0 V, 13 uA µA @ 2.4 V | Otso / 3.30-RC7 |
 {% endtab %}
 
 {% tab title="RuuviTag B8+TMP117" %}
 | State | Value | Verified by |
 | :--- | :--- | :--- |
-| Broadcasting, connectable, default  | 35 µA @ 3.6 V, 36 µA @ 3.0 V, 41 uA µA @ 2.4 V | Otso / 3.30-RC7 |
-| Broadcasting, connectable, longlife | 18 µA @ 3.6 V, 18 µA @ 3.0 V, 18 uA µA @ 2.4 V | Otso / 3.30-RC7 |
+| Broadcasting, connectable, default | 35 µA @ 3.6 V, 36 µA @ 3.0 V, 41 uA µA @ 2.4 V | Otso / 3.30-RC7 |
+| Broadcasting, connectable, longlife | 18 µA @ 3.6 V, 18 µA @ 3.0 V, 18 uA µA @ 2.4 V | Otso / 3.30-RC7 |
 {% endtab %}
 
 {% tab title="\"Kalervo\"" %}
 | State | Value | Verified by |
 | :--- | :--- | :--- |
-| Broadcasting, default  | 38 µA @ 3.6 V, 42 µA @ 3.0 V, 47 uA µA @ 2.4 V | Otso / 3.30-RC7 |
-| Broadcasting, longlife | 12 µA @ 3.6 V, 13 µA @ 3.0 V, 14 uA µA @ 2.4 V | Otso / 3.30-RC7 |
+| Broadcasting, default | 38 µA @ 3.6 V, 42 µA @ 3.0 V, 47 uA µA @ 2.4 V | Otso / 3.30-RC7 |
+| Broadcasting, longlife | 12 µA @ 3.6 V, 13 µA @ 3.0 V, 14 uA µA @ 2.4 V | Otso / 3.30-RC7 |
 {% endtab %}
 
 {% tab title="\"Kaarle\"" %}
