@@ -4,14 +4,14 @@ description: 'Lifecycle: Alpha. Last updated 2020-08-25'
 
 # GW ESP32 WiFi Hotspot
 
-The Gateway provides a WiFi hotspot for configuration. The hotspot has SSID with name "**Ruuvi Gateway ABCD**", where ABCD are the last 2 bytes of gateway WiFi mac address. Password to connect to gateway is "**12345678**". 
+The Gateway provides a WiFi hotspot for configuration. The hotspot has SSID with name "**RuuviGatewayABCD**", where ABCD are the last 2 bytes of gateway WiFi mac address. Password to connect to gateway is "**12345678**". 
 
-The WiFi hotspot is active only ~~if the gateway has not connected to the Internet. After gateway has connected to the Internet at least once for one~~ hour after boot or pressing configuration button, WiFi credentials are stored to flash and hotspot is turned off. If the Internet connection is lost later, connection loss is indicated by LEDs but hotspot is not turned back on unless user enter configuration mode by pressing button.
+The WiFi hotspot is only active if the gateway is not configured or within one minute after pressing the Configuration button. After the configuration of the gateway is complete, WiFi credentials are stored to flash and the hotspot is turned off. If the Internet connection is lost later, connection loss is indicated by "Red LED" but the hotspot is not turned back on unless the user enters configuration mode by pressing the Configuration button.
 
-Gateway cannot be reconfigured over LAN, only page available through LAN connection is /metrics.  To reconfigure the gateway, press "configure" button and connect to the hotspot.
+Gateway cannot be reconfigured over LAN, the configuration status page will be displayed in this case. Also following pages are available through LAN connection: /metrics and /history.  To reconfigure the gateway, press "configure" button and connect to the hotspot.
 
 {% hint style="info" %}
-~~If Ethernet cable is connected, configuration mode cannot be entered as hotspot is immediately deactivated on internet connection.~~ 
+If Ethernet cable is connected to an unconfigured gateway, then the gateway will automatically be set to the default configuration with Ethernet connection mode and WiFi hotspot will be deactivated. After that the user can activate the hotspot by short press on the "Configure" button or reset the configuration by long press on the "Configure" button \(In this case, the Ethernet cable must be disconnected, otherwise the gateway will automatically be set to default mode immediately after a configuration reset\).
 {% endhint %}
 
 | Event | Action  | Lifecycle | Since version |
@@ -20,9 +20,8 @@ Gateway cannot be reconfigured over LAN, only page available through LAN connect
 | Boot, has been connected to internet. | Do not activate hotspot. | Beta | 0.2.0 |
 | Internet connection established. | Deactivate hotspot. | Beta | 0.2.0 |
 | Internet connection lost. | No action. | Beta | 0.2.0 |
-| Configuration button pressed. | Drop WiFi connection, activate hotspot. | Beta | 0.2.0 |
-| Hotspot activated | Start http server. | Alpha | 0.2.0 |
-| Hotspot deactivated | Stop http server. | Alpha | 0.2.0 |
+| Short press on the Configuration button. | Drop WiFi or Ethernet connection, activate hotspot. | Beta | 1.3.2 |
+| Long press on the Configuration button \(more than 5 seconds\). | Reset the configuration and reboot the gateway | Beta | 1.0.0 |
 
 ## API
 
@@ -213,11 +212,43 @@ ruuvigw_received_advertisements 2566 ruuvigw_uptime_us 65447769 ruuvigw_heap_fre
 {% endapi-method-spec %}
 {% endapi-method %}
 
+{% api-method method="get" host="http://10.10.0.1/history" path="" %}
+{% api-method-summary %}
+history
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Get history data in json format.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="time" type="integer" required=false %}
+Read the history for the last N seconds only
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
 ## Test checklist
 
 | Event | Test | CI / Manual |
 | :--- | :--- | :--- |
-| Hotspot is active on first boot | Check that there is hotspot "Ruuvi Gateway ABCD" Check that it is connectable with password "12345678" | Manual |
+| Hotspot is active on first boot | Check that there is hotspot "RuuviGatewayABCD" Check that it is connectable with password "12345678" | Manual |
 | Hotspot is deactivated on internet connection | Connect gateway with Ethernet cable, observe that hotspot is turned off. | Manual |
 | Hotspot remains deactivated after internet connection | Disconnect Ethernet cable, reboot | Manual |
 | Hotspot is reactivated on short button press | Connect to WiFi, press button. | Manual |
