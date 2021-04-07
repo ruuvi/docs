@@ -6,7 +6,7 @@ description: 'Lifecycle: Alpha. Last update 2020-07-03'
 
 ## User interface
 
-Ruuvi Gateway sets up a WiFi hotspot and a webserver which provides user interface for configuration over HTTP. The user interface can be accessed in any major browser. To connect to the user interface connect to hotspot "**RuuviGateway XXXX**" and enter password "**12345678**". Once connected, open your browser and enter **http://10.10.0.1** .
+Ruuvi Gateway sets up a WiFi hotspot and a webserver which provides user interface for configuration over HTTP. The user interface can be accessed in any major browser. To connect to the user interface connect to hotspot "**RuuviGatewayXXXX**" and enter password "**12345678**". Once connected, open your browser and enter **http://10.10.0.1** .
 
 ### Greeting window
 
@@ -14,7 +14,7 @@ Ruuvi Gateway sets up a WiFi hotspot and a webserver which provides user interfa
 
 ### Backend selection
 
-![Select if you want to use a backend provided by Ruuvi \(not available as of 2020-07-23\) or your own server](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.34.36%20%281%29%20%281%29%20%281%29.png)
+![](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.34.36%20%281%29%20%281%29%20%281%29.png)
 
 #### Backend A\) HTTP\(S\)
 
@@ -128,7 +128,7 @@ ESP32 must write setting to nRF52 over UART using format defined in ruuvi.endpoi
 
 ESP32 must write setting to nRF52 over UART using format defined in ruuvi.endpoints.c/ruuvi\_endpoint\_ca\_uart. 
 
-**Scan PHY** Modulations to scan with. Coded PHY is also known as BLE Long Range. Most of exisiting devices send only on 1 MBit / s PHY. Modulations are scanned in sequence, so scanning both PHYs leads to at least 50 % packet loss on other PHY. At least one is mandatory.
+**Scan PHY** Modulations to scan with. Coded PHY is also known as BLE Long Range. Most of existing devices send only on 1 MBit / s PHY. Modulations are scanned in sequence, so scanning both PHYs leads to at least 50 % packet loss on other PHY. At least one is mandatory.
 
 ESP32 must write settings to nRF52 over UART using format defined in ruuvi.endpoints.c/ruuvi\_endpoint\_ca\_uart. 
 
