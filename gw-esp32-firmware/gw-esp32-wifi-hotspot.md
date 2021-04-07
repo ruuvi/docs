@@ -212,13 +212,13 @@ ruuvigw_received_advertisements 2566 ruuvigw_uptime_us 65447769 ruuvigw_heap_fre
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="http://10.10.0.1/history" path="" %}
+{% api-method method="get" host="http://10.10.0.1" path="/history" %}
 {% api-method-summary %}
 history
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Get history data in json format.
+Get history data in json format
 {% endapi-method-description %}
 
 {% api-method-spec %}
