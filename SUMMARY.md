@@ -87,4 +87,5 @@
 ## Ruuvi Community projects
 
 * [Integrations](ruuvi-community-projects/integrations.md)
+* [Data parsers](ruuvi-community-projects/data-parsers.md)
 
