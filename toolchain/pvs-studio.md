@@ -6,9 +6,9 @@ description: 'Lifecycle: in production Last updated 2021-04-13.'
 
 Note: the tutorial is tested on Linux machine.
 
-The Ruuvi Firmware may be compiled with the Makefile by running **make** command inside the _ruuvi.firmware.c_ project folder. To build the project, PVS Studio, the static code analyzer, has to be installed and a trial/full license key has to be entered. 
+The Ruuvi firmware projects are analyzed by PVS Studio, a static code analyzer. It has to be installed and a trial/full license key has to be entered. You can get an  Open Source license for projects hosted on GitHub. 
 
-Download the PVS Studio from project webpage: [https://pvs-studio.com/en/pvs-studio-download/](https://pvs-studio.com/en/pvs-studio-download/) On the same webpage, you can get the trial key, which is essential for PVS Studio to run:
+Download the PVS Studio from project webpage: [https://pvs-studio.com/en/pvs-studio-download/](https://pvs-studio.com/en/pvs-studio-download/) On the same webpage, you can get the trial key.
 
 ![](../.gitbook/assets/screenshot_2021-04-12_17-01-12.png)
 
