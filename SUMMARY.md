@@ -88,4 +88,5 @@
 
 * [Integrations](ruuvi-community-projects/integrations.md)
 * [Data parsers](ruuvi-community-projects/data-parsers.md)
+* [Gateways and listeners](ruuvi-community-projects/gateways-and-listeners.md)
 
