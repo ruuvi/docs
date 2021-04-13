@@ -13,4 +13,7 @@ These systems allow you to have a complete setup to collect, store and view data
 | **Meazurem** | [https://www.meazurem.com](https://www.meazurem.com) | Closed source | Commercial |
 | **RuuviTag-Demo** | [https://github.com/koenvervloesem/ruuvitag-demo](https://github.com/koenvervloesem/ruuvitag-demo) | MIT | Community |
 | **ruuvi-on-aws** | [https://github.com/bostrom/ruuvi-on-aws/](https://github.com/bostrom/ruuvi-on-aws/) | No license published | Community |
+| **Kaltiot Smart Tracker** | [https://kaltiot.com](https://kaltiot.com) | Closed source | Commercial |
+
+
 
