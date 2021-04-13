@@ -84,3 +84,7 @@
 * [App Feature Comparison list](ruuvi-station-app/app-feature-comparison-list.md)
 * [Gateway](ruuvi-station-app/gateway.md)
 
+## Ruuvi Community projects
+
+* [Integrations](ruuvi-community-projects/integrations.md)
+
