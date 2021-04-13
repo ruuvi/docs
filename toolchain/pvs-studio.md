@@ -1,5 +1,5 @@
 ---
-description: Compile Ruuvi Firmware with Makefile
+description: 'Lifecycle: in production Last updated 2021-04-13.'
 ---
 
 # PVS Studio

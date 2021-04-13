@@ -42,6 +42,10 @@
   * [Release checklist](releases/release-checklist.md)
   * [v0.3.0](releases/v0.3.0.md)
 
+## Toolchain for firmware <a id="toolchain"></a>
+
+* [PVS Studio](toolchain/pvs-studio.md)
+
 ## Ruuvi Connector System
 
 * [Introduction](ruuvi-connector-system/introduction.md)
@@ -79,8 +83,4 @@
 * [Ruuvi Station Android UI/UX test documentation](ruuvi-station-app/ruuvi-station-android-ui-ux-test-documentation.md)
 * [App Feature Comparison list](ruuvi-station-app/app-feature-comparison-list.md)
 * [Gateway](ruuvi-station-app/gateway.md)
-
-## Toolchain
-
-* [PVS Studio](toolchain/pvs-studio.md)
 
