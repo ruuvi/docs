@@ -90,4 +90,5 @@
 * [Data parsers](ruuvi-community-projects/data-parsers.md)
 * [Gateways and listeners](ruuvi-community-projects/gateways-and-listeners.md)
 * [End-to-end systems](ruuvi-community-projects/end-to-end-systems.md)
+* [Firmware](ruuvi-community-projects/firmware.md)
 
