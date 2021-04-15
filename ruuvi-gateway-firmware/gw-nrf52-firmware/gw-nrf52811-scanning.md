@@ -1,5 +1,5 @@
 ---
-description: 'Lifecycle: Alpha'
+description: 'Lifecycle: Beta. Last updated 2021-04-15'
 ---
 
 # GW nRF52811 scanning
@@ -10,7 +10,7 @@ Each scan is done on one enabled channel at a time, and once every selected chan
 
 Some Bluetooth devices can also advertise on secondary channels, the secondary advertisement works by first advertising information of secondary advertisement on primary channel and then sending secondary advertisement on any channel and modulation. If the primary advertisement was on long range PHY only long range secondary advertisements are scanned, if primary advertisement was on 1 MBit / s PHY secondary advertisement can be either 1 MBit / s or 2 MBit / s. 
 
-By default nRF52811 will report every advertisment seen, but it's possible to configure the scan to report only manufacturer specific data of one type, e.g. Ruuvi data or iBeacons.
+By default nRF52811 will report only Ruuvi manufacturer specific data, but it's possible to configure the scan to report all seen beacons. 
 
 Gateway can be configured via UART to enable/disable channels and PHYs with ruuvi\_endpoint\_ca\_uart commands.
 

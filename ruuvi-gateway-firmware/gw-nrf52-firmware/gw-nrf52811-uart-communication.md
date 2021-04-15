@@ -1,5 +1,5 @@
 ---
-description: 'Lifecycle: Alpha'
+description: 'Lifecycle: Beta. Last updated 2021-04-15'
 ---
 
 # GW nRF52811 UART communication
