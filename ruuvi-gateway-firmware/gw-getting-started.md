@@ -42,5 +42,7 @@ If you want to use the Gateway with your own server, you can connect via MQTT or
 
 ## Using the Gateway with Ruuvi Station app
 
+Please check the [Ruuvi Station instruction page](https://docs.ruuvi.com/ruuvi-station-app/use-with-ruuvi-gateway-ruuvi-network).
+
 
 
