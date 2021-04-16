@@ -40,7 +40,7 @@ For more details, [GW ESP32 Configuration](../gw-esp32-firmware/gw-esp32-configu
 
 If you want to use the Gateway with your own server, you can connect via MQTT or HTTP\(s\). The data formats are detailed in pages TODO TODO
 
-
+## Using the Gateway with Ruuvi Station app
 
 
 

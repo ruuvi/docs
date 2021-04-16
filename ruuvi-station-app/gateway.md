@@ -4,7 +4,7 @@ description: >-
   measurements to a http endpoint using POST requests.
 ---
 
-# Gateway
+# Using Ruuvi Station as a Gateway
 
 ## Setup
 

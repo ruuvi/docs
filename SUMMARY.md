@@ -82,7 +82,8 @@
 
 * [Ruuvi Station Android UI/UX test documentation](ruuvi-station-app/ruuvi-station-android-ui-ux-test-documentation.md)
 * [App Feature Comparison list](ruuvi-station-app/app-feature-comparison-list.md)
-* [Gateway](ruuvi-station-app/gateway.md)
+* [Using Ruuvi Station as a Gateway](ruuvi-station-app/gateway.md)
+* [Use with Ruuvi Gateway / Ruuvi Network](ruuvi-station-app/use-with-ruuvi-gateway-ruuvi-network.md)
 
 ## Ruuvi Community projects
 
