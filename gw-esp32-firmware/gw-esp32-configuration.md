@@ -1,5 +1,5 @@
 ---
-description: 'Lifecycle: Alpha. Last update 2020-07-03'
+description: 'Lifecycle: Beta. Last update 2021-04-15'
 ---
 
 # GW ESP32 Configuration
@@ -69,7 +69,7 @@ TODO: Use same view as in WiFi connection successful.
 | Location | String | Up to 50 printable characters. | Alpha | 1.0 | "" |
 | Use Ruuvi Network | Boolean | True, False | Proposal |  | True |
 | Use HTTP | Boolean | True, False. | Beta | 1.0 | True |
-| HTTP URL | String | Up to 255 printable characters. | Beta | 1.0 | "https://network.ruuvi.com/gwapi/v1" |
+| HTTP URL | String | Up to 255 printable characters. | Beta | 1.0 | "https://network.ruuvi.com/record" |
 | HTTP User | String | Up to 50 printable characters. | Alpha | 1.2 | "" |
 | HTTP Password | String | Up to 50 printable characters. | Alpha | 1.2 | "" |
 | HTTP Port | uint16 | 1 ... 65536. | Alpha | 1.2 | 443 |
@@ -81,7 +81,7 @@ TODO: Use same view as in WiFi connection successful.
 | MQTT Port | uint16 | 1 ... 65536. | Beta | 1.0 | 1883 |
 | Filter tags | Boolean | True, False. | Alpha | 1.0 | true |
 | Filter | uint16 | Any BLE SIG member ID, MSB first. | Alpha | 1.0 | 0x0499 \(Ruuvi\) |
-| Scan Coded PHY | Boolean | True, False | Proposal |  | True |
+| Scan Coded PHY | Boolean | True, False | Proposal |  | False |
 | Scan 1 MBit / s PHY | Boolean | True, False | Proposal |  | True |
 | Scan extended payloads | Boolean | True, False | Proposal |  | True |
 | Scan channel 37 | Boolean | True, False | Proposal |  | True |
