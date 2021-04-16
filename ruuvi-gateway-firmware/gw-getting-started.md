@@ -1,5 +1,5 @@
 ---
-description: 'Lifecycle: Beta. Last updated 2021-04-19'
+description: 'Lifecycle: Beta. Last updated 2021-04-16'
 ---
 
 # GW Getting Started
