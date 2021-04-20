@@ -10,7 +10,7 @@ description: 'Lifecycle: Alpha. Last updated 2021-04-16'
 
 1. Sign in to RuuviStation beta program in PlayStore.
 2. Install the latest beta version.
-3. Open the app, go to menu -&gt; App Settings -&gt; SHAKE your phone until new menu apperas "Experimental features".
+3. Open the app, go to menu -&gt; App Settings -&gt; SHAKE your phone until new menu appears "Experimental features".
 4. Go to menu, click Ruuvi Network ON.
 5. Go to RuuviStation main menu -&gt; Sign IN and add you email you want to register RuuviTags.
 6. Enter code which has been sent to your email.
