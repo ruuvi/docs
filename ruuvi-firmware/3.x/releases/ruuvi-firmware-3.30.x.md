@@ -12,15 +12,15 @@ description: 'Lifecycle: Beta. Page updated 2021-03-25'
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Nikita / v3.30-RC6 |
-| Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". | Nikita / v3.30-RC6 |
-| Tag initializes watchdog. | Check application initialization code | Otso / v3.30.0 |
+| Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Nikita / v3.30.1-RC1 |
+| Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". | Nikita / v3.30.1-RC1 |
+| Tag initializes watchdog. | Check application initialization code | Nikita / v3.30.1-RC1 |
 | Tag turns RED LED on for self-test duration. | Manually, visual check | Nikita / v3.30-RC6 |
-| Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c | Nikita / v3.30-RC6 |
-| Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Unit test main.c, drivers/rt\_flash.c | Nikita / v3.30-RC6 |
-| Tag erases old log entries to prevent data with corrupted timestamps | Check app\_log:app\_log\_init\(\) | Nikita / v3.30-RC6 |
-| Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. | Nikita / v3.30-RC6 |
-| Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. Check power profile manually. | Nikita / v3.30-RC6 |
+| Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c | Nikita / v3.30.1-RC1 |
+| Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Unit test main.c, drivers/rt\_flash.c | Nikita / v3.30.1-RC1 |
+| Tag erases old log entries to prevent data with corrupted timestamps | Check app\_log:app\_log\_init\(\) | Nikita / v3.30.1-RC1 |
+| Tag turns GREEN LED on for one second if no errors were detected in self-test phase. Missing sensors are allowed. | Manually, visual check. | Nikita / v3.30.1-RC1 |
+| Tag advertises at 100 ms interval for 5 seconds at boot. Duplicate data is allowed, but every packet must be valid. Initial dataformat is RAWv2. | Unit test test\_app\_heartbeat.c. Check power profile manually. | Nikita / v3.30.1-RC1 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -114,13 +114,13 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="RuuviTag B+" %}
 | Item | Result | Verified by |
 | :--- | :--- | :--- |
-| Library tests: p2p, rms, variance, ringbuffer | Pass | Nikita / v3.30-RC6 |
-| Peripheral tests: power, timer, scheduler, flash | Pass | Nikita / v3.30-RC6 |
-| Sensor tests: BME280, LIS2DH12 | Pass | Nikita / v3.30-RC6 |
-| BLE tests: Advertising, GATT | Pass | Nikita / v3.30-RC6 |
-| GATT Throughput, 1 MBit / s | 27 500 B / s | Nikita / v3.30-RC6 |
-| GATT Throughput, 2 MBit / s | 37 300 B / s | Nikita / v3.30-RC6 |
-| NFC Test | Pass | Nikita / v3.30-RC6 |
+| Library tests: p2p, rms, variance, ringbuffer | Pass | Nikita / v3.30.1-RC1 |
+| Peripheral tests: power, timer, scheduler, flash | Pass | Nikita / v3.30.1-RC1 |
+| Sensor tests: BME280, LIS2DH12 | Pass | LIS2DH12: fail on level |
+| BLE tests: Advertising, GATT | Pass | Nikita / v3.30.1-RC1 |
+| GATT Throughput, 1 MBit / s | 999.980 B / s | Nikita / v3.30.1-RC1 |
+| GATT Throughput, 2 MBit / s | 679.276 B / s | Nikita / v3.30.1-RC1 |
+| NFC Test | Pass | Nikita / v3.30.1-RC1 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -192,8 +192,8 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Short press enters configuration mode. | Press button "B", check that red led blinks and DFU service is available, serial number is readable over GATT. | Nikita / v3.30-RC6 |
-| Long press erases flash settings and logs, enters bootloader. | Hold button "B", check that tag enters bootloader. Try reading logs, check there's not a lot of elements if any. | Nikita / v3.30-RC6 |
+| Short press enters configuration mode. | Press button "B", check that red led blinks and DFU service is available, serial number is readable over GATT. | Nikita / v3.30.1-RC1 |
+| Long press erases flash settings and logs, enters bootloader. | Hold button "B", check that tag enters bootloader. Try reading logs, check there's not a lot of elements if any. | Nikita / v3.30.1-RC1 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -248,13 +248,13 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| NFC read enables configuration until next GATT connection or timeout. | Apply a NFC field and enter bootloader via GATT. Check that bootloader service is disabled after timeout. | Nikita / v3.30-RC6 |
-| Tag broadcasts at 100 ms interval for 60 seconds or until connected by GATT | Check the power profile after NFC read, connect with GATT | Nikita / v3.30-RC6 |
-| NFC has 4 UTF-8 text fields: "ad", "id", "sw", "dt". Fields can be in any order. | Read the tag with e.g. NFC Tools | Nikita / v3.30-RC6 |
-| "ad" field has text "MAC: " and upper-case, ':' separated MAC address, as reported by BLE scanner. | Check "ad" field and compare to BLE scanner results. | Nikita / v3.30-RC6 |
-| "id" field has text "ID: " and upper-case, ':' separated unique identifier, 8 bytes. | Check "id" field, compare to serial number read over GATT. | Nikita / v3.30-RC6 |
-| "sw" field has text "SW: " and a firmware revision string. | Check "sw" field | Nikita / v3.30-RC6 |
-| "dt" field has binary content | Check "dt" field | Nikita / v3.30-RC6 |
+| NFC read enables configuration until next GATT connection or timeout. | Apply a NFC field and enter bootloader via GATT. Check that bootloader service is disabled after timeout. | Nikita / v3.30.1-RC1 |
+| Tag broadcasts at 100 ms interval for 60 seconds or until connected by GATT | Check the power profile after NFC read, connect with GATT | fail on gatt |
+| NFC has 4 UTF-8 text fields: "ad", "id", "sw", "dt". Fields can be in any order. | Read the tag with e.g. NFC Tools | Nikita / v3.30.1-RC1 |
+| "ad" field has text "MAC: " and upper-case, ':' separated MAC address, as reported by BLE scanner. | Check "ad" field and compare to BLE scanner results. | Nikita / v3.30.1-RC1 |
+| "id" field has text "ID: " and upper-case, ':' separated unique identifier, 8 bytes. | Check "id" field, compare to serial number read over GATT. | Nikita / v3.30.1-RC1 |
+| "sw" field has text "SW: " and a firmware revision string. | Check "sw" field | Nikita / v3.30.1-RC1 |
+| "dt" field has binary content | Check "dt" field | Nikita / v3.30.1-RC1 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -312,17 +312,17 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Data is sent at 1285 ms interval by default. | Check power profile for TX spikes. | Nikita / v3.30-RC6 |
-| Tag accepts GATT connection and starts pushing data through NUS TX characteristic notifications. | Connect to tag with nRF Connect, register to GATT notifications. | Nikita / v3.30-RC6 |
-| GATT server has Device Information Service with Manufacturer Name String, Model Number String Hardware Revision String and Firmware revision String. Serial Number String is not viewable unless configuration mode is on. | Connect to tag with nRF Connect, check fields manually. | Nikita / v3.30-RC6 |
-| Manufacturer Name String is "Ruuvi Innovations Ltd" | Manually | Nikita / v3.30-RC6 |
-| Model Number String is "RuuviTag B" | Manually | Nikita / v3.30-RC6 |
-| Serial Number String is viewable only in configuration mode and has the same ID as NFC scan. | Manually | Nikita / v3.30-RC6 |
-| Hardware revision string has text "Check PCB" | Manually | Nikita / v3.30-RC6 |
-| Firmware revision string has same version as NFC read | Manually | Nikita / v3.30-RC6 |
+| Data is sent at 1285 ms interval by default. | Check power profile for TX spikes. | Nikita / v3.30.1-RC1 |
+| Tag accepts GATT connection and starts pushing data through NUS TX characteristic notifications. | Connect to tag with nRF Connect, register to GATT notifications. | Nikita / v3.30.1-RC1 |
+| GATT server has Device Information Service with Manufacturer Name String, Model Number String Hardware Revision String and Firmware revision String. Serial Number String is not viewable unless configuration mode is on. | Connect to tag with nRF Connect, check fields manually. | Nikita / v3.30.1-RC1 |
+| Manufacturer Name String is "Ruuvi Innovations Ltd" | Manually | Nikita / v3.30.1-RC1 |
+| Model Number String is "RuuviTag B" | Manually | Nikita / v3.30.1-RC1 |
+| Serial Number String is viewable only in configuration mode and has the same ID as NFC scan. | Manually | Nikita / v3.30.1-RC1 |
+| Hardware revision string has text "Check PCB" | Manually | Nikita / v3.30.1-RC1 |
+| Firmware revision string has same version as NFC read | Manually | Nikita / v3.30.1-RC1 |
 | Environmental history log can be read by sending "0x3A 3A 11 TIMESTAMP 00000000" to NUS RX characteristic. Timestamp is current time in seconds after Unix epoch, 4 bytes. | Manually, or with Ruuvi Station sync graphs button. For the test a debug version of firmware should be used, tag must be running at least for 1 hour and there should be a data point each second for at least 1 hour. Entries do not have to be sorted by time, it is allowed to miss a sample roughly once per 10 seconds. | Otso / v3.30.0 |
-| Environmental log history will send only data that has timestamp after request | Sync once with Ruuvi Station, check there is data. Sync again, check there is less data loaded. | Nikita / v3.30-RC6 |
-| Tag continues broadcasting data while connected by GATT. | Connect with one device, scan with other. Manually. Note: Some scanners will not report advertisements from connected devices, so 2 scanners are required. | Nikita / v3.30-RC6 |
+| Environmental log history will send only data that has timestamp after request | Sync once with Ruuvi Station, check there is data. Sync again, check there is less data loaded. | Can't reproduced with app v.1.5.8 |
+| Tag continues broadcasting data while connected by GATT. | Connect with one device, scan with other. Manually. Note: Some scanners will not report advertisements from connected devices, so 2 scanners are required. | Nikita / v3.30.1-RC1 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -389,8 +389,8 @@ Integration tests are run on debug-variants of firmware. They print test results
 {% tab title="RuuviTag B+" %}
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
-| Firmware 2.5.9 can be updated with SDK\_UPDATE package. | System tests in GitHub. | Otso / v3.30.0 |
-| Firmware can enter bootloader after update and another 3.x firmware can be flashed. | System tests in GitHub | Note: requires manual test due to no mechanism to enter configuration mode without interaction. Otso / v3.30.0 |
+| Firmware 2.5.9 can be updated with SDK\_UPDATE package. | System tests in GitHub. | Nikita / v3.30.1-RC1 |
+| Firmware can enter bootloader after update and another 3.x firmware can be flashed. | System tests in GitHub | Note: requires manual test due to no mechanism to enter configuration mode without interaction. Nikita / v3.30.1-RC1 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
@@ -449,10 +449,13 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 | :--- | :--- | :--- |
 | Broadcasting, connectable | 26 µA @ 3.6 V, 25 µA @ 3.0 V, 25 µA @ 2.4 V | Nikita / v3.30-RC6 |
 |  | 24.5 µA @ 3.6 V, 26 µA @ 3.0 V, 28.1  µA @ 2.4 V | Nikita / v3.30-RC7 |
+|  | 24.8 µA @ 3.6 V, 25.5 µA @ 3.0 V, 27.9  µA @ 2.4 V | Nikita / v3.30.1-RC1 |
 | Broadcasting, connected | 34 µA @ 3.6 V, 34 µA @ 3.0 V, 40 µA @ 2.4 V | Nikita / v3.30-RC6 |
 |  | 36.7 µA @ 3.6 V, 35.7 µA @ 3.0 V, 40.3  µA @ 2.4 V | Nikita / v3.30-RC7 |
+|  | 34.3 µA @ 3.6 V, 35.8 µA @ 3.0 V, 41.7  µA @ 2.4 V | Nikita / v3.30.1-RC1 |
 | Transferring logs. | 10 mA @ 3.6 V, 10.7 mA @ 3.0 V, 14.3 mA @ 2.4 V | Nikita / v3.30-RC6 |
 |  | 9.6 mA @ 3.6 V, 10.9 mA @ 3.0 V, 15.5  mA @ 2.4 V | Nikita / v3.30-RC7 |
+|  | 9.6 mA @ 3.6 V, 10.3 mA @ 3.0 V, 13.6  mA @ 2.4 V | Nikita / v3.30.1-RC1 |
 {% endtab %}
 
 {% tab title="RuuviTag B Basic" %}
