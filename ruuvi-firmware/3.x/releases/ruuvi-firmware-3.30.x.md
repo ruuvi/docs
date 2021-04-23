@@ -118,8 +118,8 @@ Integration tests are run on debug-variants of firmware. They print test results
 | Peripheral tests: power, timer, scheduler, flash | Pass | Nikita / v3.30.1-RC1 |
 | Sensor tests: BME280, LIS2DH12 | Pass | Nikita / v3.30.1-RC1 |
 | BLE tests: Advertising, GATT | Pass | Nikita / v3.30.1-RC1 |
-| GATT Throughput, 1 MBit / s | 999.980 B / s | Nikita / v3.30.1-RC1 |
-| GATT Throughput, 2 MBit / s | 679.276 B / s | Nikita / v3.30.1-RC1 |
+| GATT Throughput, 1 MBit / s |  13 845 B / s | Nikita / v3.30.1-RC1 |
+| GATT Throughput, 2 MBit / s | 16 099 B / s | Nikita / v3.30.1-RC1 |
 | NFC Test | Pass | Nikita / v3.30.1-RC1 |
 {% endtab %}
 
