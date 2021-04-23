@@ -15,7 +15,7 @@ description: 'Lifecycle: Beta. Page updated 2021-03-25'
 | Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Nikita / v3.30.1-RC1 |
 | Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". | Nikita / v3.30.1-RC1 |
 | Tag initializes watchdog. | Check application initialization code | Nikita / v3.30.1-RC1 |
-| Tag turns RED LED on for self-test duration. | Manually, visual check | Nikita / v3.30-RC6 |
+| Tag turns RED LED on for self-test duration. | Manually, visual check | LED is turned OFF during test period \(debug\) |
 | Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c | Nikita / v3.30.1-RC1 |
 | Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Unit test main.c, drivers/rt\_flash.c | Nikita / v3.30.1-RC1 |
 | Tag erases old log entries to prevent data with corrupted timestamps | Check app\_log:app\_log\_init\(\) | Nikita / v3.30.1-RC1 |
@@ -116,7 +116,7 @@ Integration tests are run on debug-variants of firmware. They print test results
 | :--- | :--- | :--- |
 | Library tests: p2p, rms, variance, ringbuffer | Pass | Nikita / v3.30.1-RC1 |
 | Peripheral tests: power, timer, scheduler, flash | Pass | Nikita / v3.30.1-RC1 |
-| Sensor tests: BME280, LIS2DH12 | Pass | LIS2DH12: fail on level |
+| Sensor tests: BME280, LIS2DH12 | Pass | Nikita / v3.30.1-RC1 |
 | BLE tests: Advertising, GATT | Pass | Nikita / v3.30.1-RC1 |
 | GATT Throughput, 1 MBit / s | 999.980 B / s | Nikita / v3.30.1-RC1 |
 | GATT Throughput, 2 MBit / s | 679.276 B / s | Nikita / v3.30.1-RC1 |
@@ -249,7 +249,7 @@ Integration tests are run on debug-variants of firmware. They print test results
 | Action | How to test | Verified by |
 | :--- | :--- | :--- |
 | NFC read enables configuration until next GATT connection or timeout. | Apply a NFC field and enter bootloader via GATT. Check that bootloader service is disabled after timeout. | Nikita / v3.30.1-RC1 |
-| Tag broadcasts at 100 ms interval for 60 seconds or until connected by GATT | Check the power profile after NFC read, connect with GATT | fail on gatt |
+| Tag broadcasts at 100 ms interval for 60 seconds or until connected by GATT | Check the power profile after NFC read, connect with GATT | Continues to broadcast at 100ms after GATT connection |
 | NFC has 4 UTF-8 text fields: "ad", "id", "sw", "dt". Fields can be in any order. | Read the tag with e.g. NFC Tools | Nikita / v3.30.1-RC1 |
 | "ad" field has text "MAC: " and upper-case, ':' separated MAC address, as reported by BLE scanner. | Check "ad" field and compare to BLE scanner results. | Nikita / v3.30.1-RC1 |
 | "id" field has text "ID: " and upper-case, ':' separated unique identifier, 8 bytes. | Check "id" field, compare to serial number read over GATT. | Nikita / v3.30.1-RC1 |
@@ -321,7 +321,7 @@ Integration tests are run on debug-variants of firmware. They print test results
 | Hardware revision string has text "Check PCB" | Manually | Nikita / v3.30.1-RC1 |
 | Firmware revision string has same version as NFC read | Manually | Nikita / v3.30.1-RC1 |
 | Environmental history log can be read by sending "0x3A 3A 11 TIMESTAMP 00000000" to NUS RX characteristic. Timestamp is current time in seconds after Unix epoch, 4 bytes. | Manually, or with Ruuvi Station sync graphs button. For the test a debug version of firmware should be used, tag must be running at least for 1 hour and there should be a data point each second for at least 1 hour. Entries do not have to be sorted by time, it is allowed to miss a sample roughly once per 10 seconds. | Otso / v3.30.0 |
-| Environmental log history will send only data that has timestamp after request | Sync once with Ruuvi Station, check there is data. Sync again, check there is less data loaded. | Can't reproduced with app v.1.5.8 |
+| Environmental log history will send only data that has timestamp after request | Sync once with Ruuvi Station, check there is data. Sync again, check there is less data loaded. | Nikita / v3.30.1-RC1 |
 | Tag continues broadcasting data while connected by GATT. | Connect with one device, scan with other. Manually. Note: Some scanners will not report advertisements from connected devices, so 2 scanners are required. | Nikita / v3.30.1-RC1 |
 {% endtab %}
 
