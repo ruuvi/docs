@@ -15,7 +15,7 @@ description: 'Lifecycle: Beta. Page updated 2021-03-25'
 | Tag stays in bootloader mode / begins DFU if application commanded tag into DFU mode. | Manually, enter configuration mode by "B" and command tag into bootloader with nRF Connect | Nikita / v3.30.1-RC1 |
 | Tag stays in bootloader mode if button "B" is pressed on boot. | Manually, hold down "B", press and release "R". | Nikita / v3.30.1-RC1 |
 | Tag initializes watchdog. | Check application initialization code | Nikita / v3.30.1-RC1 |
-| Tag turns RED LED on for self-test duration. | Manually, visual check | LED is turned OFF during test period \(debug\) |
+| Tag turns RED LED on for self-test duration. | Manually, visual check | Nikita / v3.30.1-RC1 |
 | Tag runs self-tests to detect installed sensors. | Unit tests test\_main.c test\_app\_sensor.c | Nikita / v3.30.1-RC1 |
 | Tag erases settings stored to flash file system and reboots if flash file system cannot be initialized. | Unit test main.c, drivers/rt\_flash.c | Nikita / v3.30.1-RC1 |
 | Tag erases old log entries to prevent data with corrupted timestamps | Check app\_log:app\_log\_init\(\) | Nikita / v3.30.1-RC1 |
