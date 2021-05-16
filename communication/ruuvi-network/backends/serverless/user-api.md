@@ -711,6 +711,18 @@ Updates sensor metadata.
 {% endapi-method-headers %}
 
 {% api-method-body-parameters %}
+{% api-method-parameter name="offsetHumidity" type="number" required=false %}
+Offset humidity to calibrate sensor
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="offsetPressure" type="number" required=false %}
+Offset pressure to calibrate sensor
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="offsetTemperature" type="number" required=false %}
+Offset temperature to calibrate sensor
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="public" type="boolean" required=false %}
 If true, data will be publicly accessible.
 {% endapi-method-parameter %}
@@ -984,6 +996,110 @@ Setting key \(alphanumeric with "\_", "-" and "."
     "status": "success",
     "data": {
         "action": "<added|updated>"
+    }
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% api-method method="post" host="https://network.ruuvi.com" path="/setAlert" %}
+{% api-method-summary %}
+
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Sets an alert on a sensor for a given metric. The alert condition is tested against the absolute value received from the sensors in conjunction with the use set offsets for that particular sensor.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-body-parameters %}
+{% api-method-parameter name="type" type="string" required=true %}
+One of: temperature, humidity, pressure
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="min" type="string" required=true %}
+Lower limit for the alert
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="max" type="string" required=true %}
+Upper limit for the alert
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="enabled" type="boolean" required=true %}
+Used to toggle alert on and off
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="sensor" type="string" required=true %}
+Sensor MAC of the target sensor
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+    "status": "success",
+    "data": {
+        "action": "<success|failed>"
+    }
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% api-method method="get" host="https://network.ruuvi.com" path="/getAlerts" %}
+{% api-method-summary %}
+
+{% endapi-method-summary %}
+
+{% api-method-description %}
+
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-body-parameters %}
+{% api-method-parameter name="sensor" type="string" required=true %}
+Sensor MAC for which to fetch the alerts.
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+    "status": "success",
+    "data": {
+        "alerts": [
+            {
+                userId: <userId>,
+                sensorId: <sensorMAC>,
+                type: <humidity|pressure|temperature>,
+                min: <lower limit>,
+                max: <higher limit>,
+                enabled: <true|false>,
+                offsetHumidity: <double>,
+                offsetTemperature: <double>,
+                offsetPressure: <double>,
+                triggered: <true|false>,
+                triggeredAt: <timestamp>
+            }
+        ]
     }
 }
 ```
