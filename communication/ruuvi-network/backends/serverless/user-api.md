@@ -598,6 +598,10 @@ Bearer token to authorize the request
 {% endapi-method-headers %}
 
 {% api-method-query-parameters %}
+{% api-method-parameter name="mode" type="string" required=false %}
+Fetch mode: \[dense, sparse, mixed\], determines how the data is returned. Default: mixed
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="until" type="string" required=false %}
 Maximum timestamp of first returned result in Unix epoch format
 {% endapi-method-parameter %}
