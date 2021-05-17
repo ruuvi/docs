@@ -961,7 +961,7 @@ Bearer token of the user
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="post" host="https://network.ruuvi.com" path="/setting" %}
+{% api-method method="post" host="https://network.ruuvi.com" path="/settings" %}
 {% api-method-summary %}
 Update user setting
 {% endapi-method-summary %}
