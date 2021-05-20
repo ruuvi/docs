@@ -1024,11 +1024,11 @@ Sets an alert on a sensor for a given metric. The alert condition is tested agai
 One of: temperature, humidity, pressure
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="min" type="string" required=true %}
+{% api-method-parameter name="min" type="number" required=true %}
 Lower limit for the alert
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="max" type="string" required=true %}
+{% api-method-parameter name="max" type="number" required=true %}
 Upper limit for the alert
 {% endapi-method-parameter %}
 
