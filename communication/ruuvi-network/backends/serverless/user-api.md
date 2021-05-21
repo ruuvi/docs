@@ -1008,7 +1008,7 @@ Setting key \(alphanumeric with "\_", "-" and "."
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="post" host="https://network.ruuvi.com" path="/setAlert" %}
+{% api-method method="post" host="https://network.ruuvi.com" path="/alerts" %}
 {% api-method-summary %}
 
 {% endapi-method-summary %}
@@ -1061,7 +1061,7 @@ Sensor MAC of the target sensor
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://network.ruuvi.com" path="/getAlerts" %}
+{% api-method method="get" host="https://network.ruuvi.com" path="/alerts" %}
 {% api-method-summary %}
 
 {% endapi-method-summary %}
