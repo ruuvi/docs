@@ -453,13 +453,13 @@ Returned if shared sensor or user is not found.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://network.ruuvi.com" path="/shared" %}
+{% api-method method="get" host="https://network.ruuvi.com" path="/sensors" %}
 {% api-method-summary %}
-Get your shared sensors
+Get your sensors
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Fetches a list of sensors you have shared to other users
+Fetches a list of sensors you have access to including who those are shared to. This end-point deprecates the old _shared_ end-point.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -469,6 +469,12 @@ Fetches a list of sensors you have shared to other users
 Bearer token of the user
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
+
+{% api-method-query-parameters %}
+{% api-method-parameter name="sensor" type="string" required=false %}
+Optionally filter only one sensor
+{% endapi-method-parameter %}
+{% endapi-method-query-parameters %}
 {% endapi-method-request %}
 
 {% api-method-response %}
@@ -487,7 +493,11 @@ Bearer token of the user
                 "name": "<SENSOR NAME>",
                 "picture": "<SENSOR PICTURE URL>",
                 "public": <TRUE|FALSE>,
-                "sharedTo": "<EMAIL OF TARGET USER>"
+                "canShare": <TRUE|FALSE>,
+                "sharedTo": [
+                    "<EMAIL OF TARGET USER 1>",
+                    ...
+                ]
             },
             ...
         ]
