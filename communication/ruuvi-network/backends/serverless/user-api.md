@@ -256,7 +256,7 @@ Share a sensor
 
 {% api-method-description %}
 You can share your sensor data with other users via **share** end-point. In addition to sensor you want to share, you must also include the e-mail address of the recipient. This will grant them access to the data via the **get** end-point.  
-Furthermore, it will also send the target user a notification e-mail about the new share.
+Furthermore, it will also send the target user a notification e-mail about the new share. If the target user does not exist yet, an invitation to create an account will be sent to them and they will gain access upon sign up.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -1020,7 +1020,7 @@ Setting key \(alphanumeric with "\_", "-" and "."
 
 {% api-method method="post" host="https://network.ruuvi.com" path="/alerts" %}
 {% api-method-summary %}
-
+Create and update Alerts
 {% endapi-method-summary %}
 
 {% api-method-description %}
@@ -1030,15 +1030,19 @@ Sets an alert on a sensor for a given metric. The alert condition is tested agai
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-body-parameters %}
-{% api-method-parameter name="type" type="string" required=true %}
-One of: temperature, humidity, pressure
+{% api-method-parameter name="counter" type="number" required=false %}
+For movement alerts, one can manually set the current number
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="min" type="number" required=true %}
+{% api-method-parameter name="type" type="string" required=true %}
+One of: temperature, humidity, pressure, signal, movement
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="min" type="number" required=false %}
 Lower limit for the alert
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="max" type="number" required=true %}
+{% api-method-parameter name="max" type="number" required=false %}
 Upper limit for the alert
 {% endapi-method-parameter %}
 
@@ -1073,18 +1077,18 @@ Sensor MAC of the target sensor
 
 {% api-method method="get" host="https://network.ruuvi.com" path="/alerts" %}
 {% api-method-summary %}
-
+Get alerts
 {% endapi-method-summary %}
 
 {% api-method-description %}
-
+Fetches alerts for all sensors user has access to or a single sensor if optional parameter is provided.
 {% endapi-method-description %}
 
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-body-parameters %}
-{% api-method-parameter name="sensor" type="string" required=true %}
-Sensor MAC for which to fetch the alerts.
+{% api-method-parameter name="sensor" type="string" required=false %}
+Optional Sensor MAC for filter the alerts
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
