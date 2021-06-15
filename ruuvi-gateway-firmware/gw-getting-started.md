@@ -34,7 +34,7 @@ Ethernet Yellow turns on when a cable connection is detected and blinks on data 
 
 A short press of button re-enables gateway configuration. A long press \(5 seconds +\) of the button is a factory reset which erases all configured settigns and enables configuration WiFi. Please note that Ethernet cable must be disconnected to enter configuration mode.
 
-For more details, [GW ESP32 Configuration](../gw-esp32-firmware/gateway-html-pages/gw-esp32-configuration.md) page is a good place to start. If you're interested in using Ruuvi Gateway with your own server, review [GW ESP32 HTTP Client](../gw-esp32-firmware/gw-esp32-http-client.md) and [GW ESP 32 MQTT Client](../gw-esp32-firmware/gw-esp32-mqtt-client.md) pages for details on how data is sent to the Internet. 
+For more details, [GW ESP32 Configuration](../gateway-html-pages/gw-esp32-configuration.md) page is a good place to start. If you're interested in using Ruuvi Gateway with your own server, review [GW ESP32 HTTP Client](../gw-esp32-firmware/gw-esp32-http-client.md) and [GW ESP 32 MQTT Client](../gw-esp32-firmware/gw-esp32-mqtt-client.md) pages for details on how data is sent to the Internet. 
 
 ## Using the Gateway with your own server
 
