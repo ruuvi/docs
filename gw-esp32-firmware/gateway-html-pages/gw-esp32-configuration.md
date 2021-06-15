@@ -2,7 +2,7 @@
 description: 'Lifecycle: Beta. Last update 202<1-06-15. GW ESP32 Configuration'
 ---
 
-# /index.html
+# index.html
 
 ## User interface
 

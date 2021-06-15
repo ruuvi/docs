@@ -1,2 +1,2 @@
-# /auth.html
+# auth.html
 

@@ -1,6 +1,6 @@
 ---
 description: >-
-  Lifecycle: Alpha. This documentation collects the most important resources for
+  Lifecycle: Beta. This documentation collects the most important resources for
   developers into one place
 ---
 
