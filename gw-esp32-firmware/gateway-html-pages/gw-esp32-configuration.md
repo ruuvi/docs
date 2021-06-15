@@ -1,46 +1,46 @@
 ---
-description: 'Lifecycle: Beta. Last update 2021-04-15'
+description: 'Lifecycle: Beta. Last update 202<1-06-15. GW ESP32 Configuration'
 ---
 
-# GW ESP32 Configuration
+# /index.html
 
 ## User interface
 
-Ruuvi Gateway sets up a WiFi hotspot and a webserver which provides user interface for configuration over HTTP. The user interface can be accessed in any major browser. To connect to the user interface connect to hotspot "**RuuviGatewayXXXX**" and enter password "**12345678**". Once connected, open your browser and enter **http://10.10.0.1** .
+Ruuvi Gateway sets up a WiFi hotspot and a webserver which provides user interface for configuration over HTTP. The user interface can be accessed in any major browser. To connect to the user interface connect to hotspot "**RuuviGateway XXXX**" and enter password "**12345678**". Once connected, open your browser and enter **http://10.10.0.1** .
 
 ### Greeting window
 
-![Select your language](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.34.09%20%281%29.png)
+![Select your language](../../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.34.09%20%281%29.png)
 
 ### Backend selection
 
-![](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.34.36%20%281%29%20%281%29%20%281%29.png)
+![](../../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.34.36%20%281%29%20%281%29%20%281%29.png)
 
 #### Backend A\) HTTP\(S\)
 
-![Configure URL to which data gets posted, basic HTTP authentication is supported. See GW ESP32 HTTP Client for details](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.54.31.png)
+![Configure URL to which data gets posted, basic HTTP authentication is supported. See GW ESP32 HTTP Client for details](../../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.54.31.png)
 
 #### Backend B\) MQTT
 
-![Configure MQTT broker to which to connect. See GW ESP32 MQTT Client for details. ](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.35.17.png)
+![Configure MQTT broker to which to connect. See GW ESP32 MQTT Client for details. ](../../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.35.17.png)
 
 ### Scan settings
 
-![These settings will be sent to connected nRF52 through UART. Later on scanned PHYs and channels will be configurable.](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.36.40.png)
+![These settings will be sent to connected nRF52 through UART. Later on scanned PHYs and channels will be configurable.](../../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.36.40.png)
 
 ### Internet connection settings
 
-![You can select to connect either through a WiFi hotspot or with Ethernet cable.](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.36.52%20%281%29.png)
+![You can select to connect either through a WiFi hotspot or with Ethernet cable.](../../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.36.52%20%281%29.png)
 
 #### Internet connection A\) WiFi
 
-![Select your WiFi access point.](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.41.47.png)
+![Select your WiFi access point.](../../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.41.47.png)
 
-![Enter your password.](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.41.58.png)
+![Enter your password.](../../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.41.58.png)
 
-![Connection status is shown.](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.42.30.png)
+![Connection status is shown.](../../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.42.30.png)
 
-![You can check the connection information or disconnect to connect to another WiFi.](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.42.47.png)
+![You can check the connection information or disconnect to connect to another WiFi.](../../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.42.47.png)
 
 TODO: Remove "Hide network info" -option, remove "disconnect" option, add "Turn off configuration hotspot" -option, add "Go back" option \(possibly disconnect if go back is selected\). 
 
@@ -48,13 +48,13 @@ TODO: Remove "Hide network info" -option, remove "disconnect" option, add "Turn 
 
 #### Internet connection B\) Ethernet
 
-![Use DHCP is best option 99% of time, but you can also configure the connection manually.](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.37.04.png)
+![Use DHCP is best option 99% of time, but you can also configure the connection manually.](../../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.37.04.png)
 
 TODO: Make "Use DHCP" a radio button and add "Advanced configuration" as another option, similar to backend and scan option selection. 
 
 After clicking continue, show similar "connection" animation as in WiFi, and show written / animated instructions to connect Ethernet cable. 
 
-![This message is shown regardless of connection status, you need to connect the Ethernet cable now. This connection flow will be adjusted to match WiFi flow later on.](../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.37.22.png)
+![This message is shown regardless of connection status, you need to connect the Ethernet cable now. This connection flow will be adjusted to match WiFi flow later on.](../../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.37.22.png)
 
 TODO: Use same view as in WiFi connection successful.
 
