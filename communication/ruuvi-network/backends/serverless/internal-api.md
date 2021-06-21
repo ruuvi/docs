@@ -25,7 +25,7 @@ The secret to authenticate with the internal API
 
 {% api-method-body-parameters %}
 {% api-method-parameter name="" type="object" required=true %}
-JSON object containing a list of Gateway IDs and their corresponding Device IDs.
+JSON object containing a list of Gateway Mac Addresses and their corresponding Signing Secrets.
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
@@ -68,9 +68,9 @@ In case no internal secret or invalid internal secret is provided, you will rece
 POST /whitelist
 {
     "gateways": [
-        {"gatewayId": "abcabc", "deviceId": "1234", "deviceAddr": "5678"},
-        {"gatewayId": "defdef", "deviceId": "abcd", "deviceAddr": "efgh"},
-        {"gatewayId": "ghighi", "deviceId": "qwer", "deviceAddr": "tyui"}
+        {"macAddress": "ab:ba:cd:ba:cd:ba", "secret": "1234"},
+        {"macAddress": "bb:ba:cd:ba:cd:ba", "secret": "abcd"},
+        {"macAddress": "cb:ba:cd:ba:cd:ba", "secret": "qwer"}
     ]
 }
 
