@@ -37,7 +37,10 @@ In case of success, a 200 OK is returned.
 {% endapi-method-response-example-description %}
 
 ```
-I
+{
+  "gateway": "<<MAC>>",
+  "blockedAt": <<TIMESTAMP IF BLOCKED>>
+}
 ```
 {% endapi-method-response-example %}
 
@@ -67,11 +70,8 @@ In case no internal secret or invalid internal secret is provided, you will rece
 ```text
 POST /whitelist
 {
-    "gateways": [
-        {"macAddress": "ab:ba:cd:ba:cd:ba", "secret": "1234"},
-        {"macAddress": "bb:ba:cd:ba:cd:ba", "secret": "abcd"},
-        {"macAddress": "cb:ba:cd:ba:cd:ba", "secret": "qwer"}
-    ]
+    "macAddress": "ab:ba:cd:ba:cd:ba",
+    "secret": "1234"
 }
 
 ```

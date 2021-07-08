@@ -18,15 +18,7 @@ Sends a bulk of data to Ruuvi Network to be processed and stored.
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-headers %}
-{% api-method-parameter name="x-ruuvi-nonce" type="string" required=true %}
-Random string, also included in the signature.
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="x-ruuvi-timestamp" type="integer" required=true %}
-Timestamp of when the request was signed and sent. Notice that signatures expire.
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="x-ruuvi-signature" type="string" required=true %}
+{% api-method-parameter name="Ruuvi-HMAC-SHA256" type="string" required=true %}
 Signature for the payload, signed with device specific keys.
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
