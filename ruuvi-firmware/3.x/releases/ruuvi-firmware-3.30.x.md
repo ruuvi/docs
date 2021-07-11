@@ -492,8 +492,10 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 | :--- | :--- | :--- |
 | Broadcasting, connectable, default | 35 µA @ 3.6 V, 36 µA @ 3.0 V, 41 uA µA @ 2.4 V | Otso / 3.30-RC7 |
 |  | 33.3 µA @ 3.6 V, 34.2 µA @ 3.0 V, 36 uA µA @ 2.4 V | Nikita / v3.30.1-RC1 |
+|  | 104.2 µA @ 3.6 V, 105.5 µA @ 3.0 V, 107.5 uA µA @ 2.4 V | Nikita / v3.30.1-RC1 |
 | Broadcasting, connectable, longlife | 18 µA @ 3.6 V, 18 µA @ 3.0 V, 18 uA µA @ 2.4 V | Otso / 3.30-RC7 |
 |  | 16.5 µA @ 3.6 V, 16 µA @ 3.0 V, 16.4 µA @ 2.4 V | Nikita / v3.30.1-RC1 |
+|  | 76 µA @ 3.6 V, 75.4 µA @ 3.0 V, 76 µA @ 2.4 V | Nikita / v3.30.1-RC1 |
 {% endtab %}
 
 {% tab title="\"Kalervo\"" %}
