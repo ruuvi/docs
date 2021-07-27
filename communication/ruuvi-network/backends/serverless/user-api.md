@@ -647,6 +647,7 @@ Returns the most recent data points for the requested tag based on configuration
         "sensor": "<SENSOR ID>",
         "total": <TOTAL MEASUREMENTS RETURNED>,
         "name": "<SENSOR NAME>",
+        "picture": "<SENSOR PICTURE URL OR FILENAME>",
         "measurements": [
             {
                 "gwmac": "<SOURCE GATEWAY MAC>",
@@ -725,6 +726,10 @@ Updates sensor metadata.
 {% endapi-method-headers %}
 
 {% api-method-body-parameters %}
+{% api-method-parameter name="picture" type="string" required=false %}
+Filename of a picture \(or URL if uploaded\)
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="offsetHumidity" type="number" required=false %}
 Offset humidity to calibrate sensor
 {% endapi-method-parameter %}

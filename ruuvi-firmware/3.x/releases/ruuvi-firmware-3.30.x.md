@@ -273,10 +273,10 @@ Integration tests are run on debug-variants of firmware. They print test results
 | :--- | :--- | :--- |
 | NFC read enables configuration until next GATT connection or timeout. | Apply a NFC field and enter bootloader via GATT. Check that bootloader service is disabled after timeout. | Nikita / v3.30.1-RC1 |
 | Tag broadcasts at 100 ms interval for 60 seconds or until connected by GATT | Check the power profile after NFC read, connect with GATT | Continues to broadcast at 100ms after GATT connection |
-| NFC has 4 UTF-8 text fields: "ad", "id", "sw", "dt". Fields can be in any order. | Read the tag with e.g. NFC Tools | Nikita / v3.30.1-RC1 |
-| "ad" field has text "MAC: " and upper-case, ':' separated MAC address, as reported by BLE scanner. | Check "ad" field and compare to BLE scanner results. | Nikita / v3.30.1-RC1 |
-| "id" field has text "ID: " and upper-case, ':' separated unique identifier, 8 bytes. | Check "id" field, compare to serial number read over GATT. | Nikita / v3.30.1-RC1 |
-| "sw" field has text "SW: " and a firmware revision string. | Check "sw" field | Nikita / v3.30.1-RC1 |
+| NFC has 4 UTF-8 text fields: "ad", "id", "sw", "dt". Fields can be in any order. | Read the tag with e.g. NFC Tools | Nikita / v3.30.3-RC1 |
+| "ad" field has text "MAC: " and upper-case, ':' separated MAC address, as reported by BLE scanner. | Check "ad" field and compare to BLE scanner results. | Nikita / v3.30.3-RC1 |
+| "id" field has text "ID: " and upper-case, ':' separated unique identifier, 8 bytes. | Check "id" field, compare to serial number read over GATT. | Nikita / v3.30.3-RC1 |
+| "sw" field has text "SW: " and a firmware revision string. | Check "sw" field | Nikita / v3.30.3-RC1 |
 | "dt" field has binary content | Check "dt" field | Nikita / v3.30.1-RC1 |
 {% endtab %}
 
@@ -484,8 +484,8 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 {% tab title="RuuviTag B Basic" %}
 | State | Value | Verified by |
 | :--- | :--- | :--- |
-| Broadcasting, connectable |  |  |
-| Broadcasting, connected |  |  |
+| Broadcasting, connectable | 19 µA @ 3.6 V, 20.1 µA @ 3.0 V, 22.7 µA @ 2.4 V | Nikita / v3.30.3-RC1 |
+| Broadcasting, connected | 106 µA @ 3.6 V, 119 µA @ 3.0 V, 140.7 µA @ 2.4 V | Nikita / v3.30.3-RC1 |
 | Transferring logs. |  |  |
 {% endtab %}
 
