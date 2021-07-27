@@ -506,8 +506,8 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 {% tab title="RuuviTag B8" %}
 | State | Value | Verified by |
 | :--- | :--- | :--- |
-| Broadcasting, connectable, default | 31 µA @ 3.6 V, 33 µA @ 3.0 V, 34 uA µA @ 2.4 V | Otso / 3.30-RC7 |
-| Broadcasting, connectable, longlife | 14 µA @ 3.6 V, 13 µA @ 3.0 V, 13 uA µA @ 2.4 V | Otso / 3.30-RC7 |
+| Broadcasting, connectable, default | 31 µA @ 3.6 V, 33 µA @ 3.0 V, 34 uA @ 2.4 V | Otso / 3.30-RC7 |
+| Broadcasting, connectable, longlife | 14 µA @ 3.6 V, 13 µA @ 3.0 V, 13 uA @ 2.4 V | Otso / 3.30-RC7 |
 {% endtab %}
 
 {% tab title="RuuviTag B8+TMP117" %}
@@ -515,8 +515,10 @@ Power consumption is tested with Nordic Power Profiler kit at 2.4, 3.0 and 3.6 V
 | :--- | :--- | :--- |
 | Broadcasting, connectable, default | 35 µA @ 3.6 V, 36 µA @ 3.0 V, 41 uA µA @ 2.4 V | Otso / 3.30-RC7 |
 |  | 33.3 µA @ 3.6 V, 34.2 µA @ 3.0 V, 36 uA µA @ 2.4 V | Nikita / v3.30.1-RC1 |
+|  | 58,4 µA @ 3.6 V, 59,6 µA @ 3.0 V, 62,5 µA @ 2.4 V | Nikita / v3.30.3-RC1 |
 | Broadcasting, connectable, longlife | 18 µA @ 3.6 V, 18 µA @ 3.0 V, 18 uA µA @ 2.4 V | Otso / 3.30-RC7 |
 |  | 16.5 µA @ 3.6 V, 16 µA @ 3.0 V, 16.4 µA @ 2.4 V | Nikita / v3.30.1-RC1 |
+|  | 32.3 µA @ 3.6 V, 31.6 µA @ 3.0 V, 32 uA @ 2.4 V | Nikita / v3.30.3-RC1 |
 {% endtab %}
 
 {% tab title="\"Kalervo\"" %}
