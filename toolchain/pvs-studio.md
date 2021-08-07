@@ -42,5 +42,5 @@ Total messages: 286
 Filtered messages: 1
 ```
 
-
+The analysis report is stored as index.html file, located inside `doxygen/html/fullhtml/`
 
