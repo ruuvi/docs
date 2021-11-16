@@ -6,68 +6,40 @@ description: Internal API for Network Management
 
 The Internal API consists of a set of endpoints designed to govern the Ruuvi Network, such as whitelisting and blacklisting devices and/or IP addresses.
 
-{% api-method method="post" host="https://network.ruuvi.com" path="/whitelist" %}
-{% api-method-summary %}
-whitelist
-{% endapi-method-summary %}
-
-{% api-method-description %}
+{% swagger baseUrl="https://network.ruuvi.com" path="/whitelist" method="post" summary="whitelist" %}
+{% swagger-description %}
 Whitelists a set of gateways.
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="X-Internal-Secret" type="string" required=true %}
+{% swagger-parameter in="header" name="X-Internal-Secret" type="string" %}
 The secret to authenticate with the internal API
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
+{% endswagger-parameter %}
 
-{% api-method-body-parameters %}
-{% api-method-parameter name="" type="object" required=true %}
+{% swagger-parameter in="body" name="" type="object" %}
 JSON object containing a list of Gateway Mac Addresses and their corresponding Signing Secrets.
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-In case of success, a 200 OK is returned.
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="In case of success, a 200 OK is returned." %}
 ```
 {
   "gateway": "<<MAC>>",
   "blockedAt": <<TIMESTAMP IF BLOCKED>>
 }
 ```
-{% endapi-method-response-example %}
+{% endswagger-response %}
 
-{% api-method-response-example httpCode=400 %}
-{% api-method-response-example-description %}
-If the provided data is invalid, 400 is returned.
-{% endapi-method-response-example-description %}
+{% swagger-response status="400" description="If the provided data is invalid, 400 is returned." %}
+```
+```
+{% endswagger-response %}
+
+{% swagger-response status="403" description="In case no internal secret or invalid internal secret is provided, you will receive a 403 Forbidden." %}
+```
+```
+{% endswagger-response %}
+{% endswagger %}
 
 ```
-
-```
-{% endapi-method-response-example %}
-
-{% api-method-response-example httpCode=403 %}
-{% api-method-response-example-description %}
-In case no internal secret or invalid internal secret is provided, you will receive a 403 Forbidden.
-{% endapi-method-response-example-description %}
-
-```
-
-```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
-
-```text
 POST /whitelist
 {
     "macAddress": "ab:ba:cd:ba:cd:ba",
@@ -76,36 +48,20 @@ POST /whitelist
 
 ```
 
-{% api-method method="get" host="https://network.ruuvi.com" path="/gwinfo" %}
-{% api-method-summary %}
-
-{% endapi-method-summary %}
-
-{% api-method-description %}
+{% swagger baseUrl="https://network.ruuvi.com" path="/gwinfo" method="get" summary="" %}
+{% swagger-description %}
 Fetches info for the gateway
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="X-Internal-Secret" type="string" required=false %}
+{% swagger-parameter in="header" name="X-Internal-Secret" type="string" %}
 The secret to authenticate with the internal API
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
+{% endswagger-parameter %}
 
-{% api-method-query-parameters %}
-{% api-method-parameter name="gateway" type="string" required=false %}
+{% swagger-parameter in="query" name="gateway" type="string" %}
 Gateway Mac Address
-{% endapi-method-parameter %}
-{% endapi-method-query-parameters %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="" %}
 ```
 {
     "result": "success",
@@ -120,18 +76,10 @@ Gateway Mac Address
     }
 }
 ```
-{% endapi-method-response-example %}
+{% endswagger-response %}
 
-{% api-method-response-example httpCode=401 %}
-{% api-method-response-example-description %}
-If not authorized
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="401" description="If not authorized" %}
 ```
-
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
-
+{% endswagger-response %}
+{% endswagger %}

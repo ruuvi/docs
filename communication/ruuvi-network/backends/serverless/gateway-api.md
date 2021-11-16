@@ -6,57 +6,33 @@ description: API for the Ruuvi Gateway
 
 Gateway API uses a JSON based API to facilitate communication between Ruuvi Gateways and the databases by validating and forwarding the data.
 
-{% api-method method="post" host="https://api.placeholder.com/dev" path="/record" %}
-{% api-method-summary %}
-Send sensor data
-{% endapi-method-summary %}
-
-{% api-method-description %}
+{% swagger baseUrl="https://api.placeholder.com/dev" path="/record" method="post" summary="Send sensor data" %}
+{% swagger-description %}
 Sends a bulk of data to Ruuvi Network to be processed and stored.
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="Ruuvi-HMAC-SHA256" type="string" required=true %}
+{% swagger-parameter in="header" name="Ruuvi-HMAC-SHA256" type="string" %}
 Signature for the payload, signed with device specific keys.
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
+{% endswagger-parameter %}
 
-{% api-method-body-parameters %}
-{% api-method-parameter name="data" type="object" required=true %}
+{% swagger-parameter in="body" name="data" type="object" %}
 Data object contains a formatted JSON blob of sensor data to be stored. Example below.
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="" %}
 ```
-
 ```
-{% endapi-method-response-example %}
+{% endswagger-response %}
 
-{% api-method-response-example httpCode=403 %}
-{% api-method-response-example-description %}
-In case of an invalid signature, you will receive a 403: Forbidden.
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="403" description="In case of an invalid signature, you will receive a 403: Forbidden." %}
 ```
-
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
 Data payload consists of gateway information and an array of tag measurements as illustrated below.
 
-```text
+```
 {
 	"data":	{
 		"coordinates": "",
@@ -79,11 +55,11 @@ Data payload consists of gateway information and an array of tag measurements as
 }
 ```
 
-MAC address format: XX:XX:XX:XX:XX:XX \(where XX is a hexadecimal digit in upper case\).  
-Example: "11:22:33:AA:BB:CC"  
-MAC address is used in "&lt;GATEWAY MAC ADDRESS&gt;" and in "&lt;TAG ID 1&gt;", "&lt;TAG ID 2&gt;", ...
+MAC address format: XX:XX:XX:XX:XX:XX (where XX is a hexadecimal digit in upper case).\
+Example: "11:22:33:AA:BB:CC"\
+MAC address is used in "\<GATEWAY MAC ADDRESS>" and in "\<TAG ID 1>", "\<TAG ID 2>", ...
 
-The signature is a HMAC \(hash-based message authentication code\) which is calculated using sha256 algorithm from a combination of headers and the message body. Ruuvi network validates the signature against the whitelisted gateways \(see: [Internal API](internal-api.md#whitelist)\).
+The signature is a HMAC (hash-based message authentication code) which is calculated using sha256 algorithm from a combination of headers and the message body. Ruuvi network validates the signature against the whitelisted gateways (see: [Internal API](internal-api.md#whitelist)).
 
 Below is an example code for calculating the secret:
 
@@ -108,4 +84,3 @@ const signature = crypto.createHmac('sha256', secret)
     .update(signatureBody)
     .digest('hex');
 ```
-

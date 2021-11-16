@@ -4,88 +4,51 @@ description: 'Lifecycle: Obsolete. Last updated 2020-09-25'
 
 # WhereOS
 
-{% api-method method="post" host="https://whereos.ruuvi.com" path="/stream/post" %}
-{% api-method-summary %}
-Gateway data
-{% endapi-method-summary %}
-
-{% api-method-description %}
+{% swagger baseUrl="https://whereos.ruuvi.com" path="/stream/post" method="post" summary="Gateway data" %}
+{% swagger-description %}
 Post Gateway data to this endpoint.
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="Content-Type" type="string" required=true %}
+{% swagger-parameter in="header" name="Content-Type" type="string" %}
 "application/json"
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
+{% endswagger-parameter %}
 
-{% api-method-query-parameters %}
-{% api-method-parameter name="applicationid" type="string" required=true %}
+{% swagger-parameter in="query" name="applicationid" type="string" %}
 "387c6e87-f916-4c95-b067-b1d87726dde"
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="pipelinename" type="string" required=true %}
+{% swagger-parameter in="query" name="pipelinename" type="string" %}
 "write"
-{% endapi-method-parameter %}
-{% endapi-method-query-parameters %}
+{% endswagger-parameter %}
 
-{% api-method-body-parameters %}
-{% api-method-parameter name="data" type="object" required=true %}
+{% swagger-parameter in="body" name="data" type="object" %}
 JSON data object with gateway data
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-Data successfully posted
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="Data successfully posted" %}
 ```
-
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
-Sample URL; `https://whereos.ruuvi.com/stream/post?applicationid=387c6e87-f916-4c95-b067-b1d87726dde6&pipelinename=write` 
+Sample URL; `https://whereos.ruuvi.com/stream/post?applicationid=387c6e87-f916-4c95-b067-b1d87726dde6&pipelinename=write `
 
-Sample post data is at [Gateways-page](https://firebasestorage.googleapis.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LsPjfnhNj3v37AZtF-d%2F-M3jUH1sYjkphMsp0YBV%2F-M3j_O0aAXI37-CWYbsi%2Fgwdata.json?alt=media&token=07a07df8-2d6e-43da-b696-4197c8a21104).
+Sample post data is at [Gateways-page](https://firebasestorage.googleapis.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LsPjfnhNj3v37AZtF-d%2F-M3jUH1sYjkphMsp0YBV%2F-M3j\_O0aAXI37-CWYbsi%2Fgwdata.json?alt=media\&token=07a07df8-2d6e-43da-b696-4197c8a21104).
 
-{% api-method method="get" host="https://whereos.ruuvi.com" path="/api/ruuvi/coordinates/$COORDINATES" %}
-{% api-method-summary %}
-Tags at a location
-{% endapi-method-summary %}
-
-{% api-method-description %}
+{% swagger baseUrl="https://whereos.ruuvi.com" path="/api/ruuvi/coordinates/$COORDINATES" method="get" summary="Tags at a location" %}
+{% swagger-description %}
 **Important: This method is only for convenience of developers and may be removed in production.**
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="coordinates" type="string" required=true %}
+{% swagger-parameter in="path" name="coordinates" type="string" %}
 Coordinate string configured to Gateway. This might be a office name, gateway ID or a lat,long string. Query must match exactly the configuration. 
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
+{% endswagger-parameter %}
 
-{% api-method-query-parameters %}
-{% api-method-parameter name="p\_aggregation" type="string" required=false %}
-Downsample data to interval, default 15m. Valid values are number + s \| m \| h, e.g. "15m" 
-{% endapi-method-parameter %}
-{% endapi-method-query-parameters %}
-{% endapi-method-request %}
+{% swagger-parameter in="query" name="p_aggregation" type="string" %}
+Downsample data to interval, default 15m. Valid values are number + s | m | h, e.g. "15m" 
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-Data of tags near the gateway. Array of JSON objects.
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="Data of tags near the gateway. Array of JSON objects." %}
 ```
 [
     {
@@ -1890,43 +1853,25 @@ Data of tags near the gateway. Array of JSON objects.
     }
 ]
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
 Sample URL: `https://whereos.ruuvi.com/api/ruuvi/coordinates/Saase?p_aggregation=12h`
 
-{% api-method method="get" host="https://whereos.ruuvi.com" path="/api/ruuvi/tag/$TAG" %}
-{% api-method-summary %}
-History of a tag
-{% endapi-method-summary %}
-
-{% api-method-description %}
+{% swagger baseUrl="https://whereos.ruuvi.com" path="/api/ruuvi/tag/$TAG" method="get" summary="History of a tag" %}
+{% swagger-description %}
 Get history data of one tag by MAC address.
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="tag" type="string" required=true %}
+{% swagger-parameter in="path" name="tag" type="string" %}
 MAC address of tag, lower case, no colons.
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
+{% endswagger-parameter %}
 
-{% api-method-query-parameters %}
-{% api-method-parameter name="p\_aggregation" type="string" required=false %}
- Downsample data to interval, default 15m. Valid values are number + s \| m \| h, e.g. "15m"
-{% endapi-method-parameter %}
-{% endapi-method-query-parameters %}
-{% endapi-method-request %}
+{% swagger-parameter in="query" name="p_aggregation" type="string" %}
+ Downsample data to interval, default 15m. Valid values are number + s | m | h, e.g. "15m"
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="" %}
 ```
 [
     {
@@ -2191,10 +2136,7 @@ MAC address of tag, lower case, no colons.
     }
 ]
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
 Sample URL: `https://whereos.ruuvi.com/api/ruuvi/tag/c04db14ab635?p_aggregation=1h`
-

@@ -5,9 +5,10 @@
 ## Ruuvi Hardware
 
 * [RuuviTag B](ruuvi-hardware/ruuvitag-b.md)
+* [RuuviTag Pro](ruuvi-hardware/ruuvitag-pro.md)
 * [Ruuvi Gateway](ruuvi-hardware/ruuvi-gateway.md)
 
-## Ruuvi Sensor Firmware <a id="ruuvi-firmware"></a>
+## Ruuvi Sensor Firmware <a href="ruuvi-firmware" id="ruuvi-firmware"></a>
 
 * [1.2.12](ruuvi-firmware/1.2.12.md)
 * [2.5.9](ruuvi-firmware/2.5.9.md)
@@ -17,7 +18,7 @@
   * [Releases](ruuvi-firmware/3.x/releases/README.md)
     * [Ruuvi Firmware 3.29.X](ruuvi-firmware/3.x/releases/ruuvi-firmware-3.29.0.md)
     * [Ruuvi Firmware 3.30.X](ruuvi-firmware/3.x/releases/ruuvi-firmware-3.30.x.md)
-* [Device Firmware Update \(DFU\)](ruuvi-firmware/device-firmware-update-dfu.md)
+* [Device Firmware Update (DFU)](ruuvi-firmware/device-firmware-update-dfu.md)
 
 ## Ruuvi Gateway Firmware
 
@@ -28,7 +29,7 @@
   * [GW nRF52811 repeating](ruuvi-gateway-firmware/gw-nrf52-firmware/gw-nrf52811-repeating.md)
   * [GW nRF52811 UART communication](ruuvi-gateway-firmware/gw-nrf52-firmware/gw-nrf52811-uart-communication.md)
 
----
+***
 
 * [GW ESP32 Firmware](gw-esp32-firmware/README.md)
   * [GW ESP32 Selftest](gw-esp32-firmware/gw-esp32-selftest.md)
@@ -44,7 +45,7 @@
   * [Release checklist](releases/release-checklist.md)
   * [v0.3.0](releases/v0.3.0.md)
 
-## Toolchain for firmware <a id="toolchain"></a>
+## Toolchain for firmware <a href="toolchain" id="toolchain"></a>
 
 * [PVS Studio](toolchain/pvs-studio.md)
 
@@ -55,22 +56,22 @@
 * [Cables](ruuvi-connector-system/cables.md)
 * [Connectors](ruuvi-connector-system/connectors.md)
 
-## Communicate with Ruuvi devices <a id="communication"></a>
+## Communicate with Ruuvi devices <a href="communication" id="communication"></a>
 
 * [Bluetooth advertisements](communication/bluetooth-advertisements/README.md)
-  * [Data format 3 \(RAWv1\)](communication/bluetooth-advertisements/data-format-3-rawv1.md)
-  * [Data format 4 \(URL\)](communication/bluetooth-advertisements/data-format-4-url.md)
-  * [Data format 5 \(RAWv2\)](communication/bluetooth-advertisements/data-format-5-rawv2.md)
-  * [Data format 8 \(Encrypted environmental\)](communication/bluetooth-advertisements/data-format-8-encrypted-environmental.md)
+  * [Data format 3 (RAWv1)](communication/bluetooth-advertisements/data-format-3-rawv1.md)
+  * [Data format 4 (URL)](communication/bluetooth-advertisements/data-format-4-url.md)
+  * [Data format 5 (RAWv2)](communication/bluetooth-advertisements/data-format-5-rawv2.md)
+  * [Data format 8 (Encrypted environmental)](communication/bluetooth-advertisements/data-format-8-encrypted-environmental.md)
 * [Bluetooth connection](communication/bluetooth-connection/README.md)
-  * [DIS \(Device Information Service\)](communication/bluetooth-connection/device-information-service-dis.md)
-  * [NUS \(Nordic UART Service\)](communication/bluetooth-connection/nordic-uart-service-nus/README.md)
+  * [DIS (Device Information Service)](communication/bluetooth-connection/device-information-service-dis.md)
+  * [NUS (Nordic UART Service)](communication/bluetooth-connection/nordic-uart-service-nus/README.md)
     * [Heartbeat transmissions](communication/bluetooth-connection/nordic-uart-service-nus/heartbeat-transmissions.md)
     * [Read logged history](communication/bluetooth-connection/nordic-uart-service-nus/log-read.md)
-* [Real Time Transfer \(RTT\)](communication/development-real-time-transfer.md)
+* [Real Time Transfer (RTT)](communication/development-real-time-transfer.md)
 * [Ruuvi Network](communication/ruuvi-network/README.md)
   * [Backends](communication/ruuvi-network/backends/README.md)
-    * [Ruuvi Network \(Serverless\)](communication/ruuvi-network/backends/serverless/README.md)
+    * [Ruuvi Network (Serverless)](communication/ruuvi-network/backends/serverless/README.md)
       * [User API](communication/ruuvi-network/backends/serverless/user-api.md)
       * [Gateway API](communication/ruuvi-network/backends/serverless/gateway-api.md)
       * [Internal API](communication/ruuvi-network/backends/serverless/internal-api.md)
@@ -94,4 +95,3 @@
 * [Gateways and listeners](ruuvi-community-projects/gateways-and-listeners.md)
 * [End-to-end systems](ruuvi-community-projects/end-to-end-systems.md)
 * [Firmware](ruuvi-community-projects/firmware.md)
-
