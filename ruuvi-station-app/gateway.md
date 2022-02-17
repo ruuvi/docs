@@ -23,42 +23,43 @@ Every POST contains 2 blocks: tags data and device information. Tags data can co
 
 ### Tag fields description
 
-| **Field name** | **Data format** | **Unit/Format** | **Description** |
-| :--- | :--- | :--- | :--- |
-| accelX | Double | G | Acceleration along X axis, including gravity |
-| accelY | Double | G | Acceleration along Y axis, including gravity |
-| accelZ | Double | G | Acceleration along Z axis, including gravity |
-| createDate | String | yyyy-MM-dd'T'HH:mm:ssZ | Date when tag added to Ruuvi Station |
-| dataFormat | Int |  | Data format from tag firmware |
-| defaultBackground | Int |  | Id of curent background used in Ruuvi Station for this tag |
-| favorite | boolean |  | Always true for tags added to Ruuvi Station |
-| humidity | Double | Percentage | Current relative humidity |
-| id | String |  | MAC address of tag |
-| measurementSequenceNumber | Int |  | Value gets incremented by one for every measurement from 0 to 2^16 |
-| movementCounter | Int |  | How many times tag has detected movement from 0 to 2^8 |
-| name | String |  | Name of tag specified by user \(can be absent\) |
-| pressure | Int | Pa | Current pressure |
-| rssi | Int | dB | Received signal strength indication |
-| temperature | Double | Celsius | Current temperature |
-| txPower | Int | dBm | Transmission power of tags |
-| updateAt | String | yyyy-MM-dd'T'HH:mm:ssZ | Date of current measurments |
-| voltage | Double | V | Battery voltage from tag |
+| **Field name**            | **Data format** | **Unit/Format**        | **Description**                                                    |
+| ------------------------- | --------------- | ---------------------- | ------------------------------------------------------------------ |
+| accelX                    | Double          | G                      | Acceleration along X axis, including gravity                       |
+| accelY                    | Double          | G                      | Acceleration along Y axis, including gravity                       |
+| accelZ                    | Double          | G                      | Acceleration along Z axis, including gravity                       |
+| createDate                | String          | yyyy-MM-dd'T'HH:mm:ssZ | Date when tag added to Ruuvi Station                               |
+| dataFormat                | Int             |                        | Data format from tag firmware                                      |
+| defaultBackground         | Int             |                        | Id of curent background used in Ruuvi Station for this tag         |
+| favorite                  | boolean         |                        | Always true for tags added to Ruuvi Station                        |
+| humidity                  | Double          | Percentage             | Current relative humidity                                          |
+| id                        | String          |                        | MAC address of tag                                                 |
+| measurementSequenceNumber | Int             |                        | Value gets incremented by one for every measurement from 0 to 2^16 |
+| movementCounter           | Int             |                        | How many times tag has detected movement from 0 to 2^8             |
+| name                      | String          |                        | Name of tag specified by user (can be absent)                      |
+| pressure                  | Int             | Pa                     | Current pressure                                                   |
+| rssi                      | Int             | dB                     | Received signal strength indication                                |
+| temperature               | Double          | Celsius                | Current temperature                                                |
+| txPower                   | Int             | dBm                    | Transmission power of tags                                         |
+| updateAt                  | String          | yyyy-MM-dd'T'HH:mm:ssZ | Date of current measurments                                        |
+| voltage                   | Double          | V                      | Battery voltage from tag                                           |
 
 ### Device information fields description
 
-| **Field name** | **Data format** | **Unit/Format** | **Description** |
-| :--- | :--- | :--- | :--- |
-| batteryLevel | Int | Percentage | Current battery charge percentage of device running Ruuvi Station |
-| deviceId | String |  | Configurable in app settings, default is UUID generated on first start |
-| eventId | String |  | UUID for this request |
-| accuracy | Double | meters | horizontal accuracy of this location, radial |
-| latitude | Double | degrees | latitude |
-| longitude | Double | degrees | longitude |
-| time | String | yyyy-MM-dd'T'HH:mm:ssZ | Gateway request send date |
+| **Field name** | **Data format** | **Unit/Format**        | **Description**                                                        |
+| -------------- | --------------- | ---------------------- | ---------------------------------------------------------------------- |
+| batteryLevel   | Int             | Percentage             | Current battery charge percentage of device running Ruuvi Station      |
+| deviceId       | String          |                        | Configurable in app settings, default is UUID generated on first start |
+| eventId        | String          |                        | UUID for this request                                                  |
+| accuracy       | Double          | meters                 | horizontal accuracy of this location, radial (OPTIONAL)                |
+| altitude       | Double          | meters                 | altitude (added in app version 1.7.4) (OPTIONAL)                       |
+| latitude       | Double          | degrees                | latitude (OPTIONAL)                                                    |
+| longitude      | Double          | degrees                | longitude (OPTIONAL)                                                   |
+| time           | String          | yyyy-MM-dd'T'HH:mm:ssZ | Gateway request send date                                              |
 
 ### Example
 
-```text
+```
 {
   "tags": [
     {
@@ -87,6 +88,7 @@ Every POST contains 2 blocks: tags data and device information. Tags data can co
   "eventId": "c07e3f9f-f6bb-4792-be6f-a9be95cdff38",
   "location": {
     "accuracy": 35.369,
+    "altitude": 208.59999084472656,
     "latitude": 55.8256671,
     "longitude": 37.5962931
   },
@@ -97,4 +99,3 @@ Every POST contains 2 blocks: tags data and device information. Tags data can co
 ## [Ruuvi Station](https://ruuvi.com/manuals/station/app-settings/) gateway API Server
 
 Open source gateway server can be found at: [https://github.com/ruuvi/ruuvi-station-influx-gateway](https://github.com/ruuvi/ruuvi-station-influx-gateway)
-
