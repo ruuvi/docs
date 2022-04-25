@@ -18,7 +18,7 @@ After the installation process, you can add the trial license key previously rec
 $pvs-studio-analyzer credentials NAME XXXX-XXXX-XXXX-XXXX
 ```
 
-Now when you compile with **make **you'll get the confirmation for successful PVS Studio analysis:
+Now when you compile with **make** you'll get the confirmation for successful PVS Studio analysis:
 
 ```
 $Analyzer log conversion tool.

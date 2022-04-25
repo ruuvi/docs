@@ -8,7 +8,7 @@
 * [RuuviTag Pro](ruuvi-hardware/ruuvitag-pro.md)
 * [Ruuvi Gateway](ruuvi-hardware/ruuvi-gateway.md)
 
-## Ruuvi Sensor Firmware <a href="ruuvi-firmware" id="ruuvi-firmware"></a>
+## Ruuvi Sensor Firmware <a href="#ruuvi-firmware" id="ruuvi-firmware"></a>
 
 * [1.2.12](ruuvi-firmware/1.2.12.md)
 * [2.5.9](ruuvi-firmware/2.5.9.md)
@@ -45,7 +45,7 @@
   * [Release checklist](releases/release-checklist.md)
   * [v0.3.0](releases/v0.3.0.md)
 
-## Toolchain for firmware <a href="toolchain" id="toolchain"></a>
+## Toolchain for firmware <a href="#toolchain" id="toolchain"></a>
 
 * [PVS Studio](toolchain/pvs-studio.md)
 
@@ -56,7 +56,7 @@
 * [Cables](ruuvi-connector-system/cables.md)
 * [Connectors](ruuvi-connector-system/connectors.md)
 
-## Communicate with Ruuvi devices <a href="communication" id="communication"></a>
+## Communicate with Ruuvi devices <a href="#communication" id="communication"></a>
 
 * [Bluetooth advertisements](communication/bluetooth-advertisements/README.md)
   * [Data format 3 (RAWv1)](communication/bluetooth-advertisements/data-format-3-rawv1.md)
@@ -68,17 +68,12 @@
   * [NUS (Nordic UART Service)](communication/bluetooth-connection/nordic-uart-service-nus/README.md)
     * [Heartbeat transmissions](communication/bluetooth-connection/nordic-uart-service-nus/heartbeat-transmissions.md)
     * [Read logged history](communication/bluetooth-connection/nordic-uart-service-nus/log-read.md)
+* [Ruuvi Gateway](communication/gateway.md)
 * [Real Time Transfer (RTT)](communication/development-real-time-transfer.md)
-* [Ruuvi Network](communication/ruuvi-network/README.md)
-  * [Backends](communication/ruuvi-network/backends/README.md)
-    * [Ruuvi Network (Serverless)](communication/ruuvi-network/backends/serverless/README.md)
-      * [User API](communication/ruuvi-network/backends/serverless/user-api.md)
-      * [Gateway API](communication/ruuvi-network/backends/serverless/gateway-api.md)
-      * [Internal API](communication/ruuvi-network/backends/serverless/internal-api.md)
-    * [Kaltiot](communication/ruuvi-network/backends/kaltiot-1/README.md)
-      * [Kaltiot Smart Tracker Public REST API](communication/ruuvi-network/backends/kaltiot-1/kaltiot.md)
-    * [WhereOS](communication/ruuvi-network/backends/whereos.md)
-  * [Gateways](communication/ruuvi-network/gateways.md)
+* [Ruuvi Cloud](communication/cloud/README.md)
+  * [User API](communication/cloud/user-api.md)
+  * [Gateway API](communication/cloud/gateway-api.md)
+  * [Internal API](communication/cloud/internal-api.md)
 * [Naming conventions](communication/units-and-naming-conventions.md)
 
 ## RUUVI STATION APP

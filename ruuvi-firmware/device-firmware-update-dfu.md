@@ -8,7 +8,7 @@ There are two different options on how to update RuuviTag firmware.
 
 ### OTA (Over the Air)
 
-### **Ruuvi firmware version 1.x, 2.x **
+### **Ruuvi firmware version 1.x, 2.x**&#x20;
 
 Ruuvitag firmware version up until 2.x are built on top of Nordic SDK 12.3 / Softdevice s132 v3.1.1. The bootloader on these RuuviTags uses debug-mode which skips hardware and firmware version checks.&#x20;
 
@@ -20,7 +20,7 @@ The keyfile to sign the RuuviTag updates is published in [ruuvitag\_fw](https://
 
 To upload package to RuuviTag, press button "B" and tap "R" to reset  the tag. Bootloader checks if button "B" is pressed at boot and enters the bootloader mode.&#x20;
 
-### **Ruuvi firmware version 3.x **
+### **Ruuvi firmware version 3.x**&#x20;
 
 Ruuvi firmware 3 builds on SDK15.3 and Softdevice s132 v6.1.1. There are special edition RuuviTags with nRF52811 that do not have bootloader at all due to size constraints.
 
@@ -67,4 +67,4 @@ If your firmware is secret or you wish to avoid duplications by users, you shoul
 
 If you have enabled the read protection, you must run `nrfjprog --recover` to use the programming interface again. This completely erases the tag.
 
-**Always power cycle the tag after using a wired programmer. Otherwise the debug interface might remain active and consume excess current. **
+**Always power cycle the tag after using a wired programmer. Otherwise the debug interface might remain active and consume excess current.**&#x20;

@@ -6,7 +6,7 @@ description: Ruuvi Network (Serverless) user facing API
 
 User API uses a JSON based API to allow users to register, secure and edit their information as well as claim and share sensors, retrieve sensor data and alter their subscription details.
 
-For example, if the body parameter in the sections below refers to an **email **field, the corresponding JSON payload would look like this:
+For example, if the body parameter in the sections below refers to an **email** field, the corresponding JSON payload would look like this:
 
 ```
 {
@@ -420,9 +420,9 @@ Returns the data points for the requested sensor. Notice that for implementing p
 
  and 
 
-**until **
+**until**
 
-parameters with custom 
+ parameters with custom 
 
 **limit**
 
@@ -609,9 +609,9 @@ _upload_
 
 , 
 
-_reset _
+_reset_
 
-(default: 'upload' if not given')
+ (default: 'upload' if not given')
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="sensor" type="string" %}
@@ -621,9 +621,9 @@ ID of the target Sensor
 {% swagger-parameter in="body" name="type" type="string" %}
 (
 
-**Required **
+**Required**
 
-when type is 'upload')
+ when type is 'upload')
 
 \
 
@@ -816,6 +816,51 @@ Optional Sensor MAC for filter the alerts
             }
         ]
     }
+}
+```
+{% endswagger-response %}
+{% endswagger %}
+
+{% swagger method="get" path="/check" baseUrl="https://network.ruuvi.com" summary="Check if a sensor with given MAC address is claimed by someone" %}
+{% swagger-description %}
+
+{% endswagger-description %}
+
+{% swagger-parameter in="query" name="sensor" type="MAC address" required="true" %}
+AA:BB:CC:DD:EE:FF (String)
+{% endswagger-parameter %}
+
+{% swagger-parameter in="header" required="true" name="Authorization" type="Bearer" %}
+Bearer <Bearer Token>
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="Masked email of sensor owner, empty string if sensor is not owned" %}
+```javascript
+{
+    "status": "success",
+    "data": {
+        "email": <string>
+    }
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="400: Bad Request" description="If request doesn't have "sensor" parameter, or parameter is not a valid MAC address" %}
+```javascript
+    "status": "success",
+    "data": {
+        "email": <string>
+    }
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="403: Forbidden" description="If there was no valid authentication" %}
+```javascript
+{
+    "result": "error",
+    "error": "Unauthorized request.",
+    "code": "ER_UNAUTHORIZED"
 }
 ```
 {% endswagger-response %}
