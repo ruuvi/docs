@@ -32,7 +32,6 @@
 ***
 
 * [GW ESP32 Firmware](gw-esp32-firmware/README.md)
-  * [GW ESP32 Selftest](gw-esp32-firmware/gw-esp32-selftest.md)
   * [GW ESP32 WiFi Hotspot](gw-esp32-firmware/gw-esp32-wifi-hotspot.md)
   * [GW ESP32 Button](gw-esp32-firmware/gw-esp32-button.md)
   * [GW ESP32 LED](gw-esp32-firmware/gw-esp32-led.md)
