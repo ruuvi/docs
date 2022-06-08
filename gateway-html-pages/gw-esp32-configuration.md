@@ -6,139 +6,165 @@ description: 'Lifecycle: Beta. Last update 202<1-06-15. GW ESP32 Configuration'
 
 ## User interface
 
-Ruuvi Gateway sets up a WiFi hotspot and a webserver which provides user interface for configuration over HTTP. The user interface can be accessed in any major browser. To connect to the user interface connect to hotspot "**RuuviGateway XXXX**" and enter password "**12345678**". Once connected, open your browser and enter **http://10.10.0.1** .
+Ruuvi Gateway sets up a WiFi hotspot and a webserver that provides the user interface for configuration over HTTP. The user interface can be accessed in any major browser. To connect to the user interface connect to hotspot "**RuuviGatewayXXXX**" (it does not require a password). Once connected, open your browser and enter **http://10.10.0.1** . After the initial configuration is complete, you will be able to access the gateway from the LAN in the same way.
 
 ### Greeting window
 
-![Select your language](<../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.34.09 (1).png>)
-
-### Backend selection
-
-![](<../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.34.36 (1) (1) (1).png>)
-
-#### Backend A) HTTP(S)
-
-![Configure URL to which data gets posted, basic HTTP authentication is supported. See GW ESP32 HTTP Client for details](<../.gitbook/assets/Näyttökuva 2020-7-23 kello 14.54.31.png>)
-
-#### Backend B) MQTT
-
-![Configure MQTT broker to which to connect. See GW ESP32 MQTT Client for details. ](<../.gitbook/assets/Näyttökuva 2020-7-23 kello 14.35.17.png>)
-
-### Scan settings
-
-![These settings will be sent to connected nRF52 through UART. Later on scanned PHYs and channels will be configurable.](<../.gitbook/assets/Näyttökuva 2020-7-23 kello 14.36.40.png>)
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_021.png>)
 
 ### Internet connection settings
 
-![You can select to connect either through a WiFi hotspot or with Ethernet cable.](<../.gitbook/assets/na-ytto-kuva-2020-7-23-kello-14.36.52 (1).png>)
-
 #### Internet connection A) WiFi
 
-![Select your WiFi access point.](<../.gitbook/assets/Näyttökuva 2020-7-23 kello 14.41.47.png>)
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_055 (2).png>)
 
-![Enter your password.](<../.gitbook/assets/Näyttökuva 2020-7-23 kello 14.41.58.png>)
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_027.png>)
 
-![Connection status is shown.](<../.gitbook/assets/Näyttökuva 2020-7-23 kello 14.42.30.png>)
+In case if WiFi is hidden, you can enter WiFi SSID manually - this option is available under "Advanced settings":
 
-![You can check the connection information or disconnect to connect to another WiFi.](<../.gitbook/assets/Näyttökuva 2020-7-23 kello 14.42.47.png>)
-
-TODO: Remove "Hide network info" -option, remove "disconnect" option, add "Turn off configuration hotspot" -option, add "Go back" option (possibly disconnect if go back is selected).&#x20;
-
-####
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_028.png>)
 
 #### Internet connection B) Ethernet
 
-![Use DHCP is best option 99% of time, but you can also configure the connection manually.](<../.gitbook/assets/Näyttökuva 2020-7-23 kello 14.37.04.png>)
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_022.png>)
 
-TODO: Make "Use DHCP" a radio button and add "Advanced configuration" as another option, similar to backend and scan option selection.&#x20;
+By default DHCP is enabled, so you don't need to configure anything else:
 
-After clicking continue, show similar "connection" animation as in WiFi, and show written / animated instructions to connect Ethernet cable.&#x20;
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_023.png>)
 
-![This message is shown regardless of connection status, you need to connect the Ethernet cable now. This connection flow will be adjusted to match WiFi flow later on.](<../.gitbook/assets/Näyttökuva 2020-7-23 kello 14.37.22.png>)
+But you can always set the network settings manually, if necessary:
 
-TODO: Use same view as in WiFi connection successful.
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_024.png>)
+
+In the next step, Ruuvi Gateway will ask you to connect the Ethernet cable (but that's okay if it's already connected):
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_025.png>)
+
+if the Ethernet cable has not been connected in 30 seconds, an error message will be displayed. In this case, you can go back and try again.
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_026.png>)
+
+### Software update
+
+In this step Ruuvi Gateway check for software updates:
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_029.png>)
+
+You can also install previous or beta versions of the software by providing the URL containing the required firmware. If you built your custom firmware, you can run HTTP-sever and provide the URL to your firmware binaries.
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_030.png>)
+
+Here is an example of the software update process:
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_031.png>)
+
+After the software update is completed, Ruuvi Gateway will be restarted in a few seconds, and the following page will be displayed:
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_032.png>)
+
+### Automatic configuration download
+
+Ruuvi Gateway can automatically download its configuration from a remote server, you can enable this feature on this page:
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_034.png>)
+
+You need to specify the base URL from where gw\_cfg.json with the Gateway settings can be downloaded. After pressing the Download button, a new configuration will be downloaded, which completes the configuration process. After that, Ruuvi Gateway will periodically check for configuration updates and download them. The check period is set in the configuration file gw\_cfg.json ([gateway-configuration.md](../data-formats/gateway-configuration.md "mention")), which is downloaded from the server.
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_035.png>)
+
+It is also possible to use basic HTTP authentication:
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_036.png>)
+
+Or Bearer authentication (using a token):
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_037.png>)
+
+### Automatic updates
+
+On this page, you can configure automatic software updates. By default, updates are automatically installed 2 weeks after release.
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_038.png>)
+
+Under the "Advanced Settings", you can configure a schedule for installing updates - select weekdays and preferred timeslot:
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_039.png>)
+
+If you would like to participate in beta testing the new releases, then you can choose the following option (in this case new versions will be installed immediately after the release):
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_040.png>)
+
+Also, you can disable automatic software updating by switching to "Manual updates only" mode:
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_041.png>)
+
+### Access Settings from LAN
+
+On this page, you can set access rules to Ruuvi Gateway from the local network. By default, the access is password protected using the default password (unique device ID which is printed on the bottom of Ruuvi Gateway).
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_042.png>)
+
+It is also possible to access Ruuvi Gateway from LAN using bearer authentication with an API key (token):
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_043.png>)
+
+### Cloud Options
+
+By default, Ruuvi Gateway sends accumulated messages from Bluetooth sensors ([http-time-stamped-data-from-bluetooth-sensors.md](../data-formats/http-time-stamped-data-from-bluetooth-sensors.md "mention")) and some statistics ([http-gateway-status.md](../data-formats/http-gateway-status.md "mention")) to Ruuvi Cloud:
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_044.png>)
+
+But you can change the cloud options under the "Advanced Settings":
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_045.png>)
+
+#### Backend A) HTTP(S)
+
+You can enable or disable sending data via HTTP/HTTPS and specify the address of your own server:
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_046.png>)
+
+#### Backend B) MQTT
+
+Also, you can enable relaying data to MQTT server:
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_047.png>)
+
+#### Backend C) Statistics
+
+It is also possible to disable sending statistics or changing the server address:
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_048.png>)
+
+### Time Synchronization Options
+
+In case the standard set of NTP servers is not accessible, then you can provide addresses of other NTP servers or use DHCP to get a list of NTP servers automatically. If Ruuvi Gateway does not have access to the Internet and NTP, then you can disable time synchronization, but in this case, relayed messages will not contain timestamps.
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_049.png>)
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_050.png>)
+
+### Bluetooth Scanning Settings
+
+By default, Ruuvi Gateway scans only for Ruuvi sensors (filtered by BLE SIG member ID 0x0499)
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_051.png>)
+
+Scan PHY Modulations to scan with. Coded PHY is also known as BLE Long Range. Most of existing devices send only on 1 MBit / s PHY. Modulations are scanned in sequence, so scanning both PHYs leads to at least 50 % packet loss on other PHY.
+
+Scan extended payloads Both coded PHY and 1 MBit / s phy may have a primary advertisement which tells that there is going to be extended data on a secondary channel. If enabled, the secondary payload is scanned. Coded PHY supports only Coded extended payload, 1 Mbit / s PHY supports scanning at 2 Mbit / s and 1 Mbit / s PHY extended payloads.
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_052.png>)
+
+Scan channel Each enabled BLE channel is scanned in sequence for at least 7000 ms per channel, for a total of 21000 ms if all 3 channels are enabled. At least one channel must be enabled.
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_053.png>)
+
+### Configuration completion
+
+![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_054.png>)
 
 
-
-## Configurable settings
-
-| Setting                | Type    | Possible values                   | Lifecycle | Since version | Default                            |
-| ---------------------- | ------- | --------------------------------- | --------- | ------------- | ---------------------------------- |
-| WiFi SSID              | String  | Up to 50 printable characters     | Alpha     | 1.0           | ""                                 |
-| WiFi password          | String  | Up to 50 printable characters.    | Alpha     | 1.0           | ""                                 |
-| Location               | String  | Up to 50 printable characters.    | Alpha     | 1.0           | ""                                 |
-| Use Ruuvi Network      | Boolean | True, False                       | Proposal  |               | True                               |
-| Use HTTP               | Boolean | True, False.                      | Beta      | 1.0           | True                               |
-| HTTP URL               | String  | Up to 255 printable characters.   | Beta      | 1.0           | "https://network.ruuvi.com/record" |
-| HTTP User              | String  | Up to 50 printable characters.    | Alpha     | 1.2           | ""                                 |
-| HTTP Password          | String  | Up to 50 printable characters.    | Alpha     | 1.2           | ""                                 |
-| HTTP Port              | uint16  | 1 ... 65536.                      | Alpha     | 1.2           | 443                                |
-| Use MQTT               | Boolean | True, False.                      | Beta      | 1.0           | False                              |
-| MQTT URL               | String  | Up to 255 printable characters.   | Beta      | 1.0           | ""                                 |
-| MQTT Prefix            | String  | Up to 50 printable characters.    | Beta      | 1.0           | ""                                 |
-| MQTT User              | String  | Up to 50 printable characters.    | Beta      | 1.0           | ""                                 |
-| MQTT Password          | String  | Up to 50 printable characters.    | Beta      | 1.0           | ""                                 |
-| MQTT Port              | uint16  | 1 ... 65536.                      | Beta      | 1.0           | 1883                               |
-| Filter tags            | Boolean | True, False.                      | Alpha     | 1.0           | true                               |
-| Filter                 | uint16  | Any BLE SIG member ID, MSB first. | Alpha     | 1.0           | 0x0499 (Ruuvi)                     |
-| Scan Coded PHY         | Boolean | True, False                       | Proposal  |               | False                              |
-| Scan 1 MBit / s PHY    | Boolean | True, False                       | Proposal  |               | True                               |
-| Scan extended payloads | Boolean | True, False                       | Proposal  |               | True                               |
-| Scan channel 37        | Boolean | True, False                       | Proposal  |               | True                               |
-| Scan channel 38        | Boolean | True, False                       | Proposal  |               | True                               |
-| Scan channel 39        | Boolean | True, False                       | Proposal  |               | True                               |
-
-## Description of settings
-
-**WiFi SSID** Name of WiFi to connect to. Example: "Home WiFi". Optional.
-
-**WiFi Password** Password of the WiFi. Example: "Ruuv1Tag". Optional.
-
-**Location** Coordinate pair or human readable location. Example: If coordinate pair, write it as "{59.409330, 24.735369}", without quotes. Otherwise any string, such as "Ruuvi's Office". Oprional.
-
-**Use Ruuvi Network** If yes, use default settings for everything exept WiFi and location. Mandatory.
-
-**Use HTTP** If yes, data is sent to given url as HTTP Post in JSON. If the configured server does not return 200 as a status code, indicate internet error to user with leds. Can be used simultaneously with MQTT. Mandatory.
-
-**HTTP URL**  URL address to which data should be sent. Supports using https. Example:  "https://network.ruuvi.com/gwapi/v1". Optional if **Use HTTP** is **false,** mandatory otherwise**.**
-
-**HTTP User** HTTP username for basic user + password HTTP authentication. Example "ruuvi". Optional.
-
-**HTTP Password** HTTP password for basic user + password HTTP authentication. Example "Ruuv1Tag". Optional.
-
-**HTTP Port** Port to send data to. Optional.
-
-**Use MQTT** If yes, data is sent to given url as MQTT topics with QoS 1/2. in JSON. acknowledge data, indicate internet error to user with leds. Can be used simultaneously with HTTP. Mandatory.
-
-**MQTT URL** MQTT Broker to which data should be sent. Supports using SSL. Example: "mqtt://broker.mysite.com". Optional.
-
-**MQTT Prefix** A root level topic under which data from gateway is stored. Example: "office". Optional.
-
-**MQTT User** MQTT username for basic user+password MQTT authentication. Example "ruuvi". Optional.
-
-**MQTT Password** MQTT password for basic user + password MQTT authentication. Example "Ruuv1Tag". Optional.
-
-**MQTT Port** Port to send data to. Optional if **Use MQTT** is **false,** mandatory otherwise**.**
-
-**Filter tags** If enabled, only tags with Manufacturer ID matching given filter are reported by nRF52 to ESP32. Optional.
-
-ESP32 must write setting to nRF52 over UART using format defined in ruuvi.endpoints.c/ruuvi\_endpoint\_ca\_uart.&#x20;
-
-**Filter** BLE SIG member ID filter. Example: 0x0499 to scan only for Ruuvi devices. Optional if **Filter tags** is **false,** mandatory otherwise**.**
-
-ESP32 must write setting to nRF52 over UART using format defined in ruuvi.endpoints.c/ruuvi\_endpoint\_ca\_uart.&#x20;
-
-**Scan PHY** Modulations to scan with. Coded PHY is also known as BLE Long Range. Most of existing devices send only on 1 MBit / s PHY. Modulations are scanned in sequence, so scanning both PHYs leads to at least 50 % packet loss on other PHY. At least one is mandatory.
-
-ESP32 must write settings to nRF52 over UART using format defined in ruuvi.endpoints.c/ruuvi\_endpoint\_ca\_uart.&#x20;
-
-**Scan extended payloads** Both coded PHY and 1 MBit / s phy may have a primary advertisement which tells that there is going to be extended data on a secondary channel. If enabled, the secondary payload is scanned. Coded PHY supports only Coded extended payload, 1 Mbit / s PHY supports scanning at 2 Mbit / s and 1 Mbit / s PHY extended payloads. Optional.
-
-ESP32 must write setting to nRF52 over UART using format defined in ruuvi.endpoints.c/ruuvi\_endpoint\_ca\_uart.&#x20;
-
-**Scan channel** Each enabled BLE channel is scanned in sequence for at least 7000 ms per channel, for a total of 21000 ms if all 3 channels are enabled. At least one channel must be enabled.&#x20;
-
-ESP32 must write settings to nRF52 over UART using format defined in ruuvi.endpoints.c/ruuvi\_endpoint\_ca\_uart.&#x20;
 
 
 
