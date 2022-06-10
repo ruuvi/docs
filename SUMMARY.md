@@ -47,6 +47,8 @@
   * [MQTT: Data from Bluetooth-sensors without timestamps](data-formats/mqtt-data-from-bluetooth-sensors-without-timestamps.md)
   * [HTTP: Gateway status](data-formats/http-gateway-status.md)
   * [Gateway configuration](data-formats/gateway-configuration.md)
+* [Examples](examples/README.md)
+  * [Polling mode](examples/polling-mode.md)
 * [Releases](releases/README.md)
   * [Release checklist](releases/release-checklist.md)
   * [v0.3.0](releases/v0.3.0.md)
