@@ -7,6 +7,8 @@ description: >-
 
 # Gateway configuration
 
+The format of this JSON file is described as JSON schema, which provides human- and machine- readable documentation. The JSON schema also contains examples both for each of the properties and for the whole file. The example at the end of JSON schema contains default settings for Ruuvi Gateway.
+
 ```
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
@@ -144,7 +146,7 @@ description: >-
       "default": true
     },
     "http_url": {
-      "title": "URL of the server to which the data collected from Bluetooth-sensors will be sent",
+      "title": "URL of the server to which the data collected from Bluetooth sensors will be sent",
       "type": "string",
       "default": "https://network.ruuvi.com/record",
       "examples": [
@@ -384,7 +386,7 @@ description: >-
       ]
     },
     "company_use_filtering": {
-      "title": "Enable filtering messages from Bluetooth-sensors by company ID.",
+      "title": "Enable filtering messages from Bluetooth sensors by company ID.",
       "type": "boolean",
       "default": true
     },
