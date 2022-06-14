@@ -342,12 +342,47 @@ Optionally filter only one sensor
                 "picture": "<SENSOR PICTURE URL>",
                 "public": <TRUE|FALSE>,
                 "canShare": <TRUE|FALSE>,
+                "offsetHumidity": <DOUBLE>,
+                "offsetTemperature": <DOUBLE>,
+                "offsetPressure": <DOUBLE>,
+                "measurements": [
+                    {
+                        "gwmac": "<SOURCE GATEWAY MAC>",
+                        "coordinates": "<COORDINATES / N/A>",
+                        "rssi": <RSSI>,
+                        "timestamp": <UNIX TIMESTAMP OF MEASUREMENT>,
+                        "data": "<HEX ENCODED SENSOR DATA>"
+                    },
+                    ...
+                ]
                 "sharedTo": [
                     "<EMAIL OF TARGET USER 1>",
                     ...
                 ]
             },
             ...
+        ],
+        "sharedToMe": [
+            {
+                "sensor": "<SENSOR ID>",
+                "name": "<SENSOR NAME>",
+                "picture": "<SENSOR PICTURE URL>",
+                "public": <TRUE|FALSE>,
+                "canShare": <TRUE|FALSE>,
+                "offsetHumidity": <DOUBLE>,
+                "offsetTemperature": <DOUBLE>,
+                "offsetPressure": <DOUBLE>,
+                "measurements": [
+                    {
+                        "gwmac": "<SOURCE GATEWAY MAC>",
+                        "coordinates": "<COORDINATES / N/A>",
+                        "rssi": <RSSI>,
+                        "timestamp": <UNIX TIMESTAMP OF MEASUREMENT>,
+                        "data": "<HEX ENCODED SENSOR DATA>"
+                    },
+                    ...
+                ]
+            },
         ]
     }
 }
