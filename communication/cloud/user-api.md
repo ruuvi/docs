@@ -352,8 +352,7 @@ Optionally filter only one sensor
                         "rssi": <RSSI>,
                         "timestamp": <UNIX TIMESTAMP OF MEASUREMENT>,
                         "data": "<HEX ENCODED SENSOR DATA>"
-                    },
-                    ...
+                    }
                 ]
                 "sharedTo": [
                     "<EMAIL OF TARGET USER 1>",
@@ -379,8 +378,7 @@ Optionally filter only one sensor
                         "rssi": <RSSI>,
                         "timestamp": <UNIX TIMESTAMP OF MEASUREMENT>,
                         "data": "<HEX ENCODED SENSOR DATA>"
-                    },
-                    ...
+                    }
                 ]
             },
         ]
