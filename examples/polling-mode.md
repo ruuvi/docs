@@ -12,7 +12,7 @@ After that it is possible to poll data using "/history" endpoint:
 curl -H "Authorization: Bearer 0i0XJhGjpiMdEBRxI+hEXtJoGoL1jM7DFv6c6netsjU=" http://192.168.1.108/history
 ```
 
-The accumulated data will be returned in JSON format: [http-time-stamped-data-from-bluetooth-sensors.md](../gw-data-formats/http-time-stamped-data-from-bluetooth-sensors.md "mention")or [http-data-from-bluetooth-sensors-without-timestamps.md](../gw-data-formats/http-data-from-bluetooth-sensors-without-timestamps.md "mention")
+The accumulated data will be returned in JSON format: [http-time-stamped-data-from-bluetooth-sensors.md](../data-formats/http-time-stamped-data-from-bluetooth-sensors.md "mention")or [http-data-from-bluetooth-sensors-without-timestamps.md](../data-formats/http-data-from-bluetooth-sensors-without-timestamps.md "mention")
 
 Example of time-stamped data:
 

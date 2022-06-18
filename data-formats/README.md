@@ -4,5 +4,5 @@ description: >-
   communicating with Ruuvi gateway.
 ---
 
-# Data formats
+# GW Data formats
 

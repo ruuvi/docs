@@ -6,8 +6,6 @@ description: >-
 
 # GW Install custom firmware
 
-
-
 ## GW  Install previous firmware releases
 
 Open Web-UI, go to "Software Update" page, expand "Advanced Settings", enable checkbox "Specify a URL that contains required firmware update binaries":
