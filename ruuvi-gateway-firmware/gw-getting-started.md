@@ -8,10 +8,10 @@ description: 'Lifecycle: Beta. Last updated 2021-04-16'
 
 1.  Turn on Ruuvi Gateway by powering it with USB-C.
 
-    \- Quickest start: Connect Gateway to your router with Ethernet cable and you're done.
+    \- Quickest start: Connect Gateway to your router with Ethernet cable, wait one minute, and you're done.
 
     \- Note that Ethernet cable must not be connected before configuration is complete if you do not want to use default settings.
-2. Start configuration by connecting to Ruuvi Gateway XXXX with Wi-Fi - password "12345678".
+2. Start configuration by connecting to Ruuvi Gateway XXXX.
 3. If browser doesn't open automatically, type 10.10.0.1 to the address bar.
 4. Configure RuuviGateway according to guidance, preferred settings, and connect to a local WiFi or connect Ethernet cable.
 5. Gateway is now ready to be used and sending data to Ruuvi Network or your own cloud.
@@ -33,7 +33,7 @@ Ethernet Yellow turns on when a cable connection is detected and blinks on data 
 
 A short press of button re-enables gateway configuration. A long press (5 seconds +) of the button is a factory reset which erases all configured settigns and enables configuration WiFi. Please note that Ethernet cable must be disconnected to enter configuration mode.
 
-For more details, [GW ESP32 Configuration](../gateway-html-pages/gw-esp32-configuration.md) page is a good place to start. If you're interested in using Ruuvi Gateway with your own server, review [GW ESP32 HTTP Client](../gw-esp32-firmware/gw-esp32-http-client.md) and [GW ESP 32 MQTT Client](../gw-esp32-firmware/gw-esp32-mqtt-client.md) pages for details on how data is sent to the Internet.&#x20;
+For more details, [GW ESP32 Configuration](gateway-web-ui/gw-esp32-configuration.md) page is a good place to start. If you're interested in using Ruuvi Gateway with your own server, review [GW ESP32 HTTP Client](../gw-esp32-firmware/gw-esp32-http-client.md) and [GW ESP 32 MQTT Client](../gw-esp32-firmware/gw-esp32-mqtt-client.md) pages for details on how data is sent to the Internet.&#x20;
 
 ## Using the Gateway with your own server
 
