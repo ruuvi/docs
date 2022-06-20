@@ -398,6 +398,94 @@ Optionally filter only one sensor
 {% endswagger-response %}
 {% endswagger %}
 
+{% swagger method="get" path="/sensors-dense" baseUrl="https://network.ruuvi.com" summary="Get your sensors with calibration data, latest measurement, and alerts settings" %}
+{% swagger-description %}
+Fetches the list of claimed and shared sensors with calibration data, sensor last measurement and alert settings. By default the endpoint returns only the claimed sensors with calibration data. Optional arguments must be passed to get shared sensors, last measurement, and alert settings. 
+{% endswagger-description %}
+
+{% swagger-parameter in="query" name="sensor" type="string" %}
+Optionally filter only one sensor
+{% endswagger-parameter %}
+
+{% swagger-parameter in="query" name="sharedToOthers" type="bool" %}
+Optionally returns the list of users with whom each of the sensors is shared to
+{% endswagger-parameter %}
+
+{% swagger-parameter in="query" name="sharedToMe" type="bool" %}
+Optionally returns the sensors shared to the logged-in user alongside claimed sensors by the user
+{% endswagger-parameter %}
+
+{% swagger-parameter in="query" name="measurements" type="bool" %}
+Optionally returns the latest measurement of each of the sensors in the collection
+{% endswagger-parameter %}
+
+{% swagger-parameter in="query" name="alerts" type="bool" %}
+Optionally returns the alerts settings of each of the sensors in the collection
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="" %}
+```javascript
+{
+    "result": "success",
+    "data": {
+        "sensors": [
+            {
+                "sensor": "<SENSOR ID>",
+                "name": "<SENSOR NAME>",
+                "picture": "<SENSOR PICTURE URL>",
+                "public": <TRUE|FALSE>,
+                "canShare": <TRUE|FALSE>,
+                "offsetHumidity": <DOUBLE>,
+                "offsetTemperature": <DOUBLE>,
+                "offsetPressure": <DOUBLE>,
+                "measurements": [
+                    {
+                        "gwmac": "<SOURCE GATEWAY MAC>",
+                        "coordinates": "<COORDINATES / N/A>",
+                        "rssi": <RSSI>,
+                        "timestamp": <UNIX TIMESTAMP OF MEASUREMENT>,
+                        "data": "<HEX ENCODED SENSOR DATA>"
+                    }
+                ],
+                "sharedTo": [
+                    "<EMAIL OF TARGET USER 1>",
+                    ...
+                ],
+                "alerts": [
+                    {
+                        userId: <userId>,
+                        sensorId: <sensorMAC>,
+                        type: <humidity|pressure|temperature>,
+                        min: <lower limit>,
+                        max: <higher limit>,
+                        enabled: <true|false>,
+                        offsetHumidity: <double>,
+                        offsetTemperature: <double>,
+                        offsetPressure: <double>,
+                        triggered: <true|false>,
+                        triggeredAt: <timestamp>
+                    },
+                    ...
+                ]
+            },
+            ...
+        ]
+    }
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="401: Unauthorized" description="" %}
+```javascript
+{
+    "result": "error",
+    "error": "Unauthorized.",
+    "code": "ER_UNAUTHORIZED"
+}
+```
+{% endswagger-response %}
+{% endswagger %}
+
 {% swagger baseUrl="https://network.ruuvi.com" path="/user" method="get" summary="Get User Info" %}
 {% swagger-description %}
 Fetches user information for an authenticated user.
