@@ -403,7 +403,7 @@ Optionally filter only one sensor
 Fetches the list of claimed and shared sensors with calibration data, sensor last measurement and alert settings. By default the endpoint returns only the claimed sensors with calibration data. Optional arguments must be passed to get shared sensors, last measurement, and alert settings. 
 {% endswagger-description %}
 
-{% swagger-parameter in="query" name="mode" %}
+{% swagger-parameter in="query" name="mode" type="string" %}
 Fetch mode: [dense, sparse, mixed], determines how the data is returned. Default: mixed
 {% endswagger-parameter %}
 
