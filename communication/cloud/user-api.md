@@ -94,50 +94,43 @@ Store it well as the only way to retrieve it is to go through the reset flow aga
 {% endswagger-response %}
 {% endswagger %}
 
-{% swagger baseUrl="https://network.ruuvi.com" path="/claim" method="post" summary="Claim a Sensor to your user" %}
+{% swagger method="post" path="" baseUrl="https://network.ruuvi.com" summary="Request deletion of account" %}
 {% swagger-description %}
-Claims an unclaimed sensor for your user. This will allow you to fetch its data.
+This operation requests complete removal of user account from Ruuvi Cloud. After a successful call to this endpoint, user gets a verification email with a link to confirm deletion of account.
 {% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" type="string" %}
+{% swagger-parameter in="header" name="Authorization" required="true" %}
 Bearer token to authorize the request
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="name" type="string" %}
-Name the tag on claiming
+{% swagger-parameter in="body" name="email" required="true" %}
+Email of account to delete
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="sensor" type="string" %}
-ID of the claimed tag
-{% endswagger-parameter %}
-
-{% swagger-response status="200" description="On success, you will receive a corresponding result and the claimed Sensor ID repeated back to you." %}
-```
+{% swagger-response status="200: OK" description="Verification email has been sent" %}
+```javascript
 {
-    "result": "success",
-    "data": {
-        "sensor": "<CLAIMED SENSOR ID>"
-    }
+    // Response
 }
 ```
 {% endswagger-response %}
 
-{% swagger-response status="401" description="In case of an invalid or expired token, you will receive Unauthorized." %}
+{% swagger-response status="400: Bad Request" description="Missing authorization or email parameter" %}
+```javascript
+{
+    "result": "error",
+    "error": "<SPECIFIC ERROR>",
+    "code": "ER_<ERROR>"
+}
 ```
+{% endswagger-response %}
+
+{% swagger-response status="403: Forbidden" description="Returned if Authorization token does not match email" %}
+```javascript
 {
     "result": "error",
     "error": "Unauthorized request.",
     "code": "ER_UNAUTHORIZED"
-}
-```
-{% endswagger-response %}
-
-{% swagger-response status="409" description="If the sensor has been claimed, you will receive a 409 Conflict." %}
-```
-{
-    "result": "error",
-    "error": "Sensor already claimed.",
-    "code": "ER_SENSOR_ALREADY_CLAIMED"
 }
 ```
 {% endswagger-response %}
