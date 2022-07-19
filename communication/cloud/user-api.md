@@ -1,5 +1,7 @@
 ---
-description: Ruuvi Network (Serverless) user facing API
+description: >-
+  Ruuvi Network (Serverless) user facing API. Lifecycle: Beta. Last edited:
+  2022-07-19
 ---
 
 # User API
