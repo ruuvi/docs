@@ -8,12 +8,12 @@ description: 'Lifecycle: proposal'
 
 The LED indications are listed by priority, the first matching condition is indicated.
 
-| State                                                                                                              | Indication                                      | Lifecycle | Since version |
-| ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- | --------- | ------------- |
-| Button is pressed.                                                                                                 | LED blinks at 50 % duty cycle, 2 Hz interval.   | Beta      | 1.0           |
-| Configuration hotspot is active.                                                                                   | LED blinks at 50 % duty cycle, 0.5 Hz interval. | Beta      | 1.0           |
-| Configuration hotspot is not active, no internet connection or server returns error code when trying to send data. | LED blinks at 50% duty cycle, 5 Hz interval.    | Beta      | 1.0           |
-| Data is sent normally                                                                                              | LED is on at 100 % of time.                     | Beta      | 1.0           |
+| Button is pressed.                                                               | Red LED blinks at 50 % duty cycle, 2 Hz interval, Green LED is on.   |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Erase configuration completed (after long button press)                          | Red LED blinks at 50 % duty cycle, 2 Hz interval, Green LED is off.  |
+| Configuration hotspot is active.                                                 | Red LED blinks at 50 % duty cycle, 0.5 Hz interval, Green LED is on. |
+| No internet connection or server returns an error code when trying to send data. | Red LED blinks at 50% duty cycle, 5 Hz interval, Green LED is on.    |
+| Data is sent normally                                                            | Green LED is on 100% of the time, Red LED is off.                    |
 
 ## Test checklist
 
