@@ -1,11 +1,117 @@
 ---
 description: >-
-  This format is used for creating custom default configuration
-  (gw_cfg_default.json), when the configuration is read or saved from/to Gateway
-  by HTTP.
+  This format is used both for storing the gateway configuration and for
+  reading/writing it.
 ---
 
 # Gateway configuration
+
+Depending on how the configuration is used, some data may be excluded. For example, when reading the configuration via HTTP, it does not contain passwords. When writing the configuration, all missing fields retain their previous values.
+
+This data format is used in the following cases:
+
+1. Storing the Gateway configuration in the internal flash memory
+2. Configuring the default gateway configuration (gw\__cfg_\__default.json) on the separate "gw\_cfg\_def_" partition.\
+   Some attributes can be omitted, in this case, in which case the hard-coded defaults will be used.
+3. Reading configuration from the Gateway via HTTP using API GET "/ruuvi.json".\
+   All passwords are excluded in this case. Additional informational attributes will be added to the generated json: `fw_ver`, `nrf52_fw_ver`, `gw_mac`.&#x20;
+4. Writing network part of the configuration to the Gateway via HTTP using API POST "/ruuvi.json".\
+   Only the `use_eth` _attribute and `eth_...` or `wifi_...`_ attributes are used in this case, other attributes will be ignored.
+5. Writing the main part of the configuration to the Gateway via HTTP using API POST "/ruuvi.json"\
+   The `use_eth` attribute should not be present in json, all network-related attributes will be ignored.
+6. Automatic configuration downloading from a remote server
+
+#### Example of the default configuration
+
+```json
+{
+  "wifi_sta_config": {
+    "ssid": "",
+    "password": ""
+  },
+  "wifi_ap_config": {
+    "password": "",
+    "channel": 1
+  },
+  "use_eth": true,
+  "eth_dhcp": true,
+  "eth_static_ip": "",
+  "eth_netmask": "",
+  "eth_gw": "",
+  "eth_dns1": "",
+  "eth_dns2": "",
+  "remote_cfg_use": false,
+  "remote_cfg_url": "",
+  "remote_cfg_auth_type": "no",
+  "remote_cfg_auth_bearer_token": "",
+  "remote_cfg_auth_basic_user": "",
+  "remote_cfg_auth_basic_pass": "",
+  "remote_cfg_refresh_interval_minutes": 0,
+  "use_http": true,
+  "http_url": "https://network.ruuvi.com/record",
+  "http_user": "",
+  "http_pass": "",
+  "use_http_stat": true,
+  "http_stat_url": "https://network.ruuvi.com/status",
+  "http_stat_user": "",
+  "http_stat_pass": "",
+  "use_mqtt": false,
+  "mqtt_transport": "TCP",
+  "mqtt_server": "test.mosquitto.org",
+  "mqtt_port": 1883,
+  "mqtt_prefix": "",
+  "mqtt_client_id": "",
+  "mqtt_user": "",
+  "mqtt_pass": "",
+  "lan_auth_type": "lan_auth_default",
+  "lan_auth_api_key": "",
+  "auto_update_cycle": "regular",
+  "auto_update_weekdays_bitmask": 127,
+  "auto_update_interval_from": 0,
+  "auto_update_interval_to": 24,
+  "auto_update_tz_offset_hours": 3,
+  "ntp_use": true,
+  "ntp_use_dhcp": false,
+  "ntp_server1": "time.google.com",
+  "ntp_server2": "time.cloudflare.com",
+  "ntp_server3": "time.nist.gov",
+  "ntp_server4": "pool.ntp.org",
+  "company_use_filtering": true,
+  "company_id": 1177,
+  "scan_coded_phy": false,
+  "scan_1mbit_phy": true,
+  "scan_extended_payload": true,
+  "scan_channel_37": true,
+  "scan_channel_38": true,
+  "scan_channel_39": true,
+  "coordinates": ""
+}
+
+```
+
+#### Examples of network configuration
+
+Here is the example of json to configure Gateway to use Ethernet:
+
+```json
+{
+  "use_eth": true,
+  "eth_dhcp": true
+}
+```
+
+Here is the example of json to configure Gateway to use WiFi and activate WiFi access point on channel 7:
+
+```json
+{
+  "use_eth": false,
+  "wifi_ap_config": {
+    "channel": 7
+  }
+}
+```
+
+#### JSON schema
 
 The format of this JSON file is described as JSON schema, which provides human- and machine- readable documentation. The JSON schema also contains examples both for each of the properties and for the whole file. The example at the end of JSON schema contains default settings for Ruuvi Gateway.
 
