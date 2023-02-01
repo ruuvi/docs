@@ -31,7 +31,7 @@ The advertisement begins with mandatory flags highlighted in blue. The the actua
 
 Grayed out data is the scan response. Scan response is relevent when establishing the Bluetooth Connection to Ruuvi devices, but we can ignore it here.
 
-![Advertised data and scan response](<../../.gitbook/assets/image (5).png>)
+![Advertised data and scan response](<../../.gitbook/assets/image (55).png>)
 
 Interpretation of different payloads is described in the sub-sections of this page.
 

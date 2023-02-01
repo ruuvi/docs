@@ -83,3 +83,133 @@ Gateway Mac Address
 ```
 {% endswagger-response %}
 {% endswagger %}
+
+{% swagger method="post" path="register-sensor" baseUrl="https://network.ruuvi.com/" summary="Register a sensor to Cloud" %}
+{% swagger-description %}
+This operation register a sensor with MAC address + secret to Cloud. The secret can be used to verify ownership of a sensor in case of a contested sensor.&#x20;
+
+Parameters are packed inside a JSON object, e.g. { "macAddress":"value", "secret":"value"}
+{% endswagger-description %}
+
+{% swagger-parameter in="body" name="macAddress" required="true" %}
+MAC address of sensor, 6 bytes. e.g. "AA:BB:CC:DD:EE:FF
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="secret" required="true" %}
+Secret of sensor, e.g. "DE:AD:BE:EF:00:11:22:33
+{% endswagger-parameter %}
+
+{% swagger-parameter in="header" name="X-Internal-Secret" %}
+The secret to authenticate with the internal API
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="Sensor was added" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="400: Bad Request" description="A parameter is missing or data is invalid" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="403: Forbidden" description="Missing or invalid internal secret" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+{% endswagger %}
+
+{% swagger method="post" path="subscription-register" baseUrl="https://network.ruuvi.com/" summary="Register a subscription to be claimed by user" %}
+{% swagger-description %}
+This endpoint is called by Ruuvi Shop after payment for user subscription is verified. Parameters are in JSON object of body.
+{% endswagger-description %}
+
+{% swagger-parameter in="header" name="X-Shop-Secret" required="true" %}
+Ruuvi Shop authentication secret
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="validDays" required="true" %}
+Validity of subscription, e.g. 365
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="maxClaims" required="true" type="Number" %}
+Number of sensors user can Claim
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="maxShares" type="Number" %}
+Number of shares user can have. Defaults to maxClaims * maxSharesPerSensor
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="maxSharesPerSensor" type="Number" %}
+Number of times one sensor can be shared. Defaults to 10
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="maxHistoryDays" type="Number" required="true" %}
+Number of days of history user is allowed to retrieve. This does not affect sensors shared to this user.
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="maxResolutionMinutes" type="Number" required="true" %}
+Best resolution user is allowed to retrieve. This does not affect sensors shared to this user.
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="subscriptionName" %}
+Name of subscription. Defaults to "Ultimate" (custom)
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="claimCode" required="true" %}
+Code used to claim this subscription
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="creatorId" %}
+String id for creator of code, e.g. webshop account which triggered code generation
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="Subscription was registered" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="400: Bad Request" description="Missing required fields in payload" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="403: Forbidden" description="Missing or invalid authentication header" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="409: Conflict" description="Subscription code already used" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="500: Internal Server Error" description="Server error, request might have been valid" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+{% endswagger %}

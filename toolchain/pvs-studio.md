@@ -10,7 +10,7 @@ The Ruuvi firmware projects are analyzed by PVS Studio, a static code analyzer. 
 
 Download the PVS Studio from project webpage: [https://pvs-studio.com/en/pvs-studio-download/](https://pvs-studio.com/en/pvs-studio-download/) On the same webpage, you can get the trial key.
 
-![](../.gitbook/assets/screenshot\_2021-04-12\_17-01-12.png)
+![](<../.gitbook/assets/Screenshot\_2021-04-12\_17-01-12 (1).png>)
 
 After the installation process, you can add the trial license key previously received via email:
 

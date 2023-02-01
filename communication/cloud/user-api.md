@@ -1,7 +1,5 @@
 ---
-description: >-
-  Ruuvi Network (Serverless) user facing API. Lifecycle: Beta. Last edited:
-  2022-07-19
+description: 'Ruuvi Network (Serverless) user facing API. Lifecycle: Beta'
 ---
 
 # User API
@@ -96,7 +94,7 @@ Store it well as the only way to retrieve it is to go through the reset flow aga
 {% endswagger-response %}
 {% endswagger %}
 
-{% swagger method="post" path="" baseUrl="https://network.ruuvi.com" summary="Request deletion of account" %}
+{% swagger method="post" path="/request-delete" baseUrl="https://network.ruuvi.com" summary="Request deletion of account" %}
 {% swagger-description %}
 This operation requests complete removal of user account from Ruuvi Cloud. After a successful call to this endpoint, user gets a verification email with a link to confirm deletion of account.
 {% endswagger-description %}
@@ -112,7 +110,10 @@ Email of account to delete
 {% swagger-response status="200: OK" description="Verification email has been sent" %}
 ```javascript
 {
-    // Response
+    "result": "success",
+    "data": {
+        "email": "otso+test3@ruuvi.com"
+    }
 }
 ```
 {% endswagger-response %}
@@ -133,6 +134,107 @@ Email of account to delete
     "result": "error",
     "error": "Unauthorized request.",
     "code": "ER_UNAUTHORIZED"
+}
+```
+{% endswagger-response %}
+{% endswagger %}
+
+{% swagger method="get" path="/verify-delete" baseUrl="https://network.ruuvi.com" summary="Verify account deletion operation" %}
+{% swagger-description %}
+Following actions will be done:
+
+User sensors will be unshared&#x20;
+
+Sensors shared to user will be removed.
+
+&#x20;~~Data of user sensors will be deleted~~. (TODO)
+
+&#x20;User account data, including sensor claims and settings, will be deleted.
+
+&#x20;Account deletion is a permament action which cannot be undone
+{% endswagger-description %}
+
+{% swagger-parameter in="path" name="token" required="true" %}
+Short verification string
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="Account deletion was started" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="403: Forbidden" description="Invalid or missing authorization token" %}
+```javascript
+{
+   {
+    "result": "error",
+    "error": "Unauthorized request.",
+    "code": "ER_UNAUTHORIZED"
+}
+```
+{% endswagger-response %}
+{% endswagger %}
+
+{% swagger method="post" path="/claim" baseUrl="https://netowrk.ruuvi.com" summary="Claim a sensor for user" %}
+{% swagger-description %}
+After this call, given sensor is claimed under authenticated user account
+{% endswagger-description %}
+
+{% swagger-parameter in="header" name="Authorization" required="true" %}
+BBearer token to authorize the request
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="sensor" required="true" %}
+MAC address of sensor to claim, e.g. "AA:BB:CC:11:22:33"
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="name" %}
+Human-readable name of sensor, e.g. "Fridge temperature sensor"
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="description" %}
+Human-readable description of sensor, e.g. "Sensor in top shelf of fridge"
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="Sensor was claimed successfully" %}
+```javascript
+{
+    'sensor': MAC_ADDRESS_STRING
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="400: Bad Request" description="Request had malformed JSON or was missing a required parameter.  Alternatively user account has reached subscription limit" %}
+```javascript
+{
+    'code': {'ER_MISSING_ARGUMENT', 'ER_CLAIM_COUNT_REACHED'}
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="401: Unauthorized" description="Request had no authorization token" %}
+```javascript
+{
+
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="409: Conflict" description="Sensor is claimed by another account" %}
+```javascript
+{
+    'code': 'ER_SENSOR_ALREADY_CLAIMED';
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="500: Internal Server Error" description="Unexpected error occurred in handler" %}
+```javascript
+{
+    // Response
 }
 ```
 {% endswagger-response %}
@@ -534,19 +636,9 @@ Authentication Bearer token retrieved from the login flow.
 
 {% swagger baseUrl="https://network.ruuvi.com" path="/get" method="get" summary="Get Sensor data" %}
 {% swagger-description %}
-Returns the data points for the requested sensor. Notice that for implementing pagination, you can use 
+Returns the data points for the requested sensor. Notice that for implementing pagination, you can use **since** and **until** parameters with custom **limit** to segment your results as they are always returned in either ascending or descending order by timestamp.
 
-**since**
-
- and 
-
-**until**
-
- parameters with custom 
-
-**limit**
-
- to segment your results as they are always returned in either ascending or descending order by timestamp.
+Data can be fetched in dense, sparse and mixed mode. Dense mode returns highest data density possible, but has a limited time range before data is pruned to save storage space. Sparse mode has downsampled data, but time range is not limited. Mixed mode returns all the dense data available and rest of the time range is filled with sparse data
 {% endswagger-description %}
 
 {% swagger-parameter in="header" name="Authorization" type="string" %}
@@ -558,22 +650,22 @@ Fetch mode: [dense, sparse, mixed], determines how the data is returned. Default
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="until" type="string" %}
-Maximum timestamp of first returned result in Unix epoch format
+Maximum timestamp of first returned result in Unix epoch format, in seconds. Default until now.
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="since" type="string" %}
-Minimum timestamp of first returned result in Unix epoch format
+Minimum timestamp of first returned result in Unix epoch format, in seconds. Default 0. 
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="limit" type="string" %}
-Maximum amount of results returned (capped at 100)
+Maximum amount of results returned (capped at 5000).
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="sort" type="string" %}
-Sort Direction for the result: [asc, desc]
+Sort Direction for the result: [asc, desc]. Default descending
 {% endswagger-parameter %}
 
-{% swagger-parameter in="query" name="sensor" type="string" %}
+{% swagger-parameter in="query" name="sensor" type="string" required="true" %}
 Sensor ID to retrieve the data 
 {% endswagger-parameter %}
 
@@ -985,3 +1077,375 @@ Bearer <Bearer Token>
 ```
 {% endswagger-response %}
 {% endswagger %}
+
+{% swagger method="post" path="contest-sensor" baseUrl="https://network.ruuvi.com/" summary="Contest ownership of a sensor" %}
+{% swagger-description %}
+This call is used to reclaim a sensor claimed by someone else. After this endpoint returns 200, the sensor is claimed by calling account. Parameters are passed as a body JSON object.
+{% endswagger-description %}
+
+{% swagger-parameter in="header" name="Authorization" required="true" %}
+Bearer token of the user
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="sensor" required="true" %}
+MAC address of sensor to reclaim
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="secret" required="true" %}
+Secret of sensor to reclaim
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="Sensor ownership was transferred" %}
+```javascript
+{
+    'sensor': MAC_ADDRESS_STRINGN
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="400: Bad Request" description="Missing parameter or user has full claim count" %}
+```javascript
+{
+    'code': {'ER_CLAIM_COUNT_REACHED', 'ER_MISSING_ARGUMENT'}
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="401: Unauthorized" description="User is not authenticated" %}
+```javascript
+{
+    'code': 'ER_UNAUTHORIZED'
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="403: Forbidden" description="macAddress and secret do not match" %}
+```javascript
+{
+    'code': 'ER_FORBIDDEN'
+}
+```
+{% endswagger-response %}
+{% endswagger %}
+
+{% swagger method="post" path="subscription" baseUrl="https://network.ruuvi.com/" summary="Claim a subscription by a code" %}
+{% swagger-description %}
+This endpoints applies a new subscription to user immediately. Previous subscription is lost. Parameters are passed as JSON in body. The success response has full subscription history of user, with active subscription being first element of array of subscriptions. 
+{% endswagger-description %}
+
+{% swagger-parameter in="header" name="Authorization" required="true" %}
+Bearer token of the user
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="code" required="true" %}
+Code of subscription 
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="Subscription was applied successfully" %}
+```javascript
+{
+    "result": "success",
+    "data": {
+        "subscriptions": [
+            {
+                "subscriptionName": "DEV",
+                "maxClaims": 25,
+                "maxShares": 40,
+                "maxSharesPerSensor": 5,
+                "maxHistoryDays": 720,
+                "maxResolutionMinutes": 1,
+                "isActive": true,
+                "startTime": 1673435374,
+                "endTime": 1673608174
+            },
+            {
+                "subscriptionName": "DEV",
+                "maxClaims": 25,
+                "maxShares": 40,
+                "maxSharesPerSensor": 5,
+                "maxHistoryDays": 720,
+                "maxResolutionMinutes": 1,
+                "isActive": false,
+                "startTime": 1673435292,
+                "endTime": 1673608092
+            }
+        ]
+    }
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="400: Bad Request" description="Missing code" %}
+```javascript
+{
+    "result": "error",
+    "error": "Invalid request format.",
+    "code": "ER_INVALID_FORMAT"
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="401: Unauthorized" description="Missing or invalid authorization header" %}
+```javascript
+{
+    "result": "error",
+    "error": "Unauthorized request.",
+    "code": "ER_UNAUTHORIZED"
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="404: Not Found" description="Subscription code does not exist" %}
+```javascript
+{
+    "result": "error",
+    "error": "Code not found",
+    "code": "ER_SUBSCRIPTION_NOT_FOUND"
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="409: Conflict" description="Subscription code is already used" %}
+```javascript
+{
+    "result": "error",
+    "error": "Code already claimed",
+    "code": "ER_SUBSCRIPTION_CODE_USED"
+}
+```
+{% endswagger-response %}
+{% endswagger %}
+
+{% swagger method="get" path="/subscription" baseUrl="https://network.ruuvi.com" summary="Get subscription history" %}
+{% swagger-description %}
+Return array of JSON objects detaling the subscriptions user has had. 
+{% endswagger-description %}
+
+{% swagger-parameter in="header" name="Authorization" required="true" %}
+Bearer token of the user
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="Returns subscription history" %}
+```javascript
+{
+    "result": "success",
+    "data": {
+        "subscriptions": [
+            {
+                "subscriptionName": "DEV",
+                "maxClaims": 25,
+                "maxShares": 40,
+                "maxSharesPerSensor": 5,
+                "maxHistoryDays": 720,
+                "maxResolutionMinutes": 1,
+                "isActive": true,
+                "startTime": 1673435374,
+                "endTime": 1673608174
+            },
+            {
+                "subscriptionName": "DEV",
+                "maxClaims": 25,
+                "maxShares": 40,
+                "maxSharesPerSensor": 5,
+                "maxHistoryDays": 720,
+                "maxResolutionMinutes": 1,
+                "isActive": false,
+                "startTime": 1673435292,
+                "endTime": 1673608092
+            }
+        ]
+    }
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="403: Forbidden" description="Request was not authenticated or authentication token was not valid" %}
+```javascript
+{
+    "result": "error",
+    "error": "Unauthorized request.",
+    "code": "ER_UNAUTHORIZED"
+}
+```
+{% endswagger-response %}
+{% endswagger %}
+
+{% swagger method="post" path="push-register" baseUrl="https://network.ruuvi.com/" summary="Register a push notification token for user - Proposal" %}
+{% swagger-description %}
+Register a device to Cloud so Cloud can send push notifications to user. Currently only alerts for Android and iOS are supported.&#x20;
+
+Tokens must be unique, one token cannot be associated with two accounts. If token already exists in Ruuvi Cloud with another account, the token will be removed from old account.&#x20;
+{% endswagger-description %}
+
+{% swagger-parameter in="header" name="Authorization" required="true" %}
+Bearer token of the user
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="token" required="true" %}
+Device identification token
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="type" required="true" %}
+Device type, e.g. "Android" or "iOS"
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="name" %}
+Human-readable device name, e.g. "Otso's mobile phone". Defaults to device type.
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="data" %}
+Optional data to be passed to to push notification. Can be e.g. authentication token. 
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="params" %}
+Optional parameters used internally by Ruuvi Cloud when delivering notifications. Currently unused,this is for future needs
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="Token was successfully registered" %}
+```javascript
+{
+    "result": "success",
+    "data": {
+        "tokenId": INT
+    }
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="400: Bad Request" description="Request had malformed data" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="401: Unauthorized" description="Request did not have authentication" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="403: Forbidden" description="Authentication was invalid" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="500: Internal Server Error" description="Internal problem. Try again later. " %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+{% endswagger %}
+
+{% swagger method="post" path="push-unregister" baseUrl="https://network.ruuvi.com/" summary="Remove a push notification token for user - Proposal" %}
+{% swagger-description %}
+Removes given token from user, e.g. when signing off from the app. This does not require authentication to ensure that a device can always unregister itself.
+
+Either full token or Token ID must be given, but both are optional. If both arguments are given, either can be processed but not both in one request. &#x20;
+{% endswagger-description %}
+
+{% swagger-parameter in="body" name="token" required="false" %}
+Device identification token
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="id" %}
+Token ID received in listing of tokens
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="Token was removed" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="400: Bad Request" description="Message body did not have required data" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="404: Not Found" description="Given token or ID was not found." %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="500: Internal Server Error" description="Internal problem. Try again later. " %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+{% endswagger %}
+
+{% swagger method="get" path="push-list" baseUrl="https://network.ruuvi.com/" summary="Get a list of tokens associated with user account - Proposal" %}
+{% swagger-description %}
+List all tokens of user. Returns a listing of tokenId - name pairs. 
+{% endswagger-description %}
+
+{% swagger-parameter in="header" name="Authorization" required="true" %}
+Bearer token of the user
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="List was successfully retrieved" %}
+```javascript
+{
+    "result": "success",
+    "data": {
+        "tokens": [
+            {
+                "id": 3308157406,
+                "lastAccessed": 1674799893,
+                "name": "Otso's landline"
+            },
+            {
+                "id": 3721015809,
+                "lastAccessed": 1674799924,
+                "name": "Otso's mobile phone"
+            }
+        ]
+    }
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="401: Unauthorized" description="Authentication token was missing" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="403: Forbidden" description="Authentication token is invalid" %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+
+{% swagger-response status="500: Internal Server Error" description="Iinternal problem. Try again later. " %}
+```javascript
+{
+    // Response
+}
+```
+{% endswagger-response %}
+{% endswagger %}
+

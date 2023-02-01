@@ -4,11 +4,11 @@ description: 'Lifecycle: Beta. Last updated 2021-04-15'
 
 # GW ESP32 WiFi Hotspot
 
-The Gateway provides a WiFi hotspot for configuration. The hotspot has SSID with the name "**RuuviGatewayABCD**" where ABCD is the last 2 bytes of the gateway WiFi MAC address. No password is required to connect to the gateway's hotspot.&#x20;
+The Gateway provides a WiFi hotspot for configuration. The hotspot has SSID with the name "**Configure Ruuvi Gateway ABCD**" where ABCD is the last 2 bytes of the gateway WiFi MAC address. No password is required to connect to the gateway's hotspot.&#x20;
 
 The WiFi hotspot is only active if the gateway is not configured or within one minute after pressing the Configuration button. After the configuration of the gateway is complete, WiFi credentials are stored to flash and the hotspot is turned off. If the Internet connection is lost later, connection loss is indicated by "Red LED" but the hotspot is not turned back on unless the user enters configuration mode by pressing the Configuration button.
 
-Gateway cannot be reconfigured over LAN, the configuration status page will be displayed in this case. Also following pages are available through LAN connection: /metrics and /history.  To reconfigure the gateway, press "configure" button and connect to the hotspot.
+The gateway can be partially reconfigured over LAN (network configuration can't be changed in this case). Also following pages are available through LAN connection: /metrics and /history.
 
 {% hint style="info" %}
 If Ethernet cable is connected to an unconfigured gateway, then after one minute the gateway will automatically be set to the default configuration with Ethernet connection mode and the Wi-Fi hotspot will be deactivated. After that, the user can activate the hotspot with a short press on the "Configure" button or reset the configuration with a long press on the "Configure" button.
@@ -593,3 +593,5 @@ Read the history for the last N seconds only
 ```
 {% endswagger-response %}
 {% endswagger %}
+
+See examples of the "history" payload here: [http-get-history-with-timestamps.md](../gw-data-formats/http-get-history-with-timestamps.md "mention")

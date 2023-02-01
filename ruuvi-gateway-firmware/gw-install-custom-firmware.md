@@ -8,9 +8,9 @@ description: >-
 
 ## GW  Install previous firmware releases
 
-Open Web-UI, go to "Software Update" page, expand "Advanced Settings", enable checkbox "Specify a URL that contains required firmware update binaries":
+Open Web-UI, go to "Software Update" page, expand "Advanced Settings" and enable the checkbox "Specify a URL that contains required firmware update binaries":
 
-![](../.gitbook/assets/screenshot2.png)
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 In the URL input field change the version number to the desired one, then press "UPDATE" button.
 
@@ -50,5 +50,5 @@ python3 -m http.server 7000
 
 Then open Web-UI, go to "Software Update" page, expand "Advanced Settings", enable checkbox "Specify a URL that contains required firmware update binaries" and in the URL input field set the address of your local HTTP server, then press "UPDATE" button:
 
-![](../.gitbook/assets/screenshot5.png)
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 

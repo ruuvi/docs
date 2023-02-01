@@ -12,7 +12,7 @@ The input button has floating terminal to ESP32 and other terminal is grounded, 
 
 On button press, a timer is started to detect if the button press is a short press or a long press, and LED indicates that the button is pressed.
 
-If the press is less than 5 seconds or 5 seconds, the press is considered to be a short press, and the configuration hotspot is enabled once the button is released.&#x20;
+If the press is less than 5 seconds, the press is considered to be a short press, and the configuration hotspot is enabled once the button is released.&#x20;
 
 If the press is longer than 5 seconds, all user settings on flash are erased, and the configuration hotspot is enabled once the button is released.&#x20;
 

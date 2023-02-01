@@ -6,20 +6,25 @@ description: 'Lifecycle: proposal'
 
 ## LED Indications
 
-The LED indications are listed by priority, the first matching condition is indicated.
+The LED indications are listed by priority, the first matching condition is indicated.\
+Indication code: the letter "R" means the red LED is on, the letter "G" means the green LED is on, and the letter "-" means the LEDs are off (by default, the step length is 100 ms).
 
-| Button is pressed.                                                               | Red LED blinks at 50 % duty cycle, 2 Hz interval, Green LED is on.   |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| Erase configuration completed (after long button press)                          | Red LED blinks at 50 % duty cycle, 2 Hz interval, Green LED is off.  |
-| Configuration hotspot is active.                                                 | Red LED blinks at 50 % duty cycle, 0.5 Hz interval, Green LED is on. |
-| No internet connection or server returns an error code when trying to send data. | Red LED blinks at 50% duty cycle, 5 Hz interval, Green LED is on.    |
-| Data is sent normally                                                            | Green LED is on 100% of the time, Red LED is off.                    |
-
-## Test checklist
-
-| Event                                    | Test                                                                                           | CI / Manual |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------- | ----------- |
-| Button press indication.                 | Button press indication is activated if gateway was in normal operation mode.                  | Manual      |
-| Configuration hotspot active indication. | Do a short press while gateway was in normal mode to activate hotspot. Observe new indication. | Manual      |
-| Error indication.                        | Connect gateway to internet with Ethernet cable, remove Ethernet, observe error indication.    | Manual      |
-| Normal state indication.                 | Connect gateway to the Internet with Ethernet cable, observe normal state indication.          | Manual      |
+| Gateway is rebooting                                                                         | <p>The step is 25 ms:</p><pre><code>"R-R-R-R-"
+</code></pre>     |
+| -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Bluetooth-coprocessor (nRF52) failure                                                        | Solid Red                                                        |
+| Flashing Bluetooth-coprocessor (nRF52)                                                       | <pre><code>"R---------"
+</code></pre>                            |
+| Configuration erasing has been completed (after a long press of the button)                  | <pre><code>"RR--RR--"
+</code></pre>                              |
+| Configuration hotspot is active.                                                             | <pre><code><strong>"RRRRRRRRRRGGGGGGGGGG"
+</strong></code></pre> |
+| No internet connection or server returns an error code when trying to send data              | <pre><code>"R-R-R-R-R-"
+</code></pre>                            |
+| No data from Bluetooth sensors                                                               | <pre><code>"G-G-G-G-G-"
+</code></pre>                            |
+| No connection to all servers                                                                 | <pre><code>"RRRRR-----"
+</code></pre>                            |
+| No connection to some of the servers                                                         | <pre><code>"GGGGGGGGG-"
+</code></pre>                            |
+| The data comes from the Bluetooth sensors and is successfully sent to all configured servers | Solid Green                                                      |
