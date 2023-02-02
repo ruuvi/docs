@@ -6,7 +6,11 @@ description: >-
 
 # HTTP: Data from Bluetooth-sensors without timestamps
 
-```
+The JSON data format description is provided in JSON schema format ([https://json-schema.org](https://json-schema.org)), which provides clear human- and machine-readable documentation with examples.
+
+The format of relayed messages is described here [https://docs.ruuvi.com/communication/bluetooth-advertisements](https://docs.ruuvi.com/communication/bluetooth-advertisements)
+
+```json
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "http://ruuvi.com/schemas/ruuvi_http_data_without_timestamps.schema.json",

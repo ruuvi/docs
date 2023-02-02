@@ -14,6 +14,6 @@ The heartbeats are same data payloads as what is sent over BLE advertisements, a
 
 If the heartbeat can't fit into the 20 bytes of payload of GATT transmission, it will be cut into last data element which fits in whole. For example the Ruuvi Dataformat 5 has 24 bytes of which 6 last bytes are MAC address of the tag.  As the MAC address (gray) cannot fit into the payload, it is cut out leaving 18 bytes which are transmitted (green).
 
-![Heartbeat data cut to 18 bytes](<../../../.gitbook/assets/image (47).png>)
+![Heartbeat data cut to 18 bytes](<../../../.gitbook/assets/image (8).png>)
 
 For details on how to parse the data please review the section Data Format 5 / RAWv2.

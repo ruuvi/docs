@@ -91,7 +91,7 @@ Complete message: `CA  04 20 0F 2C 00 2C  A2 C2 0A`
 
 ## GET sequence
 
-<figure><img src="../../.gitbook/assets/ruuvi-uart-seq-get.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/ruuvi-uart-seq-get (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Request message&#x20;
 
@@ -127,7 +127,7 @@ Complete response message: `CA  10 11 40 98 A7 78 58 1A E1 38 2C C8 25 2D 8E 9C 
 
 ## REPORT sequence
 
-<figure><img src="../../.gitbook/assets/ruuvi-uart-seq-rpt.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/ruuvi-uart-seq-rpt (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Report message&#x20;
 
@@ -148,7 +148,7 @@ Complete report message: `CA  29 10 C6 A5 B9 E0 AD 06 2C 02 01 06 1B FF 99 04 05
 
 ## `CONFIGURATION REQUEST sequence`
 
-<figure><img src="../../.gitbook/assets/ruuvi-uart-seq-cfg_req.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/ruuvi-uart-seq-cfg_req (2).png" alt=""><figcaption></figcaption></figure>
 
 ### CFG Request message
 

@@ -12,9 +12,9 @@ The Real-Time Transfer is Segger's technology for printing UART-like messages fr
 
 First you'll need to connect your PC to nRF52-DK via USB-micro cable, then you'll need to connect the nRF52-DK to Ruuvi via devkit or the Tag-Connect cable. nRF52-DK autodetects an external target and programs it, but if there is an issue with connection you can get errors from the software or program the nRF52 onboard the nRF52-DK. You can cut the power measurement jumper on nRF52-DK to be sure to not accidentally connect to the wrong nRF52.&#x20;
 
-![RuuviTag zip-tied to devkit with soldered wires for debugging.](<../.gitbook/assets/image (3) (1).png>)
+![RuuviTag zip-tied to devkit with soldered wires for debugging.](<../.gitbook/assets/image (3) (1) (1).png>)
 
-![Programming a RuuviTag with DK and Tag-connect cable](<../.gitbook/assets/image (6) (1).png>)
+![Programming a RuuviTag with DK and Tag-connect cable](<../.gitbook/assets/image (6) (1) (1).png>)
 
 If you get a Tag-Connect cable, be sure to get the 10-pin connector Cortex-M no-legs version or you'll need to solder the wires to pins on DK as above.
 
@@ -31,9 +31,9 @@ JLinkExe has to be started first, commands are
 * Restart program and halt -> _r_
 * Once JLinkRTTViewer is connected, go -> _g_
 
-![JLinkExe connected to Ruuvi](<../.gitbook/assets/image (59).png>)
+![JLinkExe connected to Ruuvi](<../.gitbook/assets/image (7) (1).png>)
 
 JLinkRTTClient will connect automatically to the JLinkExe session, just start JLinkRTTClient and start the firmware program on JLinkExe with _g._
 
-![RTT Logs](<../.gitbook/assets/image (39).png>)
+![RTT Logs](<../.gitbook/assets/image (5).png>)
 

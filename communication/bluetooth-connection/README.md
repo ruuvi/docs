@@ -14,4 +14,4 @@ The Ruuvi has 3 services: Nordic Buttonless DFU service (DFU), Device Informatio
 
 In development versions of firmware there is 120 second delay from starting of the connection in which the central must complete the registration process and register to NUS TX Notfications. If the deadline is not met, tag assumes that there is a software lockup and reboots. In production versions this deadline is 12 seconds.&#x20;
 
-![Connection flow](<../../.gitbook/assets/Connection Flowchart-2.svg>)
+![Connection flow](../../.gitbook/assets/connection-flowchart-2.svg)

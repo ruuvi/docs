@@ -12,7 +12,7 @@ This data format is used in the following cases:
 
 1. Storing the Gateway configuration in the internal flash memory
 2. Configuring the default gateway configuration (gw\__cfg_\__default.json) on the separate "gw\_cfg\_def_" partition.\
-   Some attributes can be omitted, in this case, in which case the hard-coded defaults will be used.
+   Some attributes can be omitted, in this case, the hard-coded defaults will be used.
 3. Reading configuration from the Gateway via HTTP using API GET "/ruuvi.json".\
    All passwords are excluded in this case. Additional informational attributes will be added to the generated json: `fw_ver`, `nrf52_fw_ver`, `gw_mac`.&#x20;
 4. Writing network part of the configuration to the Gateway via HTTP using API POST "/ruuvi.json".\
@@ -56,6 +56,7 @@ This data format is used in the following cases:
   "http_stat_user": "",
   "http_stat_pass": "",
   "use_mqtt": false,
+  "mqtt_disable_retained_messages": false,
   "mqtt_transport": "TCP",
   "mqtt_server": "test.mosquitto.org",
   "mqtt_port": 1883,
@@ -115,7 +116,7 @@ Here is the example of json to configure Gateway to use WiFi and activate WiFi a
 
 The format of this JSON file is described as JSON schema, which provides human- and machine- readable documentation. The JSON schema also contains examples both for each of the properties and for the whole file. The example at the end of JSON schema contains default settings for Ruuvi Gateway.
 
-```
+```json
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "http://ruuvi.com/schemas/ruuvi_gw_cfg.schema.json",
@@ -296,6 +297,11 @@ The format of this JSON file is described as JSON schema, which provides human- 
     },
     "use_mqtt": {
       "title": "Enable MQTT relaying mode",
+      "type": "boolean",
+      "default": false
+    },
+    "mqtt_disable_retained_messages": {
+      "title": "Disable MQTT retained messages",
       "type": "boolean",
       "default": false
     },
@@ -575,6 +581,7 @@ The format of this JSON file is described as JSON schema, which provides human- 
       "http_stat_user": "",
       "http_stat_pass": "",
       "use_mqtt": false,
+      "mqtt_disable_retained_messages": false,
       "mqtt_transport": "TCP",
       "mqtt_server": "test.mosquitto.org",
       "mqtt_port": 1883,

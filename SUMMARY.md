@@ -23,9 +23,9 @@
 ## Ruuvi Gateway Firmware
 
 * [GW Getting Started](ruuvi-gateway-firmware/gw-getting-started.md)
-* [GW Web-UI](ruuvi-gateway-firmware/gateway-web-ui/README.md)
-  * [index.html](ruuvi-gateway-firmware/gateway-web-ui/gw-esp32-configuration.md)
-  * [auth.html](ruuvi-gateway-firmware/gateway-web-ui/auth.html.md)
+* [GW Web-UI](gateway-html-pages/README.md)
+  * [index.html](gateway-html-pages/gw-esp32-configuration.md)
+  * [auth.html](gateway-html-pages/auth.html.md)
 * [GW Install custom firmware](ruuvi-gateway-firmware/gw-install-custom-firmware.md)
 * [GW nRF52811 Firmware](ruuvi-gateway-firmware/gw-nrf52-firmware/README.md)
   * [GW nRF52811 selftest](ruuvi-gateway-firmware/gw-nrf52-firmware/gw-nrf52811-selftest.md)
@@ -41,16 +41,16 @@
   * [GW ESP32 LED](gw-esp32-firmware/gw-esp32-led.md)
   * [GW ESP32 HTTP Client](gw-esp32-firmware/gw-esp32-http-client.md)
   * [GW ESP32 MQTT client](gw-esp32-firmware/gw-esp32-mqtt-client.md)
-* [GW Data formats](gw-data-formats/README.md)
-  * [HTTP: Time-stamped data from Bluetooth-sensors](gw-data-formats/http-time-stamped-data-from-bluetooth-sensors.md)
-  * [HTTP: Data from Bluetooth-sensors without timestamps](gw-data-formats/http-data-from-bluetooth-sensors-without-timestamps.md)
-  * [MQTT: Time-stamped data from Bluetooth-sensors](gw-data-formats/mqtt-time-stamped-data-from-bluetooth-sensors.md)
-  * [MQTT: Data from Bluetooth-sensors without timestamps](gw-data-formats/mqtt-data-from-bluetooth-sensors-without-timestamps.md)
+* [GW Data formats](data-formats/README.md)
+  * [HTTP: Time-stamped data from Bluetooth-sensors](data-formats/http-time-stamped-data-from-bluetooth-sensors.md)
+  * [HTTP: Data from Bluetooth-sensors without timestamps](data-formats/http-data-from-bluetooth-sensors-without-timestamps.md)
+  * [MQTT: Time-stamped data from Bluetooth-sensors](data-formats/mqtt-time-stamped-data-from-bluetooth-sensors.md)
+  * [MQTT: Data from Bluetooth-sensors without timestamps](data-formats/mqtt-data-from-bluetooth-sensors-without-timestamps.md)
   * [HTTP GET /history (with timestamps)](gw-data-formats/http-get-history-with-timestamps.md)
-  * [HTTP: Gateway status](gw-data-formats/http-gateway-status.md)
-  * [Gateway configuration](gw-data-formats/gateway-configuration.md)
-* [GW Examples](gw-examples/README.md)
-  * [Polling mode](gw-examples/polling-mode.md)
+  * [HTTP: Gateway status](data-formats/http-gateway-status.md)
+  * [Gateway configuration](data-formats/gateway-configuration.md)
+* [GW Examples](examples/README.md)
+  * [Polling mode](examples/polling-mode.md)
 
 ## Toolchain for firmware <a href="#toolchain" id="toolchain"></a>
 

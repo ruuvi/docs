@@ -10,7 +10,7 @@ Ruuvi Connector cables have 8 pins (6 signals + VDD + GND). This allows using no
 
 Ruuvi Port is also compatible with 4-pin (2 signals + VDD + GND) prototyping systems such as Seeed Studio Grove and Sparkfun Qwiic.
 
-![Ruuvi Connector cables](<../.gitbook/assets/image (53).png>)
+![Ruuvi Connector cables](<../.gitbook/assets/image (4) (1).png>)
 
 ### Many ways to use Ruuvi Connector system
 

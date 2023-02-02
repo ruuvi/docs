@@ -28,17 +28,17 @@ A short press of the button re-enables the gateway's configuration mode.&#x20;
 
 A long press (7 seconds +) of the button is a factory reset which erases all configured settings and enables configuration mode (activates Wi-Fi hotspot). After pressing the button, you need to wait until the red LED flashes at a rate of 2.5 Hz, then release the button, after that the gateway will restart with the active Wi-Fi access point.
 
-For more details, [GW ESP32 Configuration](gateway-web-ui/gw-esp32-configuration.md) page is a good place to start. If you're interested in using Ruuvi Gateway with your own server, review [GW ESP32 HTTP Client](../gw-esp32-firmware/gw-esp32-http-client.md) and [GW ESP 32 MQTT Client](../gw-esp32-firmware/gw-esp32-mqtt-client.md) pages for details on how data is sent to the Internet.&#x20;
+For more details, [GW ESP32 Configuration](../gateway-html-pages/gw-esp32-configuration.md) page is a good place to start. If you're interested in using Ruuvi Gateway with your own server, review [GW ESP32 HTTP Client](../gw-esp32-firmware/gw-esp32-http-client.md) and [GW ESP 32 MQTT Client](../gw-esp32-firmware/gw-esp32-mqtt-client.md) pages for details on how data is sent to the Internet.&#x20;
 
 ## Using the Gateway with your own server
 
 If you want to use the Gateway with your own server, you can connect via MQTT or HTTP(s). The data formats are detailed on pages:
 
-* [http-time-stamped-data-from-bluetooth-sensors.md](../gw-data-formats/http-time-stamped-data-from-bluetooth-sensors.md "mention")
-* [http-data-from-bluetooth-sensors-without-timestamps.md](../gw-data-formats/http-data-from-bluetooth-sensors-without-timestamps.md "mention")
-* [mqtt-time-stamped-data-from-bluetooth-sensors.md](../gw-data-formats/mqtt-time-stamped-data-from-bluetooth-sensors.md "mention")
-* [mqtt-data-from-bluetooth-sensors-without-timestamps.md](../gw-data-formats/mqtt-data-from-bluetooth-sensors-without-timestamps.md "mention")
-* [http-gateway-status.md](../gw-data-formats/http-gateway-status.md "mention")
+* [http-time-stamped-data-from-bluetooth-sensors.md](../data-formats/http-time-stamped-data-from-bluetooth-sensors.md "mention")
+* [http-data-from-bluetooth-sensors-without-timestamps.md](../data-formats/http-data-from-bluetooth-sensors-without-timestamps.md "mention")
+* [mqtt-time-stamped-data-from-bluetooth-sensors.md](../data-formats/mqtt-time-stamped-data-from-bluetooth-sensors.md "mention")
+* [mqtt-data-from-bluetooth-sensors-without-timestamps.md](../data-formats/mqtt-data-from-bluetooth-sensors-without-timestamps.md "mention")
+* [http-gateway-status.md](../data-formats/http-gateway-status.md "mention")
 
 ## Using the Gateway with Ruuvi Station app
 

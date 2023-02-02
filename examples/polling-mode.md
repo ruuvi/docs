@@ -4,19 +4,19 @@ It is possible to poll the accumulated data from the  Ruuvi Gateway via HTTP.
 
 On the "Access Settings" page, enable bearer authentication and set the bearer token:
 
-![](<../.gitbook/assets/Screenshot from 2022-06-10 10-20-23.png>)
+<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
 
 After that it is possible to poll data using "/history" endpoint:
 
 ```
-curl -H "Authorization: Bearer 0i0XJhGjpiMdEBRxI+hEXtJoGoL1jM7DFv6c6netsjU=" http://192.168.1.108/history
+curl -H "Authorization: Bearer vum0G0DwdUBiNreYdSdqB785SX+l9VsnDQyDclwDP/Q=" http://192.168.1.108/history
 ```
 
 The accumulated data will be returned in JSON format: [http-time-stamped-data-from-bluetooth-sensors.md](../data-formats/http-time-stamped-data-from-bluetooth-sensors.md "mention")or [http-data-from-bluetooth-sensors-without-timestamps.md](../data-formats/http-data-from-bluetooth-sensors-without-timestamps.md "mention")
 
 Example of time-stamped data:
 
-```
+```json
 {
   "data": {
     "coordinates": "",
