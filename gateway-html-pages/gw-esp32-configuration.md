@@ -36,8 +36,6 @@ In the next step, Ruuvi Gateway will ask you to connect the Ethernet cable (but 
 
 <figure><img src="../.gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
 
-![](<../.gitbook/assets/Ruuvi Gateway Configuration Wizard - Google Chrome\_025.png>)
-
 if the Ethernet cable has not been connected in 30 seconds, an error message will be displayed. In this case, you can go back and try again.
 
 <figure><img src="../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
@@ -70,17 +68,68 @@ Ruuvi Gateway can automatically download its configuration from a remote server,
 
 <figure><img src="../.gitbook/assets/image (30).png" alt=""><figcaption></figcaption></figure>
 
-You need to specify the base URL from where gw\_cfg.json with the Gateway settings can be downloaded. After pressing the Download button, a new configuration will be downloaded, which completes the configuration process. After that, Ruuvi Gateway will periodically check for configuration updates and download them. The polling period is set in the configuration file gw\_cfg.json ([gateway-configuration.md](../data-formats/gateway-configuration.md "mention")), which is downloaded from the server.
+You need to specify the base URL from where gw\_cfg.json with the Gateway settings can be downloaded.
+
+If you specify a folder name as the base URL (any URL that does not end with '.json'), it will first attempt to read the configuration file for the Gateway from \<GW\_MAC>.json (e.g. AABBCCDDEEFF.json). If this file fails, it will attempt to read the overall configuration from gw\_cfg.json.
+
+The configuration file can also be generated dynamically by the server, which requires the server to analyse the HTTP header 'ruuvi\_gw\_mac', which contains the MAC address in the format XX:XX:XX:XX:XX:XX.
+
+After entering the base URL, press the Check button to validate the URL and check that the configuration file exists. Next, after pressing the Download button, the new configuration will be downloaded, which completes the configuration process. After that, Ruuvi Gateway will periodically check for configuration updates and download them. The polling period is set in the configuration file ([gateway-configuration.md](../data-formats/gateway-configuration.md "mention")), which is downloaded from the server.
 
 <figure><img src="../.gitbook/assets/image (46).png" alt=""><figcaption></figcaption></figure>
 
-It is also possible to use basic HTTP authentication:
+The gateway configuration file on the remote server must contain at least the following attributes:
+
+* **remote\_cfg\_use:** true
+* **remote\_cfg\_url**: URL
+* **remote\_cfg\_refresh\_interval\_minutes**: a period of checking for an updated configuration (in minutes)
+* **remote\_cfg\_auth\_type**: authentication type ('**no**' if authentication is not required)
+
+Example of minimal gw\_cfg.json:
+
+```json
+{
+  "remote_cfg_use": true, 
+  "remote_cfg_url": "http://192.168.1.101:7000/", 
+  "remote_cfg_refresh_interval_minutes": 10,
+  "remote_cfg_auth_type": "no" 
+}
+```
+
+All configuration attributes not specified in the configuration file will retain their previous value after the new configuration is loaded from the remote server.
+
+Configuration downloads with basic HTTP authentication are also supported:
 
 <figure><img src="../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
+
+Example of corresponding minimal gw\_cfg.json:
+
+```json
+{
+  "remote_cfg_use": true, 
+  "remote_cfg_url": "http://192.168.1.101:7000/", 
+  "remote_cfg_refresh_interval_minutes": 10,
+  "remote_cfg_auth_type": "basic",
+  "remote_cfg_auth_basic_user": "user1",
+  "remote_cfg_auth_basic_pass": "password1"
+}
+```
 
 Or Bearer authentication (using a token):
 
 <figure><img src="../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
+
+Example of corresponding minimal gw\_cfg.json:
+
+```json
+{
+  "remote_cfg_use": true, 
+  "remote_cfg_url": "http://192.168.1.101:7000/", 
+  "remote_cfg_refresh_interval_minutes": 10,
+  "remote_cfg_auth_type": "bearer",
+  "remote_cfg_auth_bearer_token": "my_secret_token_123"
+}
+```
 
 ### Automatic updates
 
@@ -142,9 +191,9 @@ In the Statistics section, you can configure the sending of statistics to Ruuvi 
 
 <figure><img src="../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
 
-### Time Synchronization Options
+### Time Synchronisation Options
 
-In case the standard set of NTP servers is not accessible, then you can provide addresses of other NTP servers or use DHCP to get a list of NTP servers automatically. If Ruuvi Gateway does not have access to the Internet and NTP, then you can disable time synchronization, but in this case, relayed messages will not contain timestamps.
+If the default set of NTP servers is not accessible, then you can specify the addresses of other NTP servers or use DHCP to obtain a list of NTP servers automatically. If the Ruuvi Gateway does not have access to the Internet and NTP, you can disable time synchronisation, but in this case, relayed messages will not contain timestamps.
 
 <figure><img src="../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
 
@@ -156,15 +205,21 @@ By default, Ruuvi Gateway scans only for Ruuvi sensors (filtered by BLE SIG memb
 
 <figure><img src="../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
 
-Scan PHY Modulations to scan with. Coded PHY is also known as BLE Long Range. Most of the existing devices send only on 1 MBit/s PHY. Modulations are scanned in sequence, so scanning both PHYs leads to at least 50 % packet loss on other PHY.
+Also, you can enable Bluetooth long range (also known as Coded PHY). It is a new mode introduced in Bluetooth Version 5.0 to extend the range of Bluetooth devices from 30-100 feet to ranges of 1 kilometer and beyond.
 
-Scan extended payloads Both coded PHY and 1 MBit/s PHY may have a primary advertisement which tells that there is going to be extended data on a secondary channel. If enabled, the secondary payload is scanned. Coded PHY supports only Coded extended payload, 1 Mbit/s PHY supports scanning at 2 Mbit/s and 1 Mbit/s PHY extended payloads.
+**Note**: Most existing devices only transmit on 1 Mbps PHY. 1 Mbps and Coded PHYs modulations are scanned sequentially, so scanning both PHYs will result in at least 50% packet loss on one of the PHYs.
 
 <figure><img src="../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
 
-Scan channel Each enabled BLE channel is scanned in sequence for at least 7000 ms per channel, for a total of 21000 ms if all 3 channels are enabled. At least one channel must be enabled.
+If you want to relay data from more than just Ruuvi sensors, you need to select the "**All (including third party beacons)**" option and adjust the scanned PHYs, Bluetooth channels used and the ability to use extended payload (BLE extended advertising):&#x20;
 
 <figure><img src="../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
+
+**Scan extended payloads**. Both Coded PHY and 1 Mbps PHY may have a primary advertisement that tells that there is going to be extended data on a secondary channel. If "**Use extended payload**" is enabled, the secondary payload will be scanned.&#x20;
+
+Coded PHY supports only Coded extended payload, 1 Mbps PHY supports scanning at 2 Mbps and 1 Mbps PHY extended payloads.
+
+**Use channel**. Each enabled BLE channel is scanned sequentially for a minimum of 7000 ms per channel, for a total of 21000 ms if all 3 channels are enabled. At least one channel must be active.
 
 ### Configuration completion
 
