@@ -1,8 +1,4 @@
----
-description: Authentication page when accessing from LAN
----
-
-# auth.html
+# Authentication when accessing from LAN
 
 When accessing Ruuvi Gateway from LAN and the access is password protected, then the authentication page will automatically open:
 
