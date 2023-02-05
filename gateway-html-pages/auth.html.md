@@ -2,7 +2,7 @@
 
 When accessing Ruuvi Gateway from LAN and the access is password protected, then the authentication page will automatically open:
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 If default settings are used, then you can log in using the following credentials:\
 Username: Admin\

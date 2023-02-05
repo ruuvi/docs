@@ -66,6 +66,7 @@ This data format is used in the following cases:
   "mqtt_pass": "",
   "lan_auth_type": "lan_auth_default",
   "lan_auth_api_key": "",
+  "lan_auth_api_key_rw": "",
   "auto_update_cycle": "regular",
   "auto_update_weekdays_bitmask": 127,
   "auto_update_interval_from": 0,
@@ -394,12 +395,21 @@ The format of this JSON file is described as JSON schema, which provides human- 
       "type": "string"
     },
     "lan_auth_api_key": {
-      "title": "API key (token) for HTTP bearer authentication when accessing from LAN",
+      "title": "API key (token) for HTTP bearer authentication when accessing from LAN (read-only access)",
       "description": "If 'lan_auth_api_key' is empty, then bearer authentication is disabled.",
       "type": "string",
       "default": "",
       "examples": [
-        "304uOrJMoCNEVaPaXswV9U1qRDPZFbl0V2x7OXHM5nw="
+        "Uj+4tj24unVekco/lTLTRyxUfv1J8M6U+sbNsKTWRr0="
+      ]
+    },
+    "lan_auth_api_key_rw": {
+      "title": "API key (token) for HTTP bearer authentication when accessing from LAN (full or read/write access)",
+      "description": "If 'lan_auth_api_key_rw' is empty, then bearer authentication is disabled.",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "1SDrQH1FkH+pON0GsSjt2gYeMSP02uYqfuu7LWdaBvY="
       ]
     },
     "auto_update_cycle": {

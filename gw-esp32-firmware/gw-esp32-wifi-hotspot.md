@@ -1,7 +1,3 @@
----
-description: 'Lifecycle: Beta. Last updated 2021-04-15'
----
-
 # GW ESP32 WiFi Hotspot
 
 The Gateway provides a WiFi hotspot for configuration. The hotspot has SSID with the name "**Configure Ruuvi Gateway ABCD**" where ABCD is the last 2 bytes of the gateway WiFi MAC address. No password is required to connect to the gateway's hotspot.&#x20;

@@ -66,3 +66,5 @@ Example of corresponding minimal gw\_cfg.json:
   "remote_cfg_auth_bearer_token": "my_secret_token_123"
 }
 ```
+
+You can also trigger a forced configuration download via API: [configuration-download-from-a-remote-server-via-api.md](../../gw-examples/configuration-download-from-a-remote-server-via-api.md "mention")

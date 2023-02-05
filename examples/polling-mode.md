@@ -6,10 +6,11 @@ On the "Access Settings" page, enable bearer authentication and set the bearer t
 
 <figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
 
-After that it is possible to poll data using "/history" endpoint:
+After that it is possible to poll data using the "/history" endpoint:
 
-```
-curl -H "Authorization: Bearer vum0G0DwdUBiNreYdSdqB785SX+l9VsnDQyDclwDP/Q=" http://192.168.1.108/history
+```shell
+curl -v http://<RUUVI_GW_IP>/history 
+    -H "Authorization: Bearer vum0G0DwdUBiNreYdSdqB785SX+l9VsnDQyDclwDP/Q="
 ```
 
 The accumulated data will be returned in JSON format: [http-time-stamped-data-from-bluetooth-sensors.md](../data-formats/http-time-stamped-data-from-bluetooth-sensors.md "mention")or [http-data-from-bluetooth-sensors-without-timestamps.md](../data-formats/http-data-from-bluetooth-sensors-without-timestamps.md "mention")

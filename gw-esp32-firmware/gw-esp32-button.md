@@ -1,7 +1,3 @@
----
-description: 'Lifecycle: Alpha'
----
-
 # GW ESP32 Button
 
 ## Button functionality

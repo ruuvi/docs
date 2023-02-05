@@ -65,6 +65,11 @@
   * [Gateway configuration](data-formats/gateway-configuration.md)
 * [GW Examples](examples/README.md)
   * [Polling mode](examples/polling-mode.md)
+  * [Poll endpoint "/metrics"](gw-examples/poll-endpoint-metrics.md)
+  * [Configuration update via API](gw-examples/configuration-update-via-api.md)
+  * [Firmware update via API](gw-examples/firmware-update-via-api.md)
+  * [Configuration download from a remote server via API](gw-examples/configuration-download-from-a-remote-server-via-api.md)
+  * [MQTT examples](gw-examples/mqtt-examples.md)
 
 ## Toolchain for firmware <a href="#toolchain" id="toolchain"></a>
 
