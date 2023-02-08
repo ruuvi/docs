@@ -213,3 +213,71 @@ String id for creator of code, e.g. webshop account which triggered code generat
 ```
 {% endswagger-response %}
 {% endswagger %}
+
+{% swagger method="post" path="iOS" baseUrl="FCM://" summary="Freebase Cloud Messaging to iOS devices - Proposal 2023-02-08" %}
+{% swagger-description %}
+FCM is used to deliver push notifications to user applications. To receive the notification, user must register their device token with a POST to [https://network.ruuvi.com/push-register](https://network.ruuvi.com/push-register)
+
+`{ "notification":{` \
+&#x20; `"body": $alertData,` \
+&#x20; `"title":"Ruuvi $alertType alert: $name"`\
+&#x20; `},` \
+&#x20; `"alert":{` \
+&#x20;   `"title-loc-key": RUUVI_$alertType,` \
+&#x20;   `"title-loc-args": [$alertType, $triggertype],` \
+&#x20;   `"loc-key" : "RUUVI_$alertType_$triggerType",` \
+&#x20;   `"loc-args" : [ $name, $currentValue, $alertUnit, $thresholdValue, $alertUnit]` \
+&#x20; `},` \
+&#x20; `"content_available":1,`\
+&#x20; `"mutable-content":1,   "token":$token,` \
+&#x20; `"email":"",` \
+&#x20; `"type":"alert",` \
+&#x20; `"data":{` \
+&#x20;   `"name": $name,` \
+&#x20;   `"id":$`sensor\_id`,` \
+&#x20;   `"alertType": $alertType,` \
+&#x20;   `"triggerType": $triggertype,` \
+&#x20;   `"currentValue": $currentValue,` \
+&#x20;   `"thresholdValue": $thresholdValue,` \
+&#x20;   `"alertUnit": $alertUnit,` \
+&#x20;   `"alertData": $alertData` \
+&#x20; `}` \
+`}`
+{% endswagger-description %}
+
+{% swagger-parameter in="body" name="alertData" %}
+User-defined alert title. May be empty string
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="alertType" required="true" %}
+Physical quantity of alert, one of: {"Temperature", "Humidity", "Pressure", "Movement", "Voltage", "RSSI", "noData"}
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="triggerType" required="true" %}
+Type of violation, one of {"Over", "Under", "Different from"}
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="name" required="true" %}
+User-configured sensor name
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="alertUnit" required="true" %}
+Unit of alert, e.g. "C", "F", "K"
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="currentValue" required="true" %}
+Current value of alerting sensor, in alertUnit units
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="thresholdValue" required="true" %}
+Threshold value of alerting sensor, in alertUnit units
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="token" required="true" %}
+FCM Token of receiver
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="sensor_id" required="true" %}
+MAC Address of alerting senser
+{% endswagger-parameter %}
+{% endswagger %}
