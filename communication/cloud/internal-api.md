@@ -229,8 +229,9 @@ FCM is used to deliver push notifications to user applications. To receive the n
 &#x20;   `"loc-args" : [ $name, $currentValue, $alertUnit, $thresholdValue, $alertUnit]` \
 &#x20; `},` \
 &#x20; `"content_available":1,`\
-&#x20; `"mutable-content":1,   "token":$token,` \
-&#x20; `"email":"",` \
+&#x20; `"mutable-content":1,`\
+&#x20; `"token":$token,` \
+&#x20; `"email":$email,` \
 &#x20; `"type":"alert",` \
 &#x20; `"data":{` \
 &#x20;   `"name": $name,` \
@@ -279,5 +280,9 @@ FCM Token of receiver
 
 {% swagger-parameter in="body" name="sensor_id" required="true" %}
 MAC Address of alerting senser
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="email" required="true" %}
+User email
 {% endswagger-parameter %}
 {% endswagger %}
