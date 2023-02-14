@@ -70,6 +70,7 @@
   * [Firmware update via API](gw-examples/firmware-update-via-api.md)
   * [Configuration download from a remote server via API](gw-examples/configuration-download-from-a-remote-server-via-api.md)
   * [MQTT examples](gw-examples/mqtt-examples.md)
+  * [Home Assistant](gw-examples/home-assistant.md)
 
 ## Toolchain for firmware <a href="#toolchain" id="toolchain"></a>
 

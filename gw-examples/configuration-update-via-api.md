@@ -4,7 +4,7 @@ You can configure the gateway so that you can update the configuration on it pro
 
 On the "Access Settings" page, enable full access using bearer authentication and set the API-key:
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
 Example of a command to download the configuration and save it to the ruuvi.json file:
 

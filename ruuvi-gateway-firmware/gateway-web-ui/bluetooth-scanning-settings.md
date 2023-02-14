@@ -2,7 +2,7 @@
 
 To access **Bluetooth Scanning Settings**, you must first enable access to configure advanced settings on the **Cloud Options** page under **Advanced Settings**:
 
-<figure><img src="../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
 
 By default, Ruuvi Gateway scans only for Ruuvi sensors (filtered by BLE SIG member ID 0x0499)
 

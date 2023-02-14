@@ -10,7 +10,7 @@ description: >-
 
 Open Web-UI, go to "Software Update" page, expand "Advanced Settings" and enable the checkbox "Specify a URL that contains required firmware update binaries":
 
-<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (20) (1).png" alt=""><figcaption></figcaption></figure>
 
 In the URL input field change the version number to the desired one, then press "UPDATE" button.
 

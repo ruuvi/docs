@@ -6,7 +6,7 @@ By default, Ruuvi Gateway sends accumulated messages from Bluetooth sensors [htt
 
 But you can change the cloud options under the "Advanced Settings":
 
-<figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
 
 On the next page, you can configure data transfer to HTTP(S) or MQTT(s) backend:
 

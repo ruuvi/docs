@@ -2,7 +2,7 @@
 
 In this step, Ruuvi Gateway checks for software updates.
 
-<figure><img src="../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (23) (1).png" alt=""><figcaption></figcaption></figure>
 
 If a newer version is available, the gateway will offer to update the firmware:
 

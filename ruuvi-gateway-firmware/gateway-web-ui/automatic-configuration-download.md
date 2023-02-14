@@ -2,7 +2,7 @@
 
 Ruuvi Gateway can automatically download its configuration from a remote server, you can enable this feature on this page:
 
-<figure><img src="../../.gitbook/assets/image (30).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (30) (1).png" alt=""><figcaption></figcaption></figure>
 
 You need to specify the base URL from where gw\_cfg.json with the Gateway settings can be downloaded.
 
