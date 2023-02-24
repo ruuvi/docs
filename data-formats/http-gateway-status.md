@@ -9,7 +9,7 @@ The JSON data format description is provided in JSON schema format ([https://jso
 ```json
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "http://ruuvi.com/schemas/ruuvi_http_stat.schema.json",
+  "$id": "http://ruuvi.com/schemas/ruuvi_gw_status.schema.json",
   "title": "Status of Gateway",
   "type": "object",
   "required": [
