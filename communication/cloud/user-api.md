@@ -497,7 +497,7 @@ Optionally filter only one sensor
 
 {% swagger method="get" path="/sensors-dense" baseUrl="https://network.ruuvi.com" summary="Get your sensors with calibration data, latest measurement, and alerts settings" %}
 {% swagger-description %}
-Fetches the list of claimed and shared sensors with calibration data, sensor last measurement and alert settings. By default the endpoint returns only the claimed sensors with calibration data. Optional arguments must be passed to get shared sensors, last measurement, and alert settings. 
+Fetches the list of claimed and shared sensors with calibration data, sensor last measurement, subscription type and alert settings. By default the endpoint returns only the claimed sensors with calibration data. Optional arguments must be passed to get shared sensors, last measurement, and alert settings. 
 {% endswagger-description %}
 
 {% swagger-parameter in="query" name="mode" type="string" %}
@@ -517,7 +517,7 @@ Optionally returns the sensors shared to the logged-in user alongside claimed se
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="measurements" type="bool" %}
-Optionally returns the latest measurement of each of the sensors in the collection
+Optionally returns the latest measurement of each of the sensors in the collection. Returns also the subscription on which the data is based on. 
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="alerts" type="bool" %}
@@ -569,6 +569,14 @@ Optionally returns the alerts settings of each of the sensors in the collection
                     ...
                 ]
             },
+            owner: <EMAIL, masked if public sensor>
+            subscription: {
+                    "maxHistoryDays": <INT>,
+                    "maxResolutionMinutes": <INT>,
+                    "emailAlertAllowed": <true|false>,
+                    "pushAlertAllowed": <true|false>,
+                    "subscriptionName": <STRING>
+            }
             ...
         ]
     }
@@ -1345,7 +1353,7 @@ Optional parameters used internally by Ruuvi Cloud when delivering notifications
 {% endswagger-response %}
 {% endswagger %}
 
-{% swagger method="post" path="push-unregister" baseUrl="https://network.ruuvi.com/" summary="Remove a push notification token for user - Proposal" %}
+{% swagger method="post" path="push-unregister" baseUrl="https://network.ruuvi.com/" summary="Remove a push notification token for user" %}
 {% swagger-description %}
 Removes given token from user, e.g. when signing off from the app. This does not require authentication to ensure that a device can always unregister itself.
 
@@ -1393,7 +1401,7 @@ Token ID received in listing of tokens
 {% endswagger-response %}
 {% endswagger %}
 
-{% swagger method="get" path="push-list" baseUrl="https://network.ruuvi.com/" summary="Get a list of tokens associated with user account - Proposal" %}
+{% swagger method="get" path="push-list" baseUrl="https://network.ruuvi.com/" summary="Get a list of tokens associated with user account" %}
 {% swagger-description %}
 List all tokens of user. Returns a listing of tokenId - name pairs. 
 {% endswagger-description %}
