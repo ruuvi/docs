@@ -47,6 +47,16 @@ In case of a reset, the token will be provided as a response to the call." %}
 ```
 {% endswagger-response %}
 
+{% swagger-response status="429: Too Many Requests" description="Over 10 calls in an hour" %}
+```
+{
+      result: 'error',
+      error: 'Too many requests.',
+      code: 'ER_THROTTLED'
+}
+```
+{% endswagger-response %}
+
 {% swagger-response status="500" description="If a something goes wrong with the request itself, you might receive an Unknown error. Please contact your system administrator if this occurs." %}
 ```
 {
@@ -781,6 +791,10 @@ Sensor ID to update
 Desired name of the tag
 {% endswagger-parameter %}
 
+{% swagger-parameter in="body" name="timestamp" type="number" %}
+Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored. 
+{% endswagger-parameter %}
+
 {% swagger-response status="200" description="Only returns the fields that had an update targeted to them." %}
 ```
 {
@@ -812,6 +826,10 @@ Desired name of the tag
     "code": "ER_SENSOR_NOT_FOUND"
 }
 ```
+{% endswagger-response %}
+
+{% swagger-response status="409: Conflict" description="Cloud has fresher data than timestamp" %}
+
 {% endswagger-response %}
 
 {% swagger-response status="500" description="" %}
@@ -965,6 +983,10 @@ Setting value
 Setting key (alphanumeric with "_", "-" and "."
 {% endswagger-parameter %}
 
+{% swagger-parameter in="body" name="timetamp" type="number" %}
+Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored.
+{% endswagger-parameter %}
+
 {% swagger-response status="200" description="" %}
 ```
 {
@@ -974,6 +996,10 @@ Setting key (alphanumeric with "_", "-" and "."
     }
 }
 ```
+{% endswagger-response %}
+
+{% swagger-response status="409: Conflict" description="Cloud has fresher data than timestamp" %}
+
 {% endswagger-response %}
 {% endswagger %}
 
@@ -1006,6 +1032,10 @@ Used to toggle alert on and off
 Sensor MAC of the target sensor
 {% endswagger-parameter %}
 
+{% swagger-parameter in="body" name="timestamp" type="number" %}
+Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored. 
+{% endswagger-parameter %}
+
 {% swagger-response status="200" description="" %}
 ```
 {
@@ -1015,6 +1045,10 @@ Sensor MAC of the target sensor
     }
 }
 ```
+{% endswagger-response %}
+
+{% swagger-response status="409: Conflict" description="Cloud has fresher data than timestamp" %}
+
 {% endswagger-response %}
 {% endswagger %}
 
@@ -1290,7 +1324,7 @@ Bearer token of the user
 {% endswagger-response %}
 {% endswagger %}
 
-{% swagger method="post" path="push-register" baseUrl="https://network.ruuvi.com/" summary="Register a push notification token for user - Proposal" %}
+{% swagger method="post" path="push-register" baseUrl="https://network.ruuvi.com/" summary="Register a push notification token for user" %}
 {% swagger-description %}
 Register a device to Cloud so Cloud can send push notifications to user. Currently only alerts for Android and iOS are supported.&#x20;
 
