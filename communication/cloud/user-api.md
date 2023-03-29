@@ -1,5 +1,5 @@
 ---
-description: 'Ruuvi Network (Serverless) user facing API. Lifecycle: Beta'
+description: 'Ruuvi Network (Serverless) user facing API. Lifecycle: in production'
 ---
 
 # User API
@@ -13,6 +13,18 @@ For example, if the body parameter in the sections below refers to an **email** 
     "email": "<YOUR VALUE>"
 }
 ```
+
+All authenticated queries are ratelimited to 4 \* MAX\_SENSORS\_OWNED + 0.1 \* MAX\_HISTORY\_DAYS per minute. For example user with Basic plan has maximum of 90 days of history on 25 sensors and can make up to 109 queries per minute. The throtteled response has response code of 429 and payload of:&#x20;
+
+```
+{
+      result: 'error',
+      error: 'Too many requests.',
+      code: 'ER_THROTTLED'
+}
+```
+
+
 
 {% swagger baseUrl="https://network.ruuvi.com" path="/register" method="post" summary="Register User or Reset Token" %}
 {% swagger-description %}
