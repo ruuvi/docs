@@ -983,7 +983,7 @@ Setting value
 Setting key (alphanumeric with "_", "-" and "."
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="timetamp" type="number" %}
+{% swagger-parameter in="body" name="timestamp" type="number" %}
 Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored.
 {% endswagger-parameter %}
 
