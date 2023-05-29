@@ -35,4 +35,3 @@ Grayed out data is the scan response. Scan response is relevent when establishin
 
 Interpretation of different payloads is described in the sub-sections of this page.
 
-****

@@ -18,11 +18,7 @@ The gateway is reachable at http://10.10.0.1 once a client has connected to the 
 
 Sensitive data (containing passwords) is transmitted in encrypted form. The format for transmitting encrypted data is as follows (JSON):
 
-| Attribute name | Description                                             |
-| -------------- | ------------------------------------------------------- |
-| **encrypted**  | Encrypted data, encoded as **Base64**                   |
-| **iv**         | AES-256 initialization vector, encoded as **Base64**    |
-| **hash**       | SHA-256 hash of unencrypted data, encoded as **Base64** |
+<table><thead><tr><th width="168">Attribute name</th><th>Description</th></tr></thead><tbody><tr><td><strong>encrypted</strong></td><td>Encrypted data, encoded as <strong>Base64</strong></td></tr><tr><td><strong>iv</strong></td><td>AES-256 initialization vector, encoded as <strong>Base64</strong></td></tr><tr><td><strong>hash</strong></td><td>SHA-256 hash of unencrypted data, encoded as <strong>Base64</strong></td></tr></tbody></table>
 
 Example of encrypted data:
 

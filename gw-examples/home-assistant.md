@@ -39,18 +39,18 @@ You can manually open the **Integrations** tab:
 
 You will then need to configure the discovered sensors, select one of them and press the **CONFIGURE** button:
 
-****![](<../.gitbook/assets/image (15).png>)****
+![](<../.gitbook/assets/image (15).png>)
 
 Then press the **SUBMIT** button:
 
-****![](<../.gitbook/assets/image (18).png>)****
+![](<../.gitbook/assets/image (18).png>)
 
 Configure **Area** for the sensor and press the **FINISH** button:
 
-****![](<../.gitbook/assets/image (19).png>)
+![](<../.gitbook/assets/image (19).png>)
 
 After that, the configured sensor will appear on the **Overview** page:
 
-****![](<../.gitbook/assets/image (45).png>)****
+![](<../.gitbook/assets/image (45).png>)
 
 That's all.

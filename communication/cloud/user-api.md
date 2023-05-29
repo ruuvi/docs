@@ -224,7 +224,10 @@ Human-readable description of sensor, e.g. "Sensor in top shelf of fridge"
 {% swagger-response status="200: OK" description="Sensor was claimed successfully" %}
 ```javascript
 {
-    'sensor': MAC_ADDRESS_STRING
+    "result": "success",
+    "data": {
+        "sensor": "C5:2A:E7:4D:CE:7F"
+    }
 }
 ```
 {% endswagger-response %}
@@ -1152,7 +1155,10 @@ Secret of sensor to reclaim
 {% swagger-response status="200: OK" description="Sensor ownership was transferred" %}
 ```javascript
 {
-    'sensor': MAC_ADDRESS_STRINGN
+    "result": "success",
+    "data": {
+        "sensor": "C5:2A:E7:4D:CE:7F"
+    }
 }
 ```
 {% endswagger-response %}
