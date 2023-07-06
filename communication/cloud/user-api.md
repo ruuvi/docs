@@ -1009,14 +1009,16 @@ Epoch timestamp in seconds of settings. If backend has fresher data stored, this
 {% swagger baseUrl="https://network.ruuvi.com" path="/alerts" method="post" summary="Create and update Alerts" %}
 {% swagger-description %}
 Sets an alert on a sensor for a given metric. The alert condition is tested against the absolute value received from the sensors in conjunction with the use set offsets for that particular sensor.
+
+Proposed values are marked with \*.&#x20;
 {% endswagger-description %}
 
 {% swagger-parameter in="body" name="counter" type="number" %}
 For movement alerts, one can manually set the current number
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="type" type="string" %}
-One of: temperature, humidity, pressure, signal, movement
+{% swagger-parameter in="body" name="type" type="string" required="true" %}
+One of: temperature, humidity, pressure, signal, movement, *offline
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="min" type="number" %}
@@ -1037,6 +1039,10 @@ Sensor MAC of the target sensor
 
 {% swagger-parameter in="body" name="timestamp" type="number" %}
 Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored. 
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="*delay" type="number" %}
+How many *seconds* alert condition has to be valid before alert gets triggered. Delay is reset if alert is cleared. Defaults to 0. 
 {% endswagger-parameter %}
 
 {% swagger-response status="200" description="" %}
@@ -1081,7 +1087,8 @@ Optional Sensor MAC for filter the alerts
                 offsetTemperature: <double>,
                 offsetPressure: <double>,
                 triggered: <true|false>,
-                triggeredAt: <timestamp>
+                triggeredAt: <timestamp>,
+                *delay: <number, positive integer>
             }
         ]
     }
