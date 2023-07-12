@@ -101,6 +101,7 @@
   * [User API](communication/cloud/user-api.md)
   * [Gateway API](communication/cloud/gateway-api.md)
   * [Internal API](communication/cloud/internal-api.md)
+  * [Alerts](communication/cloud/alerts.md)
   * [Cloud stored app settings](communication/cloud/cloud-stored-app-settings.md)
 * [Naming conventions](communication/units-and-naming-conventions.md)
 
