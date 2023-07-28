@@ -39,3 +39,9 @@ Alerts trigger once and wait until they are resolved before they can be triggere
 Additionally, alerts can trigger at most once per hour for user and alert per sensor, this reduces spam in case where e.g. fridge swings back and forth the alert thresholds. Business users can configure delay before triggering an alert for e.g. walk-in freezers which might spike up for a short while when someone enters and then drop back to allowed range.&#x20;
 
 <figure><img src="../../.gitbook/assets/alert trigger resolve.png" alt=""><figcaption><p>Alert triggering and getting resolved</p></figcaption></figure>
+
+For full details of alert triggering and resolving logic, please see the following flowchart.
+
+
+
+<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
