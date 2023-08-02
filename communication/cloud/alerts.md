@@ -44,4 +44,5 @@ For full details of alert triggering and resolving logic, please see the followi
 
 
 
-<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/alertflow.drawio.svg" alt=""><figcaption></figcaption></figure>
+
