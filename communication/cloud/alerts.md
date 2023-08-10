@@ -44,5 +44,17 @@ For full details of alert triggering and resolving logic, please see the followi
 
 
 
-<figure><img src="../../.gitbook/assets/alertflow.drawio.svg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/alertflow.drawio-2.svg" alt=""><figcaption></figcaption></figure>
 
+The time constants for throttles are:&#x20;
+
+
+
+| Feature                          | Time                                          |
+| -------------------------------- | --------------------------------------------- |
+| Gateway data processing interval | 1 minute                                      |
+| Sensor data processing interval  | 1 / 5 / 10 minutes, depending on subscription |
+| Alert triggered hysteresis       | 60 minutes                                    |
+| Alert resolved hysteresis        | 5 minutes                                     |
+| Offline alert scan interval      | 1 minute                                      |
+| Alert trigger delay              | User defined                                  |
