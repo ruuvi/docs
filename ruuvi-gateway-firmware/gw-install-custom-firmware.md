@@ -10,7 +10,7 @@ description: >-
 
 Open Web-UI, go to "Software Update" page, expand "Advanced Settings" and enable the checkbox "Specify a URL that contains required firmware update binaries":
 
-<figure><img src="../.gitbook/assets/image (20) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot from 2023-06-27 18-17-28.png" alt=""><figcaption></figcaption></figure>
 
 In the URL input field change the version number to the desired one, then press "UPDATE" button.
 
@@ -50,5 +50,5 @@ python3 -m http.server 7000
 
 Then open Web-UI, go to "Software Update" page, expand "Advanced Settings", enable checkbox "Specify a URL that contains required firmware update binaries" and in the URL input field set the address of your local HTTP server, then press "UPDATE" button:
 
-<figure><img src="../.gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot from 2023-06-27 22-23-36.png" alt=""><figcaption></figcaption></figure>
 

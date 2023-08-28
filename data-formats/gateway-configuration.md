@@ -47,10 +47,11 @@ This data format is used in the following cases:
   "remote_cfg_auth_basic_user": "",
   "remote_cfg_auth_basic_pass": "",
   "remote_cfg_refresh_interval_minutes": 0,
+  "use_http_ruuvi": true,
   "use_http": true,
   "http_url": "https://network.ruuvi.com/record",
-  "http_user": "",
-  "http_pass": "",
+  "http_data_format": "ruuvi",
+  "http_auth": "none",
   "use_http_stat": true,
   "http_stat_url": "https://network.ruuvi.com/status",
   "http_stat_user": "",
@@ -86,6 +87,8 @@ This data format is used in the following cases:
   "scan_channel_37": true,
   "scan_channel_38": true,
   "scan_channel_39": true,
+  "scan_filter_allow_listed": false,
+  "scan_filter_list": [],
   "coordinates": ""
 }
 

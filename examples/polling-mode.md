@@ -4,7 +4,7 @@ It is possible to poll the accumulated data from the  Ruuvi Gateway via HTTP.
 
 On the "Access Settings" page, enable bearer authentication and set the bearer token:
 
-<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot from 2023-06-27 22-30-41.png" alt=""><figcaption></figcaption></figure>
 
 After that it is possible to poll data using the "/history" endpoint:
 

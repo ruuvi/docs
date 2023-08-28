@@ -60,7 +60,7 @@
   * [HTTP: Data from Bluetooth-sensors without timestamps](data-formats/http-data-from-bluetooth-sensors-without-timestamps.md)
   * [MQTT: Time-stamped data from Bluetooth-sensors](data-formats/mqtt-time-stamped-data-from-bluetooth-sensors.md)
   * [MQTT: Data from Bluetooth-sensors without timestamps](data-formats/mqtt-data-from-bluetooth-sensors-without-timestamps.md)
-  * [HTTP GET /history (with timestamps)](gw-data-formats/http-get-history-with-timestamps.md)
+  * [HTTP GET /history (with timestamps) and decoding](gw-data-formats/http-get-history-with-timestamps-and-decoding.md)
   * [HTTP: Gateway status](data-formats/http-gateway-status.md)
   * [Gateway configuration](data-formats/gateway-configuration.md)
 * [GW Examples](examples/README.md)
@@ -71,6 +71,7 @@
   * [Configuration download from a remote server via API](gw-examples/configuration-download-from-a-remote-server-via-api.md)
   * [MQTT examples](gw-examples/mqtt-examples.md)
   * [Home Assistant](gw-examples/home-assistant.md)
+  * [MQTT+AWS IoT Core](gw-examples/mqtt+aws-iot-core.md)
 
 ## Toolchain for firmware <a href="#toolchain" id="toolchain"></a>
 

@@ -586,4 +586,4 @@ Read the history for the last N seconds only
 {% endswagger-response %}
 {% endswagger %}
 
-See examples of the "history" payload here: [http-get-history-with-timestamps.md](../gw-data-formats/http-get-history-with-timestamps.md "mention")
+See examples of the "history" payload here: [http-get-history-with-timestamps-and-decoding.md](../gw-data-formats/http-get-history-with-timestamps-and-decoding.md "mention")
