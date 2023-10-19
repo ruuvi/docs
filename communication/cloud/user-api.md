@@ -70,11 +70,7 @@ In case of a reset, the token will be provided as a response to the call." %}
 
 {% swagger baseUrl="https://network.ruuvi.com" path="/verify" method="get" summary="Verify Account" %}
 {% swagger-description %}
-Verifies the given e-mail address and finalizes creating the account and creating a Ruuvi Network subscription. Notice that the token for this end-point is delivered via e-mail by the 
-
-**Register User**
-
- endpoint.
+Verifies the given e-mail address and finalizes creating the account and creating a Ruuvi Network subscription. Notice that the token for this end-point is delivered via e-mail by the **Register User** endpoint.
 {% endswagger-description %}
 
 {% swagger-parameter in="query" name="token" type="string" %}
@@ -270,12 +266,16 @@ Human-readable description of sensor, e.g. "Sensor in top shelf of fridge"
 Unclaims a sensor from your user, revoking your own access to it and making it claimable by other users.
 {% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" type="string" %}
+{% swagger-parameter in="header" name="Authorization" type="string" required="true" %}
 Bearer token to authorize the request
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="sensor" type="string" %}
+{% swagger-parameter in="body" name="sensor" type="string" required="true" %}
 ID of the sensor to be unshared
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="deleteData" type="boolean" %}
+set to true to delete user data
 {% endswagger-parameter %}
 
 {% swagger-response status="200" description="" %}
@@ -289,19 +289,7 @@ ID of the sensor to be unshared
 
 {% swagger baseUrl="https://network.ruuvi.com" path="/share" method="post" summary="Share a sensor" %}
 {% swagger-description %}
-You can share your sensor data with other users via 
-
-**share**
-
- end-point. In addition to sensor you want to share, you must also include the e-mail address of the recipient. This will grant them access to the data via the 
-
-**get**
-
- end-point.
-
-\
-
-
+You can share your sensor data with other users via **share** end-point. In addition to sensor you want to share, you must also include the e-mail address of the recipient. This will grant them access to the data via the **get** end-point.\
 Furthermore, it will also send the target user a notification e-mail about the new share. If the target user does not exist yet, an invitation to create an account will be sent to them and they will gain access upon sign up.
 {% endswagger-description %}
 
@@ -323,6 +311,7 @@ Sensor ID to share
     "result": "success",
     "data": {
         "sensor": "<YOUR SENSOR ID>"
+        "invited": true
     }
 }
 ```
@@ -344,16 +333,6 @@ Sensor ID to share
     "result": "error",
     "error": "Unauthorized request.",
     "code": "ER_UNAUTHORIZED"
-}
-```
-{% endswagger-response %}
-
-{% swagger-response status="404" description="If the user you tried share to is not found on the system." %}
-```
-{
-    "result": "error",
-    "error": "User not found.",
-    "code": "ER_USER_NOT_FOUND"
 }
 ```
 {% endswagger-response %}
@@ -437,11 +416,7 @@ E-mail of the user the sensor is shared to. Optional if removing sensor shared t
 
 {% swagger baseUrl="https://network.ruuvi.com" path="/sensors" method="get" summary="Get your sensors" %}
 {% swagger-description %}
-Fetches a list of sensors you have access to including who those are shared to. This end-point deprecates the old 
-
-_shared_
-
- end-point.
+Fetches a list of sensors you have access to including who those are shared to. This end-point deprecates the old _shared_ end-point.
 {% endswagger-description %}
 
 {% swagger-parameter in="header" name="Authorization" type="string" %}
@@ -522,11 +497,11 @@ Optionally filter only one sensor
 
 {% swagger method="get" path="/sensors-dense" baseUrl="https://network.ruuvi.com" summary="Get your sensors with calibration data, latest measurement, and alerts settings" %}
 {% swagger-description %}
-Fetches the list of claimed and shared sensors with calibration data, sensor last measurement, subscription type and alert settings. By default the endpoint returns only the claimed sensors with calibration data. Optional arguments must be passed to get shared sensors, last measurement, and alert settings. 
+Fetches the list of claimed and shared sensors with calibration data, sensor last measurement, subscription type and alert settings. By default the endpoint returns only the claimed sensors with calibration data. Optional arguments must be passed to get shared sensors, last measurement, and alert settings.&#x20;
 {% endswagger-description %}
 
 {% swagger-parameter in="query" name="mode" type="string" %}
-Fetch mode: [dense, sparse, mixed], determines how the data is returned. Default: mixed
+Fetch mode: \[dense, sparse, mixed], determines how the data is returned. Default: mixed
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="sensor" type="string" %}
@@ -542,7 +517,7 @@ Optionally returns the sensors shared to the logged-in user alongside claimed se
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="measurements" type="bool" %}
-Optionally returns the latest measurement of each of the sensors in the collection. Returns also the subscription on which the data is based on. 
+Optionally returns the latest measurement of each of the sensors in the collection. Returns also the subscription on which the data is based on.&#x20;
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="alerts" type="bool" %}
@@ -679,7 +654,7 @@ Bearer token to authorize the request
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="mode" type="string" %}
-Fetch mode: [dense, sparse, mixed], determines how the data is returned. Default: mixed
+Fetch mode: \[dense, sparse, mixed], determines how the data is returned. Default: mixed
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="until" type="string" %}
@@ -687,7 +662,7 @@ Maximum timestamp of first returned result in Unix epoch format, in seconds. Def
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="since" type="string" %}
-Minimum timestamp of first returned result in Unix epoch format, in seconds. Default 0. 
+Minimum timestamp of first returned result in Unix epoch format, in seconds. Default 0.&#x20;
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="limit" type="string" %}
@@ -695,11 +670,11 @@ Maximum amount of results returned (capped at 5000).
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="sort" type="string" %}
-Sort Direction for the result: [asc, desc]. Default descending
+Sort Direction for the result: \[asc, desc]. Default descending
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="sensor" type="string" required="true" %}
-Sensor ID to retrieve the data 
+Sensor ID to retrieve the data&#x20;
 {% endswagger-parameter %}
 
 {% swagger-response status="200" description="Returns the most recent data points for the requested tag based on configuration and parameters.f" %}
@@ -795,7 +770,7 @@ Desired name of the tag
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="timestamp" type="number" %}
-Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored. 
+Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored.&#x20;
 {% endswagger-parameter %}
 
 {% swagger-response status="200" description="Only returns the fields that had an update targeted to them." %}
@@ -856,15 +831,7 @@ Bearer token of the user
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="action" type="string" %}
-One of: 
-
-_upload_
-
-, 
-
-_reset_
-
- (default: 'upload' if not given')
+One of: _upload_, _reset_ (default: 'upload' if not given')
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="sensor" type="string" %}
@@ -872,30 +839,10 @@ ID of the target Sensor
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="type" type="string" %}
-(
-
-**Required**
-
- when type is 'upload')
-
-\
-
-
-Content-Type of the desired image upload. Supported formats:
-
-\
-
-
-image/png
-
-\
-
-
-image/gif
-
-\
-
-
+(**Required** when type is 'upload')\
+Content-Type of the desired image upload. Supported formats:\
+image/png\
+image/gif\
 image/jpeg
 {% endswagger-parameter %}
 
@@ -983,7 +930,7 @@ Setting value
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="name" type="string" %}
-Setting key (alphanumeric with "_", "-" and "."
+Setting key (alphanumeric with "\_", "-" and "."
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="timestamp" type="number" %}
@@ -1018,7 +965,7 @@ For movement alerts, one can manually set the current number
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="type" type="string" required="true" %}
-One of: temperature, humidity, pressure, signal, movement, *offline
+One of: temperature, humidity, pressure, signal, movement, \*offline
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="min" type="number" %}
@@ -1038,11 +985,11 @@ Sensor MAC of the target sensor
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="timestamp" type="number" %}
-Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored. 
+Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored.&#x20;
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="*delay" type="number" %}
-How many *seconds* alert condition has to be valid before alert gets triggered. Delay is reset if alert is cleared. Defaults to 0. 
+How many \*seconds\* alert condition has to be valid before alert gets triggered. Delay is reset if alert is cleared. Defaults to 0.&#x20;
 {% endswagger-parameter %}
 
 {% swagger-response status="200" description="" %}
@@ -1107,7 +1054,7 @@ AA:BB:CC:DD:EE:FF (String)
 {% endswagger-parameter %}
 
 {% swagger-parameter in="header" required="true" name="Authorization" type="Bearer" %}
-Bearer <Bearer Token>
+Bearer \<Bearer Token>
 {% endswagger-parameter %}
 
 {% swagger-response status="200: OK" description="Masked email of sensor owner, empty string if sensor is not owned" %}
@@ -1197,7 +1144,7 @@ Secret of sensor to reclaim
 
 {% swagger method="post" path="subscription" baseUrl="https://network.ruuvi.com/" summary="Claim a subscription by a code" %}
 {% swagger-description %}
-This endpoints applies a new subscription to user immediately. Previous subscription is lost. Parameters are passed as JSON in body. The success response has full subscription history of user, with active subscription being first element of array of subscriptions. 
+This endpoints applies a new subscription to user immediately. Previous subscription is lost. Parameters are passed as JSON in body. The success response has full subscription history of user, with active subscription being first element of array of subscriptions.&#x20;
 {% endswagger-description %}
 
 {% swagger-parameter in="header" name="Authorization" required="true" %}
@@ -1205,7 +1152,7 @@ Bearer token of the user
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="code" required="true" %}
-Code of subscription 
+Code of subscription&#x20;
 {% endswagger-parameter %}
 
 {% swagger-response status="200: OK" description="Subscription was applied successfully" %}
@@ -1285,7 +1232,7 @@ Code of subscription
 
 {% swagger method="get" path="/subscription" baseUrl="https://network.ruuvi.com" summary="Get subscription history" %}
 {% swagger-description %}
-Return array of JSON objects detaling the subscriptions user has had. 
+Return array of JSON objects detaling the subscriptions user has had.&#x20;
 {% endswagger-description %}
 
 {% swagger-parameter in="header" name="Authorization" required="true" %}
@@ -1361,7 +1308,7 @@ Human-readable device name, e.g. "Otso's mobile phone". Defaults to device type.
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="data" %}
-Optional data to be passed to to push notification. Can be e.g. authentication token. 
+Optional data to be passed to to push notification. Can be e.g. authentication token.&#x20;
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="params" %}
@@ -1462,7 +1409,7 @@ Token ID received in listing of tokens
 
 {% swagger method="get" path="push-list" baseUrl="https://network.ruuvi.com/" summary="Get a list of tokens associated with user account" %}
 {% swagger-description %}
-List all tokens of user. Returns a listing of tokenId - name pairs. 
+List all tokens of user. Returns a listing of tokenId - name pairs.&#x20;
 {% endswagger-description %}
 
 {% swagger-parameter in="header" name="Authorization" required="true" %}
