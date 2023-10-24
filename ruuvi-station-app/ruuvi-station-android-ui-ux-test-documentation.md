@@ -1,6 +1,8 @@
 # Ruuvi Station Android UI/UX test documentation
 
-Temperature, humidity, pressure: setting allows adjusting unit and resolution**Installation, app info**
+Temperature, humidity, pressure: setting allows adjusting unit and resolution
+
+**Installation, app info**
 
 UI/UX checklist
 
