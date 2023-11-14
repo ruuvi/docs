@@ -8,7 +8,7 @@ You need to specify the base URL from where gw\_cfg.json with the Gateway settin
 
 If you specify a folder name as the base URL (any URL that does not end with '.json'), it will first attempt to read the configuration file for the Gateway from \<GW\_MAC>.json (e.g. AABBCCDDEEFF.json). If this file fails, it will attempt to read the overall configuration from gw\_cfg.json.
 
-The configuration file can also be generated dynamically by the server, which requires the server to analyse the HTTP header 'ruuvi\_gw\_mac', which contains the MAC address in the format XX:XX:XX:XX:XX:XX.
+If there are several Ruuvi Gateways in the network requesting configuration from a remote server, in some cases it may be convenient to request a file with a fixed name, but the content will be unique for each Ruuvi Gateway. In this case, the configuration file can also be generated dynamically by the server, where the server extracts the Gateway's MAC address from the HTTP request header named 'ruuvi\_gw\_mac' in the format XX:XX:XX:XX:XX:XX and generates a configuration specific to this Gateway based on the MAC address.
 
 After entering the base URL, press the Check button to validate the URL and check that the configuration file exists. Next, after pressing the Download button, the new configuration will be downloaded, which completes the configuration process. After that, Ruuvi Gateway will periodically check for configuration updates and download them. The polling period is set in the configuration file ([gateway-configuration.md](../../data-formats/gateway-configuration.md "mention")), which is downloaded from the server.
 
