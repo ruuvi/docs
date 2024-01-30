@@ -213,11 +213,7 @@ The data must be sent in an encrypted form (see [#encrypted-data-format](gw-esp3
 {% endswagger-description %}
 
 {% swagger-parameter in="body" name="remote_cfg_use" type="Bool" %}
-If true, then download the configuration from the remote server, specified in "
-
-**remote_cfg_url**
-
-"
+If true, then download the configuration from the remote server, specified in "**remote\_cfg\_url**"
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="remote_cfg_url" %}
@@ -438,7 +434,7 @@ Example:
 
 {% swagger baseUrl="http://10.10.0.1" path="/status.json" method="get" summary="status.json" %}
 {% swagger-description %}
-This URL can be polled to get the Wi-Fi/Ethernet connection status of the gateway. 
+This URL can be polled to get the Wi-Fi/Ethernet connection status of the gateway.&#x20;
 {% endswagger-description %}
 
 {% swagger-response status="200" description="Status of the network connection if it's not connected" %}
@@ -561,7 +557,7 @@ Disconnect from WiFi or Ethernet.
 
 {% swagger baseUrl="http://10.10.0.1" path="/metrics" method="get" summary="metrics" %}
 {% swagger-description %}
-Get machine statistics, such as uptime and free memory. Data is in Prometheus format. For more details, please see https://prometheus.io/docs/instrumenting/exposition_formats/ .
+Get machine statistics, such as uptime and free memory. Data is in Prometheus format. For more details, please see https://prometheus.io/docs/instrumenting/exposition\_formats/ .
 {% endswagger-description %}
 
 {% swagger-response status="200" description="Prometheus text data" %}
