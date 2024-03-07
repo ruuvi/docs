@@ -2,7 +2,7 @@
 
 Ruuvi Gateway can automatically download its configuration from a remote server, you can enable this feature on this page:
 
-<figure><img src="../../.gitbook/assets/Screenshot from 2023-06-27 18-20-32.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot from 2023-12-13 08-29-56.png" alt=""><figcaption></figcaption></figure>
 
 You need to specify the base URL from where gw\_cfg.json with the Gateway settings can be downloaded.
 
@@ -12,7 +12,7 @@ If there are several Ruuvi Gateways in the network requesting configuration from
 
 After entering the base URL, press the Check button to validate the URL and check that the configuration file exists. Next, after pressing the Download button, the new configuration will be downloaded, which completes the configuration process. After that, Ruuvi Gateway will periodically check for configuration updates and download them. The polling period is set in the configuration file ([gateway-configuration.md](../../data-formats/gateway-configuration.md "mention")), which is downloaded from the server.
 
-<figure><img src="../../.gitbook/assets/Screenshot from 2023-06-30 22-04-30.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot from 2023-12-13 08-31-57.png" alt=""><figcaption></figcaption></figure>
 
 The gateway configuration file on the remote server must contain at least the following attributes:
 
@@ -36,7 +36,7 @@ All configuration attributes not specified in the configuration file will retain
 
 Configuration downloads with basic HTTP authentication are also supported:
 
-<figure><img src="../../.gitbook/assets/Screenshot from 2023-06-27 18-25-24.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot from 2023-12-13 08-33-42.png" alt=""><figcaption></figcaption></figure>
 
 Example of corresponding minimal gw\_cfg.json:
 
@@ -69,10 +69,10 @@ Example of corresponding minimal gw\_cfg.json:
 
 It also supports client authentication via SSL by enabling the upload of a client certificate and its associated private key, ensuring secure and verified client-server communication:
 
-<figure><img src="../../.gitbook/assets/Screenshot from 2023-06-30 22-08-00.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot from 2023-12-13 08-35-16.png" alt=""><figcaption></figcaption></figure>
 
 You can use a server SSL Certificate if you want to be independent of public Certificate Authorities (CAs) or if you have deployed a self-signed certificate on the HTTPS server, giving you greater control and customization over your security infrastructure:
 
-<figure><img src="../../.gitbook/assets/Screenshot from 2023-06-30 22-17-42.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot from 2023-12-13 08-35-52.png" alt=""><figcaption></figcaption></figure>
 
 You can also trigger a forced configuration download via API: [configuration-download-from-a-remote-server-via-api.md](../../gw-examples/configuration-download-from-a-remote-server-via-api.md "mention")

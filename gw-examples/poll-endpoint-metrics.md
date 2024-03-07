@@ -4,13 +4,13 @@ Extended internal information on the status of the Ruuvi Gateway can be obtained
 
 On the "Access Settings" page, enable bearer authentication and set the bearer token:
 
-<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot from 2023-12-13 10-19-16.png" alt=""><figcaption></figcaption></figure>
 
 After that it is possible to poll data using the "/metrics" endpoint:
 
 ```shell
 curl -v http://<RUUVI_GW_IP>/metrics 
-    -H "Authorization: Bearer vum0G0DwdUBiNreYdSdqB785SX+l9VsnDQyDclwDP/Q="
+    -H "Authorization: Bearer Uj+4tj24unVekco/lTLTRyxUfv1J8M6U+sbNsKTWRr0="
 ```
 
 Example of the response:

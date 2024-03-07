@@ -4,7 +4,7 @@ You can run a firmware update from a specified URL programmatically, using beare
 
 On the "Access Settings" page, enable full access using bearer authentication and set the API-key:
 
-<figure><img src="../.gitbook/assets/Screenshot from 2023-06-27 22-32-38.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot from 2023-12-13 10-20-48.png" alt=""><figcaption></figcaption></figure>
 
 Example of a command to run a firmware update from the URL: "https://my\_server.com:7000/gw\_firmware/"
 

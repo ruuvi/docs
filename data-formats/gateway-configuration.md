@@ -126,16 +126,114 @@ The format of this JSON file is described as JSON schema, which provides human- 
   "$id": "http://ruuvi.com/schemas/ruuvi_gw_cfg.schema.json",
   "title": "Ruuvi gateway configuration",
   "type": "object",
+  "additionalProperties": false,
   "required": [
   ],
   "properties": {
+    "fw_ver": {
+      "title": "Current firmware version",
+      "description": "This field is generated only when configuration is requested via HTTP.",
+      "type": "string",
+      "examples": [
+        "v1.13.1"
+      ]
+    },
+    "nrf52_fw_ver": {
+      "title": "Current firmware version of nRF52",
+      "description": "This field is generated only when configuration is requested via HTTP.",
+      "type": "string",
+      "examples": [
+        "v1.0.0"
+      ]
+    },
+    "gw_mac": {
+      "title": "Gateway MAC address",
+      "description": "This field is generated only when configuration is requested via HTTP.",
+      "type": "string",
+      "examples": [
+        "C8:25:2D:8E:9C:2C"
+      ]
+    },
+    "storage": {
+      "title": "SSL certificates storage info",
+      "description": "This field is generated only when configuration is requested via HTTP.",
+      "type": "object",
+      "required": [
+        "storage_ready",
+        "http_cli_cert",
+        "http_cli_key",
+        "http_srv_cert",
+        "stat_cli_cert",
+        "stat_cli_key",
+        "stat_srv_cert",
+        "mqtt_cli_cert",
+        "mqtt_cli_key",
+        "mqtt_srv_cert",
+        "rcfg_cli_cert",
+        "rcfg_cli_key",
+        "rcfg_srv_cert"
+      ],
+      "properties": {
+        "storage_ready": {
+          "type": "boolean",
+          "title": "Status of storage"
+        },
+        "http_cli_cert": {
+          "type": "boolean",
+          "title": "Status of SSL client certificate for HTTP target"
+        },
+        "http_cli_key": {
+          "type": "boolean",
+          "title": "Status of SSL client private key for HTTP target"
+        },
+        "http_srv_cert": {
+          "type": "boolean",
+          "title": "Status of SSL server certificate for HTTP target"
+        },
+        "stat_cli_cert": {
+          "type": "boolean",
+          "title": "Status of SSL client certificate for Statistics"
+        },
+        "stat_cli_key": {
+          "type": "boolean",
+          "title": "Status of SSL client private key for Statistics"
+        },
+        "stat_srv_cert": {
+          "type": "boolean",
+          "title": "Status of SSL server certificate for Statistics"
+        },
+        "mqtt_cli_cert": {
+          "type": "boolean",
+          "title": "Status of SSL client certificate for MQTT"
+        },
+        "mqtt_cli_key": {
+          "type": "boolean",
+          "title": "Status of SSL client private key for MQTT"
+        },
+        "mqtt_srv_cert": {
+          "type": "boolean",
+          "title": "Status of SSL server certificate for MQTT"
+        },
+        "rcfg_cli_cert": {
+          "type": "boolean",
+          "title": "Status of SSL client certificate for the remote configuration server"
+        },
+        "rcfg_cli_key": {
+          "type": "boolean",
+          "title": "Status of SSL client private key for the remote configuration server"
+        },
+        "rcfg_srv_cert": {
+          "type": "boolean",
+          "title": "Status of SSL server certificate for the remote configuration server"
+        }
+      }
+    },
     "wifi_sta_config": {
       "title": "Wi-Fi credentials",
       "description": "Gateway will connect to the specified WiFi SSID if it's not empty. Note: 'use_eth' should be 'false'",
       "type": "object",
       "required": [
-        "ssid",
-        "password"
+        "ssid"
       ],
       "properties": {
         "ssid": {
@@ -170,7 +268,6 @@ The format of this JSON file is described as JSON schema, which provides human- 
       "title": "WiFi access point default settings",
       "type": "object",
       "required": [
-        "password"
       ],
       "properties": {
         "password": {
@@ -181,6 +278,11 @@ The format of this JSON file is described as JSON schema, which provides human- 
             "",
             "12345678"
           ]
+        },
+        "channel": {
+          "type": "integer",
+          "default": 1,
+          "title": "Default channel for Wi-Fi access point"
         }
       }
     },
@@ -223,38 +325,75 @@ The format of this JSON file is described as JSON schema, which provides human- 
       "type": "string"
     },
     "remote_cfg_auth_type": {
-      "title": "HTTP authentication credentials for the remote server for automatic Gateway configuration downloading",
+      "title": "HTTP authentication credentials for the remote configuration server for automatic Gateway configuration downloading",
       "description": "It should not be empty if 'remote_cfg_use' is 'true'",
       "type": "string",
-      "pattern": "^(|no|basic|bearer)$",
+      "pattern": "^(|none|no|basic|bearer)$",
       "default": "",
       "examples": [
         "",
-        "no",
+        "none",
         "basic",
         "bearer"
       ]
     },
     "remote_cfg_auth_bearer_token": {
-      "title": "A token for HTTP bearer authentication for the remote server for automatic Gateway configuration downloading",
+      "title": "A token for HTTP bearer authentication for the remote configuration server for automatic Gateway configuration downloading",
       "type": "string"
     },
     "remote_cfg_auth_basic_user": {
-      "title": "Username for HTTP basic authentication for the remote server for automatic Gateway configuration downloading",
+      "title": "Username for HTTP basic authentication for the remote configuration server for automatic Gateway configuration downloading",
       "type": "string"
     },
     "remote_cfg_auth_basic_pass": {
-      "title": "Password for HTTP basic authentication for the remote server for automatic Gateway configuration downloading",
+      "title": "Password for HTTP basic authentication for the remote configuration server for automatic Gateway configuration downloading",
       "type": "string"
     },
     "remote_cfg_refresh_interval_minutes": {
-      "title": "Period for checking a new gateway configuration on the remote server (in minutes)",
+      "title": "Period for checking a new gateway configuration on the remote configuration server (in minutes)",
       "type": "integer"
     },
-    "use_http": {
-      "title": "Enable HTTP relaying mode",
+    "remote_cfg_use_ssl_client_cert": {
+      "title": "Enable use of SSL client certificate for authentication on the remote configuration server",
+      "type": "boolean",
+      "default": false
+    },
+    "remote_cfg_use_ssl_server_cert": {
+      "title": "Enable use of SSL server certificate to authenticate the remote configuration server",
+      "type": "boolean",
+      "default": false
+    },
+    "use_http_ruuvi": {
+      "title": "Enable HTTP relaying mode to Ruuvi cloud",
       "type": "boolean",
       "default": true
+    },
+    "use_http": {
+      "title": "Enable HTTP relaying mode to a custom server",
+      "type": "boolean",
+      "default": false
+    },
+    "http_data_format": {
+      "title": "Data format used for HTTP transmission",
+      "type": "string",
+      "pattern": "^(|ruuvi)$",
+      "default": "ruuvi",
+      "examples": [
+        "ruuvi"
+      ]
+    },
+    "http_auth": {
+      "title": "HTTP authentication type",
+      "type": "string",
+      "pattern": "^(|none|basic|bearer|token)$",
+      "default": "none",
+      "examples": [
+        "",
+        "none",
+        "basic",
+        "bearer",
+        "token"
+      ]
     },
     "http_url": {
       "title": "URL of the server to which the data collected from Bluetooth sensors will be sent",
@@ -263,6 +402,15 @@ The format of this JSON file is described as JSON schema, which provides human- 
       "examples": [
         "https://network.ruuvi.com/record",
         "http://my_server123.com:8080/record"
+      ]
+    },
+    "http_period": {
+      "title": "Period of sending data via HTTP(S)",
+      "type": "integer",
+      "default": 10,
+      "examples": [
+        10,
+        60
       ]
     },
     "http_user": {
@@ -274,6 +422,28 @@ The format of this JSON file is described as JSON schema, which provides human- 
       "title": "Password for HTTP basic authentication for the server",
       "type": "string",
       "default": ""
+    },
+    "http_bearer_token": {
+      "title": "Bearer token used for authentication",
+      "description": "Bearer token is used when http_auth equals to 'bearer'",
+      "type": "string",
+      "default": ""
+    },
+    "http_api_key": {
+      "title": "API key used for authentication",
+      "description": "This API key is used when http_auth equals to 'token'",
+      "type": "string",
+      "default": ""
+    },
+    "http_use_ssl_client_cert": {
+      "title": "Enable use of SSL client certificate for authentication on the HTTPS server",
+      "type": "boolean",
+      "default": false
+    },
+    "http_use_ssl_server_cert": {
+      "title": "Enable use of SSL server certificate to authenticate the HTTPS server",
+      "type": "boolean",
+      "default": false
     },
     "use_http_stat": {
       "title": "Enable sending Gateway status to the HTTP-server",
@@ -299,6 +469,16 @@ The format of this JSON file is described as JSON schema, which provides human- 
       "type": "string",
       "default": ""
     },
+    "http_stat_use_ssl_client_cert": {
+      "title": "Enable use of SSL client certificate for authentication on the statistics server",
+      "type": "boolean",
+      "default": false
+    },
+    "http_stat_use_ssl_server_cert": {
+      "title": "Enable use of SSL server certificate to authenticate the statistics server",
+      "type": "boolean",
+      "default": false
+    },
     "use_mqtt": {
       "title": "Enable MQTT relaying mode",
       "type": "boolean",
@@ -320,6 +500,18 @@ The format of this JSON file is described as JSON schema, which provides human- 
         "SSL",
         "WS",
         "WSS"
+      ]
+    },
+    "mqtt_data_format": {
+      "title": "Data format used for MQTT transmission",
+      "description": "ruuvi_raw - raw data only, ruuvi_raw_and_decoded - raw and decoded data, ruuvi_decoded - decoded data only",
+      "type": "string",
+      "pattern": "^(ruuvi_raw|ruuvi_raw_and_decoded|ruuvi_decoded)$",
+      "default": "ruuvi_raw",
+      "examples": [
+        "ruuvi_raw",
+        "ruuvi_raw_and_decoded",
+        "ruuvi_decoded"
       ]
     },
     "mqtt_server": {
@@ -370,6 +562,16 @@ The format of this JSON file is described as JSON schema, which provides human- 
       "type": "string",
       "default": ""
     },
+    "mqtt_use_ssl_client_cert": {
+      "title": "Enable use of SSL client certificate for authentication on the MQTT server",
+      "type": "boolean",
+      "default": false
+    },
+    "mqtt_use_ssl_server_cert": {
+      "title": "Enable use of SSL server certificate to authenticate the MQTT server",
+      "type": "boolean",
+      "default": false
+    },
     "lan_auth_type": {
       "title": "Configuring the authentication type when accessing Gateway from LAN",
       "description": "'lan_auth_default' - Ruuvi-authentication with username 'Admin' and as a password the Unique ID is used (in format XX:XX:XX:XX:XX:XX:XX:XX) which is printed on the bottom of the Ruuvi Gateway. 'lan_auth_ruuvi' - Ruuvi-authentication, login/password should be specified in 'lan_auth_user' and 'lan_auth_pass'. 'lan_auth_deny' - deny access from LAN. 'lan_auth_allow' - allow access from LAN without a password. 'lan_auth_basic' - HTTP basic authentication, login/password should be specified in 'lan_auth_user' and 'lan_auth_pass'. 'lan_auth_digest' - HTTP digest authentication, login/password should be specified in 'lan_auth_user' and 'lan_auth_pass'.",
@@ -397,22 +599,32 @@ The format of this JSON file is described as JSON schema, which provides human- 
       "title": "Password for authentication when accessing from LAN",
       "type": "string"
     },
+    "lan_auth_api_key_use": {
+      "title": "Use API key (token) for HTTP bearer authentication for read-only access from LAN",
+      "description": "This field is generated when configuration is read via HTTP ('lan_auth_api_key' is not generated in this case)",
+      "type": "boolean"
+    },
     "lan_auth_api_key": {
-      "title": "API key (token) for HTTP bearer authentication when accessing from LAN (read-only access)",
+      "title": "API key (token) for HTTP bearer authentication for read-only access from LAN",
       "description": "If 'lan_auth_api_key' is empty, then bearer authentication is disabled.",
       "type": "string",
       "default": "",
       "examples": [
-        "Uj+4tj24unVekco/lTLTRyxUfv1J8M6U+sbNsKTWRr0="
+        "304uOrJMoCNEVaPaXswV9U1qRDPZFbl0V2x7OXHM5nw="
       ]
     },
+    "lan_auth_api_key_rw_use": {
+      "title": "Use API key (token) for HTTP bearer authentication for read/write access from LAN",
+      "description": "This field is generated when configuration is read via HTTP ('lan_auth_api_key_rw' is not generated in this case)",
+      "type": "boolean"
+    },
     "lan_auth_api_key_rw": {
-      "title": "API key (token) for HTTP bearer authentication when accessing from LAN (full or read/write access)",
+      "title": "API key (token) for HTTP bearer authentication for read/write access from LAN",
       "description": "If 'lan_auth_api_key_rw' is empty, then bearer authentication is disabled.",
       "type": "string",
       "default": "",
       "examples": [
-        "1SDrQH1FkH+pON0GsSjt2gYeMSP02uYqfuu7LWdaBvY="
+        "304uOrJMoCNEVaPaXswV9U1qRDPZFbl0V2x7OXHM5nw="
       ]
     },
     "auto_update_cycle": {
@@ -497,17 +709,17 @@ The format of this JSON file is described as JSON schema, which provides human- 
     "ntp_server3": {
       "title": "Address of NTP server 3 (used only if 'ntp_use_dhcp' is false).",
       "type": "string",
-      "default": "time.nist.gov",
+      "default": "pool.ntp.org",
       "examples": [
-        "time.nist.gov"
+        "pool.ntp.org"
       ]
     },
     "ntp_server4": {
       "title": "Address of NTP server 4 (used only if 'ntp_use_dhcp' is false).",
       "type": "string",
-      "default": "pool.ntp.org",
+      "default": "time.ruuvi.com",
       "examples": [
-        "pool.ntp.org"
+        "time.ruuvi.com"
       ]
     },
     "company_use_filtering": {
@@ -553,12 +765,37 @@ The format of this JSON file is described as JSON schema, which provides human- 
       "type": "boolean",
       "default": true
     },
+    "scan_filter_allow_listed": {
+      "title": "Type of Bluetooth sensors filtering",
+      "description": "If it's true, only the sensors in the list will pass through the filter, other sensors will be filtered out. If it's false, then all sensors will pass through the filter except those in the list.",
+      "type": "boolean",
+      "default": false
+    },
+    "scan_filter_list": {
+      "title": "List of sensors to filter.",
+      "description": "Type of filtering is set by scan_filter_allow_listed. If scan_filter_list is empty, then filtering is not active",
+      "type": "array",
+      "default": [],
+      "examples": [
+        [],
+        ["F4:1F:0C:28:CB:D6"],
+        ["F4:1F:0C:28:CB:D6", "F4:C6:46:2C:3E:B4"]
+      ]
+    },
     "coordinates": {
       "title": "GPS-coordinates of the Gateway",
       "type": "string",
       "default": "",
       "examples": [
         ""
+      ]
+    },
+    "fw_update_url": {
+      "title": "URL of firmware update server",
+      "type": "string",
+      "default": "https://network.ruuvi.com/firmwareupdate",
+      "examples": [
+        "https://network.ruuvi.com/firmwareupdate"
       ]
     }
   },
@@ -587,6 +824,7 @@ The format of this JSON file is described as JSON schema, which provides human- 
       "remote_cfg_refresh_interval_minutes": 0,
       "use_http": true,
       "http_url": "https://network.ruuvi.com/record",
+      "http_period": 10,
       "http_user": "",
       "http_pass": "",
       "use_http_stat": true,
@@ -596,6 +834,7 @@ The format of this JSON file is described as JSON schema, which provides human- 
       "use_mqtt": false,
       "mqtt_disable_retained_messages": false,
       "mqtt_transport": "TCP",
+      "mqtt_data_format": "ruuvi_raw",
       "mqtt_server": "test.mosquitto.org",
       "mqtt_port": 1883,
       "mqtt_prefix": "",
@@ -614,8 +853,8 @@ The format of this JSON file is described as JSON schema, which provides human- 
       "ntp_use_dhcp": false,
       "ntp_server1": "time.google.com",
       "ntp_server2": "time.cloudflare.com",
-      "ntp_server3": "time.nist.gov",
-      "ntp_server4": "pool.ntp.org",
+      "ntp_server3": "pool.ntp.org",
+      "ntp_server4": "time.ruuvi.com",
       "company_use_filtering": true,
       "company_id": 1177,
       "scan_coded_phy": false,
@@ -624,9 +863,9 @@ The format of this JSON file is described as JSON schema, which provides human- 
       "scan_channel_37": true,
       "scan_channel_38": true,
       "scan_channel_39": true,
-      "coordinates": ""
+      "coordinates": "",
+      "fw_update_url": "https://network.ruuvi.com/firmwareupdate"
     }
   ]
 }
-
 ```

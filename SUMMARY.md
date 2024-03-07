@@ -97,7 +97,6 @@
   * [NUS (Nordic UART Service)](communication/bluetooth-connection/nordic-uart-service-nus/README.md)
     * [Heartbeat transmissions](communication/bluetooth-connection/nordic-uart-service-nus/heartbeat-transmissions.md)
     * [Read logged history](communication/bluetooth-connection/nordic-uart-service-nus/log-read.md)
-* [Ruuvi Gateway](communication/gateway.md)
 * [Real Time Transfer (RTT)](communication/development-real-time-transfer.md)
 * [Ruuvi Cloud](communication/cloud/README.md)
   * [User API](communication/cloud/user-api.md)

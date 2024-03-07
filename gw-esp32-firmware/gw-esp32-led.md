@@ -17,8 +17,9 @@ Indication code: the letter "R" means the red LED is on, the letter "G" means th
 </code></pre><p>Red LED lights up for 100 ms every second.</p>                                                 |
 | Configuration erasing has been completed (after a long press of the button)                  | <pre><code>"RR--RR--"
 </code></pre><p>Red LED flashes with 400 ms period.</p>                                                          |
-| Configuration hotspot is active.                                                             | <pre><code><strong>"RRRRRRRRRRGGGGGGGGGG"
-</strong></code></pre><p>Red and green LEDs light up alternately for 1 second.</p>           |
+| Configuration hotspot is active.                                                             | <pre><code>"RRRRRRRRRRGGGGGGGGGG"
+</code></pre><p>Red and green LEDs light up alternately for 1 second.</p>                            |
+| Configuration hotspot is active and WPS (Wi-Fi Protected Setup) is active.                   | `"RRRRRRRRGRGGGGGGGGGG"`                                                                                                               |
 | No internet connection or server returns an error code when trying to send data              | <pre><code>"R-R-R-R-R-"
 </code></pre><p>Red LED lights up 5 times per second.</p>                                                      |
 | No data from Bluetooth sensors                                                               | <pre><code>"G-G-G-G-G-"

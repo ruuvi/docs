@@ -4,13 +4,13 @@ It is possible to poll the accumulated data from the  Ruuvi Gateway via HTTP.
 
 On the "Access Settings" page, enable bearer authentication and set the bearer token:
 
-<figure><img src="../.gitbook/assets/Screenshot from 2023-06-27 22-30-41.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot from 2023-12-13 10-19-16.png" alt=""><figcaption></figcaption></figure>
 
 After that it is possible to poll data using the "/history" endpoint:
 
 ```shell
 curl -v http://<RUUVI_GW_IP>/history 
-    -H "Authorization: Bearer vum0G0DwdUBiNreYdSdqB785SX+l9VsnDQyDclwDP/Q="
+    -H "Authorization: Bearer Uj+4tj24unVekco/lTLTRyxUfv1J8M6U+sbNsKTWRr0="
 ```
 
 The accumulated data will be returned in JSON format: [http-time-stamped-data-from-bluetooth-sensors.md](../data-formats/http-time-stamped-data-from-bluetooth-sensors.md "mention")or [http-data-from-bluetooth-sensors-without-timestamps.md](../data-formats/http-data-from-bluetooth-sensors-without-timestamps.md "mention")
@@ -84,7 +84,7 @@ Also, it is possible to request only raw data without decoding:
 
 ```bash
 curl -v http://<RUUVI_GW_IP>/history?decode=false 
-    -H "Authorization: Bearer vum0G0DwdUBiNreYdSdqB785SX+l9VsnDQyDclwDP/Q="
+    -H "Authorization: Bearer Uj+4tj24unVekco/lTLTRyxUfv1J8M6U+sbNsKTWRr0="
 ```
 
 Example of time-stamped data without decoding:

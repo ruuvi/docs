@@ -2,7 +2,7 @@
 
 Here is an example of MQTT configuration on the Ruuvi Gateway:
 
-<figure><img src="../.gitbook/assets/Screenshot from 2023-06-27 21-45-13.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot from 2023-12-13 10-23-45.png" alt=""><figcaption></figcaption></figure>
 
 Here are sample commands to subscribe an MQTT client to notifications from the Ruuvi Gateway:
 
