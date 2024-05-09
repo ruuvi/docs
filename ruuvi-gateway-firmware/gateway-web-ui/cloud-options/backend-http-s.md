@@ -16,13 +16,53 @@ Configure sending interval:
 
 <figure><img src="../../../.gitbook/assets/Screenshot from 2023-12-13 09-02-17.png" alt=""><figcaption></figcaption></figure>
 
-Use different types of authentication:
+### Use different types of authentication
 
-<figure><img src="../../../.gitbook/assets/Screenshot from 2023-12-19 21-42-05.png" alt=""><figcaption></figcaption></figure>
+#### Configuring Basic Authentication
 
-<figure><img src="../../../.gitbook/assets/Screenshot from 2023-12-19 21-42-40.png" alt=""><figcaption></figcaption></figure>
+When using "Basic" authentication, the gateway adds an authorization header to the HTTPS request. This header contains the credentials encoded in Base64 format.
 
-<figure><img src="../../../.gitbook/assets/Screenshot from 2023-12-19 21-43-10.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot from 2024-05-08 15-45-19.png" alt=""><figcaption></figcaption></figure>
+
+HTTP Header Example:\
+`Authorization: Basic dXNlcjE6cGFzczE=`
+
+Explanation:
+
+* `Basic`: Indicates the authentication method.
+* `dXNlcjE6cGFzczE=`: Base64 encoded credentials. For example, 'user1:pass1' encodes to 'dXNlcjE6cGFzczE='.
+
+#### Configuring Bearer Authentication
+
+When using "Bearer" authentication, the gateway adds an authorization header with a token to the HTTPS request. This token is a credential used to access APIs securely.
+
+<figure><img src="../../../.gitbook/assets/Screenshot from 2024-05-08 15-46-10.png" alt=""><figcaption></figcaption></figure>
+
+HTTP Header Example:
+
+`Authorization: Bearer token123`
+
+#### Configuring Token-Based Authentication
+
+Token-based authentication involves securing API requests by sending a token in the HTTP header. The token is a unique identifier that must be included in every request.
+
+<figure><img src="../../../.gitbook/assets/Screenshot from 2024-05-08 15-46-36.png" alt=""><figcaption></figcaption></figure>
+
+HTTP Header Example:
+
+`Authorization: Token token124`
+
+#### Configuring API Key Authentication
+
+API key authentication is a simple method where an API key is used directly as part of the HTTP header to authenticate requests.
+
+<figure><img src="../../../.gitbook/assets/Screenshot from 2024-05-08 15-46-57.png" alt=""><figcaption></figcaption></figure>
+
+HTTP Header Example:
+
+`Authorization: token125`
+
+#### Enhanced Security with SSL Client Authentication
 
 It also supports client authentication via SSL by enabling the upload of a client certificate and its associated private key, ensuring secure and verified client-server communication:
 

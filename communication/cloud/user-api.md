@@ -26,16 +26,20 @@ All authenticated queries are ratelimited to 4 \* MAX\_SENSORS\_OWNED + 0.1 \* M
 
 
 
-{% swagger baseUrl="https://network.ruuvi.com" path="/register" method="post" summary="Register User or Reset Token" %}
-{% swagger-description %}
+## Register User or Reset Token
+
+<mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/register`
+
 Registers a new user or resets an existing user's password if the user already exists.
-{% endswagger-description %}
 
-{% swagger-parameter in="body" name="email" type="string" %}
-Email address to be registered / reset
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-response status="200" description="On a successful call, you will receive a 200 OK. An e-mail will be sent to the given address to confirm the registration.
+| Name  | Type   | Description                            |
+| ----- | ------ | -------------------------------------- |
+| email | string | Email address to be registered / reset |
+
+{% tabs %}
+{% tab title="200 On a successful call, you will receive a 200 OK. An e-mail will be sent to the given address to confirm the registration.
 In case of a reset, the token will be provided as a response to the call." %}
 ```
 {
@@ -45,19 +49,9 @@ In case of a reset, the token will be provided as a response to the call." %}
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="429: Too Many Requests" description="Over 10 calls in an hour" %}
-```
-{
-      result: 'error',
-      error: 'Too many requests.',
-      code: 'ER_THROTTLED'
-}
-```
-{% endswagger-response %}
-
-{% swagger-response status="500" description="If a something goes wrong with the request itself, you might receive an Unknown error. Please contact your system administrator if this occurs." %}
+{% tab title="500 If a something goes wrong with the request itself, you might receive an Unknown error. Please contact your system administrator if this occurs." %}
 ```
 {
     "result": "error",
@@ -65,19 +59,33 @@ In case of a reset, the token will be provided as a response to the call." %}
     "code": "ER_INTERNAL"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
 
-{% swagger baseUrl="https://network.ruuvi.com" path="/verify" method="get" summary="Verify Account" %}
-{% swagger-description %}
+{% tab title="429: Too Many Requests Over 10 calls in an hour" %}
+```
+{
+      result: 'error',
+      error: 'Too many requests.',
+      code: 'ER_THROTTLED'
+}
+```
+{% endtab %}
+{% endtabs %}
+
+## Verify Account
+
+<mark style="color:blue;">`GET`</mark> `https://network.ruuvi.com/verify`
+
 Verifies the given e-mail address and finalizes creating the account and creating a Ruuvi Network subscription. Notice that the token for this end-point is delivered via e-mail by the **Register User** endpoint.
-{% endswagger-description %}
 
-{% swagger-parameter in="query" name="token" type="string" %}
-Verification token (received in the e-mail)
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-response status="200" description="On a successful response, you will receive the confirmation on the e-mail address an an access token to be used with other end-points.
+| Name  | Type   | Description                                 |
+| ----- | ------ | ------------------------------------------- |
+| token | string | Verification token (received in the e-mail) |
+
+{% tabs %}
+{% tab title="200 On a successful response, you will receive the confirmation on the e-mail address an an access token to be used with other end-points.
 Store it well as the only way to retrieve it is to go through the reset flow again." %}
 ```
 {
@@ -89,9 +97,9 @@ Store it well as the only way to retrieve it is to go through the reset flow aga
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="403" description="Forbidden if user is not allowed to access resource." %}
+{% tab title="403 Forbidden if user is not allowed to access resource." %}
 ```
 {
     "result": "error",
@@ -99,9 +107,9 @@ Store it well as the only way to retrieve it is to go through the reset flow aga
     "code": "ER_FORBIDDEN"
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="500" description="(Actual code 493): You will receive an error if the token is invalid." %}
+{% tab title="500 (Actual code 493): You will receive an error if the token is invalid." %}
 ```
 {
     "result": "error",
@@ -109,23 +117,29 @@ Store it well as the only way to retrieve it is to go through the reset flow aga
     "code": "ER_TOKEN_EXPIRED"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger method="post" path="/request-delete" baseUrl="https://network.ruuvi.com" summary="Request deletion of account" %}
-{% swagger-description %}
+## Request deletion of account
+
+<mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/request-delete`
+
 This operation requests complete removal of user account from Ruuvi Cloud. After a successful call to this endpoint, user gets a verification email with a link to confirm deletion of account.
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" required="true" %}
-Bearer token to authorize the request
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-parameter in="body" name="email" required="true" %}
-Email of account to delete
-{% endswagger-parameter %}
+| Name                                            | Type   | Description                           |
+| ----------------------------------------------- | ------ | ------------------------------------- |
+| Authorization<mark style="color:red;">\*</mark> | String | Bearer token to authorize the request |
 
-{% swagger-response status="200: OK" description="Verification email has been sent" %}
+#### Request Body
+
+| Name                                    | Type   | Description                |
+| --------------------------------------- | ------ | -------------------------- |
+| email<mark style="color:red;">\*</mark> | String | Email of account to delete |
+
+{% tabs %}
+{% tab title="200: OK Verification email has been sent" %}
 ```javascript
 {
     "result": "success",
@@ -134,9 +148,9 @@ Email of account to delete
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="400: Bad Request" description="Missing authorization or email parameter" %}
+{% tab title="400: Bad Request Missing authorization or email parameter" %}
 ```javascript
 {
     "result": "error",
@@ -144,9 +158,9 @@ Email of account to delete
     "code": "ER_<ERROR>"
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="403: Forbidden" description="Returned if Authorization token does not match email" %}
+{% tab title="403: Forbidden Returned if Authorization token does not match email" %}
 ```javascript
 {
     "result": "error",
@@ -154,11 +168,13 @@ Email of account to delete
     "code": "ER_UNAUTHORIZED"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger method="get" path="/verify-delete" baseUrl="https://network.ruuvi.com" summary="Verify account deletion operation" %}
-{% swagger-description %}
+## Verify account deletion operation
+
+<mark style="color:blue;">`GET`</mark> `https://network.ruuvi.com/verify-delete`
+
 Following actions will be done:
 
 User sensors will be unshared&#x20;
@@ -170,21 +186,23 @@ Sensors shared to user will be removed.
 &#x20;User account data, including sensor claims and settings, will be deleted.
 
 &#x20;Account deletion is a permament action which cannot be undone
-{% endswagger-description %}
 
-{% swagger-parameter in="path" name="token" required="true" %}
-Short verification string
-{% endswagger-parameter %}
+#### Path Parameters
 
-{% swagger-response status="200: OK" description="Account deletion was started" %}
+| Name                                    | Type   | Description               |
+| --------------------------------------- | ------ | ------------------------- |
+| token<mark style="color:red;">\*</mark> | String | Short verification string |
+
+{% tabs %}
+{% tab title="200: OK Account deletion was started" %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="403: Forbidden" description="Invalid or missing authorization token" %}
+{% tab title="403: Forbidden Invalid or missing authorization token" %}
 ```javascript
 {
    {
@@ -193,31 +211,31 @@ Short verification string
     "code": "ER_UNAUTHORIZED"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger method="post" path="/claim" baseUrl="https://netowrk.ruuvi.com" summary="Claim a sensor for user" %}
-{% swagger-description %}
+## Claim a sensor for user
+
+<mark style="color:green;">`POST`</mark> `https://netowrk.ruuvi.com/claim`
+
 After this call, given sensor is claimed under authenticated user account
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" required="true" %}
-BBearer token to authorize the request
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-parameter in="body" name="sensor" required="true" %}
-MAC address of sensor to claim, e.g. "AA:BB:CC:11:22:33"
-{% endswagger-parameter %}
+| Name                                            | Type   | Description                            |
+| ----------------------------------------------- | ------ | -------------------------------------- |
+| Authorization<mark style="color:red;">\*</mark> | String | BBearer token to authorize the request |
 
-{% swagger-parameter in="body" name="name" %}
-Human-readable name of sensor, e.g. "Fridge temperature sensor"
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-parameter in="body" name="description" %}
-Human-readable description of sensor, e.g. "Sensor in top shelf of fridge"
-{% endswagger-parameter %}
+| Name                                     | Type   | Description                                                                |
+| ---------------------------------------- | ------ | -------------------------------------------------------------------------- |
+| sensor<mark style="color:red;">\*</mark> | String | MAC address of sensor to claim, e.g. "AA:BB:CC:11:22:33"                   |
+| name                                     | String | Human-readable name of sensor, e.g. "Fridge temperature sensor"            |
+| description                              | String | Human-readable description of sensor, e.g. "Sensor in top shelf of fridge" |
 
-{% swagger-response status="200: OK" description="Sensor was claimed successfully" %}
+{% tabs %}
+{% tab title="200: OK Sensor was claimed successfully" %}
 ```javascript
 {
     "result": "success",
@@ -226,86 +244,92 @@ Human-readable description of sensor, e.g. "Sensor in top shelf of fridge"
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="400: Bad Request" description="Request had malformed JSON or was missing a required parameter.  Alternatively user account has reached subscription limit" %}
+{% tab title="400: Bad Request Request had malformed JSON or was missing a required parameter.  Alternatively user account has reached subscription limit" %}
 ```javascript
 {
     'code': {'ER_MISSING_ARGUMENT', 'ER_CLAIM_COUNT_REACHED'}
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="401: Unauthorized" description="Request had no authorization token" %}
+{% tab title="401: Unauthorized Request had no authorization token" %}
 ```javascript
 {
 
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="409: Conflict" description="Sensor is claimed by another account" %}
+{% tab title="409: Conflict Sensor is claimed by another account" %}
 ```javascript
 {
     'code': 'ER_SENSOR_ALREADY_CLAIMED';
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="500: Internal Server Error" description="Unexpected error occurred in handler" %}
+{% tab title="500: Internal Server Error Unexpected error occurred in handler" %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="https://network.ruuvi.com" path="/unclaim" method="post" summary="Unclaim a sensor from your user" %}
-{% swagger-description %}
+## Unclaim a sensor from your user
+
+<mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/unclaim`
+
 Unclaims a sensor from your user, revoking your own access to it and making it claimable by other users.
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" type="string" required="true" %}
-Bearer token to authorize the request
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-parameter in="body" name="sensor" type="string" required="true" %}
-ID of the sensor to be unshared
-{% endswagger-parameter %}
+| Name                                            | Type   | Description                           |
+| ----------------------------------------------- | ------ | ------------------------------------- |
+| Authorization<mark style="color:red;">\*</mark> | string | Bearer token to authorize the request |
 
-{% swagger-parameter in="body" name="deleteData" type="boolean" %}
-set to true to delete user data
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-response status="200" description="" %}
+| Name                                     | Type    | Description                     |
+| ---------------------------------------- | ------- | ------------------------------- |
+| sensor<mark style="color:red;">\*</mark> | string  | ID of the sensor to be unshared |
+| deleteData                               | boolean | set to true to delete user data |
+
+{% tabs %}
+{% tab title="200 " %}
 ```
 {
     "result": "success"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="https://network.ruuvi.com" path="/share" method="post" summary="Share a sensor" %}
-{% swagger-description %}
+## Share a sensor
+
+<mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/share`
+
 You can share your sensor data with other users via **share** end-point. In addition to sensor you want to share, you must also include the e-mail address of the recipient. This will grant them access to the data via the **get** end-point.\
 Furthermore, it will also send the target user a notification e-mail about the new share. If the target user does not exist yet, an invitation to create an account will be sent to them and they will gain access upon sign up.
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" type="string" %}
-Bearer token to authorize the request
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-parameter in="body" name="user" type="string" %}
-E-mail of the user to share to
-{% endswagger-parameter %}
+| Name          | Type   | Description                           |
+| ------------- | ------ | ------------------------------------- |
+| Authorization | string | Bearer token to authorize the request |
 
-{% swagger-parameter in="body" name="sensor" type="string" %}
-Sensor ID to share
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-response status="200" description="On success, you will get the shared sensor id returned back to you." %}
+| Name   | Type   | Description                    |
+| ------ | ------ | ------------------------------ |
+| user   | string | E-mail of the user to share to |
+| sensor | string | Sensor ID to share             |
+
+{% tabs %}
+{% tab title="200 On success, you will get the shared sensor id returned back to you." %}
 ```
 {
     "result": "success",
@@ -315,9 +339,9 @@ Sensor ID to share
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="400" description="If the sharing failed due to malformed data, such as missing arguments." %}
+{% tab title="400 If the sharing failed due to malformed data, such as missing arguments." %}
 ```
 {
     "result": "error",
@@ -325,9 +349,9 @@ Sensor ID to share
     "code": "ER_INVALID_EMAIL_ADDRESS"  
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="401" description="If an invalid or expired access token is provided, you will receive 401 Unauthorized." %}
+{% tab title="401 If an invalid or expired access token is provided, you will receive 401 Unauthorized." %}
 ```
 {
     "result": "error",
@@ -335,9 +359,9 @@ Sensor ID to share
     "code": "ER_UNAUTHORIZED"
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="409" description="You will receive a conflict if the sensor is already shared to the user." %}
+{% tab title="409 You will receive a conflict if the sensor is already shared to the user." %}
 ```
 {
     "result": "error",
@@ -345,9 +369,9 @@ Sensor ID to share
     "code": "ER_SENSOR_ALREADY_SHARED"
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="500" description="If something went wrong with the request, you will receive a 500 internal server error. Please contact your System Administrator." %}
+{% tab title="500 If something went wrong with the request, you will receive a 500 internal server error. Please contact your System Administrator." %}
 ```
 {
     "result": "error",
@@ -355,35 +379,38 @@ Sensor ID to share
     "code": "ER_INTERNAL"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="https://network.ruuvi.com" path="/unshare" method="post" summary="Unshare a sensor" %}
-{% swagger-description %}
+## Unshare a sensor
+
+<mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/unshare`
+
 Unshares (i.e. revokes access to) the sensor from a target user. This can also currently be used to remove sensors shared with your user.
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" type="string" %}
-Bearer token of the user
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-parameter in="body" name="sensor" type="string" %}
-ID of the sensor being unshared
-{% endswagger-parameter %}
+| Name          | Type   | Description              |
+| ------------- | ------ | ------------------------ |
+| Authorization | string | Bearer token of the user |
 
-{% swagger-parameter in="body" name="user" type="string" %}
-E-mail of the user the sensor is shared to. Optional if removing sensor shared to current user.
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-response status="200" description="" %}
+| Name   | Type   | Description                                                                                     |
+| ------ | ------ | ----------------------------------------------------------------------------------------------- |
+| sensor | string | ID of the sensor being unshared                                                                 |
+| user   | string | E-mail of the user the sensor is shared to. Optional if removing sensor shared to current user. |
+
+{% tabs %}
+{% tab title="200 " %}
 ```
 {
     "result": "success"
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="400" description="Returned with Invalid or missing fields." %}
+{% tab title="400 Returned with Invalid or missing fields." %}
 ```
 {
     "result": "error",
@@ -391,9 +418,9 @@ E-mail of the user the sensor is shared to. Optional if removing sensor shared t
     "code": "ER_<ERROR>"
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="403" description="Returned when user" %}
+{% tab title="403 Returned when user" %}
 ```
 {
     "result": "error",
@@ -401,9 +428,9 @@ E-mail of the user the sensor is shared to. Optional if removing sensor shared t
     "code": "ER_UNAUTHORIZED"
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="404" description="Returned if shared sensor or user is not found." %}
+{% tab title="404 Returned if shared sensor or user is not found." %}
 ```
 {
     "result": "error",
@@ -411,23 +438,29 @@ E-mail of the user the sensor is shared to. Optional if removing sensor shared t
     "code": "ER_USER_NOT_FOUND"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="https://network.ruuvi.com" path="/sensors" method="get" summary="Get your sensors" %}
-{% swagger-description %}
+## Get your sensors
+
+<mark style="color:blue;">`GET`</mark> `https://network.ruuvi.com/sensors`
+
 Fetches a list of sensors you have access to including who those are shared to. This end-point deprecates the old _shared_ end-point.
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" type="string" %}
-Bearer token of the user
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-parameter in="query" name="sensor" type="string" %}
-Optionally filter only one sensor
-{% endswagger-parameter %}
+| Name   | Type   | Description                       |
+| ------ | ------ | --------------------------------- |
+| sensor | string | Optionally filter only one sensor |
 
-{% swagger-response status="200" description="" %}
+#### Headers
+
+| Name          | Type   | Description              |
+| ------------- | ------ | ------------------------ |
+| Authorization | string | Bearer token of the user |
+
+{% tabs %}
+{% tab title="200 " %}
 ```
 {
     "result": "success",
@@ -482,9 +515,9 @@ Optionally filter only one sensor
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="401" description="" %}
+{% tab title="401 " %}
 ```
 {
     "result": "error",
@@ -492,39 +525,38 @@ Optionally filter only one sensor
     "code": "ER_UNAUTHORIZED"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger method="get" path="/sensors-dense" baseUrl="https://network.ruuvi.com" summary="Get your sensors with calibration data, latest measurement, and alerts settings" %}
-{% swagger-description %}
+## Get your sensors with calibration data, latest measurement, and alerts settings
+
+<mark style="color:blue;">`GET`</mark> `https://network.ruuvi.com/sensors-dense`
+
 Fetches the list of claimed and shared sensors with calibration data, sensor last measurement, subscription type and alert settings. By default the endpoint returns only the claimed sensors with calibration data. Optional arguments must be passed to get shared sensors, last measurement, and alert settings.&#x20;
-{% endswagger-description %}
 
-{% swagger-parameter in="query" name="mode" type="string" %}
-Fetch mode: \[dense, sparse, mixed], determines how the data is returned. Default: mixed
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-parameter in="query" name="sensor" type="string" %}
-Optionally filter only one sensor
-{% endswagger-parameter %}
+| Name           | Type   | Description                                                                                                                                       |
+| -------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| sensor         | string | Optionally filter only one sensor                                                                                                                 |
+| sharedToOthers | bool   | Optionally returns the list of users with whom each of the sensors is shared to                                                                   |
+| sharedToMe     | bool   | Optionally returns the sensors shared to the logged-in user alongside claimed sensors by the user                                                 |
+| measurements   | bool   | Optionally returns the latest measurement of each of the sensors in the collection. Returns also the subscription on which the data is based on.  |
+| alerts         | bool   | Optionally returns the alerts settings of each of the sensors in the collection                                                                   |
+| mode           | string | Fetch mode: \[dense, sparse, mixed], determines how the data is returned. Default: mixed                                                          |
 
-{% swagger-parameter in="query" name="sharedToOthers" type="bool" %}
-Optionally returns the list of users with whom each of the sensors is shared to
-{% endswagger-parameter %}
+{% tabs %}
+{% tab title="401: Unauthorized " %}
+```javascript
+{
+    "result": "error",
+    "error": "Unauthorized.",
+    "code": "ER_UNAUTHORIZED"
+}
+```
+{% endtab %}
 
-{% swagger-parameter in="query" name="sharedToMe" type="bool" %}
-Optionally returns the sensors shared to the logged-in user alongside claimed sensors by the user
-{% endswagger-parameter %}
-
-{% swagger-parameter in="query" name="measurements" type="bool" %}
-Optionally returns the latest measurement of each of the sensors in the collection. Returns also the subscription on which the data is based on.&#x20;
-{% endswagger-parameter %}
-
-{% swagger-parameter in="query" name="alerts" type="bool" %}
-Optionally returns the alerts settings of each of the sensors in the collection
-{% endswagger-parameter %}
-
-{% swagger-response status="200: OK" description="" %}
+{% tab title="200: OK " %}
 ```javascript
 {
     "result": "success",
@@ -582,29 +614,23 @@ Optionally returns the alerts settings of each of the sensors in the collection
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger-response status="401: Unauthorized" description="" %}
-```javascript
-{
-    "result": "error",
-    "error": "Unauthorized.",
-    "code": "ER_UNAUTHORIZED"
-}
-```
-{% endswagger-response %}
-{% endswagger %}
+## Get User Info
 
-{% swagger baseUrl="https://network.ruuvi.com" path="/user" method="get" summary="Get User Info" %}
-{% swagger-description %}
+<mark style="color:blue;">`GET`</mark> `https://network.ruuvi.com/user`
+
 Fetches user information for an authenticated user.
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authentication" type="string" %}
-Authentication Bearer token retrieved from the login flow.
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-response status="200" description="User information successfully retrieved." %}
+| Name           | Type   | Description                                                |
+| -------------- | ------ | ---------------------------------------------------------- |
+| Authentication | string | Authentication Bearer token retrieved from the login flow. |
+
+{% tabs %}
+{% tab title="200 User information successfully retrieved." %}
 ```
 {
     "result": "success",
@@ -629,9 +655,9 @@ Authentication Bearer token retrieved from the login flow.
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="401" description="Unauthorized request." %}
+{% tab title="401 Unauthorized request." %}
 ```
 {
     "result": "error",
@@ -639,45 +665,36 @@ Authentication Bearer token retrieved from the login flow.
     "code": "ER_UNAUTHORIZED"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="https://network.ruuvi.com" path="/get" method="get" summary="Get Sensor data" %}
-{% swagger-description %}
+## Get Sensor data
+
+<mark style="color:blue;">`GET`</mark> `https://network.ruuvi.com/get`
+
 Returns the data points for the requested sensor. Notice that for implementing pagination, you can use **since** and **until** parameters with custom **limit** to segment your results as they are always returned in either ascending or descending order by timestamp.
 
 Data can be fetched in dense, sparse and mixed mode. Dense mode returns highest data density possible, but has a limited time range before data is pruned to save storage space. Sparse mode has downsampled data, but time range is not limited. Mixed mode returns all the dense data available and rest of the time range is filled with sparse data
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" type="string" %}
-Bearer token to authorize the request
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-parameter in="query" name="mode" type="string" %}
-Fetch mode: \[dense, sparse, mixed], determines how the data is returned. Default: mixed
-{% endswagger-parameter %}
+| Name                                     | Type   | Description                                                                                     |
+| ---------------------------------------- | ------ | ----------------------------------------------------------------------------------------------- |
+| mode                                     | string | Fetch mode: \[dense, sparse, mixed], determines how the data is returned. Default: mixed        |
+| until                                    | string | Maximum timestamp of first returned result in Unix epoch format, in seconds. Default until now. |
+| since                                    | string | Minimum timestamp of first returned result in Unix epoch format, in seconds. Default 0.         |
+| limit                                    | string | Maximum amount of results returned (capped at 5000).                                            |
+| sort                                     | string | Sort Direction for the result: \[asc, desc]. Default descending                                 |
+| sensor<mark style="color:red;">\*</mark> | string | Sensor ID to retrieve the data                                                                  |
 
-{% swagger-parameter in="query" name="until" type="string" %}
-Maximum timestamp of first returned result in Unix epoch format, in seconds. Default until now.
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-parameter in="query" name="since" type="string" %}
-Minimum timestamp of first returned result in Unix epoch format, in seconds. Default 0.&#x20;
-{% endswagger-parameter %}
+| Name          | Type   | Description                           |
+| ------------- | ------ | ------------------------------------- |
+| Authorization | string | Bearer token to authorize the request |
 
-{% swagger-parameter in="query" name="limit" type="string" %}
-Maximum amount of results returned (capped at 5000).
-{% endswagger-parameter %}
-
-{% swagger-parameter in="query" name="sort" type="string" %}
-Sort Direction for the result: \[asc, desc]. Default descending
-{% endswagger-parameter %}
-
-{% swagger-parameter in="query" name="sensor" type="string" required="true" %}
-Sensor ID to retrieve the data&#x20;
-{% endswagger-parameter %}
-
-{% swagger-response status="200" description="Returns the most recent data points for the requested tag based on configuration and parameters.f" %}
+{% tabs %}
+{% tab title="200 Returns the most recent data points for the requested tag based on configuration and parameters.f" %}
 ```
 {
     "result": "success",
@@ -699,9 +716,9 @@ Sensor ID to retrieve the data&#x20;
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="400" description="" %}
+{% tab title="400 " %}
 ```
 {
     "result": "error",
@@ -709,9 +726,9 @@ Sensor ID to retrieve the data&#x20;
     "code": "ER_INVALID_<SPECIFIC>"
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="401" description="In case of an invalid or expired authentication token, you will receive a unauthorized response." %}
+{% tab title="401 In case of an invalid or expired authentication token, you will receive a unauthorized response." %}
 ```
 {
     "result": "error",
@@ -719,9 +736,9 @@ Sensor ID to retrieve the data&#x20;
     "code": "ER_UNAUTHORIZED"
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="403" description="If you have not claimed or been shared the target sensor, you will receive a Forbidden." %}
+{% tab title="403 If you have not claimed or been shared the target sensor, you will receive a Forbidden." %}
 ```
 {
     "result": "error",
@@ -729,51 +746,36 @@ Sensor ID to retrieve the data&#x20;
     "code": "ER_FORBIDDEN"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="https://network.ruuvi.com" path="/update" method="post" summary="Update Sensor metadata" %}
-{% swagger-description %}
+## Update Sensor metadata
+
+<mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/update`
+
 Updates sensor metadata.
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" type="string" %}
+#### Headers
 
-{% endswagger-parameter %}
+| Name          | Type   | Description |
+| ------------- | ------ | ----------- |
+| Authorization | string |             |
 
-{% swagger-parameter in="body" name="picture" type="string" %}
-Filename of a picture (or URL if uploaded)
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-parameter in="body" name="offsetHumidity" type="number" %}
-Offset humidity to calibrate sensor
-{% endswagger-parameter %}
+| Name              | Type    | Description                                                                                        |
+| ----------------- | ------- | -------------------------------------------------------------------------------------------------- |
+| picture           | string  | Filename of a picture (or URL if uploaded)                                                         |
+| offsetHumidity    | number  | Offset humidity to calibrate sensor                                                                |
+| offsetPressure    | number  | Offset pressure to calibrate sensor                                                                |
+| offsetTemperature | number  | Offset temperature to calibrate sensor                                                             |
+| public            | boolean | If true, data will be publicly accessible.                                                         |
+| sensor            | string  | Sensor ID to update                                                                                |
+| name              | string  | Desired name of the tag                                                                            |
+| timestamp         | number  | Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored.  |
 
-{% swagger-parameter in="body" name="offsetPressure" type="number" %}
-Offset pressure to calibrate sensor
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="offsetTemperature" type="number" %}
-Offset temperature to calibrate sensor
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="public" type="boolean" %}
-If true, data will be publicly accessible.
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="sensor" type="string" %}
-Sensor ID to update
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="name" type="string" %}
-Desired name of the tag
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="timestamp" type="number" %}
-Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored.&#x20;
-{% endswagger-parameter %}
-
-{% swagger-response status="200" description="Only returns the fields that had an update targeted to them." %}
+{% tabs %}
+{% tab title="200 Only returns the fields that had an update targeted to them." %}
 ```
 {
     "result": "success",
@@ -784,9 +786,9 @@ Epoch timestamp in seconds of settings. If backend has fresher data stored, this
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="403" description="" %}
+{% tab title="403 " %}
 ```
 {
     "result": "error",
@@ -794,9 +796,9 @@ Epoch timestamp in seconds of settings. If backend has fresher data stored, this
     "code": "ER_FORBIDDEN"
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="404" description="" %}
+{% tab title="404 " %}
 ```
 {
     "result": "error",
@@ -804,13 +806,9 @@ Epoch timestamp in seconds of settings. If backend has fresher data stored, this
     "code": "ER_SENSOR_NOT_FOUND"
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="409: Conflict" description="Cloud has fresher data than timestamp" %}
-
-{% endswagger-response %}
-
-{% swagger-response status="500" description="" %}
+{% tab title="500 " %}
 ```
 {
     "result": "error",
@@ -818,35 +816,35 @@ Epoch timestamp in seconds of settings. If backend has fresher data stored, this
     "code": "ER_INTERNAL"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
 
-{% swagger baseUrl="https://network.ruuvi.com/" path="upload" method="post" summary="Upload Sensor image (part 1)" %}
-{% swagger-description %}
+{% tab title="409: Conflict Cloud has fresher data than timestamp" %}
+
+{% endtab %}
+{% endtabs %}
+
+## Upload Sensor image (part 1)
+
+<mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/upload`
+
 Retrieves a signed upload URL to a bucket. This makes the back-end ready for the image upload to happen.
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" type="string" %}
-Bearer token of the user
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-parameter in="body" name="action" type="string" %}
-One of: _upload_, _reset_ (default: 'upload' if not given')
-{% endswagger-parameter %}
+| Name          | Type   | Description              |
+| ------------- | ------ | ------------------------ |
+| Authorization | string | Bearer token of the user |
 
-{% swagger-parameter in="body" name="sensor" type="string" %}
-ID of the target Sensor
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-parameter in="body" name="type" type="string" %}
-(**Required** when type is 'upload')\
-Content-Type of the desired image upload. Supported formats:\
-image/png\
-image/gif\
-image/jpeg
-{% endswagger-parameter %}
+| Name   | Type   | Description                                                                                                                                                      |
+| ------ | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| action | string | One of: _upload_, _reset_ (default: 'upload' if not given')                                                                                                      |
+| sensor | string | ID of the target Sensor                                                                                                                                          |
+| type   | string | <p>(<strong>Required</strong> when type is 'upload')<br>Content-Type of the desired image upload. Supported formats:<br>image/png<br>image/gif<br>image/jpeg</p> |
 
-{% swagger-response status="200" description="" %}
+{% tabs %}
+{% tab title="200 " %}
 ```
 {
     "result": "success",
@@ -855,9 +853,9 @@ image/jpeg
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="403" description="" %}
+{% tab title="403 " %}
 ```
 {
     "result": "error",
@@ -865,43 +863,53 @@ image/jpeg
     "code": "ER_FORBIDDEN"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="<URL FROM part 1>" path=" " method="put" summary="Upload the actual image" %}
-{% swagger-description %}
+## Upload the actual image
+
+<mark style="color:orange;">`PUT`</mark> `<URL FROM part 1>`&#x20;
+
 Create a PUT request to the URL produced by /upload end-point with the data payload to complete the upload.
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Content-Type" type="string" %}
-Matching content type to part 1
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-parameter in="body" name="Image binary data" type="object" %}
-Binary data for the image upload
-{% endswagger-parameter %}
+| Name         | Type   | Description                     |
+| ------------ | ------ | ------------------------------- |
+| Content-Type | string | Matching content type to part 1 |
 
-{% swagger-response status="200" description="" %}
+#### Request Body
+
+| Name              | Type   | Description                      |
+| ----------------- | ------ | -------------------------------- |
+| Image binary data | object | Binary data for the image upload |
+
+{% tabs %}
+{% tab title="200 " %}
 ```
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="403" description="" %}
+{% tab title="403 " %}
 ```
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="https://network.ruuvi.com" path="/settings" method="get" summary="Get User Settings" %}
-{% swagger-description %}
+## Get User Settings
+
+<mark style="color:blue;">`GET`</mark> `https://network.ruuvi.com/settings`
+
 Gets the full list of existing user settings.
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" type="string" %}
-Bearer token of the user
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-response status="200" description="" %}
+| Name          | Type   | Description              |
+| ------------- | ------ | ------------------------ |
+| Authorization | string | Bearer token of the user |
+
+{% tabs %}
+{% tab title="200 " %}
 ```
 {
     "status": "success",
@@ -913,31 +921,31 @@ Bearer token of the user
     }
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="https://network.ruuvi.com" path="/settings" method="post" summary="Update user setting" %}
-{% swagger-description %}
+## Update user setting
+
+<mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/settings`
+
 Sets a single user setting (currently).
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" type="string" %}
-Bearer token of the user
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-parameter in="body" name="value" type="string" %}
-Setting value
-{% endswagger-parameter %}
+| Name          | Type   | Description              |
+| ------------- | ------ | ------------------------ |
+| Authorization | string | Bearer token of the user |
 
-{% swagger-parameter in="body" name="name" type="string" %}
-Setting key (alphanumeric with "\_", "-" and "."
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-parameter in="body" name="timestamp" type="number" %}
-Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored.
-{% endswagger-parameter %}
+| Name      | Type   | Description                                                                                       |
+| --------- | ------ | ------------------------------------------------------------------------------------------------- |
+| value     | string | Setting value                                                                                     |
+| name      | string | Setting key (alphanumeric with "\_", "-" and "."                                                  |
+| timestamp | number | Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored. |
 
-{% swagger-response status="200" description="" %}
+{% tabs %}
+{% tab title="200 " %}
 ```
 {
     "status": "success",
@@ -946,53 +954,36 @@ Epoch timestamp in seconds of settings. If backend has fresher data stored, this
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="409: Conflict" description="Cloud has fresher data than timestamp" %}
+{% tab title="409: Conflict Cloud has fresher data than timestamp" %}
 
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="https://network.ruuvi.com" path="/alerts" method="post" summary="Create and update Alerts" %}
-{% swagger-description %}
+## Create and update Alerts
+
+<mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/alerts`
+
 Sets an alert on a sensor for a given metric. The alert condition is tested against the absolute value received from the sensors in conjunction with the use set offsets for that particular sensor.
 
 Proposed values are marked with \*.&#x20;
-{% endswagger-description %}
 
-{% swagger-parameter in="body" name="counter" type="number" %}
-For movement alerts, one can manually set the current number
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-parameter in="body" name="type" type="string" required="true" %}
-One of: temperature, humidity, pressure, signal, movement, \*offline
-{% endswagger-parameter %}
+| Name                                   | Type    | Description                                                                                                                           |
+| -------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| counter                                | number  | For movement alerts, one can manually set the current number                                                                          |
+| type<mark style="color:red;">\*</mark> | string  | One of: temperature, humidity, pressure, signal, movement, \*offline                                                                  |
+| min                                    | number  | Lower limit for the alert                                                                                                             |
+| max                                    | number  | Upper limit for the alert                                                                                                             |
+| enabled                                | boolean | Used to toggle alert on and off                                                                                                       |
+| sensor                                 | string  | Sensor MAC of the target sensor                                                                                                       |
+| timestamp                              | number  | Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored.                                     |
+| \*delay                                | number  | How many \*seconds\* alert condition has to be valid before alert gets triggered. Delay is reset if alert is cleared. Defaults to 0.  |
 
-{% swagger-parameter in="body" name="min" type="number" %}
-Lower limit for the alert
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="max" type="number" %}
-Upper limit for the alert
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="enabled" type="boolean" %}
-Used to toggle alert on and off
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="sensor" type="string" %}
-Sensor MAC of the target sensor
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="timestamp" type="number" %}
-Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored.&#x20;
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="*delay" type="number" %}
-How many \*seconds\* alert condition has to be valid before alert gets triggered. Delay is reset if alert is cleared. Defaults to 0.&#x20;
-{% endswagger-parameter %}
-
-{% swagger-response status="200" description="" %}
+{% tabs %}
+{% tab title="200 " %}
 ```
 {
     "status": "success",
@@ -1001,23 +992,27 @@ How many \*seconds\* alert condition has to be valid before alert gets triggered
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="409: Conflict" description="Cloud has fresher data than timestamp" %}
+{% tab title="409: Conflict Cloud has fresher data than timestamp" %}
 
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="https://network.ruuvi.com" path="/alerts" method="get" summary="Get alerts" %}
-{% swagger-description %}
+## Get alerts
+
+<mark style="color:blue;">`GET`</mark> `https://network.ruuvi.com/alerts`
+
 Fetches alerts for all sensors user has access to or a single sensor if optional parameter is provided.
-{% endswagger-description %}
 
-{% swagger-parameter in="body" name="sensor" type="string" %}
-Optional Sensor MAC for filter the alerts
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-response status="200" description="" %}
+| Name   | Type   | Description                               |
+| ------ | ------ | ----------------------------------------- |
+| sensor | string | Optional Sensor MAC for filter the alerts |
+
+{% tabs %}
+{% tab title="200 " %}
 ```
 {
     "status": "success",
@@ -1041,23 +1036,27 @@ Optional Sensor MAC for filter the alerts
     }
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger method="get" path="/check" baseUrl="https://network.ruuvi.com" summary="Check if a sensor with given MAC address is claimed by someone" %}
-{% swagger-description %}
+## Check if a sensor with given MAC address is claimed by someone
 
-{% endswagger-description %}
+<mark style="color:blue;">`GET`</mark> `https://network.ruuvi.com/check`
 
-{% swagger-parameter in="query" name="sensor" type="MAC address" required="true" %}
-AA:BB:CC:DD:EE:FF (String)
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-parameter in="header" required="true" name="Authorization" type="Bearer" %}
-Bearer \<Bearer Token>
-{% endswagger-parameter %}
+| Name                                     | Type        | Description                |
+| ---------------------------------------- | ----------- | -------------------------- |
+| sensor<mark style="color:red;">\*</mark> | MAC address | AA:BB:CC:DD:EE:FF (String) |
 
-{% swagger-response status="200: OK" description="Masked email of sensor owner, empty string if sensor is not owned" %}
+#### Headers
+
+| Name                                            | Type   | Description            |
+| ----------------------------------------------- | ------ | ---------------------- |
+| Authorization<mark style="color:red;">\*</mark> | Bearer | Bearer \<Bearer Token> |
+
+{% tabs %}
+{% tab title="200: OK Masked email of sensor owner, empty string if sensor is not owned" %}
 ```javascript
 {
     "status": "success",
@@ -1066,9 +1065,9 @@ Bearer \<Bearer Token>
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="400: Bad Request" description="If request doesn't have "sensor" parameter, or parameter is not a valid MAC address" %}
+{% tab title="400: Bad Request If request doesn't have "sensor" parameter, or parameter is not a valid MAC address" %}
 ```javascript
     "status": "success",
     "data": {
@@ -1076,9 +1075,9 @@ Bearer \<Bearer Token>
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="403: Forbidden" description="If there was no valid authentication" %}
+{% tab title="403: Forbidden If there was no valid authentication" %}
 ```javascript
 {
     "result": "error",
@@ -1086,27 +1085,30 @@ Bearer \<Bearer Token>
     "code": "ER_UNAUTHORIZED"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger method="post" path="contest-sensor" baseUrl="https://network.ruuvi.com/" summary="Contest ownership of a sensor" %}
-{% swagger-description %}
+## Contest ownership of a sensor
+
+<mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/contest-sensor`
+
 This call is used to reclaim a sensor claimed by someone else. After this endpoint returns 200, the sensor is claimed by calling account. Parameters are passed as a body JSON object.
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" required="true" %}
-Bearer token of the user
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-parameter in="body" name="sensor" required="true" %}
-MAC address of sensor to reclaim
-{% endswagger-parameter %}
+| Name                                            | Type   | Description              |
+| ----------------------------------------------- | ------ | ------------------------ |
+| Authorization<mark style="color:red;">\*</mark> | String | Bearer token of the user |
 
-{% swagger-parameter in="body" name="secret" required="true" %}
-Secret of sensor to reclaim
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-response status="200: OK" description="Sensor ownership was transferred" %}
+| Name                                     | Type   | Description                      |
+| ---------------------------------------- | ------ | -------------------------------- |
+| sensor<mark style="color:red;">\*</mark> | String | MAC address of sensor to reclaim |
+| secret<mark style="color:red;">\*</mark> | String | Secret of sensor to reclaim      |
+
+{% tabs %}
+{% tab title="200: OK Sensor ownership was transferred" %}
 ```javascript
 {
     "result": "success",
@@ -1115,47 +1117,53 @@ Secret of sensor to reclaim
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="400: Bad Request" description="Missing parameter or user has full claim count" %}
+{% tab title="400: Bad Request Missing parameter or user has full claim count" %}
 ```javascript
 {
     'code': {'ER_CLAIM_COUNT_REACHED', 'ER_MISSING_ARGUMENT'}
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="401: Unauthorized" description="User is not authenticated" %}
+{% tab title="401: Unauthorized User is not authenticated" %}
 ```javascript
 {
     'code': 'ER_UNAUTHORIZED'
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="403: Forbidden" description="macAddress and secret do not match" %}
+{% tab title="403: Forbidden macAddress and secret do not match" %}
 ```javascript
 {
     'code': 'ER_FORBIDDEN'
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger method="post" path="subscription" baseUrl="https://network.ruuvi.com/" summary="Claim a subscription by a code" %}
-{% swagger-description %}
+## Claim a subscription by a code
+
+<mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/subscription`
+
 This endpoints applies a new subscription to user immediately. Previous subscription is lost. Parameters are passed as JSON in body. The success response has full subscription history of user, with active subscription being first element of array of subscriptions.&#x20;
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" required="true" %}
-Bearer token of the user
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-parameter in="body" name="code" required="true" %}
-Code of subscription&#x20;
-{% endswagger-parameter %}
+| Name                                            | Type   | Description              |
+| ----------------------------------------------- | ------ | ------------------------ |
+| Authorization<mark style="color:red;">\*</mark> | String | Bearer token of the user |
 
-{% swagger-response status="200: OK" description="Subscription was applied successfully" %}
+#### Request Body
+
+| Name                                   | Type   | Description           |
+| -------------------------------------- | ------ | --------------------- |
+| code<mark style="color:red;">\*</mark> | String | Code of subscription  |
+
+{% tabs %}
+{% tab title="200: OK Subscription was applied successfully" %}
 ```javascript
 {
     "result": "success",
@@ -1187,9 +1195,9 @@ Code of subscription&#x20;
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="400: Bad Request" description="Missing code" %}
+{% tab title="400: Bad Request Missing code" %}
 ```javascript
 {
     "result": "error",
@@ -1197,9 +1205,9 @@ Code of subscription&#x20;
     "code": "ER_INVALID_FORMAT"
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="401: Unauthorized" description="Missing or invalid authorization header" %}
+{% tab title="401: Unauthorized Missing or invalid authorization header" %}
 ```javascript
 {
     "result": "error",
@@ -1207,19 +1215,9 @@ Code of subscription&#x20;
     "code": "ER_UNAUTHORIZED"
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="404: Not Found" description="Subscription code does not exist" %}
-```javascript
-{
-    "result": "error",
-    "error": "Code not found",
-    "code": "ER_SUBSCRIPTION_NOT_FOUND"
-}
-```
-{% endswagger-response %}
-
-{% swagger-response status="409: Conflict" description="Subscription code is already used" %}
+{% tab title="409: Conflict Subscription code is already used" %}
 ```javascript
 {
     "result": "error",
@@ -1227,19 +1225,33 @@ Code of subscription&#x20;
     "code": "ER_SUBSCRIPTION_CODE_USED"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
 
-{% swagger method="get" path="/subscription" baseUrl="https://network.ruuvi.com" summary="Get subscription history" %}
-{% swagger-description %}
+{% tab title="404: Not Found Subscription code does not exist" %}
+```javascript
+{
+    "result": "error",
+    "error": "Code not found",
+    "code": "ER_SUBSCRIPTION_NOT_FOUND"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+## Get subscription history
+
+<mark style="color:blue;">`GET`</mark> `https://network.ruuvi.com/subscription`
+
 Return array of JSON objects detaling the subscriptions user has had.&#x20;
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" required="true" %}
-Bearer token of the user
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-response status="200: OK" description="Returns subscription history" %}
+| Name                                            | Type   | Description              |
+| ----------------------------------------------- | ------ | ------------------------ |
+| Authorization<mark style="color:red;">\*</mark> | String | Bearer token of the user |
+
+{% tabs %}
+{% tab title="200: OK Returns subscription history" %}
 ```javascript
 {
     "result": "success",
@@ -1271,9 +1283,9 @@ Bearer token of the user
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="403: Forbidden" description="Request was not authenticated or authentication token was not valid" %}
+{% tab title="403: Forbidden Request was not authenticated or authentication token was not valid" %}
 ```javascript
 {
     "result": "error",
@@ -1281,41 +1293,35 @@ Bearer token of the user
     "code": "ER_UNAUTHORIZED"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger method="post" path="push-register" baseUrl="https://network.ruuvi.com/" summary="Register a push notification token for user" %}
-{% swagger-description %}
+## Register a push notification token for user
+
+<mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/push-register`
+
 Register a device to Cloud so Cloud can send push notifications to user. Currently only alerts for Android and iOS are supported.&#x20;
 
 Tokens must be unique, one token cannot be associated with two accounts. If token already exists in Ruuvi Cloud with another account, the token will be removed from old account.&#x20;
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" required="true" %}
-Bearer token of the user
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-parameter in="body" name="token" required="true" %}
-Device identification token
-{% endswagger-parameter %}
+| Name                                            | Type   | Description              |
+| ----------------------------------------------- | ------ | ------------------------ |
+| Authorization<mark style="color:red;">\*</mark> | String | Bearer token of the user |
 
-{% swagger-parameter in="body" name="type" required="true" %}
-Device type, e.g. "Android" or "iOS"
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-parameter in="body" name="name" %}
-Human-readable device name, e.g. "Otso's mobile phone". Defaults to device type.
-{% endswagger-parameter %}
+| Name                                    | Type   | Description                                                                                                                 |
+| --------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
+| token<mark style="color:red;">\*</mark> | String | Device identification token                                                                                                 |
+| type<mark style="color:red;">\*</mark>  | String | Device type, e.g. "Android" or "iOS"                                                                                        |
+| data                                    | String | Optional data to be passed to to push notification. Can be e.g. authentication token.                                       |
+| params                                  | String | Optional parameters used internally by Ruuvi Cloud when delivering notifications. Currently unused,this is for future needs |
+| name                                    | String | Human-readable device name, e.g. "Otso's mobile phone". Defaults to device type.                                            |
 
-{% swagger-parameter in="body" name="data" %}
-Optional data to be passed to to push notification. Can be e.g. authentication token.&#x20;
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="params" %}
-Optional parameters used internally by Ruuvi Cloud when delivering notifications. Currently unused,this is for future needs
-{% endswagger-parameter %}
-
-{% swagger-response status="200: OK" description="Token was successfully registered" %}
+{% tabs %}
+{% tab title="200: OK Token was successfully registered" %}
 ```javascript
 {
     "result": "success",
@@ -1324,99 +1330,104 @@ Optional parameters used internally by Ruuvi Cloud when delivering notifications
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="400: Bad Request" description="Request had malformed data" %}
+{% tab title="400: Bad Request Request had malformed data" %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="401: Unauthorized" description="Request did not have authentication" %}
+{% tab title="401: Unauthorized Request did not have authentication" %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="403: Forbidden" description="Authentication was invalid" %}
+{% tab title="403: Forbidden Authentication was invalid" %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="500: Internal Server Error" description="Internal problem. Try again later. " %}
+{% tab title="500: Internal Server Error Internal problem. Try again later. " %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger method="post" path="push-unregister" baseUrl="https://network.ruuvi.com/" summary="Remove a push notification token for user" %}
-{% swagger-description %}
+## Remove a push notification token for user
+
+<mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/push-unregister`
+
 Removes given token from user, e.g. when signing off from the app. This does not require authentication to ensure that a device can always unregister itself.
 
 Either full token or Token ID must be given, but both are optional. If both arguments are given, either can be processed but not both in one request. &#x20;
-{% endswagger-description %}
 
-{% swagger-parameter in="body" name="token" required="false" %}
-Device identification token
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-parameter in="body" name="id" %}
-Token ID received in listing of tokens
-{% endswagger-parameter %}
+| Name  | Type   | Description                            |
+| ----- | ------ | -------------------------------------- |
+| token | String | Device identification token            |
+| id    | String | Token ID received in listing of tokens |
 
-{% swagger-response status="200: OK" description="Token was removed" %}
+{% tabs %}
+{% tab title="200: OK Token was removed" %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="400: Bad Request" description="Message body did not have required data" %}
+{% tab title="400: Bad Request Message body did not have required data" %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="404: Not Found" description="Given token or ID was not found." %}
+{% tab title="500: Internal Server Error Internal problem. Try again later. " %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="500: Internal Server Error" description="Internal problem. Try again later. " %}
+{% tab title="404: Not Found Given token or ID was not found." %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger method="get" path="push-list" baseUrl="https://network.ruuvi.com/" summary="Get a list of tokens associated with user account" %}
-{% swagger-description %}
+## Get a list of tokens associated with user account
+
+<mark style="color:blue;">`GET`</mark> `https://network.ruuvi.com/push-list`
+
 List all tokens of user. Returns a listing of tokenId - name pairs.&#x20;
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" required="true" %}
-Bearer token of the user
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-response status="200: OK" description="List was successfully retrieved" %}
+| Name                                            | Type   | Description              |
+| ----------------------------------------------- | ------ | ------------------------ |
+| Authorization<mark style="color:red;">\*</mark> | String | Bearer token of the user |
+
+{% tabs %}
+{% tab title="200: OK List was successfully retrieved" %}
 ```javascript
 {
     "result": "success",
@@ -1436,30 +1447,30 @@ Bearer token of the user
     }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="401: Unauthorized" description="Authentication token was missing" %}
+{% tab title="401: Unauthorized Authentication token was missing" %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="403: Forbidden" description="Authentication token is invalid" %}
+{% tab title="403: Forbidden Authentication token is invalid" %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="500: Internal Server Error" description="Iinternal problem. Try again later. " %}
+{% tab title="500: Internal Server Error Iinternal problem. Try again later. " %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 

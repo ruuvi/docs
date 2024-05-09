@@ -68,16 +68,18 @@ To decrypt the data received from the Gateway, the client needs to decode all va
 
 These API calls are available:
 
-{% swagger method="get" path="" baseUrl="http://10.10.0.1/ruuvi.json" summary="Requesting gateway configuration and performing encryption keys exchange" %}
-{% swagger-description %}
+## Requesting gateway configuration and performing encryption keys exchange
 
-{% endswagger-description %}
+<mark style="color:blue;">`GET`</mark> `http://10.10.0.1/ruuvi.json`
 
-{% swagger-parameter in="header" name="ruuvi_ecdh_pub_key" required="true" %}
-The client's public encryption key in Base64 encoding.
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-response status="200: OK" description="Encrypted gateway configuration." %}
+| Name                                                    | Type   | Description                                            |
+| ------------------------------------------------------- | ------ | ------------------------------------------------------ |
+| ruuvi\_ecdh\_pub\_key<mark style="color:red;">\*</mark> | String | The client's public encryption key in Base64 encoding. |
+
+{% tabs %}
+{% tab title="200: OK Encrypted gateway configuration." %}
 The Gateway's public encryption key is passed in HTTP header "**ruuvi\_ecdh\_pub\_key**" in Base64 encoding. The data is sent in an encrypted form (see [#undefined](gw-esp32-wifi-hotspot.md#undefined "mention")).&#x20;
 
 Here is unencrypted data:
@@ -142,56 +144,39 @@ Here is unencrypted data:
         "coordinates":  ""
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger method="post" path="" baseUrl="http://10.10.0.1/ruuvi.json" summary="Save network configuration" %}
-{% swagger-description %}
+## Save network configuration
+
+<mark style="color:green;">`POST`</mark> `http://10.10.0.1/ruuvi.json`
+
 The same endpoint "/ruuvi.json" is used for saving the network configuration and gateway configuration. If the passed JSON data contains the "use\_eth" attribute, then the network part of the configuration will be updated. Otherwise, the gateway configuration will be set.
 
 The data must be sent in an encrypted form (see [#encrypted-data-format](gw-esp32-wifi-hotspot.md#encrypted-data-format "mention")). Here is the unencrypted data:&#x20;
-{% endswagger-description %}
 
-{% swagger-parameter in="body" name="use_eth" type="Bool" required="true" %}
-Use Ethernet if True, otherwise use Wi-Fi
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-parameter in="body" name="eth_dhcp" type="Bool" %}
-Use DHCP for Ethernet connection
-{% endswagger-parameter %}
+| Name                                       | Type   | Description                                                                                |
+| ------------------------------------------ | ------ | ------------------------------------------------------------------------------------------ |
+| use\_eth<mark style="color:red;">\*</mark> | Bool   | Use Ethernet if True, otherwise use Wi-Fi                                                  |
+| eth\_dhcp                                  | Bool   | Use DHCP for Ethernet connection                                                           |
+| eth\_static\_ip                            | String | Static IP address (when Ethernet is used and DHCP disabled)                                |
+| eth\_netmask                               | String | Netmask (when Ethernet is used and DHCP disabled)                                          |
+| eth\_gw                                    | String | IP address of gateway (when Ethernet is used and DHCP disabled)                            |
+| eth\_dns1                                  | String | IP address of DNS1 (when Ethernet is used and DHCP disabled)                               |
+| eth\_dns2                                  | String | IP address of DNS2 (when Ethernet is used and DHCP disabled)                               |
+| wifi\_ap\_config                           | Object | Set parameters for Wi-Fi AP. The attribute "channel" allows configuring the Wi-Fi channel. |
 
-{% swagger-parameter in="body" name="eth_static_ip" %}
-Static IP address (when Ethernet is used and DHCP disabled)
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="eth_netmask" %}
-Netmask (when Ethernet is used and DHCP disabled)
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="eth_gw" %}
-IP address of gateway (when Ethernet is used and DHCP disabled)
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="eth_dns1" %}
-IP address of DNS1 (when Ethernet is used and DHCP disabled)
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="eth_dns2" %}
-IP address of DNS2 (when Ethernet is used and DHCP disabled)
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="wifi_ap_config" type="Object" %}
-Set parameters for Wi-Fi AP. The attribute "channel" allows configuring the Wi-Fi channel.
-{% endswagger-parameter %}
-
-{% swagger-response status="200: OK" description="" %}
+{% tabs %}
+{% tab title="200: OK " %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
 Example:
 
@@ -205,185 +190,69 @@ Example:
 {"use_eth":false,"wifi_ap_config":{"channel":11}}
 ```
 
-{% swagger method="post" path="" baseUrl="http://10.10.0.1/ruuvi.json" summary="Save gateway configuration" %}
-{% swagger-description %}
+## Save gateway configuration
+
+<mark style="color:green;">`POST`</mark> `http://10.10.0.1/ruuvi.json`
+
 The same endpoint "/ruuvi.json" is used for saving the network configuration and gateway configuration. If the passed JSON data contains the "use\_eth" attribute, then the network part of the configuration will be updated. Otherwise, the gateway configuration will be set.
 
 The data must be sent in an encrypted form (see [#encrypted-data-format](gw-esp32-wifi-hotspot.md#encrypted-data-format "mention")). Here is the unencrypted data:&#x20;
-{% endswagger-description %}
 
-{% swagger-parameter in="body" name="remote_cfg_use" type="Bool" %}
-If true, then download the configuration from the remote server, specified in "**remote\_cfg\_url**"
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-parameter in="body" name="remote_cfg_url" %}
-URL of the remote server to download the configuration
-{% endswagger-parameter %}
+| Name                             | Type   | Description                                                                                          |
+| -------------------------------- | ------ | ---------------------------------------------------------------------------------------------------- |
+| remote\_cfg\_use                 | Bool   | If true, then download the configuration from the remote server, specified in "**remote\_cfg\_url**" |
+| remote\_cfg\_url                 | String | URL of the remote server to download the configuration                                               |
+| remote\_cfg\_auth\_type          | String | Authentication type: "no", "basic" or "bearer"                                                       |
+| use\_http                        | Bool   | If true, then send data to the cloud via HTTP(S)                                                     |
+| http\_url                        | String | URL of the cloud server                                                                              |
+| http\_user                       | String | Username                                                                                             |
+| http\_pass                       | String | Password                                                                                             |
+| use\_http\_stat                  | Bool   | If true, then send statistics to the cloud via HTTP(S)                                               |
+| http\_stat\_url                  | String | URL of the cloud statistrics server                                                                  |
+| http\_stat\_user                 | String | Username                                                                                             |
+| http\_stat\_pass                 | String | Password                                                                                             |
+| use\_mqtt                        | Bool   | If true, then send data to the cloud via MQTT(S)                                                     |
+| mqtt\_transport                  | String | MQTT transport: "TCP", "SSL", "WS" or "WSS"                                                          |
+| mqtt\_server                     | String | IP address of MQTT server                                                                            |
+| mqtt\_port                       | Int    | TCP/IP port of MQTT server                                                                           |
+| mqtt\_prefix                     | String | MQTT prefix                                                                                          |
+| mqtt\_client\_id                 | String | MQTT client ID                                                                                       |
+| mqtt\_user                       | String | Username for MQTT authentication                                                                     |
+| mqtt\_pass                       | String | Password for MQTT authentication                                                                     |
+| lan\_auth\_api\_key              | String | Bearer key for authentication when accessing the Gateway from LAN                                    |
+| company\_use\_filtering          | Bool   |                                                                                                      |
+| scan\_coded\_phy                 | Bool   |                                                                                                      |
+| scan\_1mbit\_phy                 | Bool   |                                                                                                      |
+| scan\_extended\_payload          | Bool   |                                                                                                      |
+| scan\_channel\_37                | Bool   |                                                                                                      |
+| scan\_channel\_38                | Bool   |                                                                                                      |
+| scan\_channel\_39                | Bool   |                                                                                                      |
+| auto\_update\_cycle              | String | "regular", "beta" or "manual"                                                                        |
+| auto\_update\_weekdays\_bitmask  | Int    |                                                                                                      |
+| auto\_update\_interval\_from     | Int    |                                                                                                      |
+| auto\_update\_interval\_to       | Int    |                                                                                                      |
+| auto\_update\_tz\_offset\_hours  | Int    |                                                                                                      |
+| ntp\_use                         | Bool   |                                                                                                      |
+| ntp\_use\_dhcp                   | Bool   |                                                                                                      |
+| ntp\_server1                     | String |                                                                                                      |
+| ntp\_server2                     | String |                                                                                                      |
+| ntp\_server3                     | String |                                                                                                      |
+| ntp\_server4                     | String |                                                                                                      |
+| remote\_cfg\_auth\_basic\_user   | String | Username for "basic" authentication                                                                  |
+| remote\_cfg\_auth\_basic\_pass   | String | Password for "basic" authentication                                                                  |
+| remote\_cfg\_auth\_bearer\_token | String | Bearer token for bearer authentication                                                               |
 
-{% swagger-parameter in="body" name="remote_cfg_auth_type" %}
-Authentication type: "no", "basic" or "bearer"
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="remote_cfg_auth_basic_user" %}
-Username for "basic" authentication
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="remote_cfg_auth_basic_pass" %}
-Password for "basic" authentication
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="remote_cfg_auth_bearer_token" %}
-Bearer token for bearer authentication
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="use_http" type="Bool" %}
-If true, then send data to the cloud via HTTP(S)
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="http_url" %}
-URL of the cloud server
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="http_user" %}
-Username
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="http_pass" %}
-Password
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="use_http_stat" type="Bool" %}
-If true, then send statistics to the cloud via HTTP(S)
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="http_stat_url" %}
-URL of the cloud statistrics server
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="http_stat_user" %}
-Username
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="http_stat_pass" %}
-Password
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="use_mqtt" type="Bool" %}
-If true, then send data to the cloud via MQTT(S)
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="mqtt_transport" %}
-MQTT transport: "TCP", "SSL", "WS" or "WSS"
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="mqtt_server" %}
-IP address of MQTT server
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="mqtt_port" type="Int" %}
-TCP/IP port of MQTT server
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="mqtt_prefix" %}
-MQTT prefix
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="mqtt_client_id" %}
-MQTT client ID
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="mqtt_user" %}
-Username for MQTT authentication
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="mqtt_pass" %}
-Password for MQTT authentication
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="lan_auth_api_key" %}
-Bearer key for authentication when accessing the Gateway from LAN
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="company_use_filtering" type="Bool" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="scan_coded_phy" type="Bool" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="scan_1mbit_phy" type="Bool" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="scan_extended_payload" type="Bool" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="scan_channel_37" type="Bool" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="scan_channel_38" type="Bool" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="scan_channel_39" type="Bool" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="auto_update_cycle" %}
-"regular", "beta" or "manual"
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="auto_update_weekdays_bitmask" type="Int" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="auto_update_interval_from" type="Int" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="auto_update_interval_to" type="Int" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="auto_update_tz_offset_hours" type="Int" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="ntp_use" type="Bool" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="ntp_use_dhcp" type="Bool" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="ntp_server1" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="ntp_server2" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="ntp_server3" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="ntp_server4" %}
-
-{% endswagger-parameter %}
-
-{% swagger-response status="200: OK" description="" %}
+{% tabs %}
+{% tab title="200: OK " %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
 Example:
 
@@ -432,83 +301,85 @@ Example:
 
 
 
-{% swagger baseUrl="http://10.10.0.1" path="/status.json" method="get" summary="status.json" %}
-{% swagger-description %}
-This URL can be polled to get the Wi-Fi/Ethernet connection status of the gateway.&#x20;
-{% endswagger-description %}
+## status.json
 
-{% swagger-response status="200" description="Status of the network connection if it's not connected" %}
+<mark style="color:blue;">`GET`</mark> `http://10.10.0.1/status.json`
+
+This URL can be polled to get the Wi-Fi/Ethernet connection status of the gateway.&#x20;
+
+{% tabs %}
+{% tab title="200 Status of the network connection if it's not connected" %}
 ```json
 {}
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="200: OK" description="Status of current Wi-Fi connection if it's connected" %}
+{% tab title="200: OK Status of current Wi-Fi connection if it's connected" %}
 ```json
 {"ssid":"my_wifi_1","ip":"192.168.1.119","netmask":"255.255.255.0","gw":"192.168.1.1","urc":0}
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="200: OK" description="After an unsuccessful attempt to connect" %}
+{% tab title="200: OK After an unsuccessful attempt to connect" %}
 ```json
 {"ssid":"my_wifi_1","ip":"0","netmask":"0","gw":"0","urc":1}
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="200: OK" description="After the user has disconnected from Wi-Fi" %}
+{% tab title="200: OK After the user has disconnected from Wi-Fi" %}
 ```json
 {"ssid":"my_wifi_1","ip":"0","netmask":"0","gw":"0","urc":2}
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="http://10.10.0.1" path="/ap.json" method="get" summary="ap.json" %}
-{% swagger-description %}
+## ap.json
+
+<mark style="color:blue;">`GET`</mark> `http://10.10.0.1/ap.json`
+
 Scan for available Wi-Fi access points that the gateway can connect to.
-{% endswagger-description %}
 
-{% swagger-response status="200" description="An array of JSON objects containing nearby Wi-Fi networks " %}
+{% tabs %}
+{% tab title="200 An array of JSON objects containing nearby Wi-Fi networks " %}
 ```json
 [
 {"ssid":"Pantum-AP-A6D49F","chan":11,"rssi":-55,"auth":4},
 {"ssid":"a0308","chan":1,"rssi":-56,"auth":3}
 ]
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="http://10.10.0.1" path="/connect.json" method="post" summary="connect.json" %}
-{% swagger-description %}
+## connect.json
+
+<mark style="color:green;">`POST`</mark> `http://10.10.0.1/connect.json`
+
 Connect to a Wi-Fi network or Ethernet.
 
 Data containing authentication information is transmitted in the body of the request in encrypted form.
-{% endswagger-description %}
 
-{% swagger-parameter in="body" name="encrypted" required="true" %}
-Encrypted request, encoded as base64
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-parameter in="body" name="iv" required="true" %}
-AES initialization vector, encoded as base64
-{% endswagger-parameter %}
+| Name                                        | Type   | Description                                           |
+| ------------------------------------------- | ------ | ----------------------------------------------------- |
+| hash<mark style="color:red;">\*</mark>      | String | SHA256 hash of unencrypted request, encoded as base64 |
+| iv<mark style="color:red;">\*</mark>        | String | AES initialization vector, encoded as base64          |
+| encrypted<mark style="color:red;">\*</mark> | String | Encrypted request, encoded as base64                  |
 
-{% swagger-parameter in="body" required="true" name="hash" %}
-SHA256 hash of unencrypted request, encoded as base64
-{% endswagger-parameter %}
-
-{% swagger-response status="200" description="Gateway tries to connect to a given WiFi SSID or Ethernet." %}
+{% tabs %}
+{% tab title="200 Gateway tries to connect to a given WiFi SSID or Ethernet." %}
 ```json
 {}
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="400" description="If required parameter is missing." %}
+{% tab title="400 If required parameter is missing." %}
 ```
 Example: 
 
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
 **Example**:
 
@@ -538,48 +409,56 @@ Example of unencrypted data for connecting to Ethernet:
 {"ssid": null, "password": null, "stub": "                            "}
 ```
 
-{% swagger baseUrl="http://10.10.0.1" path="/connect.json" method="delete" summary="connect.json" %}
-{% swagger-description %}
-Disconnect from WiFi or Ethernet.
-{% endswagger-description %}
+## connect.json
 
-{% swagger-response status="200" description="Connection is dropped. " %}
+<mark style="color:red;">`DELETE`</mark> `http://10.10.0.1/connect.json`
+
+Disconnect from WiFi or Ethernet.
+
+{% tabs %}
+{% tab title="200 Connection is dropped. " %}
 ```json
 {}
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="400" description="" %}
+{% tab title="400 " %}
 ```
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="http://10.10.0.1" path="/metrics" method="get" summary="metrics" %}
-{% swagger-description %}
+## metrics
+
+<mark style="color:blue;">`GET`</mark> `http://10.10.0.1/metrics`
+
 Get machine statistics, such as uptime and free memory. Data is in Prometheus format. For more details, please see https://prometheus.io/docs/instrumenting/exposition\_formats/ .
-{% endswagger-description %}
 
-{% swagger-response status="200" description="Prometheus text data" %}
+{% tabs %}
+{% tab title="200 Prometheus text data" %}
 ```
 ruuvigw_received_advertisements 2566 ruuvigw_uptime_us 65447769 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_EXEC"} 205004 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_32BIT"} 211468 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_8BIT"} 136412 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_DMA"} 136412 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_PID2"} 0 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_PID3"} 0 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_PID4"} 0 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_PID5"} 0 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_PID6"} 0 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_PID7"} 0 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_SPIRAM"} 0 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_INTERNAL"} 211468 ruuvigw_heap_free_bytes{capability="MALLOC_CAP_DEFAULT"} 136604 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_EXEC"} 129948 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_32BIT"} 129948 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_8BIT"} 129948 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_DMA"} 129948 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_PID2"} 0 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_PID3"} 0 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_PID4"} 0 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_PID5"} 0 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_PID6"} 0 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_PID7"} 0 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_SPIRAM"} 0 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_INTERNAL"} 129948 ruuvigw_heap_largest_free_block_bytes{capability="MALLOC_CAP_DEFAULT"} 129948
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="http://10.10.0.1" path="/history" method="get" summary="history" %}
-{% swagger-description %}
+## history
+
+<mark style="color:blue;">`GET`</mark> `http://10.10.0.1/history`
+
 Get history data in json format
-{% endswagger-description %}
 
-{% swagger-parameter in="path" name="time" type="integer" %}
-Read the history for the last N seconds only
-{% endswagger-parameter %}
+#### Path Parameters
 
-{% swagger-response status="200" description="" %}
+| Name | Type    | Description                                  |
+| ---- | ------- | -------------------------------------------- |
+| time | integer | Read the history for the last N seconds only |
+
+{% tabs %}
+{% tab title="200 " %}
 ```
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
 See examples of the "history" payload here: [http-get-history-with-timestamps-and-decoding.md](../gw-data-formats/http-get-history-with-timestamps-and-decoding.md "mention")
