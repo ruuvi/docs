@@ -539,7 +539,7 @@ Fetches the list of claimed and shared sensors with calibration data, sensor las
 | Name           | Type   | Description                                                                                                                                       |
 | -------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | sensor         | string | Optionally filter only one sensor                                                                                                                 |
-| sharedToOthers | bool   | Optionally returns the list of users with whom each of the sensors is shared to                                                                   |
+| sharedToOthers | bool   | Optionally returns the list of users with whom each of the sensors is shared to. Returns empty list for non-owners                                |
 | sharedToMe     | bool   | Optionally returns the sensors shared to the logged-in user alongside claimed sensors by the user                                                 |
 | measurements   | bool   | Optionally returns the latest measurement of each of the sensors in the collection. Returns also the subscription on which the data is based on.  |
 | alerts         | bool   | Optionally returns the alerts settings of each of the sensors in the collection                                                                   |
@@ -971,16 +971,16 @@ Proposed values are marked with \*.&#x20;
 
 #### Request Body
 
-| Name                                   | Type    | Description                                                                                                                           |
-| -------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| counter                                | number  | For movement alerts, one can manually set the current number                                                                          |
-| type<mark style="color:red;">\*</mark> | string  | One of: temperature, humidity, pressure, signal, movement, \*offline                                                                  |
-| min                                    | number  | Lower limit for the alert                                                                                                             |
-| max                                    | number  | Upper limit for the alert                                                                                                             |
-| enabled                                | boolean | Used to toggle alert on and off                                                                                                       |
-| sensor                                 | string  | Sensor MAC of the target sensor                                                                                                       |
-| timestamp                              | number  | Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored.                                     |
-| \*delay                                | number  | How many \*seconds\* alert condition has to be valid before alert gets triggered. Delay is reset if alert is cleared. Defaults to 0.  |
+| Name      | Type    | Description                                                                                                                           |
+| --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| counter   | number  | For movement alerts, one can manually set the current number                                                                          |
+| type      | string  | One of: temperature, humidity, pressure, signal, movement, offline                                                                    |
+| min       | number  | Lower limit for the alert                                                                                                             |
+| max       | number  | Upper limit for the alert                                                                                                             |
+| enabled   | boolean | Used to toggle alert on and off                                                                                                       |
+| sensor    | string  | Sensor MAC of the target sensor                                                                                                       |
+| timestamp | number  | Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored.                                     |
+| delay     | number  | How many \*seconds\* alert condition has to be valid before alert gets triggered. Delay is reset if alert is cleared. Defaults to 0.  |
 
 {% tabs %}
 {% tab title="200 " %}
@@ -1015,13 +1015,15 @@ Fetches alerts for all sensors user has access to or a single sensor if optional
 {% tab title="200 " %}
 ```
 {
-    "status": "success",
+    "result": "success",
     "data": {
         "alerts": [
             {
                 userId: <userId>,
                 sensorId: <sensorMAC>,
-                type: <humidity|pressure|temperature>,
+                description: <string>
+                type: <humidity|pressure|temperature|movement|offline>,
+                counter: number, // Relevant for movement
                 min: <lower limit>,
                 max: <higher limit>,
                 enabled: <true|false>,
@@ -1030,7 +1032,7 @@ Fetches alerts for all sensors user has access to or a single sensor if optional
                 offsetPressure: <double>,
                 triggered: <true|false>,
                 triggeredAt: <timestamp>,
-                *delay: <number, positive integer>
+                delay: <number, positive integer>
             }
         ]
     }
