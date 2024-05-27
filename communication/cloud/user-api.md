@@ -819,7 +819,14 @@ Updates sensor metadata.
 {% endtab %}
 
 {% tab title="409: Conflict Cloud has fresher data than timestamp" %}
-
+```
+{
+    "result": "error",
+    "error": "Newer setting already exists",
+    "code": "ER_CONFLICT",
+    "sub_code": "ER_OLD_ENTRY"
+}
+```
 {% endtab %}
 {% endtabs %}
 
@@ -957,7 +964,14 @@ Sets a single user setting (currently).
 {% endtab %}
 
 {% tab title="409: Conflict Cloud has fresher data than timestamp" %}
-
+```
+{
+    "result": "error",
+    "error": "Newer setting already exists",
+    "code": "ER_CONFLICT",
+    "sub_code": "ER_OLD_ENTRY"
+}
+```
 {% endtab %}
 {% endtabs %}
 
@@ -995,7 +1009,14 @@ Proposed values are marked with \*.&#x20;
 {% endtab %}
 
 {% tab title="409: Conflict Cloud has fresher data than timestamp" %}
-
+```
+{
+    "result": "error",
+    "error": "Newer setting already exists",
+    "code": "ER_CONFLICT",
+    "sub_code": "ER_OLD_ENTRY"
+}
+```
 {% endtab %}
 {% endtabs %}
 
