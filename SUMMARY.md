@@ -7,6 +7,7 @@
 * [RuuviTag B](ruuvi-hardware/ruuvitag-b.md)
 * [RuuviTag Pro](ruuvi-hardware/ruuvitag-pro.md)
 * [Ruuvi Gateway](ruuvi-hardware/ruuvi-gateway.md)
+* [Ruuvi DevShield](ruuvi-hardware/ruuvi-devshield.md)
 
 ## Ruuvi Sensor Firmware <a href="#ruuvi-firmware" id="ruuvi-firmware"></a>
 
