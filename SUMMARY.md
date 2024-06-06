@@ -8,6 +8,15 @@
 * [RuuviTag Pro](ruuvi-hardware/ruuvitag-pro.md)
 * [Ruuvi Gateway](ruuvi-hardware/ruuvi-gateway.md)
 * [Ruuvi DevShield](ruuvi-hardware/ruuvi-devshield.md)
+* [Ruuvi Connector Kit](ruuvi-hardware/ruuvi-connector-kit.md)
+* [TMP 117 External Sensor](ruuvi-hardware/tmp-117-external-sensor.md)
+
+## Ruuvi Connector System
+
+* [Introduction](ruuvi-connector-system/introduction.md)
+* [Expansion boards](ruuvi-connector-system/expansion-boards.md)
+* [Cables](ruuvi-connector-system/cables.md)
+* [Connectors](ruuvi-connector-system/connectors.md)
 
 ## Ruuvi Sensor Firmware <a href="#ruuvi-firmware" id="ruuvi-firmware"></a>
 
@@ -74,18 +83,7 @@
   * [Home Assistant](gw-examples/home-assistant.md)
   * [MQTT+AWS IoT Core](gw-examples/mqtt+aws-iot-core.md)
 
-## Toolchain for firmware <a href="#toolchain" id="toolchain"></a>
-
-* [PVS Studio](toolchain/pvs-studio.md)
-
-## Ruuvi Connector System
-
-* [Introduction](ruuvi-connector-system/introduction.md)
-* [Expansion boards](ruuvi-connector-system/expansion-boards.md)
-* [Cables](ruuvi-connector-system/cables.md)
-* [Connectors](ruuvi-connector-system/connectors.md)
-
-## Communicate with Ruuvi devices <a href="#communication" id="communication"></a>
+## Communicate with Ruuvi devices via Bluetooth <a href="#communication" id="communication"></a>
 
 * [Bluetooth advertisements](communication/bluetooth-advertisements/README.md)
   * [Data format 3 (RAWv1)](communication/bluetooth-advertisements/data-format-3-rawv1.md)
@@ -99,20 +97,15 @@
     * [Heartbeat transmissions](communication/bluetooth-connection/nordic-uart-service-nus/heartbeat-transmissions.md)
     * [Read logged history](communication/bluetooth-connection/nordic-uart-service-nus/log-read.md)
 * [Real Time Transfer (RTT)](communication/development-real-time-transfer.md)
-* [Ruuvi Cloud](communication/cloud/README.md)
-  * [User API](communication/cloud/user-api.md)
-  * [Gateway API](communication/cloud/gateway-api.md)
-  * [Internal API](communication/cloud/internal-api.md)
-  * [Alerts](communication/cloud/alerts.md)
-  * [Cloud stored app settings](communication/cloud/cloud-stored-app-settings.md)
-* [Naming conventions](communication/units-and-naming-conventions.md)
 
-## RUUVI STATION APP
+## Communicate with Ruuvi Cloud
 
-* [Ruuvi Station Android UI/UX test documentation](ruuvi-station-app/ruuvi-station-android-ui-ux-test-documentation.md)
-* [App Feature Comparison list](ruuvi-station-app/app-feature-comparison-list.md)
-* [Using Ruuvi Station as a Gateway](ruuvi-station-app/gateway.md)
-* [Use with Ruuvi Gateway / Ruuvi Network](ruuvi-station-app/use-with-ruuvi-gateway-ruuvi-network.md)
+* [Ruuvi Cloud](communicate-with-ruuvi-cloud/cloud/README.md)
+  * [User API](communicate-with-ruuvi-cloud/cloud/user-api.md)
+  * [Gateway API](communicate-with-ruuvi-cloud/cloud/gateway-api.md)
+  * [Internal API](communicate-with-ruuvi-cloud/cloud/internal-api.md)
+  * [Alerts](communicate-with-ruuvi-cloud/cloud/alerts.md)
+  * [Cloud stored app settings](communicate-with-ruuvi-cloud/cloud/cloud-stored-app-settings.md)
 
 ## Ruuvi Community projects
 
