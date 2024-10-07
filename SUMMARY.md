@@ -25,9 +25,6 @@
 * [3.X](ruuvi-firmware/3.x/README.md)
   * [3.x Sensors](ruuvi-firmware/3.x/3.x-sensors.md)
   * [3.x Heartbeat](ruuvi-firmware/3.x/3.x-heartbeat.md)
-  * [Releases](ruuvi-firmware/3.x/releases/README.md)
-    * [Ruuvi Firmware 3.29.X](ruuvi-firmware/3.x/releases/ruuvi-firmware-3.29.0.md)
-    * [Ruuvi Firmware 3.30.X](ruuvi-firmware/3.x/releases/ruuvi-firmware-3.30.x.md)
 * [Device Firmware Update (DFU)](ruuvi-firmware/device-firmware-update-dfu.md)
 
 ## Ruuvi Gateway Firmware
@@ -83,7 +80,7 @@
   * [Home Assistant](gw-examples/home-assistant.md)
   * [MQTT+AWS IoT Core](gw-examples/mqtt+aws-iot-core.md)
 
-## Communicate with Ruuvi devices via Bluetooth <a href="#communication" id="communication"></a>
+## Communicate with RuuviTag devices via Bluetooth <a href="#communication" id="communication"></a>
 
 * [Bluetooth advertisements](communication/bluetooth-advertisements/README.md)
   * [Data format 3 (RAWv1)](communication/bluetooth-advertisements/data-format-3-rawv1.md)
@@ -110,7 +107,3 @@
 ## Ruuvi Community projects
 
 * [Integrations](ruuvi-community-projects/integrations.md)
-* [Data parsers](ruuvi-community-projects/data-parsers.md)
-* [Gateways and listeners](ruuvi-community-projects/gateways-and-listeners.md)
-* [End-to-end systems](ruuvi-community-projects/end-to-end-systems.md)
-* [Firmware](ruuvi-community-projects/firmware.md)
