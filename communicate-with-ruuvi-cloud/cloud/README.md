@@ -1,5 +1,5 @@
 ---
-description: 'Lifecycle: Alpha'
+description: 'Lifecycle: in Production'
 ---
 
 # Ruuvi Cloud

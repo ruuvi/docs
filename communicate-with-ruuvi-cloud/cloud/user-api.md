@@ -4,7 +4,7 @@ description: 'Ruuvi Network (Serverless) user facing API. Lifecycle: in producti
 
 # User API
 
-User API uses a JSON based API to allow users to register, secure and edit their information as well as claim and share sensors, retrieve sensor data and alter their subscription details.
+User API uses a JSON based API to allow users to register, secure and edit their information as well as claim and share sensors, retrieve sensor data and alter their subscription details. Fields marked with <mark style="color:red;">\*</mark> are mandatory, and omitting them results in backend returning HTTP 400 - Bad Request.
 
 For example, if the body parameter in the sections below refers to an **email** field, the corresponding JSON payload would look like this:
 
@@ -14,7 +14,7 @@ For example, if the body parameter in the sections below refers to an **email** 
 }
 ```
 
-All authenticated queries are ratelimited to 4 \* MAX\_SENSORS\_OWNED + 0.1 \* MAX\_HISTORY\_DAYS per minute. For example user with Basic plan has maximum of 90 days of history on 25 sensors and can make up to 109 queries per minute. The throtteled response has response code of 429 and payload of:&#x20;
+All authenticated queries are ratelimited to 8 \* MAX\_SENSORS\_OWNED + 0.1 \* MAX\_HISTORY\_DAYS per minute. For example user with Basic plan has maximum of 90 days of history on 25 sensors and can make up to 209 queries per minute. The throtteled response has response code of 429 and payload of:&#x20;
 
 ```
 {
@@ -981,30 +981,48 @@ Sets a single user setting (currently).
 
 Sets an alert on a sensor for a given metric. The alert condition is tested against the absolute value received from the sensors in conjunction with the use set offsets for that particular sensor.
 
-Proposed values are marked with \*.&#x20;
+#### Headers
+
+| Name                                            | Type   | Description              |
+| ----------------------------------------------- | ------ | ------------------------ |
+| Authorization<mark style="color:red;">\*</mark> | string | Bearer token of the user |
+
+####
 
 #### Request Body
 
-| Name      | Type    | Description                                                                                                                           |
-| --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| counter   | number  | For movement alerts, one can manually set the current number                                                                          |
-| type      | string  | One of: temperature, humidity, pressure, signal, movement, offline                                                                    |
-| min       | number  | Lower limit for the alert                                                                                                             |
-| max       | number  | Upper limit for the alert                                                                                                             |
-| enabled   | boolean | Used to toggle alert on and off                                                                                                       |
-| sensor    | string  | Sensor MAC of the target sensor                                                                                                       |
-| timestamp | number  | Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored.                                     |
-| delay     | number  | How many \*seconds\* alert condition has to be valid before alert gets triggered. Delay is reset if alert is cleared. Defaults to 0.  |
+| Name                                     | Type    | Description                                                                                                                         |
+| ---------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| counter                                  | number  | For movement alerts, one can manually set the current number. If not provided, last known value is used.                            |
+| type<mark style="color:red;">\*</mark>   | string  | One of: temperature, humidity, pressure, signal, movement, offline                                                                  |
+| min                                      | number  | Lower limit for the alert - omit to leave unchanged                                                                                 |
+| max                                      | number  | Upper limit for the alert - omit to leave unchanged                                                                                 |
+| enabled                                  | boolean | Used to toggle alert on and off                                                                                                     |
+| sensor<mark style="color:red;">\*</mark> | string  | Sensor MAC of the target sensor                                                                                                     |
+| timestamp                                | number  | Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored. Set to current second by default  |
+| delay                                    | number  | How many \*seconds\* alert condition has to be valid before alert gets triggered. Delay is reset if alert is cleared. Defaults to 0 |
+
+
 
 {% tabs %}
 {% tab title="200 " %}
 ```
 {
-    "status": "success",
+    "result": "success",
     "data": {
-        "action": "<success|failed>"
+        "action": "unchanged"
     }
 }
+```
+{% endtab %}
+
+{% tab title="400: Bad Request" %}
+```
+ { 
+  "result": "error", 
+  "error": "Invalid MAC address format", 
+  "code": "ER_INVALID_MAC_ADDRESS" 
+  }
 ```
 {% endtab %}
 
