@@ -994,7 +994,7 @@ Sets an alert on a sensor for a given metric. The alert condition is tested agai
 | Name                                     | Type    | Description                                                                                                                         |
 | ---------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | counter                                  | number  | For movement alerts, one can manually set the current number. If not provided, last known value is used.                            |
-| type<mark style="color:red;">\*</mark>   | string  | One of: temperature, humidity, pressure, signal, movement, offline                                                                  |
+| type<mark style="color:red;">\*</mark>   | string  | One of: temperature, humidity, pressure, signal, movement, offline, co2, pm10, pm25, pm40, pm100, sound, luminosity, voc, nox       |
 | min                                      | number  | Lower limit for the alert - omit to leave unchanged                                                                                 |
 | max                                      | number  | Upper limit for the alert - omit to leave unchanged                                                                                 |
 | enabled                                  | boolean | Used to toggle alert on and off                                                                                                     |
@@ -1010,7 +1010,7 @@ Sets an alert on a sensor for a given metric. The alert condition is tested agai
 {
     "result": "success",
     "data": {
-        "action": "unchanged"
+        "action": "success"
     }
 }
 ```
