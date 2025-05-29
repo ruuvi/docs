@@ -1,5 +1,5 @@
 ---
-description: 'Ruuvi Network (Serverless) user facing API. Lifecycle: in production'
+description: 'Ruuvi Cloud user facing API. Lifecycle: in production'
 ---
 
 # User API
@@ -13,6 +13,8 @@ For example, if the body parameter in the sections below refers to an **email** 
     "email": "<YOUR VALUE>"
 }
 ```
+
+Note that GET requests use URL parameters, e.g. `https://network.ruuvi.com/sensors-dense?measurements=true`, but the Authorization bearer token is in headers.&#x20;
 
 All authenticated queries are ratelimited to 8 \* MAX\_SENSORS\_OWNED + 0.1 \* MAX\_HISTORY\_DAYS per minute. For example user with Basic plan has maximum of 90 days of history on 25 sensors and can make up to 209 queries per minute. The throtteled response has response code of 429 and payload of:&#x20;
 
@@ -449,9 +451,7 @@ Fetches a list of sensors you have access to including who those are shared to. 
 
 #### Query Parameters
 
-| Name   | Type   | Description                       |
-| ------ | ------ | --------------------------------- |
-| sensor | string | Optionally filter only one sensor |
+<table><thead><tr><th width="136">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>sensor</td><td>string</td><td>Optionally filter only one sensor</td></tr></tbody></table>
 
 #### Headers
 
@@ -543,6 +543,7 @@ Fetches the list of claimed and shared sensors with calibration data, sensor las
 | sharedToMe     | bool   | Optionally returns the sensors shared to the logged-in user alongside claimed sensors by the user                                                 |
 | measurements   | bool   | Optionally returns the latest measurement of each of the sensors in the collection. Returns also the subscription on which the data is based on.  |
 | alerts         | bool   | Optionally returns the alerts settings of each of the sensors in the collection                                                                   |
+| settings       | bool   | Optionally returns the sensor-specific settings of sensors.                                                                                       |
 | mode           | string | Fetch mode: \[dense, sparse, mixed], determines how the data is returned. Default: mixed                                                          |
 
 {% tabs %}
@@ -1075,6 +1076,79 @@ Fetches alerts for all sensors user has access to or a single sensor if optional
             }
         ]
     }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+
+
+
+
+## Update sensor setting
+
+<mark style="color:green;">`POST`</mark> `/sensor-settings`
+
+Configure a sensor-specific setting. Note: Offsets, image, name and shares of sensors are updated in their own endpoints. Only owner of a sensor can configure the settings.&#x20;
+
+To clear a setting, send empty string as a value of setting type.&#x20;
+
+**Headers**
+
+| Name          | Value              |
+| ------------- | ------------------ |
+| Content-Type  | `application/json` |
+| Authorization | `Bearer <token>`   |
+
+**Body**
+
+| Name          | Type         | Description                                                                                                                                     |
+| ------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sensor`\*    | string       | MAC address of sensor                                                                                                                           |
+| `type`\*      | string array | Type of the setting. Free-form. sensor+type combination is unique identifier of setting.                                                        |
+| `value`\*     | string array | Value of setting. Length of type and value arrays must match. Settings are appended, e.g. it's allowed to configure settings individually       |
+| `timestamp`\* | number       | Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored. If omitted, timestamp is set to current time. |
+
+**Response**
+
+{% tabs %}
+{% tab title="200" %}
+```json
+{
+    "result": "success",
+    "data": {
+        "action": "<added | updated>"
+    }
+}
+```
+{% endtab %}
+
+{% tab title="400" %}
+```json
+{
+    "result": "error",
+    "error": "Body must be a valid JSON string",
+    "code": "ER_INVALID_ARGUMENT"
+}
+```
+{% endtab %}
+
+{% tab title="409" %}
+```json
+{
+    "result": "error",
+    "error": "No setting was updated or added, newer settings might exist.",
+    "code": "ER_CONFLICT"
+}
+```
+{% endtab %}
+
+{% tab title="500" %}
+```json
+{
+    "result": "error",
+    "error": "Unknown error occured in User API",
+    "code": "ER_INTERNAL"
 }
 ```
 {% endtab %}
