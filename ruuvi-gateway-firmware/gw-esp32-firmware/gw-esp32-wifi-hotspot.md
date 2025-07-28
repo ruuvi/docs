@@ -461,4 +461,4 @@ Get history data in json format
 {% endtab %}
 {% endtabs %}
 
-See examples of the "history" payload here: [http-get-history-with-timestamps-and-decoding.md](../gw-data-formats/http-get-history-with-timestamps-and-decoding.md "mention")
+See examples of the "history" payload here: [http-get-history-with-timestamps-and-decoding.md](../data-formats/http-get-history-with-timestamps-and-decoding.md "mention")

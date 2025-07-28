@@ -4,10 +4,10 @@ If your Gateway is password protected, you can configure the Gateway to allow yo
 
 On the "Access Settings" page, enable full access using bearer authentication and set the API-key:
 
-<figure><img src="../.gitbook/assets/Screenshot from 2023-12-13 10-20-48.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot from 2023-12-13 10-20-48.png" alt=""><figcaption></figcaption></figure>
 
 If your Gateway is password protected and bearer authentication is not configured, you can still access the Gateway by using the 'RUUVISESSION' cookie from your browser. Open the configuration wizard in your browser and authenticate with the password, then open 'Developer Tools' in your browser, then open URL 'http://\<RUUVI\_GW\_IP>/ruuvi.json'. In 'Developer Tools', open the 'Network' tab, select the 'Headers' sub-tab and locate the "RUUVISESSION" cookie:\
-![](<../.gitbook/assets/image (2).png>)
+![](<../../.gitbook/assets/image (2).png>)
 
 Please note that you can only access the Gateway using the cookie from the same PC as the browser used for authentication.
 

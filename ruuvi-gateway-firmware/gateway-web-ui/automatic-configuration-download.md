@@ -10,7 +10,7 @@ If you specify a folder name as the base URL (any URL that does not end with '.j
 
 If there are several Ruuvi Gateways in the network requesting configuration from a remote server, in some cases it may be convenient to request a file with a fixed name, but the content will be unique for each Ruuvi Gateway. In this case, the configuration file can also be generated dynamically by the server, where the server extracts the Gateway's MAC address from the HTTP request header named 'ruuvi\_gw\_mac' in the format XX:XX:XX:XX:XX:XX and generates a configuration specific to this Gateway based on the MAC address.
 
-After entering the base URL, press the Check button to validate the URL and check that the configuration file exists. Next, after pressing the Download button, the new configuration will be downloaded, which completes the configuration process. After that, Ruuvi Gateway will periodically check for configuration updates and download them. The polling period is set in the configuration file ([gateway-configuration.md](../../data-formats/gateway-configuration.md "mention")), which is downloaded from the server.
+After entering the base URL, press the Check button to validate the URL and check that the configuration file exists. Next, after pressing the Download button, the new configuration will be downloaded, which completes the configuration process. After that, Ruuvi Gateway will periodically check for configuration updates and download them. The polling period is set in the configuration file ([gateway-configuration.md](../data-formats/gateway-configuration.md "mention")), which is downloaded from the server.
 
 <figure><img src="../../.gitbook/assets/Screenshot from 2023-12-13 08-31-57.png" alt=""><figcaption></figcaption></figure>
 
@@ -75,4 +75,4 @@ You can use a server SSL Certificate if you want to be independent of public Cer
 
 <figure><img src="../../.gitbook/assets/Screenshot from 2023-12-13 08-35-52.png" alt=""><figcaption></figcaption></figure>
 
-You can also trigger a forced configuration download via API: [configuration-download-from-a-remote-server-via-api.md](../../gw-examples/configuration-download-from-a-remote-server-via-api.md "mention")
+You can also trigger a forced configuration download via API: [configuration-download-from-a-remote-server-via-api.md](../examples/configuration-download-from-a-remote-server-via-api.md "mention")

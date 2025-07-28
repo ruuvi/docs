@@ -23,4 +23,4 @@ Follow these detailed steps to establish a secure connection and send data from 
      * **Decoded Data**: Sends data that has been processed or formatted.
      * **Both**: Sends both raw and decoded data, providing comprehensive information.
 
-<figure><img src="../.gitbook/assets/Screenshot from 2024-02-09 13-42-50.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot from 2024-02-09 13-42-50.png" alt=""><figcaption></figcaption></figure>

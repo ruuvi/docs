@@ -1,6 +1,6 @@
 # Configuration download from a remote server via API
 
-You can trigger a forced configuration download programmatically, using bearer authentication, but you must first configure the Gateway to use [automatic-configuration-download.md](../ruuvi-gateway-firmware/gateway-web-ui/automatic-configuration-download.md "mention").
+You can trigger a forced configuration download programmatically, using bearer authentication, but you must first configure the Gateway to use [automatic-configuration-download.md](../gateway-web-ui/automatic-configuration-download.md "mention").
 
 Configuration on the remote server must contain the field **lan\_auth\_api\_key\_rw**:
 

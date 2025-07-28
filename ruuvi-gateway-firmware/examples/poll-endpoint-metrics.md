@@ -4,7 +4,7 @@ Extended internal information on the status of the Ruuvi Gateway can be obtained
 
 On the "Access Settings" page, enable bearer authentication and set the bearer token:
 
-<figure><img src="../.gitbook/assets/Screenshot from 2023-12-13 10-19-16.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot from 2023-12-13 10-19-16.png" alt=""><figcaption></figcaption></figure>
 
 After that it is possible to poll data using the "/metrics" endpoint:
 

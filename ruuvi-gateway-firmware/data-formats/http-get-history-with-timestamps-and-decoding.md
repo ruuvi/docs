@@ -10,7 +10,7 @@ The format of relayed raw data from Bluetooth sensors is described here [https:/
 
 Ruuvi Gateway supports the decoding of some raw data formats. To disable decoding, an additional parameter must be passed in the request: **GET /history?decode=false**
 
-Decoding of data format 5 (RAWv2) is currently supported: [data-format-5-rawv2.md](../communication/bluetooth-advertisements/data-format-5-rawv2.md "mention")
+Decoding of data format 5 (RAWv2) is currently supported: [data-format-5-rawv2.md](../../communication/bluetooth-advertisements/data-format-5-rawv2.md "mention")
 
 ```json
 {

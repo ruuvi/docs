@@ -16,6 +16,6 @@ You can also allow access without a password, but this is not recommended as it 
 
 <figure><img src="../../.gitbook/assets/Screenshot from 2023-12-13 08-52-22.png" alt=""><figcaption></figcaption></figure>
 
-It is also possible to access Ruuvi Gateway from LAN using bearer authentication with an API key (token). You can enable read-only access (to retrieve data in [polling-mode.md](../../examples/polling-mode.md "mention") via the /history endpoint) or read-write access (to read any data or change the configuration):
+It is also possible to access Ruuvi Gateway from LAN using bearer authentication with an API key (token). You can enable read-only access (to retrieve data in [polling-mode.md](../examples/polling-mode.md "mention") via the /history endpoint) or read-write access (to read any data or change the configuration):
 
 <figure><img src="../../.gitbook/assets/Screenshot from 2023-12-13 08-54-18.png" alt=""><figcaption></figcaption></figure>
