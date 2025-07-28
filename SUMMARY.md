@@ -79,6 +79,7 @@
   * [MQTT examples](gw-examples/mqtt-examples.md)
   * [Home Assistant](gw-examples/home-assistant.md)
   * [MQTT+AWS IoT Core](gw-examples/mqtt+aws-iot-core.md)
+* [GW open ports / services](gw-open-ports-services.md)
 
 ## Communicate with RuuviTag devices via Bluetooth <a href="#communication" id="communication"></a>
 
