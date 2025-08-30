@@ -21,8 +21,8 @@ The data is decoded from "Manufacturer Specific Data" -field, for more details p
 | 22            |         `255`        | Reserved                                                                                                      |
 | 23            |         `255`        | Reserved                                                                                                      |
 | 24            |         `255`        | Reserved                                                                                                      |
-| 25-27         |  `0 ... 16 777 214`  | Measurement sequence counter. Each new sample increments counter by 1. UINT24                                 |
-| 28            |     `0bVXXXXXVV`     | Flags. Value of each bit is described below                                                                  |
+| 25-27         |  `0 ... 16 777 214`  | Measurement sequence counter. Each new sample increments counter by 1. 24bit unsigned                         |
+| 28            |     `0bVVXXXXXV`     | Flags. Value of each bit is described below                                                                  |
 | 29-33         |    `0xFFFFFFFFFF`    | Reserved                                                                                                      |
 | 34-39         |    `Any valid mac`   | 48bit MAC address.                                                                                            |
 
