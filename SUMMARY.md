@@ -86,7 +86,7 @@
   * [Data format 5 (RAWv2)](communication/bluetooth-advertisements/data-format-5-rawv2.md)
   * [Data format C5 (Cut-RAWv2)](communication/bluetooth-advertisements/data-format-c5-rawv2.md)
   * [Data format 8 (Encrypted environmental)](communication/bluetooth-advertisements/data-format-8-encrypted-environmental.md)
-  * [Data format E1 (Extended v1)](communication/bluetooth-advertisements/data-format-5-rawv2-1.md)
+  * [Data format E1 (Extended v1)](communication/bluetooth-advertisements/data-format-e1.md)
 * [Bluetooth connection](communication/bluetooth-connection/README.md)
   * [DIS (Device Information Service)](communication/bluetooth-connection/device-information-service-dis.md)
   * [NUS (Nordic UART Service)](communication/bluetooth-connection/nordic-uart-service-nus/README.md)

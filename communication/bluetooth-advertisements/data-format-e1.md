@@ -1,5 +1,5 @@
 ---
-description: 'Lifecycle: Beta. Last updated 2025-08-30'
+description: 'Lifecycle: Beta.'
 ---
 
 # Data format E1 (Extended v1)
@@ -157,7 +157,7 @@ These test vectors are based on [ruuvitag-sensor](https://github.com/ttu/ruuvita
 
 #### Case: valid data
 
-Raw binary data: 0x`E1170C5668C79E0065007004BD11CA00C90A0213E0AC3D4A9CDECDEE10FFFFFFFFFFCBB8334C884F`
+Raw binary data: `0xE1170C5668C79E0065007004BD11CA00C90A0213E0AC3D4A9CDECDEE10FFFFFFFFFFCBB8334C884F`
 
 | Field                | Value                                                                                                                |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -201,7 +201,7 @@ Raw binary data: `0xE17FFF9C40FFFE27102710271027109C40FAFADC28F0FFFFFFFFFFFE3FFF
 
 Case: minimum values
 
-Raw binary data: `E180010000000000000000000000000000000000000000FFFFFF00000000FFFFFF00CBB8334C884F`
+Raw binary data: `0xE180010000000000000000000000000000000000000000FFFFFF00000000FFFFFF00CBB8334C884F`
 
 | Field                | Value                                                                                                                 |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------- |
