@@ -85,6 +85,7 @@
   * [Data format 4 (URL)](communication/bluetooth-advertisements/data-format-4-url.md)
   * [Data format 5 (RAWv2)](communication/bluetooth-advertisements/data-format-5-rawv2.md)
   * [Data format C5 (Cut-RAWv2)](communication/bluetooth-advertisements/data-format-c5-rawv2.md)
+  * [Data format 6 ](communication/bluetooth-advertisements/data-format-6.md)
   * [Data format 8 (Encrypted environmental)](communication/bluetooth-advertisements/data-format-8-encrypted-environmental.md)
   * [Data format E1 (Extended v1)](communication/bluetooth-advertisements/data-format-e1.md)
 * [Bluetooth connection](communication/bluetooth-connection/README.md)
