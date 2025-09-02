@@ -174,10 +174,7 @@ Raw binary data: `0x06170C5668C79E007000C90501D9XXCD004C884F` XX : Reserved  &#x
 | Temperature          | `29.500` C                                                                                                           |
 | Pressure             | `101102` Pa                                                                                                          |
 | Humidity             | `55.300` RH-%                                                                                                        |
-| PM 1.0               | `10.1` ug/m^3                                                                                                        |
 | PM 2.5               | `11.2` ug/m^3                                                                                                        |
-| PM 4.0               | `121.3` ug/m^3                                                                                                       |
-| PM 10.0              | `455.4` ug/m^3                                                                                                       |
 | CO2                  | `201` ppm                                                                                                            |
 | VOC                  | `10`                                                                                                                 |
 | NOX                  | 2                                                                                                                    |
@@ -196,10 +193,7 @@ Raw binary data: `0x067FFF9C40FFFE27109C40FAFAFEXXFF074C8F4F` XX : Reserved  &#x
 | Temperature          | `163.835` C                                                                                                         |
 | Pressure             | `115534` Pa                                                                                                         |
 | Humidity             | `100.000` RH-%                                                                                                      |
-| PM 1.0               | `1000.0` ug/m^3                                                                                                     |
 | PM 2.5               | `1000.0` ug/m^3                                                                                                     |
-| PM 4.0               | `1000.0` ug/m^3                                                                                                     |
-| PM 10.0              | `1000.0` ug/m^3                                                                                                     |
 | CO2                  | `40000` ppm                                                                                                         |
 | VOC                  | `500`                                                                                                               |
 | NOX                  | `500`                                                                                                               |
@@ -229,7 +223,7 @@ Raw binary data: `0x0680010000000000000000000000XX00004C884F`  XX : Reserved  &#
 
 #### Case: Invalid values
 
-Raw binary data: `0x068000FFFF FFFFFFFF FFFFFFFF FFFF XX FFFFFFFFFF`  XX : Reserved&#x20;
+Raw binary data: `0x068000FFFFFFFFFFFFFFFFFFFFFFFFXXFFFFFFFFFF`  XX : Reserved&#x20;
 
 | Field                | Value                                                                                                             |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------- |
