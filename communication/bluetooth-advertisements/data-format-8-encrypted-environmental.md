@@ -6,9 +6,9 @@ description: 'Lifecycle: Proposal'
 
 This is a proposed encrypted data format which is not yet implemented in Ruuvi devices outside of a few proof-of-concept projects
 
-The encryption uses nRF52-builtin AES128 encryption in Elctronic Codebook (ECB) mode. Data to be encrypted is temprature, humidity, pressure, voltage, TX power, measurement count and movement counts. The measurement sequence counter protects against replay attacks. All measurements where encrypted data and nonce are equal can be considred duplicates.
+The encryption uses nRF52-builtin AES128 encryption in Elctronic Codebook (ECB) mode. Data to be encrypted is temprature, humidity, pressure, voltage, TX power, measurement count and movement counts. The measurement sequence counter protects against replay attacks.
 
-Data format has an unencrypted header, 16 bytes of AES-128 encrypted data, 1 byte nonce and 6 bytes long MAC address for iOS devices.
+Data format has an unencrypted header, 16 bytes of AES-128 encrypted data, 1 byte crc8 and 6 bytes long MAC address for iOS devices.
 
 | Offset |      Allowed values      | Description                                                                                                                                                                                                                                                                                        |
 | ------ | :----------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -23,7 +23,7 @@ Data format has an unencrypted header, 16 bytes of AES-128 encrypted data, 1 byt
 | 17     |        `0 ... 255`       | CRC8, used to check for correct decryption.                                                                                                                                                                                                                                                        |
 | 18-23  |      `Any valid MAC`     | 48bit MAC address.                                                                                                                                                                                                                                                                                 |
 
-The encryption key is formed from 64-bit tag ID, 8 bit encryption nonce and a static password with length of 16 bytes by appending nonce to ID and XORing the 9 bytes with 9 first bytes of password
+The encryption key is formed according to the application, usually a static key shared in application + unique key derived from 8-byte tag ID.&#x20;
 
 ## Invalid values
 
@@ -71,4 +71,9 @@ Complete message:
 | -- | ---- | ---- | ---- | ---- | ---- | ---- | -------- | -- | ------------ |
 | 08 | 4382 | 5B56 | 324F | E019 | C4BD | 4D6D | 3CECAC6E | 1C | AABBCCDDEEDD |
 
-## TODO: Test vectors
+## Implementing the data format
+
+Contact us at support@ruuvi.com if you want to implement this data format for your use case.&#x20;
+
+
+
