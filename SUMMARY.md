@@ -33,7 +33,7 @@
 * [Air 2nd Stage Bootloader](ruuvi-air-firmware/air-2nd-stage-bootloader.md)
 * [Air Firmware Loader](ruuvi-air-firmware/air-firmware-loader.md)
 * [Air Main Firmware](ruuvi-air-firmware/air-main-firmware.md)
-* [Ruuvi Air Quality Index (RAQI)](ruuvi-air-firmware/ruuvi-air-quality-index-raqi.md)
+* [Ruuvi Indoor Air Quality Score (IAQS)](ruuvi-air-firmware/ruuvi-indoor-air-quality-score-iaqs.md)
 
 ## Ruuvi Gateway Firmware
 
