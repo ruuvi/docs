@@ -18,7 +18,7 @@
 * [Cables](ruuvi-connector-system/cables.md)
 * [Connectors](ruuvi-connector-system/connectors.md)
 
-## Ruuvi Sensor Firmware <a href="#ruuvi-firmware" id="ruuvi-firmware"></a>
+## RuuviTag Firmware <a href="#ruuvi-firmware" id="ruuvi-firmware"></a>
 
 * [1.2.12](ruuvi-firmware/1.2.12.md)
 * [2.5.9](ruuvi-firmware/2.5.9.md)
@@ -26,6 +26,14 @@
   * [3.x Sensors](ruuvi-firmware/3.x/3.x-sensors.md)
   * [3.x Heartbeat](ruuvi-firmware/3.x/3.x-heartbeat.md)
 * [Device Firmware Update (DFU)](ruuvi-firmware/device-firmware-update-dfu.md)
+
+## Ruuvi Air Firmware
+
+* [Air 1st Stage Bootloader](ruuvi-air-firmware/air-1st-stage-bootloader.md)
+* [Air 2nd Stage Bootloader](ruuvi-air-firmware/air-2nd-stage-bootloader.md)
+* [Air Firmware Loader](ruuvi-air-firmware/air-firmware-loader.md)
+* [Air Main Firmware](ruuvi-air-firmware/air-main-firmware.md)
+* [Ruuvi Air Quality Index (RAQI)](ruuvi-air-firmware/ruuvi-air-quality-index-raqi.md)
 
 ## Ruuvi Gateway Firmware
 
