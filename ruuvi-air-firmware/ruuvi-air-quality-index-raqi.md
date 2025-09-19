@@ -43,4 +43,4 @@ function calc_aqi(pm25, co2) {
 }
 ```
 
-Ruuvi Station apps and Ruuvi Air display the grading of index by a value rounded to integer value. e.g. 89.6 becomes 90 and is listed as turquoise/excellent even though the original raw value is below the threshold.&#x20;
+Ruuvi Station apps and Ruuvi Air display the grading of index by a value rounded to integer value. e.g. 89.6 becomes 90 and is listed as turquoise/excellent even though the original raw value is below the threshold. The history graphs likewise show the color as it was rounded, so a history graph with points 89.4, 89.5, 89.6 transitions green to turquoise at 89.5.
