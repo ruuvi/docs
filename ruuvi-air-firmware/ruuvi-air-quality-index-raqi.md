@@ -43,3 +43,4 @@ function calc_aqi(pm25, co2) {
 }
 ```
 
+Ruuvi Station apps and Ruuvi Air display the grading of index by a value rounded to integer value. e.g. 89.6 becomes 90 and is listed as turquoise/excellent even though the original raw value is below the threshold.&#x20;
