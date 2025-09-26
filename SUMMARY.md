@@ -6,17 +6,15 @@
 
 * [RuuviTag B](ruuvi-hardware/ruuvitag-b.md)
 * [RuuviTag Pro](ruuvi-hardware/ruuvitag-pro.md)
+* [Ruuvi Air](ruuvi-hardware/ruuvi-air.md)
 * [Ruuvi Gateway](ruuvi-hardware/ruuvi-gateway.md)
 * [Ruuvi DevShield](ruuvi-hardware/ruuvi-devshield.md)
-* [Ruuvi Connector Kit](ruuvi-hardware/ruuvi-connector-kit.md)
 * [TMP 117 External Sensor](ruuvi-hardware/tmp-117-external-sensor.md)
-
-## Ruuvi Connector System
-
-* [Introduction](ruuvi-connector-system/introduction.md)
-* [Expansion boards](ruuvi-connector-system/expansion-boards.md)
-* [Cables](ruuvi-connector-system/cables.md)
-* [Connectors](ruuvi-connector-system/connectors.md)
+* [Ruuvi Connector System](ruuvi-hardware/ruuvi-connector-system/README.md)
+  * [Ruuvi Connector Kit](ruuvi-hardware/ruuvi-connector-system/ruuvi-connector-kit.md)
+  * [Expansion boards](ruuvi-hardware/ruuvi-connector-system/expansion-boards.md)
+  * [Cables](ruuvi-hardware/ruuvi-connector-system/cables.md)
+  * [Connectors](ruuvi-hardware/ruuvi-connector-system/connectors.md)
 
 ## RuuviTag Firmware <a href="#ruuvi-firmware" id="ruuvi-firmware"></a>
 
@@ -86,7 +84,7 @@
 * [GW open ports / services](ruuvi-gateway-firmware/gw-open-ports-services.md)
 * [GW Install custom firmware](ruuvi-gateway-firmware/gw-install-custom-firmware.md)
 
-## Communicate with RuuviTag devices via Bluetooth <a href="#communication" id="communication"></a>
+## Communicate with Ruuvi sensor devices via Bluetooth <a href="#communication" id="communication"></a>
 
 * [Bluetooth advertisements](communication/bluetooth-advertisements/README.md)
   * [Data format 3 (RAWv1)](communication/bluetooth-advertisements/data-format-3-rawv1.md)
@@ -100,7 +98,8 @@
   * [DIS (Device Information Service)](communication/bluetooth-connection/device-information-service-dis.md)
   * [NUS (Nordic UART Service)](communication/bluetooth-connection/nordic-uart-service-nus/README.md)
     * [Heartbeat transmissions](communication/bluetooth-connection/nordic-uart-service-nus/heartbeat-transmissions.md)
-    * [Read logged history](communication/bluetooth-connection/nordic-uart-service-nus/log-read.md)
+    * [Read logged history - RuuviTag](communication/bluetooth-connection/nordic-uart-service-nus/log-read.md)
+    * [Read logged history - Ruuvi Air](communication/bluetooth-connection/nordic-uart-service-nus/read-logged-history-ruuvi-air.md)
 * [Real Time Transfer (RTT)](communication/development-real-time-transfer.md)
 
 ## Communicate with Ruuvi Cloud

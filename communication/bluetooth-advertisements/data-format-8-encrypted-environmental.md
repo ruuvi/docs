@@ -4,6 +4,8 @@ description: 'Lifecycle: Proposal'
 
 # Data format 8 (Encrypted environmental)
 
+Related Ruuvi Devices: RuuviTag
+
 This is a proposed encrypted data format which is not yet implemented in Ruuvi devices outside of a few proof-of-concept projects
 
 The encryption uses nRF52-builtin AES128 encryption in Elctronic Codebook (ECB) mode. Data to be encrypted is temprature, humidity, pressure, voltage, TX power, measurement count and movement counts. The measurement sequence counter protects against replay attacks.

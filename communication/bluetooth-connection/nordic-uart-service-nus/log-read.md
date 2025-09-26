@@ -1,8 +1,10 @@
 ---
-description: 'Lifecycle: Beta. Last updated 2020-12-10'
+description: 'Lifecycle: in production'
 ---
 
-# Read logged history
+# Read logged history - RuuviTag
+
+Related Ruuvi Devices: RuuviTag, Ruuvi
 
 ### **Log read flow**
 
@@ -14,44 +16,45 @@ When the log buffer is sent and no more data remains, a special message with the
 
 ### **Example communication - read temperature**
 
-| **Device** | **Header** | **Payload** | **Description** |
-| :--- | :--- | :--- | :--- |
-| Central | 0x30 30 11 | 0x5D6740ED 5D57FEAD | “To: temperature. From: temperature. Action: read log data. Clock is 2019-08-29 03:05 now, start from 2019-08-13 13:18” |
-| Peripheral | 0x30 30 10 | 5D57FEAD 000000098D | “To: temperature. From: temperature. Action: write log data. Temperature at  2019-08-13 13:18 24.45 C“ |
-| . | . | . | Log entry |
-| . | . | . | Log Entry |
-| Peripheral | 0x30 30 10 | 0x5D6740ED FFFFF8AC | “To: temperature. From: temperature. Action: write log data. Temperature at 2019-08-29 0305 -18.76 C” |
-| Peripheral | 0x30 30 10 | 0xFFFFFFFF FFFFFFFF | “To: temperature. From: temperature. Action: write log data. No more logs” |
+| **Device** | **Header** | **Payload**         | **Description**                                                                                                         |
+| ---------- | ---------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Central    | 0x30 30 11 | 0x5D6740ED 5D57FEAD | “To: temperature. From: temperature. Action: read log data. Clock is 2019-08-29 03:05 now, start from 2019-08-13 13:18” |
+| Peripheral | 0x30 30 10 | 5D57FEAD 000000098D | “To: temperature. From: temperature. Action: write log data. Temperature at  2019-08-13 13:18 24.45 C“                  |
+| .          | .          | .                   | Log entry                                                                                                               |
+| .          | .          | .                   | Log Entry                                                                                                               |
+| Peripheral | 0x30 30 10 | 0x5D6740ED FFFFF8AC | “To: temperature. From: temperature. Action: write log data. Temperature at 2019-08-29 0305 -18.76 C”                   |
+| Peripheral | 0x30 30 10 | 0xFFFFFFFF FFFFFFFF | “To: temperature. From: temperature. Action: write log data. No more logs”                                              |
 
 ### **Example communication - read all environmental data**
 
-| **Device** | **Header** | **Payload** | **Description** |
-| :--- | :--- | :--- | :--- |
-| Central | 0x3A 3A 11 | 0x5D6740ED 5D57FEAD | “To: environmental. From: environmental. Action: read log data. Clock is 2019-08-29 03:05 now, start from 2019-08-13 13:18” |
-| Peripheral | 0x3A 30 10 | 5D57FEAD 000000098D | “To: environmental. From: temperature. Action: write log data. Temperature at  2019-08-13 13:18 24.45 C“ |
-| Peripheral | 0x3A 31 10 | 5D57FEAD 000000098D | “To: environmental. From: humidity. Action: write log data. Humidity at  2019-08-13 13:18 24.45 RH-%“ |
-| Peripheral | 0x3A 32 10 | 5D57FEAD 000000098D | “To: environmental. From: pressure. Action: write log data. Pressure at  2019-08-13 13:18 2445 Pa“ |
-| . | . | . | Log entry |
-| . | . | . | Log Entry |
-| . | . | . | Log Entry |
-| Peripheral | 0x3A 3A 10 | 0xFFFFFFFF FFFFFFFF | “To: environmental. From: environmental. Action: write log data. No more logs” |
+| **Device** | **Header** | **Payload**         | **Description**                                                                                                             |
+| ---------- | ---------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Central    | 0x3A 3A 11 | 0x5D6740ED 5D57FEAD | “To: environmental. From: environmental. Action: read log data. Clock is 2019-08-29 03:05 now, start from 2019-08-13 13:18” |
+| Peripheral | 0x3A 30 10 | 5D57FEAD 000000098D | “To: environmental. From: temperature. Action: write log data. Temperature at  2019-08-13 13:18 24.45 C“                    |
+| Peripheral | 0x3A 31 10 | 5D57FEAD 000000098D | “To: environmental. From: humidity. Action: write log data. Humidity at  2019-08-13 13:18 24.45 RH-%“                       |
+| Peripheral | 0x3A 32 10 | 5D57FEAD 000000098D | “To: environmental. From: pressure. Action: write log data. Pressure at  2019-08-13 13:18 2445 Pa“                          |
+| .          | .          | .                   | Log entry                                                                                                                   |
+| .          | .          | .                   | Log Entry                                                                                                                   |
+| .          | .          | .                   | Log Entry                                                                                                                   |
+| Peripheral | 0x3A 3A 10 | 0xFFFFFFFF FFFFFFFF | “To: environmental. From: environmental. Action: write log data. No more logs”                                              |
 
 ### **Data endpoints**
 
-| Endpoint byte | Value | Interpretation |
-| :--- | :--- | :--- |
-| 0x30 | Temperature | int32\_t, 0.01 C per LSB |
-| 0x31 | Humidity | uint32\_t, 0.01 RH-% per LSB |
-| 0x32 | Air pressure | uint32\_t, 1 Pa per LSB |
-| 0x3A | All environmental values | Special value which can be used to query all environmental data at once.  |
+| Endpoint byte | Value                    | Interpretation                                                            |
+| ------------- | ------------------------ | ------------------------------------------------------------------------- |
+| 0x30          | Temperature              | int32\_t, 0.01 C per LSB                                                  |
+| 0x31          | Humidity                 | uint32\_t, 0.01 RH-% per LSB                                              |
+| 0x32          | Air pressure             | uint32\_t, 1 Pa per LSB                                                   |
+| 0x3A          | All environmental values | Special value which can be used to query all environmental data at once.  |
 
 ### **Full length data**
 
-File below is abbreviated nRF Connect log with some heartbeat transmissions and clutter removed. Log read command was added manually 
+File below is abbreviated nRF Connect log with some heartbeat transmissions and clutter removed. Log read command was added manually&#x20;
 
-{% file src="../../../.gitbook/assets/v3\_28\_0\_connection.txt" caption="Connection log" %}
+{% file src="../../../.gitbook/assets/v3_28_0_connection.txt" %}
+Connection log
+{% endfile %}
 
 ### Timeout
 
-If log read takes over 5 minutes, the tag assumes that it has encourtered an internal error and will send error message with header type `0xF0` and payload set to `0xFF`, e.g. `0x 30 30 F0 FF FF FF FF FF FF FF FF` . It's safe to resume log read by sending a repeated log read command with start timestamp at the last received element. 
-
+If log read takes over 5 minutes, the tag assumes that it has encourtered an internal error and will send error message with header type `0xF0` and payload set to `0xFF`, e.g. `0x 30 30 F0 FF FF FF FF FF FF FF FF` . It's safe to resume log read by sending a repeated log read command with start timestamp at the last received element.&#x20;

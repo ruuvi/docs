@@ -4,6 +4,8 @@ description: 'Lifecycle: Beta. Last updated 2024-01-30'
 
 # Data format C5 (Cut-RAWv2)
 
+Related Ruuvi Devices: RuuviTag, Ruuvi Gateway
+
 The data is decoded from "Manufacturer Specific Data" -field, for more details please check [Bluetooth Advertisements section](https://docs.ruuvi.com/communication/bluetooth-advertisements). Manufacturer ID is **`0x0499`** , which is transmitted as **`0x9904`** in raw data.&#x20;
 
 The format resembles original RAWv2, but acceleration is left out to leave 6 bytes for other information in primary advertisement.&#x20;

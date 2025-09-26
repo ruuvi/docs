@@ -4,6 +4,8 @@ description: 'Lifecycle: Beta'
 
 # Data format 6&#x20;
 
+Related Ruuvi Devices: Ruuvi Air, Ruuvi Gateway
+
 This data format uses Bluetooth 4 advertisement extension to be compatible with Bluetooth 4 devices. Any Bluetooth 5.0 and upwards capable device should discard this data format and listen to data format E1 packets instead.&#x20;
 
 The data is decoded from "Manufacturer Specific Data" -field, for more details please check [Bluetooth Advertisements section](https://docs.ruuvi.com/communication/bluetooth-advertisements). Manufacturer ID is **`0x0499`** , which is transmitted as **`0x9904`** in raw data. The actual data payload is:
