@@ -159,7 +159,7 @@ These test vectors are based on [ruuvi.endpoints.c](https://github.com/ruuvi/ruu
 
 #### Case: valid data
 
-Raw binary data: `0xE1170C5668C79E0065007004BD11CA00C90A0213E0AC3XXXXXXECDEE10XXXXXXXXXXCBB8334C884F`  XX : Reserved&#x20;
+Raw binary data: `0xE1170C5668C79E0065007004BD11CA00C90A0213E0ACXXXXXXDECDEE10XXXXXXXXXXCBB8334C884F`  XX : Reserved&#x20;
 
 | Field                | Value                                                                                                               |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------- |
@@ -203,7 +203,7 @@ Raw binary data: `0xE17FFF9C40FFFE27102710271027109C40FAFADC28F0XXXXXXFFFFFE3FXX
 
 Case: minimum values
 
-Raw binary data: `0xE180010000000000000000000000000000000000000000XXXXXX000000XXXXXXXXXXCBB8334C884F` XX : Reserved&#x20;
+Raw binary data: `0xE1800100000000000000000000000000000000000000XXXXXX0000000XXXXXXXXXXXCBB8334C884F` XX : Reserved&#x20;
 
 | Field                | Value                                                                                                                |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------- |
