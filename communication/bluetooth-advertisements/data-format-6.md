@@ -199,7 +199,7 @@ Raw binary data: `0x067FFF9C40FFFE27109C40FAFAFEXXFF074C8F4F` XX : Reserved  &#x
 | CO2                  | `40000` ppm                                                                                                         |
 | VOC                  | `500`                                                                                                               |
 | NOX                  | `500`                                                                                                               |
-| Luminosity           | `65355.00` Lux                                                                                                      |
+| Luminosity           | `65535.00` Lux                                                                                                      |
 | Measurement Sequence | `255`                                                                                                               |
 | Flags                | <p>Calibration in progress: <code>True</code></p><p>VOC b9: <code>False</code></p><p>NOX b9: <code>False</code></p> |
 | MAC                  | `4C 88 4F`                                                                                                          |
