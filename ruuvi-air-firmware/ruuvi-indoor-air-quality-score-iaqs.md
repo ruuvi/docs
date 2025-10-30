@@ -4,15 +4,15 @@ noIndex: true
 
 # Ruuvi Indoor Air Quality Score (IAQS)
 
-The Ruuvi Indoor Air Quality Score is designed to give a quick, repeatable view to the healthiness of current indoor air conditions. The index does not account for temperature or humidity, as they are more closely related to comfort of people and maintenance of structures rather than health effects on people. IAQS considers CO2 and particulate matter as they can be measured as absolute values and science behind their impact to health and wellbeing is well studied. The index is calculated by considering each individual component difference to ideal value and using geometric distance calculation to create a "total difference" to ideal value. &#x20;
+The Ruuvi Indoor Air Quality Score (IAQS) is designed to provide a quick and repeatable overview of the healthiness of current indoor air conditions. The index does not account for temperature or humidity, as these are more closely related to comfort and structural maintenance than to direct health effects. The IAQS considers CO₂ and particulate matter (PM₂.₅), as both can be measured as absolute values and their effects on health and well-being are well studied. The index is calculated by measuring each component’s deviation from its ideal value and using geometric distance to compute a combined “total difference” from the ideal. &#x20;
 
-<table><thead><tr><th width="122">Grade</th><th width="176">IAQS</th><th width="191">CO2 (ppm)</th><th>Particulate Matter 2.5μm  (μg/m^3)</th></tr></thead><tbody><tr><td>Excellent</td><td>90 ≤ IAQS ≤ 100</td><td>CO2 ≤ 600</td><td>PM2.5 ≤ 6</td></tr><tr><td>Good</td><td>80 ≤ IAQS &#x3C; 90</td><td>600 &#x3C; CO2 ≤ 800</td><td>6 &#x3C; PM2.5 ≤ 12</td></tr><tr><td>Fair</td><td>50 ≤ IAQS &#x3C; 80</td><td>800 &#x3C; CO2 ≤ 1400</td><td>12 &#x3C; PM2.5 ≤ 30</td></tr><tr><td>Poor</td><td>10 ≤ IAQS &#x3C; 50</td><td>1400 &#x3C; CO2 ≤ 2100</td><td>30 &#x3C; PM2.5 ≤ 55</td></tr><tr><td>Very Poor</td><td>0 ≤ IAQS &#x3C; 10</td><td>2100 &#x3C; CO2</td><td>55 &#x3C; PM2.5</td></tr></tbody></table>
+<table><thead><tr><th width="122">Grade</th><th width="176">IAQS</th><th width="191">CO₂ (ppm)</th><th>PM₂.₅ (μg/m³)</th></tr></thead><tbody><tr><td>Excellent</td><td>90 ≤ IAQS ≤ 100</td><td>CO₂ ≤ 600</td><td>PM₂.₅ ≤ 6</td></tr><tr><td>Good</td><td>80 ≤ IAQS &#x3C; 90</td><td>600 &#x3C; CO₂ ≤ 800</td><td>6 &#x3C; PM₂.₅ ≤ 12</td></tr><tr><td>Fair</td><td>50 ≤ IAQS &#x3C; 80</td><td>800 &#x3C; CO₂ ≤ 1400</td><td>12 &#x3C; PM₂.₅ ≤ 30</td></tr><tr><td>Poor</td><td>10 ≤ IAQS &#x3C; 50</td><td>1400 &#x3C; CO₂ ≤ 2100</td><td>30 &#x3C; PM₂.₅ ≤ 55</td></tr><tr><td>Very Poor</td><td>0 ≤ IAQS &#x3C; 10</td><td>2100 &#x3C; CO₂</td><td>55 &#x3C; PM₂.₅</td></tr></tbody></table>
 
-Expressed as a graph, AQI maps to CO2 + PM2.5 as below:&#x20;
+Expressed graphically, the IAQS maps CO₂ and PM₂.₅ as shown below:&#x20;
 
 <figure><img src="../.gitbook/assets/riaqs.jpg" alt=""><figcaption></figcaption></figure>
 
-The RAQI is calculated by the formula below:&#x20;
+The IAQS is calculated using the following formula:&#x20;
 
 ```
 const AQI_MAX    = 100;
@@ -39,4 +39,4 @@ function calc_aqi(pm25, co2) {
 }
 ```
 
-Ruuvi Station apps and Ruuvi Air display the grading of index by a value rounded to integer value. e.g. 89.6 becomes 90 and is listed as turquoise/excellent even though the original raw value is below the threshold. The history graphs likewise show the color as it was rounded, so a history graph with points 89.4, 89.5, 89.6 transitions green to turquoise at 89.5.
+Ruuvi Station apps and Ruuvi Air display the index grade based on the value rounded to the nearest integer. For example, a value of 89.6 is rounded to 90 and displayed as turquoise (“Excellent”), even though the raw value is slightly below the threshold. History graphs also use the rounded color classification; for instance, a sequence of values 89.4, 89.5, and 89.6 transitions from green to turquoise at 89.5.
