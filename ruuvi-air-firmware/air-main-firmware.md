@@ -1,7 +1,3 @@
----
-noIndex: true
----
-
 # Air Main Firmware
 
 The main Ruuvi Air application. Ruuvi Air firmware initializes the sensors onboard and starts to advertise the sensor data. Additionally, the Ruuvi Air logs the environmental data for 10 days at 5 minute interval. This stored data persists across short power offs, but data can be logged only while device is powered.

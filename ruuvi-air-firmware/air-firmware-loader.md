@@ -1,7 +1,3 @@
----
-noIndex: true
----
-
 # Air Firmware Loader
 
 The firmware loader is a self-contained minimal program which allows for receiving firmware update images over the air. The received images are stored in flash memory and after a reboot the second stage bootloader validates and installs the image.&#x20;

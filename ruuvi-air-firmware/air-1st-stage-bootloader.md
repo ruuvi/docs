@@ -1,7 +1,3 @@
----
-noIndex: true
----
-
 # Air 1st Stage Bootloader
 
 The 1st stage bootloader is minimal, immutable firmware which initializes the board, provides a factory recovery option and starts the more sophisticated second stage bootloader.&#x20;

@@ -1,7 +1,3 @@
----
-noIndex: true
----
-
 # Air 2nd Stage Bootloader
 
 The Ruuvi Air second stage bootloader is based on [MCUboot](https://docs.mcuboot.com/) and it handles cryptographic security of installed firmware images as well as validates any updates to be installed.&#x20;
