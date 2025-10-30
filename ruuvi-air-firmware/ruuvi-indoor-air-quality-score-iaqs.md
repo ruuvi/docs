@@ -12,7 +12,7 @@ Expressed graphically, the IAQS maps CO₂ and PM₂.₅ as shown below:&#x20;
 
 <figure><img src="../.gitbook/assets/riaqs.jpg" alt=""><figcaption></figcaption></figure>
 
-The IAQS—historically referred to as the Ruuvi Air Quality Index (RAQI)—is calculated using the following formula:&#x20;
+The IAQS is calculated using the following formula:&#x20;
 
 ```
 const AQI_MAX    = 100;
