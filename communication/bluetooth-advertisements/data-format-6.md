@@ -225,7 +225,7 @@ Raw binary data: `0x0680010000000000000000000000XX00004C884F`  XX : Reserved  &#
 
 #### Case: Invalid values
 
-Raw binary data: `0x068000FFFFFFFFFFFFFFFFFFFFFFFFXXFFFFFFFFFF`  XX : Reserved&#x20;
+Raw binary data: `0x068000FFFFFFFFFFFFFFFFFFFFFFXXFFFFFFFFFF`  XX : Reserved&#x20;
 
 | Field                | Value                                                                                                             |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------- |
