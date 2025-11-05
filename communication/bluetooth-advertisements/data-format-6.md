@@ -1,30 +1,30 @@
 ---
-description: 'Lifecycle: Beta'
+description: 'Lifecycle: In Production'
 ---
 
-# Data format 6&#x20;
+# Data format 6
 
 Related Ruuvi Devices: Ruuvi Air, Ruuvi Gateway
 
-This data format uses Bluetooth 4 advertisement extension to be compatible with Bluetooth 4 devices. Any Bluetooth 5.0 and upwards capable device should discard this data format and listen to data format E1 packets instead.&#x20;
+This data format uses Bluetooth 4 advertisement extension to be compatible with Bluetooth 4 devices. Any Bluetooth 5.0 and upwards capable device should discard this data format and listen to data format E1 packets instead.
 
 The data is decoded from "Manufacturer Specific Data" -field, for more details please check [Bluetooth Advertisements section](https://docs.ruuvi.com/communication/bluetooth-advertisements). Manufacturer ID is **`0x0499`** , which is transmitted as **`0x9904`** in raw data. The actual data payload is:
 
-| Offset        |   Allowed values   | Description                                                                                                                   |
-| ------------- | :----------------: | ----------------------------------------------------------------------------------------------------------------------------- |
-| 0             |         `6`        | Data format (8bit)                                                                                                            |
-| 1-2           | `-32767 ... 32767` | Temperature in 0.005 degrees                                                                                                  |
-| 3-4           |   `0 ... 40 000`   | Humidity (16bit unsigned) in 0.0025% (0-163.83% range, though realistically 0-100%)                                           |
-| 5-6           |    `0 ... 65534`   | Pressure (16bit unsigned) in 1 Pa units, with offset of -50 000 Pa                                                            |
-| 7-8           |    `0 ... 10000`   | PM 2.5, ug/m^3. Resolution 0.1/bit, range 0 ... 1000. 16bit unsigned                                                          |
-| 9-10          |    `0 ... 40000`   | CO2 concentration, ppm. Resolution 1/bit, range 0 ... 40000. 16bit unsigned                                                   |
-| 11 +FLAGS b6  |     `0 ... 500`    | VOC index, unitless. Resolution 1 / bit, range 0 ... 500. 9 bit unsigned, least significant bit in Flags byte                 |
-| 12, +FLAGS b7 |     `0 ... 500`    | NOX index, unitless. Resolution 1 / bit, range 0 ... 500. 9 bit unsigned, least significant bit in Flags byte                 |
-| 13            |     `0 ... 254`    | Luminosity, Lux. Logarithmic, range 0 ... 65535. See below for details                                                        |
-| 14            |        `255`       | Reserved                                                                                                                      |
-| 15            |      `0...255`     | Measurement sequence. A device sending also in E1 data format will have identical least significant byte for the same sample  |
-| 16            |   `0bVVXX XXXV`    | Flags. See below for details                                                                                                  |
-| 17-19         |   `Any valid mac`  | Lowest 3 bytes of device MAC address                                                                                          |
+| Offset        |   Allowed values   | Description                                                                                                                  |
+| ------------- | :----------------: | ---------------------------------------------------------------------------------------------------------------------------- |
+| 0             |         `6`        | Data format (8bit)                                                                                                           |
+| 1-2           | `-32767 ... 32767` | Temperature in 0.005 degrees                                                                                                 |
+| 3-4           |   `0 ... 40 000`   | Humidity (16bit unsigned) in 0.0025% (0-163.83% range, though realistically 0-100%)                                          |
+| 5-6           |    `0 ... 65534`   | Pressure (16bit unsigned) in 1 Pa units, with offset of -50 000 Pa                                                           |
+| 7-8           |    `0 ... 10000`   | PM 2.5, ug/m^3. Resolution 0.1/bit, range 0 ... 1000. 16bit unsigned                                                         |
+| 9-10          |    `0 ... 40000`   | CO2 concentration, ppm. Resolution 1/bit, range 0 ... 40000. 16bit unsigned                                                  |
+| 11 +FLAGS b6  |     `0 ... 500`    | VOC index, unitless. Resolution 1 / bit, range 0 ... 500. 9 bit unsigned, least significant bit in Flags byte                |
+| 12, +FLAGS b7 |     `0 ... 500`    | NOX index, unitless. Resolution 1 / bit, range 0 ... 500. 9 bit unsigned, least significant bit in Flags byte                |
+| 13            |     `0 ... 254`    | Luminosity, Lux. Logarithmic, range 0 ... 65535. See below for details                                                       |
+| 14            |        `255`       | Reserved                                                                                                                     |
+| 15            |      `0...255`     | Measurement sequence. A device sending also in E1 data format will have identical least significant byte for the same sample |
+| 16            |    `0bVVXX XXXV`   | Flags. See below for details                                                                                                 |
+| 17-19         |   `Any valid mac`  | Lowest 3 bytes of device MAC address                                                                                         |
 
 _Not available_ is signified by largest presentable number for unsigned values, smallest presentable number for signed values and all bits set for mac. All fields are MSB first 2-complement, i.e. `0xFC18` is read as `-1000` and `0x03E8` is read as `1000`. If original data overflows the data format, data is clipped to closest value that can be represented. For example temperature 170.00 C becomes 163.835 C
 
@@ -107,7 +107,7 @@ Both values use 9 bits, least significant bit is in Flags byte.
 
 #### **Luminosity**
 
-Luminosity represents the light level in the environment of the sensor. The light level is compensated with human eye sensitivity curve. Value is 8-bit unsigned logarithmic number. Values should be rounded at most to 0.01 precision.&#x20;
+Luminosity represents the light level in the environment of the sensor. The light level is compensated with human eye sensitivity curve. Value is 8-bit unsigned logarithmic number. Values should be rounded at most to 0.01 precision.
 
 Please note that the highest valid code is 254, and 255 is reserved for the "not available".
 
@@ -134,7 +134,7 @@ _Example_
 
 #### **Measurement sequence number**
 
-Measurement sequence number gets incremented by one for every measurement. It can be used to gauge signal quality and packet loss as well as to deduplicated data entries. You should note that the measurement sequence refers to data rather than transmission, so you might receive many transmissions with the same measurement sequence number.&#x20;
+Measurement sequence number gets incremented by one for every measurement. It can be used to gauge signal quality and packet loss as well as to deduplicated data entries. You should note that the measurement sequence refers to data rather than transmission, so you might receive many transmissions with the same measurement sequence number.
 
 Please note that the highest valid value is 255, there is no "invalid / not available" value as this counter tracks the E1 format counter.
 
@@ -158,9 +158,9 @@ Flags byte contains additional information and is interpreted bit-by-bit. "X" Me
 
 #### **MAC address**
 
-MAC address is static, statistically unique random identifier of the device. The address is 48 bits, but this data format carries only 24 least significant  bits.
+MAC address is static, statistically unique random identifier of the device. The address is 48 bits, but this data format carries only 24 least significant bits.
 
-Please note that the Bluetooth advertisement itself carries the full MAC address of the sensor, and most host devices can and should parse the MAC address directly from the Bluetooth metadata. However, iOS devices do not reveal the full MAC address to the application, but instead convert the MAC address to an UUID which is not guaranteed to stay static. Hence iOS devices should use these 24 bits as a static identifier of the device.  &#x20;
+Please note that the Bluetooth advertisement itself carries the full MAC address of the sensor, and most host devices can and should parse the MAC address directly from the Bluetooth metadata. However, iOS devices do not reveal the full MAC address to the application, but instead convert the MAC address to an UUID which is not guaranteed to stay static. Hence iOS devices should use these 24 bits as a static identifier of the device.
 
 ### Test vectors
 
@@ -168,7 +168,7 @@ These test vectors are based on [ruuvi.endpoints.c](https://github.com/ruuvi/ruu
 
 #### Case: valid data
 
-Raw binary data: `0x06170C5668C79E007000C90501D9XXCD004C884F` XX : Reserved  &#x20;
+Raw binary data: `0x06170C5668C79E007000C90501D9XXCD004C884F` XX : Reserved
 
 | Field                | Value                                                                                                                |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -187,7 +187,7 @@ Raw binary data: `0x06170C5668C79E007000C90501D9XXCD004C884F` XX : Reserved  &#x
 
 #### Case: maximum values
 
-Raw binary data: `0x067FFF9C40FFFE27109C40FAFAFEXXFF074C8F4F` XX : Reserved  &#x20;
+Raw binary data: `0x067FFF9C40FFFE27109C40FAFAFEXXFF074C8F4F` XX : Reserved
 
 | Field                | Value                                                                                                               |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------- |
@@ -206,7 +206,7 @@ Raw binary data: `0x067FFF9C40FFFE27109C40FAFAFEXXFF074C8F4F` XX : Reserved  &#x
 
 Case: minimum values
 
-Raw binary data: `0x0680010000000000000000000000XX00004C884F`  XX : Reserved  &#x20;
+Raw binary data: `0x0680010000000000000000000000XX00004C884F` XX : Reserved
 
 | Field                | Value                                                                                                                |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -225,7 +225,7 @@ Raw binary data: `0x0680010000000000000000000000XX00004C884F`  XX : Reserved  &#
 
 #### Case: Invalid values
 
-Raw binary data: `0x068000FFFFFFFFFFFFFFFFFFFFFFXXFFFFFFFFFF`  XX : Reserved&#x20;
+Raw binary data: `0x068000FFFFFFFFFFFFFFFFFFFFFFXXFFFFFFFFFF` XX : Reserved
 
 | Field                | Value                                                                                                             |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------- |

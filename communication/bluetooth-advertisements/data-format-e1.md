@@ -1,5 +1,5 @@
 ---
-description: 'Lifecycle: Beta'
+description: 'Lifecycle: In Production'
 ---
 
 # Data format E1 (Extended v1)
