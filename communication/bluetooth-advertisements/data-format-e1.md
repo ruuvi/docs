@@ -6,7 +6,7 @@ description: 'Lifecycle: Beta'
 
 Related Ruuvi Devices: Ruuvi Air, Ruuvi Gateway
 
-This data format uses Bluetooth 5 advertisement extension to provide more data than Bluetooth 4 advertisements can. Any Bluetooth 5.0 and upwards capable device should be able to receive the data format. It extends on data format 6; if the same device sends both in data format 6 and E1, the format 6 packet should be discarded.
+This data format uses Bluetooth 5 advertisement extension to provide more data than Bluetooth 4 advertisements can. Any Bluetooth 5.0 and upwards capable device should be able to receive this data format. It extends on data format 6; if the same device receives both in data format 6 and E1, the format 6 packet should be discarded.
 
 The data is decoded from "Manufacturer Specific Data" -field, for more details please check [Bluetooth Advertisements section](https://docs.ruuvi.com/communication/bluetooth-advertisements). Manufacturer ID is **`0x0499`** , which is transmitted as **`0x9904`** in raw data. The actual data payload is:
 
@@ -159,7 +159,7 @@ These test vectors are based on [ruuvi.endpoints.c](https://github.com/ruuvi/ruu
 
 #### Case: valid data
 
-Raw binary data: `0xE1170C5668C79E0065007004BD11CA00C90A0213E0ACXXXXXXDECDEE10XXXXXXXXXXCBB8334C884F`  XX : Reserved&#x20;
+Raw binary data: `0xE1170C5668C79E0065007004BD11CA00C90A0213E0ACXXXXXXDECDEE10XXXXXXXXXXCBB8334C884F` XX : Reserved
 
 | Field                | Value                                                                                                               |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------- |
@@ -181,7 +181,7 @@ Raw binary data: `0xE1170C5668C79E0065007004BD11CA00C90A0213E0ACXXXXXXDECDEE10XX
 
 #### Case: maximum values
 
-Raw binary data: `0xE17FFF9C40FFFE27102710271027109C40FAFADC28F0XXXXXXFFFFFE3FXXXXXXXXXXCBB8334C884F` XX : Reserved&#x20;
+Raw binary data: `0xE17FFF9C40FFFE27102710271027109C40FAFADC28F0XXXXXXFFFFFE3FXXXXXXXXXXCBB8334C884F` XX : Reserved
 
 | Field                | Value                                                                                                               |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------- |
@@ -203,7 +203,7 @@ Raw binary data: `0xE17FFF9C40FFFE27102710271027109C40FAFADC28F0XXXXXXFFFFFE3FXX
 
 Case: minimum values
 
-Raw binary data: `0xE1800100000000000000000000000000000000000000XXXXXX0000000XXXXXXXXXXXCBB8334C884F` XX : Reserved&#x20;
+Raw binary data: `0xE1800100000000000000000000000000000000000000XXXXXX0000000XXXXXXXXXXXCBB8334C884F` XX : Reserved
 
 | Field                | Value                                                                                                                |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -225,7 +225,7 @@ Raw binary data: `0xE1800100000000000000000000000000000000000000XXXXXX0000000XXX
 
 #### Case: Invalid values
 
-Raw binary data: `0xE18000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFXXXXXXFFFFFFFEXXXXXXXXXXFFFFFFFFFFFF`  XX : Reserved&#x20;
+Raw binary data: `0xE18000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFXXXXXXFFFFFFFEXXXXXXXXXXFFFFFFFFFFFF` XX : Reserved
 
 | Field                | Value                                                                                                              |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------ |
