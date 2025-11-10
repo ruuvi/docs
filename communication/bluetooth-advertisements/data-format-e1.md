@@ -159,7 +159,7 @@ These test vectors are based on [ruuvi.endpoints.c](https://github.com/ruuvi/ruu
 
 #### Case: valid data
 
-Raw binary data: `0xE1170C5668C79E0065007004BD11CA00C90A0213E0ACXXXXXXDECDEE10XXXXXXXXXXCBB8334C884F` XX : Reserved
+Raw binary data: `0xE1170C5668C79E0065007004BD11CA00C90A0213E0ACXXXXXXDECDEE01XXXXXXXXXXCBB8334C884F` XX : Reserved
 
 | Field                | Value                                                                                                               |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------- |
