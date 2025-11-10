@@ -32,7 +32,7 @@ The data is decoded from "Manufacturer Specific Data" -field, for more details p
 | 29-33         |   `0xFFFFFFFFFF`   | Reserved                                                                                                      |
 | 34-39         |   `Any valid mac`  | 48bit MAC address.                                                                                            |
 
-_Not available_ is signified by largest presentable number for unsigned values, smallest presentable number for signed values and all bits set for mac. All fields are MSB first 2-complement, i.e. `0xFC18` is read as `-1000` and `0x03E8` is read as `1000`. If original data overflows the data format, data is clipped to closest value that can be represented. For example temperature 170.00 C becomes 163.835 C
+_Not available_ is signified by largest presentable number for unsigned values, smallest presentable number for signed values and all bits set for mac. All fields are MSB first. All signed values are 2-complement, i.e. `0xFC18` is read as `-1000` and `0x03E8` is read as `1000`. If original data overflows the data format, data is clipped to closest value that can be represented. For example temperature 170.00 C becomes 163.835 C
 
 ### Data field descriptions
 
