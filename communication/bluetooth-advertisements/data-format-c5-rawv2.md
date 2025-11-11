@@ -23,7 +23,7 @@ The actual data payload is:
 | 10-11  |       `0 ... 65534`      | Measurement sequence number (16 bit unsigned), each time a measurement is taken, this is incremented by one, used for measurement de-duplication. Depending on the transmit interval, multiple packets with the same measurements can be sent, and there may be measurements that never were sent. |
 | 12-17  |      `Any valid mac`     | 48bit MAC address.                                                                                                                                                                                                                                                                                 |
 
-_Not available_ is signified by largest presentable number for unsigned values, smallest presentable number for signed values and all bits set for mac. All fields are MSB first 2-complement, i.e. `0xFC18` is read as `-1000` and `0x03E8` is read as `1000`. If original data overflows the data format, data is clipped to closests value that can be represented. For example temperature 170.00 C becomes 163.835 C and acceleration -40.000 G becomes -32.767 G.
+_Not available_ is signified by largest presentable number for unsigned values, smallest presentable number for signed values and all bits set for mac. All fields are MSB first. All signed values are 2-complement, i.e. `0xFC18` is read as `-1000` and `0x03E8` is read as `1000`. If original data overflows the data format, data is clipped to closests value that can be represented. For example temperature 170.00 C becomes 163.835 C and acceleration -40.000 G becomes -32.767 G.
 
 ### Data field descriptions
 
