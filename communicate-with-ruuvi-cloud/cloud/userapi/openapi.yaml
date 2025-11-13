@@ -1,0 +1,23 @@
+openapi: 3.0.3
+info:
+  title: Ruuvi Cloud – User API
+  version: 1.0.0
+
+servers:
+  - url: https://network.ruuvi.com
+
+tags:
+  - name: Settings
+
+paths:
+  /sensor-settings:
+    post:
+      $ref: './sensor-settings.yaml'
+    get:
+      $ref: './sensor-settings.yaml'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

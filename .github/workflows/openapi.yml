@@ -1,0 +1,15 @@
+jobs:
+  spectral-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Spectral
+        run: npm install --global @stoplight/spectral-cli
+
+      - name: Lint all OpenAPI files
+        run: spectral lint communicate-with-ruuvi-cloud/cloud/**/openapi.yaml
