@@ -18,8 +18,8 @@ Gateway API handles receiving and storing data sent by Ruuvi Gateways to Ruuvi N
 [gateway-api.md](gateway-api.md)
 {% endcontent-ref %}
 
-{% content-ref url="user-api.md" %}
-[user-api.md](user-api.md)
+{% content-ref url="user-api/" %}
+[user-api](user-api/)
 {% endcontent-ref %}
 
 {% content-ref url="internal-api.md" %}
@@ -31,8 +31,3 @@ Ruuvi Station Android and iOS apps and also Station Web ([https://station.ruuvi.
 {% content-ref url="cloud-stored-app-settings.md" %}
 [cloud-stored-app-settings.md](cloud-stored-app-settings.md)
 {% endcontent-ref %}
-
-
-
-
-
