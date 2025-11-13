@@ -78,6 +78,7 @@ post:
           examples:
             invalid:
               value:
+                result: "error"
                 error: "INVALID"
                 message: "sensor must be MAC address"
 
@@ -90,7 +91,9 @@ post:
           examples:
             unauthorized:
               value:
+                result: "error"
                 error: "UNAUTHORIZED"
+                code: "ER_UNAUTHORIZED"
 
     '403':
       description: FORBIDDEN – User does not have access to this sensor
@@ -101,7 +104,9 @@ post:
           examples:
             forbidden:
               value:
+                result: "error"
                 error: "FORBIDDEN"
+                code: "ER_FORBIDDEN"
 
     '409':
       description: CONFLICT – Setting with same or newer timestamp already exists
@@ -112,4 +117,7 @@ post:
           examples:
             conflict:
               value:
+                result: "error"
                 error: "CONFLICT"
+                code: "ER_CONFLICT"
+                "sub_code": "ER_OLD_ENTRY"
