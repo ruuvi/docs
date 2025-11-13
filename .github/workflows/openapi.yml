@@ -23,4 +23,4 @@ jobs:
         run: npm install --global @stoplight/spectral-cli
 
       - name: Lint all OpenAPI files
-        run: spectral lint communicate-with-ruuvi-cloud/cloud/**/openapi.yaml
+        run: spectral lint communicate-with-ruuvi-cloud/cloud/**/openapi.yaml --ruleset=@stoplight/spectral-rulesets/oas
