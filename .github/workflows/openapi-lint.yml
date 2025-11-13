@@ -19,4 +19,4 @@ jobs:
       # Run Spectral
       - uses: stoplightio/spectral-action@latest
         with:
-          file_glob: 'communicate-with-ruuvi-cloud/cloud/**/*.yaml'
+          file_glob: 'communicate-with-ruuvi-cloud/cloud/**/openapi.yaml'
