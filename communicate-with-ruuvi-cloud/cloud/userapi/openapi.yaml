@@ -1,7 +1,12 @@
 openapi: 3.2.0
 info:
   title: Ruuvi Cloud – User API
+  description: Ruuvi Cloud user facing API. Everything you need to build your own front-end to Ruuvi Cloud.
   version: 1.0.0
+  contact:
+    name: Ruuvi Support
+    url: https://ruuvi.com/support
+    email: support@ruuvi.com
 
 servers:
   - url: https://network.ruuvi.com
