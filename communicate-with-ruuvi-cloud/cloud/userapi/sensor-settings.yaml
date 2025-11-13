@@ -80,6 +80,7 @@ post:
               value:
                 result: "error"
                 error: "INVALID"
+                code: "ER_INVALID_ARGUMENT"
                 message: "sensor must be MAC address"
 
     '401':
