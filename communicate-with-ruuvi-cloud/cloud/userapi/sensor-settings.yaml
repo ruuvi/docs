@@ -1,114 +1,115 @@
-summary: Configure a setting for a sensor
-description: Creates a new setting for given sensor
-operationId: setSensorSetting
-tags:
-  - Settings
-security:
-  - bearerAuth: []
-requestBody:
-  required: true
-  content:
-    application/json:
-      schema:
-        type: object
-        required:
-          - sensor
-          - value
-          - type
-        properties:
-          sensor:
-            type: string
-            description: MAC address of the sensor (e.g. `C6:F1:E7:D3:DA:11`)
-            pattern: '^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$'
-          value:
-            type: array
-            description: |
-              Array of JSON-encoded strings.  
-              Example: `["{\"description\": \"Tylsä\"}"]`
-            items:
+post: 
+  summary: Configure a setting for a sensor
+  description: Creates a new setting for given sensor
+  operationId: setSensorSetting
+  tags:
+    - Settings
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - sensor
+            - value
+            - type
+          properties:
+            sensor:
               type: string
-          type:
-            type: array
-            description: Array of setting types (strings)
-            items:
-              type: string
-          timestamp:
-            type: integer
-            format: int64
-            description: Optional epoch timestamp for the setting
-      examples:
-        basic:
-          value:
-            sensor: "C6:F1:E7:D3:DA:11"
-            value: ["{\"description\": \"Tylsä\"}"]
-            type: ["description"]
+              description: MAC address of the sensor (e.g. `C6:F1:E7:D3:DA:11`)
+              pattern: '^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$'
+            value:
+              type: array
+              description: |
+                Array of JSON-encoded strings.  
+                Example: `["{\"description\": \"Tylsä\"}"]`
+              items:
+                type: string
+            type:
+              type: array
+              description: Array of setting types (strings)
+              items:
+                type: string
+            timestamp:
+              type: integer
+              format: int64
+              description: Optional epoch timestamp for the setting
+        examples:
+          basic:
+            value:
+              sensor: "C6:F1:E7:D3:DA:11"
+              value: ["{\"description\": \"Tylsä\"}"]
+              type: ["description"]
 
-responses:
-  '200':
-  description: Setting stored or updated successfully
-  content:
-    application/json:
-      schema:
-        allOf:
-          - $ref: '../components/schemas/Success.yaml'
-          - type: object
-            properties:
+  responses:
+    '200':
+    description: Setting stored or updated successfully
+    content:
+      application/json:
+        schema:
+          allOf:
+            - $ref: '../components/schemas/Success.yaml'
+            - type: object
+              properties:
+                data:
+                  $ref: '../components/schemas/SettingResult.yaml'
+        examples:
+          updated:
+            value:
+              result: success
               data:
-                $ref: '../components/schemas/SettingResult.yaml'
-      examples:
-        updated:
-          value:
-            result: success
-            data:
-              action: "updated"
-        added:
-          value:
-            result: success
-            data:
-              action: "added"
-
-  '400':
-    description: INVALID – Missing or malformed fields  
-      (`sensor`, `value`, or `type` missing; sensor not MAC; value not JSON array; type not array)
-    content:
-      application/json:
-        schema:
-          $ref: '../components/schemas/Error.yaml'
-        examples:
-          invalid:
+                action: "updated"
+          added:
             value:
-              error: "INVALID"
-              message: "sensor must be MAC address"
+              result: success
+              data:
+                action: "added"
 
-  '401':
-    description: UNAUTHORIZED – Auth token missing
-    content:
-      application/json:
-        schema:
-          $ref: '../components/schemas/Error.yaml'
-        examples:
-          unauthorized:
-            value:
-              error: "UNAUTHORIZED"
+    '400':
+      description: INVALID – Missing or malformed fields  
+        (`sensor`, `value`, or `type` missing; sensor not MAC; value not JSON array; type not array)
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/Error.yaml'
+          examples:
+            invalid:
+              value:
+                error: "INVALID"
+                message: "sensor must be MAC address"
 
-  '403':
-    description: FORBIDDEN – User does not have access to this sensor
-    content:
-      application/json:
-        schema:
-          $ref: '../components/schemas/Error.yaml'
-        examples:
-          forbidden:
-            value:
-              error: "FORBIDDEN"
+    '401':
+      description: UNAUTHORIZED – Auth token missing
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/Error.yaml'
+          examples:
+            unauthorized:
+              value:
+                error: "UNAUTHORIZED"
 
-  '409':
-    description: CONFLICT – Setting with same or newer timestamp already exists
-    content:
-      application/json:
-        schema:
-          $ref: '../components/schemas/Error.yaml'
-        examples:
-          conflict:
-            value:
-              error: "CONFLICT"
+    '403':
+      description: FORBIDDEN – User does not have access to this sensor
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/Error.yaml'
+          examples:
+            forbidden:
+              value:
+                error: "FORBIDDEN"
+
+    '409':
+      description: CONFLICT – Setting with same or newer timestamp already exists
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/Error.yaml'
+          examples:
+            conflict:
+              value:
+                error: "CONFLICT"

@@ -1,4 +1,4 @@
-openapi: 3.2.0
+openapi: 3.0.3
 info:
   title: Ruuvi Cloud – User API
   description: Ruuvi Cloud user facing API. Everything you need to build your own front-end to Ruuvi Cloud.
@@ -16,10 +16,7 @@ tags:
 
 paths:
   /sensor-settings:
-    post:
-      $ref: './sensor-settings.yaml'
-    get:
-      $ref: './sensor-settings.yaml'
+    $ref: './sensor-settings.yaml'
 
 components:
   securitySchemes:
