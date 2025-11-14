@@ -109,7 +109,7 @@
     * ```yaml
       type: builtin:openapi
       props:
-        models: true
+        models: false
         downloadLink: true
       dependencies:
         spec:
