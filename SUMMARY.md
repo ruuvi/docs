@@ -109,8 +109,8 @@
     * ```yaml
       type: builtin:openapi
       props:
-        models: false
-        downloadLink: false
+        models: true
+        downloadLink: true
       dependencies:
         spec:
           ref:
