@@ -4,7 +4,7 @@ description: 'Ruuvi Cloud user facing API. Lifecycle: in production'
 
 # User API
 
-User API uses a JSON based API to allow users to register, secure and edit their information as well as claim and share sensors, retrieve sensor data and alter their subscription details. The documentation is being migrated to OpenAPI specification. Migrated endpoints are on their own subpages with detailed description, while legacy documentation is on the root level. 
+User API uses a JSON based API to allow users to register, secure and edit their information as well as claim and share sensors, retrieve sensor data and alter their subscription details. The documentation is being migrated to the OpenAPI specification. Migrated endpoints are on their own subpages with detailed descriptions, while legacy documentation is at the root level. 
 
 In case OpenAPI and this hand-written documentation are in conflict, OpenAPI documentation is correct.
 
@@ -12,7 +12,7 @@ The OpenAPI specification can be found at https://github.com/ruuvi/ruuvi.cloudap
 
 There is also an associated Postman collection for easy getting started, https://www.postman.com/ruuvi-7a5dd1f8-3803443/ruuvi-user-api/api/42a942ba-8a05-4ecf-a305-cd7439b2fc69?version=fa7b6f1e-9cc6-48d9-8afa-ccc0a68c671d. The Postman collection is updated as new endpoints are migrated to OpenAPI. 
 
-Most of the API requests have to be authenticated with a bearer token. To obtain a token, you must call /register endpoint which will email you a short verification code. Then you must call /verify endpoint with the emailed token to receive the full bearer token. Details on how to obtain the are under Register User section in API documentation. Token usage is described with each endpoint. In short, add `"Authorization: Bearer $TOKEN"` to the request headers.
+Most of the API requests have to be authenticated with a bearer token. To obtain a token, you must call /register endpoint which will email you a short verification code. Then you must call /verify endpoint with the emailed token to receive the full bearer token. Details on how to obtain the token are under Register User section in API documentation. Token usage is described with each endpoint. In short, add `"Authorization: Bearer $TOKEN"` to the request headers.
 
 ## Request deletion of account
 
