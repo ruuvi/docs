@@ -6,7 +6,7 @@ Related Ruuvi Devices: Ruuvi Air
 
 Ruuvi Air supports reading logged sensor history data over a Bluetooth Low Energy (BLE) connection using the Nordic UART Service (NUS). This allows mobile applications to retrieve historical air quality measurements stored on the device.
 
-The protocol is similar to [RuuviTag log reading](log-read.md), but uses a different data format (E1) that includes additional air quality measurements such as PM2.5, CO₂, VOC, NOx, luminosity, and sound levels.
+The protocol is similar to [RuuviTag log reading](log-read.md), but uses a different data format (E1) that includes additional air quality measurements such as PM2.5, CO₂, VOC and NOx levels.
 
 ## Log read flow
 
@@ -98,10 +98,10 @@ The flags byte contains the 9th bit for values that need more than 8 bits of pre
 
 | Field | Formula | Unit | Range |
 |-------|---------|------|-------|
-| Temperature | raw / 200.0 | °C | -163.84 to +163.83 |
+| Temperature | raw / 200.0 | °C | -163.840 to +163.830 |
 | Humidity | raw / 400.0 | % | 0 to 100 |
 | Pressure | raw + 50000 | Pa | 50000 to 115534 |
-| PM values | raw / 10.0 | µg/m³ | 0 to 1000 |
+| PM values | raw / 10.0 | µg/m³ | 0 to 6553.4 |
 | CO₂ | raw | ppm | 0 to 65534 |
 | VOC/NOx | (byte \| (flag_bit9 << 8)) | index | 0 to 500 |
 
