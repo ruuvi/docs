@@ -118,7 +118,6 @@ When a sensor value is unavailable or invalid, the following special values are 
 | CO₂ | `0xFFFF` |
 | VOC/NOx | `0x1FF` (511) |
 | Sequence | `0xFFFFFF` |
-| MAC | `0xFFFFFFFFFFFF` |
 
 ### End of transmission
 
