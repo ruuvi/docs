@@ -162,7 +162,7 @@ This ensures the returned timestamps are relative to the app's clock rather than
 
 ### Record interval
 
-Ruuvi Air logs measurements once per second. A full day of history contains approximately 86,400 records.
+Ruuvi Air logs measurements once per 5 minutes. A full day of history contains approximately 288 records.
 
 ## Code references
 
