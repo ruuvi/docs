@@ -127,7 +127,7 @@ When all records have been sent, Ruuvi Air sends a final packet with:
 
 Example end marker:
 ```
-0x3B 3B 20 00 26 FF FF FF FF ...
+0x3B 3B 20 00 26
 ```
 
 This indicates no more records are available.
