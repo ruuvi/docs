@@ -38,6 +38,12 @@ When the log buffer is sent and no more data remains, a special message with the
 | .          | .          | .                   | Log Entry                                                                                                                   |
 | Peripheral | 0x3A 3A 10 | 0xFFFFFFFF FFFFFFFF | “To: environmental. From: environmental. Action: write log data. No more logs”                                              |
 
+You can try the communication out quickly with our [sample script](https://github.com/ruuvi/ruuvi.air.ble_nus/blob/master/scripts/ruuvi_ble_nus_read_hist.py)
+```
+python3 ruuvi_ble_nus_read_hist.py --port /dev/ttyACM1 --mac_addr DB:50:4B:2A:65:6A --req env --cur_time 1733763600 --time_interval 3600
+```
+
+
 ### **Data endpoints**
 
 | Endpoint byte | Value                    | Interpretation                                                            |
