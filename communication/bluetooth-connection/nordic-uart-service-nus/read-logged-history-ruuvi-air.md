@@ -141,6 +141,11 @@ This indicates no more records are available.
 | ... | ... | Additional packets with records |
 | Peripheral | `0x3B 3B 20 00 26` | "No more records (end of log)" |
 
+You can try the communication out quickly with our [sample script](https://github.com/ruuvi/ruuvi.air.ble_nus/blob/master/scripts/ruuvi_ble_nus_read_hist.py)
+```
+python3 ruuvi_ble_nus_read_hist.py --port /dev/ttyACM1 --mac_addr FD:54:6F:6C:52:92 --req airq --multi --cur_time 1733763600 --time_interval 3600
+```
+
 ## Implementation notes
 
 ### MTU considerations
