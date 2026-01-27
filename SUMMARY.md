@@ -107,10 +107,10 @@
 * [Ruuvi Cloud](communicate-with-ruuvi-cloud/cloud/README.md)
   * [User API](communicate-with-ruuvi-cloud/cloud/user-api/README.md)
     * ```yaml
-      type: builtin:openapi
       props:
         models: true
         downloadLink: true
+      type: builtin:openapi
       dependencies:
         spec:
           ref:
