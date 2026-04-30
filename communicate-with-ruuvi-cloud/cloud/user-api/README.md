@@ -524,8 +524,7 @@ Updates sensor metadata.
 #### Request Body
 
 | Name              | Type    | Description                                                                                        |
-| ----------------- | ------- | -------------------------------------------------------------------------------------------------- |
-| picture           | string  | Filename of a picture (or URL if uploaded)                                                         |
+| ----------------- | ------- | -------------------------------------------------------------------------------------------------- |                             
 | offsetHumidity    | number  | Offset humidity to calibrate sensor                                                                |
 | offsetPressure    | number  | Offset pressure to calibrate sensor                                                                |
 | offsetTemperature | number  | Offset temperature to calibrate sensor                                                             |
