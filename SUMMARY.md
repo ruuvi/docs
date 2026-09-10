@@ -119,6 +119,7 @@
       ```
   * [Gateway API](communicate-with-ruuvi-cloud/cloud/gateway-api.md)
   * [Internal API](communicate-with-ruuvi-cloud/cloud/internal-api.md)
+  * [Marketing consent](communicate-with-ruuvi-cloud/cloud/marketing-consent.md)
   * [Alerts](communicate-with-ruuvi-cloud/cloud/alerts.md)
   * [Cloud stored app settings](communicate-with-ruuvi-cloud/cloud/cloud-stored-app-settings.md)
 
