@@ -21,13 +21,13 @@ The protocol is similar to [RuuviTag log reading](log-read.md), but uses a diffe
 
 The log read request is an 11-byte message with the following structure:
 
-| Byte offset | Field | Description |
-|-------------|-------|-------------|
-| 0 | Destination | `0x3B` (Air Quality endpoint) |
-| 1 | Source | `0x3B` (Air Quality endpoint) |
-| 2 | Operation | `0x21` (Multi-record log read) or `0x11` (Single-record log read) |
-| 3-6 | Current time | Current Unix timestamp (big-endian, seconds since epoch) |
-| 7-10 | Start time | Start Unix timestamp to read from (big-endian, seconds since epoch) |
+| Byte offset | Field        | Description                                                         |
+| ----------- | ------------ | ------------------------------------------------------------------- |
+| 0           | Destination  | `0x3B` (Air Quality endpoint)                                       |
+| 1           | Source       | `0x3B` (Air Quality endpoint)                                       |
+| 2           | Operation    | `0x21` (Multi-record log read) or `0x11` (Single-record log read)   |
+| 3-6         | Current time | Current Unix timestamp (big-endian, seconds since epoch)            |
+| 7-10        | Start time   | Start Unix timestamp to read from (big-endian, seconds since epoch) |
 
 The multi-record read (`0x21`) is recommended as it packs multiple records per BLE packet for faster transfer.
 
@@ -39,10 +39,10 @@ Reading all air quality data from timestamp `1733760000` (2024-12-09 16:00:00 UT
 0x3B 3B 21 67 57 01 B0 67 56 F2 00
 ```
 
-- `0x3B 3B`: Destination and Source = Air Quality
-- `0x21`: Multi-record log read operation
-- `0x6757 01B0`: Current time = 1733763600
-- `0x6756 F200`: Start time = 1733760000
+* `0x3B 3B`: Destination and Source = Air Quality
+* `0x21`: Multi-record log read operation
+* `0x6757 01B0`: Current time = 1733763600
+* `0x6756 F200`: Start time = 1733760000
 
 ## Response format
 
@@ -50,82 +50,91 @@ Reading all air quality data from timestamp `1733760000` (2024-12-09 16:00:00 UT
 
 When using multi-record read (`0x21`), each response packet contains multiple records:
 
-| Byte offset | Field | Description |
-|-------------|-------|-------------|
-| 0 | Destination | Source index from request |
-| 1 | Source | `0x3B` (Air Quality endpoint) |
-| 2 | Operation | `0x20` (Multi-record log write) |
-| 3 | Num records | Number of records in this packet |
-| 4 | Record length | Length of each record (38 bytes) |
-| 5+ | Records | Packed record data |
+| Byte offset | Field         | Description                      |
+| ----------- | ------------- | -------------------------------- |
+| 0           | Destination   | Source index from request        |
+| 1           | Source        | `0x3B` (Air Quality endpoint)    |
+| 2           | Operation     | `0x20` (Multi-record log write)  |
+| 3           | Num records   | Number of records in this packet |
+| 4           | Record length | Length of each record (38 bytes) |
+| 5+          | Records       | Packed record data               |
 
 ### Record data format (38 bytes per record)
 
 Each record contains a timestamp followed by E1 data format payload:
 
-| Byte offset | Field | Type | Description |
-|-------------|-------|------|-------------|
-| 0-3 | Timestamp | uint32_t BE | Unix timestamp in seconds |
-| 4 | Data format | uint8_t | `0xE1` |
-| 5-6 | Temperature | int16_t BE | Temperature × 200 (°C) |
-| 7-8 | Humidity | uint16_t BE | Humidity × 400 (%) |
-| 9-10 | Pressure | uint16_t BE | (Pressure - 50000) Pa |
-| 11-12 | PM1.0 | uint16_t BE | PM1.0 × 10 (µg/m³) |
-| 13-14 | PM2.5 | uint16_t BE | PM2.5 × 10 (µg/m³) |
-| 15-16 | PM4.0 | uint16_t BE | PM4.0 × 10 (µg/m³) |
-| 17-18 | PM10.0 | uint16_t BE | PM10.0 × 10 (µg/m³) |
-| 19-20 | CO₂ | uint16_t BE | CO₂ (ppm) |
-| 21 | VOC | uint8_t | VOC index (0-500), bit 9 in flags |
-| 22 | NOx | uint8_t | NOx index (0-500), bit 9 in flags |
-| 23-25 | Reserved | uint24_t BE | Reserved  |
-| 26 | Reserved | uint8_t | Reserved  |
-| 27 | Reserved | uint8_t | Reserved  |
-| 28 | Reserved | uint8_t | Reserved  |
-| 29-31 | Sequence cnt | uint24_t BE | Measurement sequence counter |
-| 32 | Flags | uint8_t | Extended bits for 9-bit values |
-| 33-37 | Reserved | - | Reserved for future use |
+| Byte offset | Field        | Type         | Description                                                             |
+| ----------- | ------------ | ------------ | ----------------------------------------------------------------------- |
+| 0-3         | Timestamp    | uint32\_t BE | Unix timestamp in seconds                                               |
+| 4           | Data format  | uint8\_t     | `0xE1`                                                                  |
+| 5-6         | Temperature  | int16\_t BE  | Temperature × 200 (°C)                                                  |
+| 7-8         | Humidity     | uint16\_t BE | Humidity × 400 (%)                                                      |
+| 9-10        | Pressure     | uint16\_t BE | (Pressure - 50000) Pa                                                   |
+| 11-12       | PM1.0        | uint16\_t BE | PM1.0 × 10 (µg/m³)                                                      |
+| 13-14       | PM2.5        | uint16\_t BE | PM2.5 × 10 (µg/m³)                                                      |
+| 15-16       | PM4.0        | uint16\_t BE | PM4.0 × 10 (µg/m³)                                                      |
+| 17-18       | PM10.0       | uint16\_t BE | PM10.0 × 10 (µg/m³)                                                     |
+| 19-20       | CO₂          | uint16\_t BE | CO₂ (ppm)                                                               |
+| 21          | VOC          | uint8\_t     | VOC value bits \[8:1]. Flags bit 6 contains value bit \[0] (LSB).       |
+| 22          | NOx          | uint8\_t     | NOx value bits \[8:1]. Flags bit 7 contains value bit \[0] (LSB).       |
+| 23-25       | Reserved     | uint24\_t BE | Reserved                                                                |
+| 26          | Reserved     | uint8\_t     | Reserved                                                                |
+| 27          | Reserved     | uint8\_t     | Reserved                                                                |
+| 28          | Reserved     | uint8\_t     | Reserved                                                                |
+| 29-31       | Sequence cnt | uint24\_t BE | Measurement sequence counter                                            |
+| 32          | Flags        | uint8\_t     | Contains the least-significant extension bits for split encoded values. |
+| 33-37       | Reserved     | -            | Reserved for future use                                                 |
 
 ### Flags byte interpretation
 
-The flags byte contains the 9th bit for values that need more than 8 bits of precision:
+For VOC and NOx, the Flags byte contains the least significant bit of the reconstructed 9-bit value:
 
-| Bit | Field |
-|-----|-------|
-| 6 | VOC bit 9 |
-| 7 | NOx bit 9 |
+| Flags bit | Field | Significance in reconstructed value |
+| --------- | ----- | ----------------------------------- |
+| 6         | VOC   | VOC bit \[0] (LSB)                  |
+| 7         | NOx   | NOx bit \[0] (LSB)                  |
+
+Bits 6 and 7 above are positions within the Flags byte.
 
 ### Decoding formulas
 
-| Field | Formula | Unit | Range |
-|-------|---------|------|-------|
-| Temperature | raw / 200.0 | °C | -163.840 to +163.830 |
-| Humidity | raw / 400.0 | % | 0 to 100 |
-| Pressure | raw + 50000 | Pa | 50000 to 115534 |
-| PM values | raw / 10.0 | µg/m³ | 0 to 6553.4 |
-| CO₂ | raw | ppm | 0 to 65534 |
-| VOC/NOx | (byte \| (flag_bit9 << 8)) | index | 0 to 500 |
+| Field       | Formula                                    | Unit  | Range                |
+| ----------- | ------------------------------------------ | ----- | -------------------- |
+| Temperature | raw / 200.0                                | °C    | -163.840 to +163.830 |
+| Humidity    | raw / 400.0                                | %     | 0 to 100             |
+| Pressure    | raw + 50000                                | Pa    | 50000 to 115534      |
+| PM values   | raw / 10.0                                 | µg/m³ | 0 to 6553.4          |
+| CO₂         | raw                                        | ppm   | 0 to 65534           |
+| VOC         | `(voc_byte << 1) \| ((flags >> 6) & 0x01)` | index | 0 to 500             |
+| NOx         | `(nox_byte << 1) \| ((flags >> 7) & 0x01)` | index | 0 to 500             |
+
+The invalid encoded value for VOX and NOx is `0x1FF` (511), so the invalid-value check is performed after reconstructing the complete 9-bit value.
+
+For 9-bit VOC and NOx values, the flag is the least significant bit of the value.
 
 ### Invalid values
 
 When a sensor value is unavailable or invalid, the following special values are used:
 
-| Field | Invalid value |
-|-------|---------------|
-| Temperature | `0x8000` |
-| Humidity | `0xFFFF` |
-| Pressure | `0xFFFF` |
-| PM values | `0xFFFF` |
-| CO₂ | `0xFFFF` |
-| VOC/NOx | `0x1FF` (511) |
-| Sequence | `0xFFFFFF` |
+| Field       | Invalid value |
+| ----------- | ------------- |
+| Temperature | `0x8000`      |
+| Humidity    | `0xFFFF`      |
+| Pressure    | `0xFFFF`      |
+| PM values   | `0xFFFF`      |
+| CO₂         | `0xFFFF`      |
+| VOC/NOx     | `0x1FF` (511) |
+| Sequence    | `0xFFFFFF`    |
 
 ### End of transmission
 
 When all records have been sent, Ruuvi Air sends a final packet with:
-- `num_records = 0`
-- `record_length = 38`
+
+* `num_records = 0`
+* `record_length = 38`
 
 Example end marker:
+
 ```
 0x3B 3B 20 00 26
 ```
@@ -134,14 +143,15 @@ This indicates no more records are available.
 
 ## Example communication
 
-| Device | Data | Description |
-|--------|------|-------------|
-| Central | `0x3B 3B 21 67 57 01 B0 67 56 F2 00` | "Read air quality log. Current time: 2024-12-09 17:00, start from: 2024-12-09 16:00" |
-| Peripheral | `0x3B 3B 20 06 26 ...` | "6 records of 38 bytes each in this packet" |
-| ... | ... | Additional packets with records |
-| Peripheral | `0x3B 3B 20 00 26` | "No more records (end of log)" |
+| Device     | Data                                 | Description                                                                          |
+| ---------- | ------------------------------------ | ------------------------------------------------------------------------------------ |
+| Central    | `0x3B 3B 21 67 57 01 B0 67 56 F2 00` | "Read air quality log. Current time: 2024-12-09 17:00, start from: 2024-12-09 16:00" |
+| Peripheral | `0x3B 3B 20 06 26 ...`               | "6 records of 38 bytes each in this packet"                                          |
+| ...        | ...                                  | Additional packets with records                                                      |
+| Peripheral | `0x3B 3B 20 00 26`                   | "No more records (end of log)"                                                       |
 
 You can try the communication out quickly with our [sample script](https://github.com/ruuvi/ruuvi.air.ble_nus/blob/master/scripts/ruuvi_ble_nus_read_hist.py)
+
 ```
 python3 ruuvi_ble_nus_read_hist.py --port /dev/ttyACM1 --mac_addr FD:54:6F:6C:52:92 --req airq --multi --cur_time 1733763600 --time_interval 3600
 ```
@@ -150,7 +160,7 @@ python3 ruuvi_ble_nus_read_hist.py --port /dev/ttyACM1 --mac_addr FD:54:6F:6C:52
 
 ### MTU considerations
 
-Negotiating a larger MTU (247+ bytes) is recommended for optimal throughput. A minimum MTU of ~46 bytes is required to fit a single 38-byte record with headers. With a larger MTU, BLE Data Length Extension (DLE) enables up to 244 bytes per notification. With 38 bytes per record and a 5-byte packet header, up to 6 records can be packed in a single BLE packet:
+Negotiating a larger MTU (247+ bytes) is recommended for optimal throughput. A minimum MTU of \~46 bytes is required to fit a single 38-byte record with headers. With a larger MTU, BLE Data Length Extension (DLE) enables up to 244 bytes per notification. With 38 bytes per record and a 5-byte packet header, up to 6 records can be packed in a single BLE packet:
 
 ```
 (244 - 5) / 38 = 6 records per packet
@@ -159,6 +169,7 @@ Negotiating a larger MTU (247+ bytes) is recommended for optimal throughput. A m
 ### Time synchronization
 
 The protocol uses a time offset calculation to handle clock drift between the device and the mobile app:
+
 1. The app sends its current Unix time in the request
 2. The device calculates the offset: `offset = app_time - device_time`
 3. Timestamps in responses are adjusted by this offset
@@ -171,12 +182,12 @@ Ruuvi Air logs measurements once per 5 minutes. A full day of history contains a
 
 ## Code references
 
-- **Firmware**: [ruuvi.air.main/src/nus.c](https://github.com/ruuvi/ruuvi.air.main/blob/main/src/nus.c)
-- **Android**: [NordicGattManager.kt](https://github.com/ruuvi/com.ruuvi.bluetooth.default/blob/main/default_bluetooth_library/src/main/java/com/ruuvi/station/bluetooth/gatt/NordicGattManager.kt)
-- **iOS**: [BTServices.swift](https://github.com/ruuvi/BTKit/blob/main/Sources/BTKit/Devices/BTServices.swift)
-- **Data format**: [ruuvi.endpoints.c](https://github.com/ruuvi/ruuvi.endpoints.c)
+* **Firmware**: [ruuvi.air.main/src/nus.c](https://github.com/ruuvi/ruuvi.air.main/blob/main/src/nus.c)
+* **Android**: [NordicGattManager.kt](https://github.com/ruuvi/com.ruuvi.bluetooth.default/blob/main/default_bluetooth_library/src/main/java/com/ruuvi/station/bluetooth/gatt/NordicGattManager.kt)
+* **iOS**: [BTServices.swift](https://github.com/ruuvi/BTKit/blob/main/Sources/BTKit/Devices/BTServices.swift)
+* **Data format**: [ruuvi.endpoints.c](https://github.com/ruuvi/ruuvi.endpoints.c)
 
 ## Related documentation
 
-- [Read logged history - RuuviTag](log-read.md)
-- [Data format E1](../../bluetooth-advertisements/data-format-e1.md)
+* [Read logged history - RuuviTag](log-read.md)
+* [Data format E1](../../bluetooth-advertisements/data-format-e1.md)

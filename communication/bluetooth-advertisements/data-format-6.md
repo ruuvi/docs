@@ -10,21 +10,21 @@ This data format uses Bluetooth 4 advertisement extension to be compatible with 
 
 The data is decoded from "Manufacturer Specific Data" -field, for more details please check [Bluetooth Advertisements section](https://docs.ruuvi.com/communication/bluetooth-advertisements). Manufacturer ID is **`0x0499`** , which is transmitted as **`0x9904`** in raw data. The actual data payload is:
 
-| Offset        |   Allowed values   | Description                                                                                                                  |
-| ------------- | :----------------: | ---------------------------------------------------------------------------------------------------------------------------- |
-| 0             |         `6`        | Data format (8bit)                                                                                                           |
-| 1-2           | `-32767 ... 32767` | Temperature in 0.005 degrees                                                                                                 |
-| 3-4           |   `0 ... 40 000`   | Humidity (16bit unsigned) in 0.0025% (0-163.83% range, though realistically 0-100%)                                          |
-| 5-6           |    `0 ... 65534`   | Pressure (16bit unsigned) in 1 Pa units, with offset of -50 000 Pa                                                           |
-| 7-8           |    `0 ... 10000`   | PM 2.5, ug/m^3. Resolution 0.1/bit, range 0 ... 1000. 16bit unsigned                                                         |
-| 9-10          |    `0 ... 40000`   | CO2 concentration, ppm. Resolution 1/bit, range 0 ... 40000. 16bit unsigned                                                  |
-| 11 +FLAGS b6  |     `0 ... 500`    | VOC index, unitless. Resolution 1 / bit, range 0 ... 500. 9 bit unsigned, least significant bit in Flags byte                |
-| 12, +FLAGS b7 |     `0 ... 500`    | NOX index, unitless. Resolution 1 / bit, range 0 ... 500. 9 bit unsigned, least significant bit in Flags byte                |
-| 13            |     `0 ... 254`    | Luminosity, Lux. Logarithmic, range 0 ... 65535. See below for details                                                       |
-| 14            |        `255`       | Reserved                                                                                                                     |
-| 15            |      `0...255`     | Measurement sequence. A device sending also in E1 data format will have identical least significant byte for the same sample |
-| 16            |    `0bVVXX XXXV`   | Flags. See below for details                                                                                                 |
-| 17-19         |   `Any valid mac`  | Lowest 3 bytes of device MAC address                                                                                         |
+| Offset        |   Allowed values   | Description                                                                                                                                                    |
+| ------------- | :----------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0             |         `6`        | Data format (8bit)                                                                                                                                             |
+| 1-2           | `-32767 ... 32767` | Temperature in 0.005 degrees                                                                                                                                   |
+| 3-4           |   `0 ... 40 000`   | Humidity (16bit unsigned) in 0.0025% (0-163.83% range, though realistically 0-100%)                                                                            |
+| 5-6           |    `0 ... 65534`   | Pressure (16bit unsigned) in 1 Pa units, with offset of -50 000 Pa                                                                                             |
+| 7-8           |    `0 ... 10000`   | PM 2.5, ug/m^3. Resolution 0.1/bit, range 0 ... 1000. 16bit unsigned                                                                                           |
+| 9-10          |    `0 ... 40000`   | CO2 concentration, ppm. Resolution 1/bit, range 0 ... 40000. 16bit unsigned                                                                                    |
+| 11 +FLAGS b6  |     `0 ... 500`    | VOC index, unitless. Resolution 1 / bit, range 0 ... 500. 9-bit unsigned: this byte contains value bits \[8:1], and Flags bit 6 contains value bit \[0] (LSB). |
+| 12, +FLAGS b7 |     `0 ... 500`    | NOX index, unitless. Resolution 1 / bit, range 0 ... 500. 9-bit unsigned: this byte contains value bits \[8:1], and Flags bit 7 contains value bit \[0] (LSB). |
+| 13            |     `0 ... 254`    | Luminosity, Lux. Logarithmic, range 0 ... 65535. See below for details                                                                                         |
+| 14            |        `255`       | Reserved                                                                                                                                                       |
+| 15            |      `0...255`     | Measurement sequence. A device sending also in E1 data format will have identical least significant byte for the same sample                                   |
+| 16            |    `0bVVXX XXXV`   | Flags. See below for details                                                                                                                                   |
+| 17-19         |   `Any valid mac`  | Lowest 3 bytes of device MAC address                                                                                                                           |
 
 _Not available_ is signified by largest presentable number for unsigned values, smallest presentable number for signed values and all bits set for mac. All fields are MSB first. All signed values are 2-complement, i.e. `0xFC18` is read as `-1000` and `0x03E8` is read as `1000`. If original data overflows the data format, data is clipped to closest value that can be represented. For example temperature 170.00 C becomes 163.835 C
 
@@ -97,13 +97,25 @@ Volatile Organic Compounds and Nitrogen Oxides are unitless indexes which learn 
 
 Nox index has base value of 1, values higher than 1 meaning there's more nitrogen oxides in the air than usual.
 
-Both values use 9 bits, least significant bit is in Flags byte.
+Both values are encoded as 9-bit unsigned integers split between the value byte and the Flags byte.
 
-| Value   | Measurement             |
-| ------- | ----------------------- |
-| `0x000` | 0                       |
-| `0x0E8` | 232                     |
-| `0x1FF` | Invalid / not available |
+The value byte contains bits \[8:1] of the 9-bit value. The corresponding bit in the Flags byte contains bit \[0], the least significant bit (LSB):
+
+```
+VOC = (VOC_byte << 1) | ((Flags >> 6) & 0x01)
+NOX = (NOX_byte << 1) | ((Flags >> 7) & 0x01)
+```
+
+Flags bit 6 and Flags bit 7 describe the physical bit positions within the Flags byte. They are **not** the most significant bits of the VOC and NOX values.
+
+For example:
+
+| Measurement       | Value byte | Flags value bit |
+| ----------------- | ---------- | --------------- |
+| 0 (0x000)         | 0x00       | 0               |
+| 232 (`0x0E8`)     | `0x74`     | `0`             |
+| 233 (`0x0E9`)     | `0x74`     | `1`             |
+| Invalid (`0x1FF`) | `0xFF`     | `1`             |
 
 #### **Luminosity**
 
@@ -153,8 +165,8 @@ Flags byte contains additional information and is interpreted bit-by-bit. "X" Me
 | Value         | Significance                                                                                |
 | ------------- | ------------------------------------------------------------------------------------------- |
 | `0bXXXX XXXV` | 1 -> Calibration in progress, sensor data not fully accurate yet. 0 -> Calibration complete |
-| `0bXVXX XXXX` | VOC bit 9, 1-> set, 0 -> not set                                                            |
-| `0bVXXX XXXX` | NOX bit 9, 1-> set, 0 -> not set                                                            |
+| `0bXVXX XXXX` | VOC value bit \[0] (LSB), 1 -> set, 0 -> not set                                            |
+| `0bVXXX XXXX` | NOX value bit \[0] (LSB), 1 -> set, 0 -> not set                                            |
 
 #### **MAC address**
 
@@ -170,74 +182,74 @@ These test vectors are based on [ruuvi.endpoints.c](https://github.com/ruuvi/ruu
 
 Raw binary data: `0x06170C5668C79E007000C90501D9XXCD004C884F` XX : Reserved
 
-| Field                | Value                                                                                                                |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| Data format          | `06`                                                                                                                 |
-| Temperature          | `29.500` C                                                                                                           |
-| Pressure             | `101102` Pa                                                                                                          |
-| Humidity             | `55.300` RH-%                                                                                                        |
-| PM 2.5               | `11.2` ug/m^3                                                                                                        |
-| CO2                  | `201` ppm                                                                                                            |
-| VOC                  | `10`                                                                                                                 |
-| NOX                  | 2                                                                                                                    |
-| Luminosity           | `13 026.67` Lux                                                                                                      |
-| Measurement Sequence | `205`                                                                                                                |
-| Flags                | <p>Calibration in progress: <code>False</code></p><p>VOC b9: <code>False</code></p><p>NOX b9: <code>False</code></p> |
-| MAC                  | `4C 88 4F`                                                                                                           |
+| Field                | Value                                                                                                                                        |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Data format          | `06`                                                                                                                                         |
+| Temperature          | `29.500` C                                                                                                                                   |
+| Pressure             | `101102` Pa                                                                                                                                  |
+| Humidity             | `55.300` RH-%                                                                                                                                |
+| PM 2.5               | `11.2` ug/m^3                                                                                                                                |
+| CO2                  | `201` ppm                                                                                                                                    |
+| VOC                  | `10`                                                                                                                                         |
+| NOX                  | 2                                                                                                                                            |
+| Luminosity           | `13 026.67` Lux                                                                                                                              |
+| Measurement Sequence | `205`                                                                                                                                        |
+| Flags                | <p>Calibration in progress: <code>False</code></p><p>VOC LSB (Flags b6): <code>False</code></p><p>NOX LSB (Flags b7): <code>False</code></p> |
+| MAC                  | `4C 88 4F`                                                                                                                                   |
 
 #### Case: maximum values
 
 Raw binary data: `0x067FFF9C40FFFE27109C40FAFAFEXXFF074C8F4F` XX : Reserved
 
-| Field                | Value                                                                                                               |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| Data format          | `06`                                                                                                                |
-| Temperature          | `163.835` C                                                                                                         |
-| Pressure             | `115534` Pa                                                                                                         |
-| Humidity             | `100.000` RH-%                                                                                                      |
-| PM 2.5               | `1000.0` ug/m^3                                                                                                     |
-| CO2                  | `40000` ppm                                                                                                         |
-| VOC                  | `500`                                                                                                               |
-| NOX                  | `500`                                                                                                               |
-| Luminosity           | `65535.00` Lux                                                                                                      |
-| Measurement Sequence | `255`                                                                                                               |
-| Flags                | <p>Calibration in progress: <code>True</code></p><p>VOC b9: <code>False</code></p><p>NOX b9: <code>False</code></p> |
-| MAC                  | `4C 88 4F`                                                                                                          |
+| Field                | Value                                                                                                                                       |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Data format          | `06`                                                                                                                                        |
+| Temperature          | `163.835` C                                                                                                                                 |
+| Pressure             | `115534` Pa                                                                                                                                 |
+| Humidity             | `100.000` RH-%                                                                                                                              |
+| PM 2.5               | `1000.0` ug/m^3                                                                                                                             |
+| CO2                  | `40000` ppm                                                                                                                                 |
+| VOC                  | `500`                                                                                                                                       |
+| NOX                  | `500`                                                                                                                                       |
+| Luminosity           | `65535.00` Lux                                                                                                                              |
+| Measurement Sequence | `255`                                                                                                                                       |
+| Flags                | <p>Calibration in progress: <code>True</code></p><p>VOC LSB (Flags b6): <code>False</code></p><p>NOX LSB (Flags b7): <code>False</code></p> |
+| MAC                  | `4C 88 4F`                                                                                                                                  |
 
 Case: minimum values
 
 Raw binary data: `0x0680010000000000000000000000XX00004C884F` XX : Reserved
 
-| Field                | Value                                                                                                                |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| Data format          | `06`                                                                                                                 |
-| Temperature          | `-163.835` C                                                                                                         |
-| Pressure             | `50000` Pa                                                                                                           |
-| Humidity             | `000.000` RH-%                                                                                                       |
-| PM 2.5               | `0000.0` ug/m^3                                                                                                      |
-| CO2                  | `00000` ppm                                                                                                          |
-| VOC                  | `000`                                                                                                                |
-| NOX                  | `000`                                                                                                                |
-| Luminosity           | `00000.00` Lux                                                                                                       |
-| Measurement Sequence | `000`                                                                                                                |
-| Flags                | <p>Calibration in progress: <code>false</code></p><p>VOC b9: <code>false</code></p><p>NOX b9: <code>false</code></p> |
-| MAC                  | `4C 88 4F`                                                                                                           |
+| Field                | Value                                                                                                                                        |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Data format          | `06`                                                                                                                                         |
+| Temperature          | `-163.835` C                                                                                                                                 |
+| Pressure             | `50000` Pa                                                                                                                                   |
+| Humidity             | `000.000` RH-%                                                                                                                               |
+| PM 2.5               | `0000.0` ug/m^3                                                                                                                              |
+| CO2                  | `00000` ppm                                                                                                                                  |
+| VOC                  | `000`                                                                                                                                        |
+| NOX                  | `000`                                                                                                                                        |
+| Luminosity           | `00000.00` Lux                                                                                                                               |
+| Measurement Sequence | `000`                                                                                                                                        |
+| Flags                | <p>Calibration in progress: <code>false</code></p><p>VOC LSB (Flags b6): <code>false</code></p><p>NOX LSB (Flags b7): <code>false</code></p> |
+| MAC                  | `4C 88 4F`                                                                                                                                   |
 
 #### Case: Invalid values
 
 Raw binary data: `0x068000FFFFFFFFFFFFFFFFFFFFFFXXFFFFFFFFFF` XX : Reserved
 
-| Field                | Value                                                                                                             |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Data format          | `06`                                                                                                              |
-| Temperature          | `NaN` C                                                                                                           |
-| Pressure             | `NaN` Pa                                                                                                          |
-| Humidity             | `NaN` RH-%                                                                                                        |
-| PM 2.5               | `NaN` ug/m^3                                                                                                      |
-| CO2                  | `NaN` ppm                                                                                                         |
-| VOC                  | `NaN`                                                                                                             |
-| NOX                  | `NaN`                                                                                                             |
-| Luminosity           | `NaN` Lux                                                                                                         |
-| Measurement Sequence | `255`                                                                                                             |
-| Flags                | <p>Calibration in progress: <code>true</code></p><p>VOC b9: <code>true</code></p><p>NOX b9: <code>true</code></p> |
-| MAC                  | `FF FF FF`                                                                                                        |
+| Field                | Value                                                                                                                                     |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Data format          | `06`                                                                                                                                      |
+| Temperature          | `NaN` C                                                                                                                                   |
+| Pressure             | `NaN` Pa                                                                                                                                  |
+| Humidity             | `NaN` RH-%                                                                                                                                |
+| PM 2.5               | `NaN` ug/m^3                                                                                                                              |
+| CO2                  | `NaN` ppm                                                                                                                                 |
+| VOC                  | `NaN`                                                                                                                                     |
+| NOX                  | `NaN`                                                                                                                                     |
+| Luminosity           | `NaN` Lux                                                                                                                                 |
+| Measurement Sequence | `255`                                                                                                                                     |
+| Flags                | <p>Calibration in progress: <code>true</code></p><p>VOC LSB (Flags b6): <code>true</code></p><p>NOX LSB (Flags b7): <code>true</code></p> |
+| MAC                  | `FF FF FF`                                                                                                                                |
