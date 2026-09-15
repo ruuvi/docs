@@ -1,16 +1,16 @@
 ---
-description: 'Ruuvi Cloud user facing API. Lifecycle: in production'
+description: 'Ruuvi Cloud user facing API. Lifecycle: in production.'
 ---
 
 # User API
 
-User API uses a JSON based API to allow users to register, secure and edit their information as well as claim and share sensors, retrieve sensor data and alter their subscription details. The documentation is being migrated to the OpenAPI specification. Migrated endpoints are on their own subpages with detailed descriptions, while legacy documentation is at the root level. 
+User API uses a JSON based API to allow users to register, secure and edit their information as well as claim and share sensors, retrieve sensor data and alter their subscription details. The documentation is being migrated to the OpenAPI specification. Migrated endpoints are on their own subpages with detailed descriptions, while legacy documentation is at the root level.
 
 In case OpenAPI and this hand-written documentation are in conflict, OpenAPI documentation is correct.
 
-The OpenAPI specification can be found at https://github.com/ruuvi/ruuvi.cloudapi.yaml. 
+The OpenAPI specification can be found at https://github.com/ruuvi/ruuvi.cloudapi.yaml.
 
-There is also an associated Postman collection for easy getting started, https://www.postman.com/ruuvi-7a5dd1f8-3803443/ruuvi-user-api/api/42a942ba-8a05-4ecf-a305-cd7439b2fc69?version=fa7b6f1e-9cc6-48d9-8afa-ccc0a68c671d. The Postman collection is updated as new endpoints are migrated to OpenAPI. 
+There is also an associated Postman collection for easy getting started, https://www.postman.com/ruuvi-7a5dd1f8-3803443/ruuvi-user-api/api/42a942ba-8a05-4ecf-a305-cd7439b2fc69?version=fa7b6f1e-9cc6-48d9-8afa-ccc0a68c671d. The Postman collection is updated as new endpoints are migrated to OpenAPI.
 
 Most of the API requests have to be authenticated with a bearer token. To obtain a token, you must call /register endpoint which will email you a short verification code. Then you must call /verify endpoint with the emailed token to receive the full bearer token. Details on how to obtain the token are under Register User section in API documentation. Token usage is described with each endpoint. In short, add `"Authorization: Bearer $TOKEN"` to the request headers.
 
@@ -71,15 +71,15 @@ This operation requests complete removal of user account from Ruuvi Cloud. After
 
 Following actions will be done:
 
-User sensors will be unshared&#x20;
+User sensors will be unshared
 
 Sensors shared to user will be removed.
 
-&#x20;~~Data of user sensors will be deleted~~. (TODO)
+~~Data of user sensors will be deleted~~. (TODO)
 
-&#x20;User account data, including sensor claims and settings, will be deleted.
+User account data, including sensor claims and settings, will be deleted.
 
-&#x20;Account deletion is a permament action which cannot be undone
+Account deletion is a permament action which cannot be undone
 
 #### Path Parameters
 
@@ -291,19 +291,19 @@ Fetches a list of sensors you have access to including who those are shared to. 
 
 <mark style="color:blue;">`GET`</mark> `https://network.ruuvi.com/sensors-dense`
 
-Fetches the list of claimed and shared sensors with calibration data, sensor last measurement, subscription type and alert settings. By default the endpoint returns only the claimed sensors with calibration data. Optional arguments must be passed to get shared sensors, last measurement, and alert settings.&#x20;
+Fetches the list of claimed and shared sensors with calibration data, sensor last measurement, subscription type and alert settings. By default the endpoint returns only the claimed sensors with calibration data. Optional arguments must be passed to get shared sensors, last measurement, and alert settings.
 
 #### Query Parameters
 
-| Name           | Type   | Description                                                                                                                                       |
-| -------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| sensor         | string | Optionally filter only one sensor                                                                                                                 |
-| sharedToOthers | bool   | Optionally returns the list of users with whom each of the sensors is shared to. Returns empty list for non-owners                                |
-| sharedToMe     | bool   | Optionally returns the sensors shared to the logged-in user alongside claimed sensors by the user                                                 |
-| measurements   | bool   | Optionally returns the latest measurement of each of the sensors in the collection. Returns also the subscription on which the data is based on.  |
-| alerts         | bool   | Optionally returns the alerts settings of each of the sensors in the collection                                                                   |
-| settings       | bool   | Optionally returns the sensor-specific settings of sensors.                                                                                       |
-| mode           | string | Fetch mode: \[dense, sparse, mixed], determines how the data is returned. Default: mixed                                                          |
+| Name           | Type   | Description                                                                                                                                      |
+| -------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| sensor         | string | Optionally filter only one sensor                                                                                                                |
+| sharedToOthers | bool   | Optionally returns the list of users with whom each of the sensors is shared to. Returns empty list for non-owners                               |
+| sharedToMe     | bool   | Optionally returns the sensors shared to the logged-in user alongside claimed sensors by the user                                                |
+| measurements   | bool   | Optionally returns the latest measurement of each of the sensors in the collection. Returns also the subscription on which the data is based on. |
+| alerts         | bool   | Optionally returns the alerts settings of each of the sensors in the collection                                                                  |
+| settings       | bool   | Optionally returns the sensor-specific settings of sensors.                                                                                      |
+| mode           | string | Fetch mode: \[dense, sparse, mixed], determines how the data is returned. Default: mixed                                                         |
 
 {% tabs %}
 {% tab title="401: Unauthorized " %}
@@ -523,15 +523,15 @@ Updates sensor metadata.
 
 #### Request Body
 
-| Name              | Type    | Description                                                                                        |
-| ----------------- | ------- | -------------------------------------------------------------------------------------------------- |                             
-| offsetHumidity    | number  | Offset humidity to calibrate sensor                                                                |
-| offsetPressure    | number  | Offset pressure to calibrate sensor                                                                |
-| offsetTemperature | number  | Offset temperature to calibrate sensor                                                             |
-| public            | boolean | If true, data will be publicly accessible.                                                         |
-| sensor            | string  | Sensor ID to update                                                                                |
-| name              | string  | Desired name of the tag                                                                            |
-| timestamp         | number  | Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored.  |
+| Name              | Type    | Description                                                                                       |
+| ----------------- | ------- | ------------------------------------------------------------------------------------------------- |
+| offsetHumidity    | number  | Offset humidity to calibrate sensor                                                               |
+| offsetPressure    | number  | Offset pressure to calibrate sensor                                                               |
+| offsetTemperature | number  | Offset temperature to calibrate sensor                                                            |
+| public            | boolean | If true, data will be publicly accessible.                                                        |
+| sensor            | string  | Sensor ID to update                                                                               |
+| name              | string  | Desired name of the tag                                                                           |
+| timestamp         | number  | Epoch timestamp in seconds of settings. If backend has fresher data stored, this will be ignored. |
 
 {% tabs %}
 {% tab title="200 Only returns the fields that had an update targeted to them." %}
@@ -634,7 +634,7 @@ Retrieves a signed upload URL to a bucket. This makes the back-end ready for the
 
 ## Upload the actual image
 
-<mark style="color:orange;">`PUT`</mark> `<URL FROM part 1>`&#x20;
+<mark style="color:orange;">`PUT`</mark> `<URL FROM part 1>`
 
 Create a PUT request to the URL produced by /upload end-point with the data payload to complete the upload.
 
@@ -762,7 +762,7 @@ Sets a single user setting (currently).
 ```
 {% endtab %}
 
-{% tab title="400: Bad Request If request doesn't have "sensor" parameter, or parameter is not a valid MAC address" %}
+{% tab title="400: Bad Request If request doesn't have " %}
 ```javascript
     "status": "success",
     "data": {
@@ -843,7 +843,7 @@ This call is used to reclaim a sensor claimed by someone else. After this endpoi
 
 <mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/subscription`
 
-This endpoints applies a new subscription to user immediately. Previous subscription is lost. Parameters are passed as JSON in body. The success response has full subscription history of user, with active subscription being first element of array of subscriptions.&#x20;
+This endpoints applies a new subscription to user immediately. Previous subscription is lost. Parameters are passed as JSON in body. The success response has full subscription history of user, with active subscription being first element of array of subscriptions.
 
 #### Headers
 
@@ -853,9 +853,9 @@ This endpoints applies a new subscription to user immediately. Previous subscrip
 
 #### Request Body
 
-| Name                                   | Type   | Description           |
-| -------------------------------------- | ------ | --------------------- |
-| code<mark style="color:red;">\*</mark> | String | Code of subscription  |
+| Name                                   | Type   | Description          |
+| -------------------------------------- | ------ | -------------------- |
+| code<mark style="color:red;">\*</mark> | String | Code of subscription |
 
 {% tabs %}
 {% tab title="200: OK Subscription was applied successfully" %}
@@ -937,7 +937,7 @@ This endpoints applies a new subscription to user immediately. Previous subscrip
 
 <mark style="color:blue;">`GET`</mark> `https://network.ruuvi.com/subscription`
 
-Return array of JSON objects detaling the subscriptions user has had.&#x20;
+Return array of JSON objects detaling the subscriptions user has had.
 
 #### Headers
 
@@ -995,9 +995,9 @@ Return array of JSON objects detaling the subscriptions user has had.&#x20;
 
 <mark style="color:green;">`POST`</mark> `https://network.ruuvi.com/push-register`
 
-Register a device to Cloud so Cloud can send push notifications to user. Currently only alerts for Android and iOS are supported.&#x20;
+Register a device to Cloud so Cloud can send push notifications to user. Currently only alerts for Android and iOS are supported.
 
-Tokens must be unique, one token cannot be associated with two accounts. If token already exists in Ruuvi Cloud with another account, the token will be removed from old account.&#x20;
+Tokens must be unique, one token cannot be associated with two accounts. If token already exists in Ruuvi Cloud with another account, the token will be removed from old account.
 
 #### Headers
 
@@ -1066,7 +1066,7 @@ Tokens must be unique, one token cannot be associated with two accounts. If toke
 
 Removes given token from user, e.g. when signing off from the app. This does not require authentication to ensure that a device can always unregister itself.
 
-Either full token or Token ID must be given, but both are optional. If both arguments are given, either can be processed but not both in one request. &#x20;
+Either full token or Token ID must be given, but both are optional. If both arguments are given, either can be processed but not both in one request.
 
 #### Request Body
 
@@ -1113,7 +1113,7 @@ Either full token or Token ID must be given, but both are optional. If both argu
 
 <mark style="color:blue;">`GET`</mark> `https://network.ruuvi.com/push-list`
 
-List all tokens of user. Returns a listing of tokenId - name pairs.&#x20;
+List all tokens of user. Returns a listing of tokenId - name pairs.
 
 #### Headers
 
@@ -1168,4 +1168,3 @@ List all tokens of user. Returns a listing of tokenId - name pairs.&#x20;
 ```
 {% endtab %}
 {% endtabs %}
-
